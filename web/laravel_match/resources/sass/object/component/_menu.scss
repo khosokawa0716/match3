@@ -1,0 +1,31 @@
+// ==================================
+// menu-->_menu.scss
+// ==================================
+
+.c-menu {
+    display: flex;
+    align-items: center;
+    font-size: $font-size_xl;
+    font-family: $font-family_corp;
+    &__item {
+        margin-right: $space_xl;
+    }
+    &__link {
+        -webkit-font-smoothing: initial;
+    }
+    @include mq() {
+        display: block;
+        font-size: $font-size_xxl;
+        &__item {
+            margin-right: initial;
+        }
+        &__link {
+            -webkit-font-smoothing: initial;
+            display: block;
+            padding: $space_l;
+            text-align: center;
+        }
+    }
+}
+
+// https://www.nxworld.net/tips/12-css-hamburger-menu-active-effect.html

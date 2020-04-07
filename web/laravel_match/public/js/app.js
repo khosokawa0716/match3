@@ -643,7 +643,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Top")])
+  return _c("h1", { staticClass: "l-container__title" }, [_vm._v("Top")])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,0 +1,13 @@
+// ==================================
+// _contact.scss
+// ==================================
+.p-contact {
+    width: $site-width;
+    @include mq() {
+        width: 100%;
+    }
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0;
+    padding-bottom: 120px;
+}

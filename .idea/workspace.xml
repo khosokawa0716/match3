@@ -2,15 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_base.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_mixin.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_reset.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_var.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_container.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_footer.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_header.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_nav.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_button.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_form.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_menu.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_panel.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_contact.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_hero.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_menu-trigger.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_news.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_bgColor.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_box-shadow.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_ft-corp.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_ft-l.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_mb-xxl.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_mr-0.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_width.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +57,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -56,7 +78,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586234126073</updated>
-      <workItem from="1586234127263" duration="10162000" />
+      <workItem from="1586234127263" duration="13879000" />
     </task>
     <servers />
   </component>
@@ -65,6 +87,9 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1586237373822">
