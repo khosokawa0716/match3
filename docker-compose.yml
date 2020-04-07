@@ -1,0 +1,21 @@
+version: '3'
+services:
+  match_web:
+    build: .
+    volumes:
+      - ./web:/var/www/html/match
+    ports:
+      - 8081:8081
+      - 3000:3000
+  match_database:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_DATABASE=matchdb
+      - MYSQL_HOST=localhost
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - 5434:5432
