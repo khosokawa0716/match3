@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Http\Requests\StoreIcon;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -50,9 +52,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'profile_fields' => ['string', 'max:2550']
         ]);
     }
 
@@ -64,14 +67,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // アイコン画像の拡張子を取得する
-        $extension = $data['icon']->extension();
+        Log::debug('RegisterController.php/create起動');
+        Log::debug(print_r($data, true));
+        Log::debug(print_r($data['icon_file'], true));
+        $file_name = time().'.'.$data['icon_file']->file->getClientOriginalName();
+        $data['icon_file']->storeAs('public', $file_name);
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'image_name' => $data['name']. '.' . $extension,
+            'icon_path' => 'storage/'.$file_name,
             'profile_fields' => $data['profile_fields']
         ]);
     }

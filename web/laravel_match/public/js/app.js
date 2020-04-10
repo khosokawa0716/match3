@@ -2038,10 +2038,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         email: '',
         password: '',
         password_confirmation: '',
-        icon: '',
-        preview: null,
+        icon_file: '',
         profile_fields: ''
-      }
+      },
+      preview: null
     };
   },
   methods: {
@@ -2053,6 +2053,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                // const formData = new FormData()
+                // formData.append('name',this.registerForm.name)
+                // formData.append('email',this.registerForm.email)
+                // formData.append('password',this.registerForm.password)
+                // formData.append('password_confirmation',this.registerForm.password_confirmation)
+                // formData.append('file',this.registerForm.icon_file)
+                // formData.append('profile_fields',this.registerForm.profile_fields)
+                // console.log(formData)
                 console.log(_this.registerForm); // authストアのregisterアクションを呼び出す
 
                 _context.next = 3;
@@ -2084,6 +2092,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (!event.target.files[0].type.match('image.*')) {
         this.reset();
         return false;
+      } // ファイルが画像が1メガバイト(1,048,576バイト)より大きかったら処理中断
+
+
+      if (event.target.files[0].size > 1048576) {
+        this.reset();
+        return false;
       } // FileReaderクラスのインスタンスを取得
 
 
@@ -2094,18 +2108,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // previewに値が入ると<output>につけたv-ifがtrueと判定される
         // また<output>内部の<img>のsrc属性はpreviewの値を参照しているので
         // 結果として画像が表示される
-        _this2.registerForm.preview = e.target.result;
+        _this2.preview = e.target.result;
       }; // ファイルを読み込む
       // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
 
 
       reader.readAsDataURL(event.target.files[0]);
-      this.registerForm.icon = event.target.files[0];
+      this.registerForm.icon_file = event.target.files[0];
     },
     // 入力欄の値とプレビュー表示をクリアするメソッド
     reset: function reset() {
-      this.registerForm.preview = '';
-      this.registerForm.icon = null;
+      this.preview = '';
+      this.registerForm.icon_file = null;
       this.$el.querySelector('input[type="file"]').value = null;
     }
   }
@@ -3652,6 +3666,7 @@ var render = function() {
       "form",
       {
         staticClass: "form",
+        attrs: { enctype: "multipart/form-data" },
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -3770,15 +3785,10 @@ var render = function() {
           on: { change: _vm.onFileChange }
         }),
         _vm._v(" "),
-        _vm.registerForm.preview
+        _vm.preview
           ? _c("output", { staticClass: "form__output" }, [
               _c("img", {
-                attrs: {
-                  src: _vm.registerForm.preview,
-                  alt: "",
-                  width: "30",
-                  height: "30"
-                }
+                attrs: { src: _vm.preview, alt: "", width: "30", height: "30" }
               })
             ])
           : _vm._e(),
