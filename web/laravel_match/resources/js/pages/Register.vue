@@ -40,19 +40,19 @@
         },
         methods: {
             async register () {
-                // const formData = new FormData()
-                // formData.append('name',this.registerForm.name)
-                // formData.append('email',this.registerForm.email)
-                // formData.append('password',this.registerForm.password)
-                // formData.append('password_confirmation',this.registerForm.password_confirmation)
-                // formData.append('file',this.registerForm.icon_file)
-                // formData.append('profile_fields',this.registerForm.profile_fields)
-                // console.log(formData)
+                const data = new FormData()
+                data.append('name',this.registerForm.name)
+                data.append('email',this.registerForm.email)
+                data.append('password',this.registerForm.password)
+                data.append('password_confirmation',this.registerForm.password_confirmation)
+                data.append('file',this.registerForm.icon_file)
+                data.append('profile_fields',this.registerForm.profile_fields)
+                console.log(data)
 
                 console.log(this.registerForm)
 
                 // authストアのregisterアクションを呼び出す
-                await this.$store.dispatch('auth/register', this.registerForm)
+                await this.$store.dispatch('auth/register', data)
 
                 // 登録ができたらマイページに移動する
                 this.$router.push('/mypage')

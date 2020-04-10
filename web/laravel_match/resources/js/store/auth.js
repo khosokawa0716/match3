@@ -12,7 +12,11 @@ const mutations = {
 
 const actions = {
     async register (context, data) {
-        const response = await axios.post('/api/register', data)
+        const response = await axios.post('/api/register', data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
         context.commit('setUser', response.data)
     }
 }

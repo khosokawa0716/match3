@@ -2049,28 +2049,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // const formData = new FormData()
-                // formData.append('name',this.registerForm.name)
-                // formData.append('email',this.registerForm.email)
-                // formData.append('password',this.registerForm.password)
-                // formData.append('password_confirmation',this.registerForm.password_confirmation)
-                // formData.append('file',this.registerForm.icon_file)
-                // formData.append('profile_fields',this.registerForm.profile_fields)
-                // console.log(formData)
+                data = new FormData();
+                data.append('name', _this.registerForm.name);
+                data.append('email', _this.registerForm.email);
+                data.append('password', _this.registerForm.password);
+                data.append('password_confirmation', _this.registerForm.password_confirmation);
+                data.append('file', _this.registerForm.icon_file);
+                data.append('profile_fields', _this.registerForm.profile_fields);
+                console.log(data);
                 console.log(_this.registerForm); // authストアのregisterアクションを呼び出す
 
-                _context.next = 3;
-                return _this.$store.dispatch('auth/register', _this.registerForm);
+                _context.next = 11;
+                return _this.$store.dispatch('auth/register', data);
 
-              case 3:
+              case 11:
                 // 登録ができたらマイページに移動する
                 _this.$router.push('/mypage');
 
-              case 4:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -20705,7 +20706,11 @@ var actions = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios.post('/api/register', data);
+              return axios.post('/api/register', data, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+              });
 
             case 2:
               response = _context.sent;

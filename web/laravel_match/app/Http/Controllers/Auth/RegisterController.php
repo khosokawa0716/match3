@@ -69,9 +69,9 @@ class RegisterController extends Controller
     {
         Log::debug('RegisterController.php/create起動');
         Log::debug(print_r($data, true));
-        Log::debug(print_r($data['icon_file'], true));
-        $file_name = time().'.'.$data['icon_file']->file->getClientOriginalName();
-        $data['icon_file']->storeAs('public', $file_name);
+        Log::debug(print_r($data['file'], true));
+        $file_name = time().'.'.$data['file']->getClientOriginalName();
+        $data['file']->storeAs('public', $file_name);
 
         return User::create([
             'name' => $data['name'],
