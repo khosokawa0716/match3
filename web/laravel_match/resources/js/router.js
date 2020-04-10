@@ -3,8 +3,11 @@ import VueRouter from 'vue-router'
 
 // ページコンポーネントをインポートする
 import Top from './pages/Top.vue'
+import Mypage from './pages/Mypage.vue'
 import ProjectList from './pages/ProjectList.vue'
+import RegisterProject from './pages/RegisterProject.vue'
 import Login from './pages/Login.vue'
+import Register from './pages/Register.vue'
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
@@ -21,8 +24,20 @@ const routes = [
         component: ProjectList
     },
     {
+        path: '/register-project',
+        component: RegisterProject
+    },
+    {
         path: '/login',
         component: Login
+    },
+    {
+        path: '/register',
+        component: Register
+    },
+    {
+        path: '/mypage',
+        component: Mypage
     }
 ]
 

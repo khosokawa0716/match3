@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Http\Requests\StoreIcon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,10 +64,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // アイコン画像の拡張子を取得する
+        $extension = $data['icon']->extension();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'image_name' => $data['name']. '.' . $extension,
+            'profile_fields' => $data['profile_fields']
         ]);
+    }
+
+    // メソッド追加 リダイレクトさせるのでなくユーザー情報を返却する
+    protected function registered(Request $request, $user)
+    {
+        return $user;
     }
 }

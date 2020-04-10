@@ -2,37 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_base.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_mixin.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_reset.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_var.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_container.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_footer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_header.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_nav.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_button.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_form.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_menu.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_panel.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_contact.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_hero.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_menu-trigger.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_news.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_bgColor.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_box-shadow.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_ft-corp.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_ft-l.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_mb-xxl.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_mr-0.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_width.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/matchdb/migrations.frm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/matchdb/migrations.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/matchdb/password_resets.frm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/matchdb/password_resets.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/matchdb/users.frm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/matchdb/users.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Requests/StoreIcon.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Footer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Register.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/RegisterProject.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/database/ib_buffer_pool" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/database/ib_logfile0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/database/ibdata1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/database/ibtmp1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/mysql/innodb_index_stats.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/mysql/innodb_index_stats.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/mysql/innodb_table_stats.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/mysql/innodb_table_stats.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/_variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586234126073</updated>
-      <workItem from="1586234127263" duration="13879000" />
+      <workItem from="1586234127263" duration="42622000" />
     </task>
     <servers />
   </component>
@@ -87,14 +95,15 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1586237373822">
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1586411105830">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1586237373822" />
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1586411105830" />
   </component>
 </project>
