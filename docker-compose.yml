@@ -21,5 +21,18 @@ services:
       - dbsocket:/var/run/mysqld
     ports:
       - 5434:5432
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=match_database
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    links:
+      - match_database
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
 volumes:
   dbsocket:

@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Footer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +49,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586234126073</updated>
-      <workItem from="1586234127263" duration="68447000" />
+      <workItem from="1586234127263" duration="69601000" />
     </task>
     <servers />
   </component>
