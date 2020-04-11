@@ -13,7 +13,7 @@
             <label for="icon-image">アイコン画像</label>
             <input class="form__item" type="file" id="icon-image" @change="onFileChange">
             <output class="form__output" v-if="preview">
-                <img :src="preview" alt=""  width="30" height="30">
+                <img :src="preview" alt="選択した画像"  width="30" height="30">
             </output>
             <label for="self-introduction">自己紹介</label>
             <input type="text" class="form__item" id="self-introduction" v-model="registerForm.profile_fields">

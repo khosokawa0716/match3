@@ -4,16 +4,13 @@
             match
         </RouterLink>
         <div class="navbar__menu">
-            <div class="navbar__item">
-                <button class="button">
-                    <i class="icon ion-md-add"></i>
-                    Submit a photo
-                </button>
-                <button class="button button--link">ログアウト</button>
+            <div v-if="isLogin" class="navbar__item">
+                <button class="button button--link" @click="logout">ログアウト</button>
             </div>
-            <span class="navbar__item">
-        username
-      </span>
+            <span v-if="isLogin" class="navbar__item">
+                {{ username }}
+            </span>
+            <img v-if="isLogin" :src="icon_path" alt="アイコン画像"  height="20">
             <div class="navbar__item">
                 <RouterLink class="button button--link" to="/login">
                     ログイン
@@ -25,3 +22,25 @@
         </div>
     </nav>
 </template>
+<script>
+    export default {
+        methods: {
+            async logout () {
+                await this.$store.dispatch('auth/logout')
+
+                this.$router.push('/login')
+            }
+        },
+        computed: {
+            isLogin () {
+                return this.$store.getters['auth/check']
+            },
+            username () {
+                return this.$store.getters['auth/username']
+            },
+            icon_path () {
+                return this.$store.getters['auth/icon_path']
+            }
+        }
+    }
+</script>

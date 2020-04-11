@@ -67,9 +67,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Log::debug('RegisterController.php/create起動');
-        Log::debug(print_r($data, true));
-        Log::debug(print_r($data['file'], true));
+//        Log::debug('RegisterController.php/create起動');
+//        Log::debug(print_r($data, true));
+//        Log::debug(print_r($data['file'], true));
+
+        // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
         $file_name = time().'.'.$data['file']->getClientOriginalName();
         $data['file']->storeAs('public', $file_name);
 
