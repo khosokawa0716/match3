@@ -11,16 +11,18 @@
     export default {
         data() {
             return {
-                passResetForm: {
+                passResetForm: { // emailとtokenは、GETパラメータから取得する
+                    email: this.$route.query.email,
                     password: '',
-                    password_confirmation: ''
+                    password_confirmation: '',
+                    token: this.$route.params.pathMatch
                 }
             }
         },
         methods: {
             async passReset () {
-                await axios.post('/api/password/reset', this.passResetForm)
+                await axios.post('/password/reset/', this.passResetForm)
             }
-        }
+        },
     }
 </script>

@@ -38,15 +38,7 @@ class ResetPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    protected function rules()
-    {
-        // パスワード再設定時にメールアドレスの入力が不要になるようにオーバーライド
-        return [
-            'token' => 'required',
-            'password' => 'required|confirmed|min:8',
-        ];
-    }
-
+    // ビューはjsを使用するので、index.blade.phpにオーバーライドする
     public function showResetForm(Request $request, $token = null)
     {
         return view('index')->with(

@@ -2191,8 +2191,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       passResetForm: {
+        email: this.$route.query.email,
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        token: this.$route.params.pathMatch
       }
     };
   },
@@ -2206,7 +2208,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/api/password/reset', _this.passResetForm);
+                return axios.post('/password/reset/', _this.passResetForm);
 
               case 2:
               case "end":
@@ -2278,7 +2280,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/api/password/email', _this.passResetEmailForm);
+                return axios.post('/password/email', _this.passResetEmailForm);
 
               case 2:
               case "end":
@@ -21377,7 +21379,7 @@ var routes = [{
   // }
 
 }, {
-  path: '/password/reset/{token}',
+  path: '/password/reset/*',
   component: _pages_PassReset_vue__WEBPACK_IMPORTED_MODULE_9__["default"] // beforeEnter (to, from, next) {
   //     if (this.$store.getters['auth/check']) {
   //         next('/mypage')
@@ -21466,7 +21468,7 @@ var actions = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios.post('/api/register', data, {
+              return axios.post('/register', data, {
                 headers: {
                   // 画像の登録があるために以下3行を追加
                   'Content-Type': 'multipart/form-data'
@@ -21494,7 +21496,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return axios.post('/api/login', data);
+              return axios.post('/login', data);
 
             case 2:
               response = _context2.sent;
@@ -21517,7 +21519,7 @@ var actions = {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios.post('/api/logout');
+              return axios.post('/logout');
 
             case 2:
               response = _context3.sent;

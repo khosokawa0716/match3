@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
     // ユーザー登録
     async register (context, data) {
-        const response = await axios.post('/api/register', data, {
+        const response = await axios.post('/register', data, {
             headers: { // 画像の登録があるために以下3行を追加
                 'Content-Type': 'multipart/form-data'
             }
@@ -30,12 +30,12 @@ const actions = {
     },
     // ログイン
     async login (context, data) {
-        const response = await axios.post('/api/login', data)
+        const response = await axios.post('/login', data)
         context.commit('setUser', response.data)
     },
     // ログアウト userのstateをnullにする
     async logout (context) {
-        const response = await axios.post('/api/logout')
+        const response = await axios.post('/logout')
         context.commit('setUser', null)
     }
 }

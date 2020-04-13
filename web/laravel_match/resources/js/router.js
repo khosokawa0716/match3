@@ -45,7 +45,7 @@ const routes = [
         // }
     },
     {
-        path: '/password/reset/{token}',
+        path: '/password/reset/*',
         component: PassReset,
         // beforeEnter (to, from, next) {
         //     if (this.$store.getters['auth/check']) {

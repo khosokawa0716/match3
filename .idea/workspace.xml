@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassReset.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassResetEmail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/database/ib_logfile0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/database/ibdata1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/database/ibtmp1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/users.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/users.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Providers/RouteServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassReset.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassReset.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassResetEmail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassResetEmail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586234126073</updated>
-      <workItem from="1586234127263" duration="90056000" />
+      <workItem from="1586234127263" duration="96806000" />
     </task>
     <servers />
   </component>
@@ -93,9 +89,9 @@
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1680.950@0.23.1680.950" timestamp="1586746804934" />
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1586752217409">
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1586778532967">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1586752217409" />
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1586778532967" />
   </component>
 </project>
