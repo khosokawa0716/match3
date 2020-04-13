@@ -10,6 +10,11 @@
                 <button type="submit" class="button button--inverse">login</button>
             </div>
         </form>
+        <div>
+            <RouterLink class="button button--link" to="/password/email">
+                パスワードをお忘れの方はこちら
+            </RouterLink>
+        </div>
     </div>
 </template>
 <script>

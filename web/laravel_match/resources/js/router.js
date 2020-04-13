@@ -8,6 +8,8 @@ import ProjectList from './pages/ProjectList.vue'
 import RegisterProject from './pages/RegisterProject.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
+import PassResetEmail from './pages/PassResetEmail.vue'
+import PassReset from './pages/PassReset.vue'
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
@@ -32,12 +34,42 @@ const routes = [
         component: Login
     },
     {
+        path: '/password/email',
+        component: PassResetEmail,
+        // beforeEnter (to, from, next) {
+        //     if (this.$store.getters['auth/check']) {
+        //         next('/mypage')
+        //     } else {
+        //         next()
+        //     }
+        // }
+    },
+    {
+        path: '/password/reset/{token}',
+        component: PassReset,
+        // beforeEnter (to, from, next) {
+        //     if (this.$store.getters['auth/check']) {
+        //         next('/mypage')
+        //     } else {
+        //         next()
+        //     }
+        // }
+    },
+    {
         path: '/register',
         component: Register
     },
     {
         path: '/mypage',
-        component: Mypage
+        component: Mypage,
+        // beforeEnter (to, from, next) {
+        //     // ログインしていない状態でマイページのリクエストがあったら、ログインページに移動する
+        //     if (this.$store.getters['auth/check']) {
+        //         next('')
+        //     } else {
+        //         next('/login')
+        //     }
+        // }
     }
 ]
 
