@@ -28,6 +28,15 @@ const actions = {
         })
         context.commit('setUser', response.data)
     },
+    // ユーザー更新
+    async update (context, data) {
+        const response = await axios.post('/users/{user}', data, {
+            headers: { // 画像の登録があるために以下3行を追加
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        context.commit('setUser', response.data)
+    },
     // ログイン
     async login (context, data) {
         const response = await axios.post('/login', data)

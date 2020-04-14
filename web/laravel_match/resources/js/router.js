@@ -8,6 +8,7 @@ import ProjectList from './pages/ProjectList.vue'
 import RegisterProject from './pages/RegisterProject.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
+import Edit from './pages/Edit.vue'
 import PassResetEmail from './pages/PassResetEmail.vue'
 import PassReset from './pages/PassReset.vue'
 
@@ -28,6 +29,15 @@ const routes = [
     {
         path: '/register-project',
         component: RegisterProject
+    },
+    {
+        path: '/register',
+        component: Register
+    },
+    {
+        path: '/users/:userId/edit',
+        name: 'edit',
+        component: Edit
     },
     {
         path: '/login',
@@ -54,10 +64,6 @@ const routes = [
         //         next()
         //     }
         // }
-    },
-    {
-        path: '/register',
-        component: Register
     },
     {
         path: '/mypage',
