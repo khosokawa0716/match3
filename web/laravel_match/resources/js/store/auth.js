@@ -6,6 +6,7 @@ const getters = {
     // ログインチェック 確実に真偽値を返すために二重否定
     check: state => !! state.user,
     // userのstateが存在する場合には名前などの値を返す。ない場合に呼ばれたら空文字を返す
+    userid: state => state.user ? state.user.id : '',
     username: state => state.user ? state.user.name : '',
     email: state => state.user ? state.user.email : '',
     icon_path: state => state.user ? state.user.icon_path : '',
@@ -30,7 +31,9 @@ const actions = {
     },
     // ユーザー更新
     async update (context, data) {
-        const response = await axios.post('/users/{user}', data, {
+        console.log(...data.entries())
+        // const response = await axios.patch('/users/' + data.get['id'], data, {
+        const response = await axios.patch('/users', data, {
             headers: { // 画像の登録があるために以下3行を追加
                 'Content-Type': 'multipart/form-data'
             }

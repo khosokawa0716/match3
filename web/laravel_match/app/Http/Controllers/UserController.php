@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -60,26 +61,44 @@ class UserController extends Controller
         return $user;
     }
 
+    // 実際の更新処理
+    // 終わったら、そのユーザのページへ移動
     /**
      * Update the specified resource in storage.
      *
-     * @param  array $data
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\User $user
-     * @return \App\User $user
+     * @return \Illuminate\Http\Response
      */
-    public function update(User $user, array $data)
+    public function update(Request $request, User $user)
     {
-        // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
-        $file_name = time().'.'.$data['file']->getClientOriginalName();
-        $data['file']->storeAs('public', $file_name);
-
-        $user->email = $data['email'];
-        $user->icon_path = 'storage/'.$file_name;
-        $user->profile_fields = $data['profile_fields'];
+        $user->email = $request->email;
+        $user->profile_fields = $request->profile_fields;
         $user->save();
-
-        return $user;
+//        return redirect('users/'.$user->id);
     }
+//    /**
+//     * Update the specified resource in storage.
+//     *
+//     * @param  array $data
+//     * @return \App\User
+//     */
+//    public function update(array $data)
+//    protected function update(array $data)
+//    {
+//        Log::debug('UserController.php/update起動');
+        // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
+//        $file_name = time().'.'.$data['file']->getClientOriginalName();
+//        $data['file']->storeAs('public', $file_name);
+//
+//        $user = \App\User::findOrFail($data['id']);
+//
+//        $user->email = $data['email'];
+//        $user->icon_path = 'storage/'.$file_name;
+//        $user->profile_fields = $data['profile_fields'];
+//        $user->save();
+//
+//    }
 
     /**
      * Remove the specified resource from storage.
