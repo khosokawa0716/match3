@@ -74,12 +74,14 @@ class UserController extends Controller
     {
 //        ini_set('memory_limit', '256M');
 //        Log::debug(print_r($request, true));
+        // $requestをログ出力させようとすると、メモリが128Mでは足りなくなるので注意...
 //        $user->email = $request->email;
 //        $user->profile_fields = $request->profile_fields;
         $user->email = $request['email'];
         $user->profile_fields = $request['profile_fields'];
         $user->save();
 
+        return $user;
 //        return redirect('users/'.$user->id);
     }
 //    /**

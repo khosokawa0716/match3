@@ -45,13 +45,15 @@
                 // console.log(data.get('id'))
 
                 // authストアのupdateアクションを呼び出す
-                // await this.$store.dispatch('auth/update', data)
-                await axios.post('/users/' + this.editForm.id, data,{
-                    headers: { // 画像の登録があるために以下3行を追加
-                        'Content-Type': 'multipart/form-data',
-                        'X-HTTP-Method-Override': 'PUT',
-                    }
-                })
+                await this.$store.dispatch('auth/update', data)
+
+                // authストアを経由せずに直接たたく userのstateが更新されないと思われるが、更新処理自体は確認
+                // await axios.post('/users/' + this.editForm.id, data,{
+                //     headers: { // 画像の登録があるために以下3行を追加
+                //         'Content-Type': 'multipart/form-data',
+                //         'X-HTTP-Method-Override': 'PUT',
+                //     }
+                // })
 
                 // 更新ができたらマイページに移動する
                 // this.$router.push('/mypage')

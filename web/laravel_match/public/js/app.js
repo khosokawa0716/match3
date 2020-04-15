@@ -2155,16 +2155,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 data.append('profile_fields', _this.editForm.profile_fields); // console.log(data.get('id'))
                 // authストアのupdateアクションを呼び出す
-                // await this.$store.dispatch('auth/update', data)
 
                 _context.next = 6;
-                return axios.post('/users/' + _this.editForm.id, data, {
-                  headers: {
-                    // 画像の登録があるために以下3行を追加
-                    'Content-Type': 'multipart/form-data',
-                    'X-HTTP-Method-Override': 'PUT'
-                  }
-                });
+                return _this.$store.dispatch('auth/update', data);
 
               case 6:
               case "end":
@@ -21821,18 +21814,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -21899,29 +21880,26 @@ var actions = {
   // ユーザー更新
   update: function update(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var _console;
-
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              (_console = console).log.apply(_console, _toConsumableArray(data.entries())); // const response = await axios.patch('/users/' + data.get['id'], data, {
-
-
-              _context2.next = 3;
-              return axios.patch('/users', data, {
+              _context2.next = 2;
+              return axios.post('/users/' + data.get('id'), data, {
                 headers: {
-                  // 画像の登録があるために以下3行を追加
-                  'Content-Type': 'multipart/form-data'
+                  'Content-Type': 'multipart/form-data',
+                  // 画像の更新のために追加
+                  'X-HTTP-Method-Override': 'PUT' // data = new FormData これをバックエンド側に渡すためにいったんpostで送りputで上書き
+
                 }
               });
 
-            case 3:
+            case 2:
               response = _context2.sent;
               context.commit('setUser', response.data);
 
-            case 5:
+            case 4:
             case "end":
               return _context2.stop();
           }

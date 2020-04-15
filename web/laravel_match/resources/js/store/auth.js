@@ -31,11 +31,10 @@ const actions = {
     },
     // ユーザー更新
     async update (context, data) {
-        console.log(...data.entries())
-        // const response = await axios.patch('/users/' + data.get['id'], data, {
-        const response = await axios.patch('/users', data, {
-            headers: { // 画像の登録があるために以下3行を追加
-                'Content-Type': 'multipart/form-data'
+        const response = await axios.post('/users/' + data.get('id'), data, {
+            headers: {
+                'Content-Type': 'multipart/form-data', // 画像の更新のために追加
+                'X-HTTP-Method-Override': 'PUT', // data = new FormData これをバックエンド側に渡すためにいったんpostで送りputで上書き
             }
         })
         context.commit('setUser', response.data)
