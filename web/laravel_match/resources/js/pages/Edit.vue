@@ -7,12 +7,12 @@
         <form class="form" @submit.prevent="update" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="_method" value="PUT">
             <label for="email">メールアドレス</label>
-            <input type="text" class="form__item" id="email" v-model="editForm.email">
-<!--            <label for="icon-image">アイコン画像</label>-->
-<!--            <input class="form__item" type="file" id="icon-image" @change="onFileChange">-->
-<!--            <output class="form__output" v-if="preview">-->
-<!--                <img :src="preview" alt="選択した画像"  width="30" height="30">-->
-<!--            </output>-->
+            <input type="text" class="form__item" id="email" v-model="editForm.email" placeholder="">
+            <label for="icon-image">アイコン画像</label>
+            <input class="form__item" type="file" id="icon-image" @change="onFileChange">
+            <output class="form__output" v-if="preview">
+                <img :src="preview" alt="選択した画像"  width="30" height="30">
+            </output>
             <label for="self-introduction">自己紹介</label>
             <input type="text" class="form__item" id="self-introduction" v-model="editForm.profile_fields">
             <div class="form__button">
@@ -28,7 +28,7 @@
                 editForm: {
                     id: this.$store.getters['auth/userid'],
                     email: '',
-                    // icon_file: '',
+                    icon_file: '',
                     profile_fields: ''
                 },
                 preview: null,
@@ -39,7 +39,7 @@
                 const data = new FormData()
                 data.append('id',this.editForm.id)
                 data.append('email',this.editForm.email)
-                // data.append('file',this.editForm.icon_file)
+                data.append('file',this.editForm.icon_file)
                 data.append('profile_fields',this.editForm.profile_fields)
 
                 // console.log(data.get('id'))
@@ -47,16 +47,16 @@
                 // authストアのupdateアクションを呼び出す
                 await this.$store.dispatch('auth/update', data)
 
-                // authストアを経由せずに直接たたく userのstateが更新されないと思われるが、更新処理自体は確認
+                // authストアを経由せずに直接たたく userのstateが更新されないが、更新処理自体は確認
                 // await axios.post('/users/' + this.editForm.id, data,{
-                //     headers: { // 画像の登録があるために以下3行を追加
-                //         'Content-Type': 'multipart/form-data',
-                //         'X-HTTP-Method-Override': 'PUT',
+                //     headers: {
+                //         'Content-Type': 'multipart/form-data', // 画像の更新のために追加
+                //         'X-HTTP-Method-Override': 'PUT', // data = new FormData これをバックエンド側に渡すためにいったんpostで送りputで上書き
                 //     }
                 // })
 
                 // 更新ができたらマイページに移動する
-                // this.$router.push('/mypage')
+                this.$router.push('/mypage')
             },
             onFileChange (event) {
                 // アイコン画像のプレビューを表示するメソッド

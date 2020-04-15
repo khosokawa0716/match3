@@ -75,9 +75,17 @@ class UserController extends Controller
 //        ini_set('memory_limit', '256M');
 //        Log::debug(print_r($request, true));
         // $requestをログ出力させようとすると、メモリが128Mでは足りなくなるので注意...
+
 //        $user->email = $request->email;
 //        $user->profile_fields = $request->profile_fields;
+        // this.editFormのまま値を渡すときに上記の書き方になる
+
+        // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
+        $file_name = time().'.'.$request['file']->getClientOriginalName();
+        $request['file']->storeAs('public', $file_name);
+
         $user->email = $request['email'];
+        $user->icon_path = 'storage/'.$file_name;
         $user->profile_fields = $request['profile_fields'];
         $user->save();
 

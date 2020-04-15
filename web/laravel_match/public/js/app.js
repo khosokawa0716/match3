@@ -2133,7 +2133,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editForm: {
         id: this.$store.getters['auth/userid'],
         email: '',
-        // icon_file: '',
+        icon_file: '',
         profile_fields: ''
       },
       preview: null
@@ -2151,15 +2151,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 data = new FormData();
                 data.append('id', _this.editForm.id);
-                data.append('email', _this.editForm.email); // data.append('file',this.editForm.icon_file)
-
+                data.append('email', _this.editForm.email);
+                data.append('file', _this.editForm.icon_file);
                 data.append('profile_fields', _this.editForm.profile_fields); // console.log(data.get('id'))
                 // authストアのupdateアクションを呼び出す
 
-                _context.next = 6;
+                _context.next = 7;
                 return _this.$store.dispatch('auth/update', data);
 
-              case 6:
+              case 7:
+                // authストアを経由せずに直接たたく userのstateが更新されないが、更新処理自体は確認
+                // await axios.post('/users/' + this.editForm.id, data,{
+                //     headers: {
+                //         'Content-Type': 'multipart/form-data', // 画像の更新のために追加
+                //         'X-HTTP-Method-Override': 'PUT', // data = new FormData これをバックエンド側に渡すためにいったんpostで送りputで上書き
+                //     }
+                // })
+                // 更新ができたらマイページに移動する
+                _this.$router.push('/mypage');
+
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -3987,7 +3998,7 @@ var render = function() {
     _vm._v(" "),
     _vm.isLogin
       ? _c("span", { staticClass: "navbar__item" }, [
-          _vm._v("\n                " + _vm._s(_vm.username) + "\n            ")
+          _vm._v("\n            " + _vm._s(_vm.username) + "\n        ")
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -4031,6 +4042,27 @@ var render = function() {
             }
           }
         }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "icon-image" } }, [_vm._v("アイコン画像")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form__item",
+          attrs: { type: "file", id: "icon-image" },
+          on: { change: _vm.onFileChange }
+        }),
+        _vm._v(" "),
+        _vm.preview
+          ? _c("output", { staticClass: "form__output" }, [
+              _c("img", {
+                attrs: {
+                  src: _vm.preview,
+                  alt: "選択した画像",
+                  width: "30",
+                  height: "30"
+                }
+              })
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("label", { attrs: { for: "self-introduction" } }, [
           _vm._v("自己紹介")
