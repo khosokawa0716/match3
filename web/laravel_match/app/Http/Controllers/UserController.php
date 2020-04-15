@@ -72,9 +72,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->email = $request->email;
-        $user->profile_fields = $request->profile_fields;
+//        ini_set('memory_limit', '256M');
+//        Log::debug(print_r($request, true));
+//        $user->email = $request->email;
+//        $user->profile_fields = $request->profile_fields;
+        $user->email = $request['email'];
+        $user->profile_fields = $request['profile_fields'];
         $user->save();
+
 //        return redirect('users/'.$user->id);
     }
 //    /**

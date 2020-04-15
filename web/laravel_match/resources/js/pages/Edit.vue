@@ -5,7 +5,7 @@
                 {{ username }}
             </span>
         <form class="form" @submit.prevent="update" enctype="multipart/form-data" method="POST">
-            <input type="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="_method" value="PUT">
             <label for="email">メールアドレス</label>
             <input type="text" class="form__item" id="email" v-model="editForm.email">
 <!--            <label for="icon-image">アイコン画像</label>-->
@@ -36,18 +36,22 @@
         },
         methods: {
             async update () {
-                // const data = new FormData()
-                // data.append('id',this.editForm.id)
-                // data.append('email',this.editForm.email)
+                const data = new FormData()
+                data.append('id',this.editForm.id)
+                data.append('email',this.editForm.email)
                 // data.append('file',this.editForm.icon_file)
-                // data.append('profile_fields',this.editForm.profile_fields)
-                //
-                // console.log(this.editForm)
+                data.append('profile_fields',this.editForm.profile_fields)
+
                 // console.log(data.get('id'))
 
                 // authストアのupdateアクションを呼び出す
                 // await this.$store.dispatch('auth/update', data)
-                await axios.patch('/users/' + this.editForm.id, this.editForm)
+                await axios.post('/users/' + this.editForm.id, data,{
+                    headers: { // 画像の登録があるために以下3行を追加
+                        'Content-Type': 'multipart/form-data',
+                        'X-HTTP-Method-Override': 'PUT',
+                    }
+                })
 
                 // 更新ができたらマイページに移動する
                 // this.$router.push('/mypage')

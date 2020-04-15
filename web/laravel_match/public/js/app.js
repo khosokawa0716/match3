@@ -2144,14 +2144,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.patch('/users/' + _this.editForm.id, _this.editForm);
+                data = new FormData();
+                data.append('id', _this.editForm.id);
+                data.append('email', _this.editForm.email); // data.append('file',this.editForm.icon_file)
 
-              case 2:
+                data.append('profile_fields', _this.editForm.profile_fields); // console.log(data.get('id'))
+                // authストアのupdateアクションを呼び出す
+                // await this.$store.dispatch('auth/update', data)
+
+                _context.next = 6;
+                return axios.post('/users/' + _this.editForm.id, data, {
+                  headers: {
+                    // 画像の登録があるために以下3行を追加
+                    'Content-Type': 'multipart/form-data',
+                    'X-HTTP-Method-Override': 'PUT'
+                  }
+                });
+
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -3997,7 +4012,7 @@ var render = function() {
       },
       [
         _c("input", {
-          attrs: { type: "hidden", name: "_method", value: "PATCH" }
+          attrs: { type: "hidden", name: "_method", value: "PUT" }
         }),
         _vm._v(" "),
         _c("label", { attrs: { for: "email" } }, [_vm._v("メールアドレス")]),

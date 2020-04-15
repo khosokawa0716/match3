@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
 // ユーザー情報の取得
-//Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
+Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 
 // ユーザー情報の更新
 //Route::post('/users', 'UserController@update')->name('users.update');
+//Route::post('/users/{user}', 'UserController@update')->name('users.update');
 //Route::patch('/users/{user}', 'UserController@update')->name('users.update');
 //Route::patch('/users', 'UserController@update')->name('users.update');
+Route::put('/users/{user}', 'UserController@update')->name('users.update');
 
-Route::resource('users', 'UserController');
+//Route::resource('users', 'UserController');
 
 // ログイン
 Route::post('/login', 'Auth\LoginController@login')->name('login');
