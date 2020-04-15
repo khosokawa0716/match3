@@ -2006,7 +2006,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('auth/logout');
 
               case 2:
-                _this.$router.push('/login');
+                if (_this.apiStatus) {
+                  _this.$router.push('/login');
+                }
 
               case 3:
               case "end":
@@ -2018,6 +2020,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: {
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    },
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
     }
@@ -2081,7 +2086,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('auth/logout');
 
               case 2:
-                _this.$router.push('/login');
+                if (_this.apiStatus) {
+                  _this.$router.push('/login');
+                }
 
               case 3:
               case "end":
@@ -2093,6 +2100,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: {
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    },
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
     },
@@ -2124,6 +2134,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2199,6 +2220,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    clearError: function clearError() {
+      this.$store.commit('auth/setUpdateErrorMessages', null);
+    },
     onFileChange: function onFileChange(event) {
       var _this2 = this;
 
@@ -2244,7 +2268,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$el.querySelector('input[type="file"]').value = null;
     }
   },
+  created: function created() {
+    this.clearError();
+  },
   computed: {
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    },
+    updateErrors: function updateErrors() {
+      return this.$store.state.auth.updateErrorMessages;
+    },
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
     },
@@ -2567,6 +2600,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2605,8 +2658,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.$store.dispatch('auth/register', data);
 
               case 11:
-                // 登録ができたらマイページに移動する
-                _this.$router.push('/mypage');
+                if (_this.apiStatus) {
+                  // registerアクションが成功だった場合、マイページに移動する
+                  _this.$router.push('/mypage');
+                }
 
               case 12:
               case "end":
@@ -2615,6 +2670,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    clearError: function clearError() {
+      this.$store.commit('auth/setRegisterErrorMessages', null);
     },
     onFileChange: function onFileChange(event) {
       var _this2 = this;
@@ -2659,6 +2717,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.preview = '';
       this.registerForm.icon_file = null;
       this.$el.querySelector('input[type="file"]').value = null;
+    }
+  },
+  created: function created() {
+    this.clearError();
+  },
+  computed: {
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    },
+    registerErrors: function registerErrors() {
+      return this.$store.state.auth.registerErrorMessages;
     }
   }
 });
@@ -4069,6 +4138,40 @@ var render = function() {
         }
       },
       [
+        _vm.updateErrors
+          ? _c("div", { staticClass: "errors" }, [
+              _vm.updateErrors.email
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.updateErrors.email, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.updateErrors.icon_file
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.updateErrors.icon_file, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.updateErrors.profile_fields
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.updateErrors.profile_fields, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("input", {
           attrs: { type: "hidden", name: "_method", value: "PUT" }
         }),
@@ -4628,6 +4731,72 @@ var render = function() {
         }
       },
       [
+        _vm.registerErrors
+          ? _c("div", { staticClass: "errors" }, [
+              _vm.registerErrors.name
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.name, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.email
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.email, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.password
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.password, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.password_confirmation
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.password_confirmation, function(
+                      msg
+                    ) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.icon_file
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.icon_file, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.profile_fields
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.profile_fields, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("label", { attrs: { for: "username" } }, [_vm._v("お名前")]),
         _vm._v(" "),
         _c("input", {
@@ -21167,6 +21336,12 @@ window.axios.interceptors.request.use(function (config) {
   config.headers['X-XSRF-TOKEN'] = Object(_util__WEBPACK_IMPORTED_MODULE_0__["getCookieValue"])('XSRF-TOKEN');
   return config;
 });
+window.axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  return error.response || error;
+} // axiosの通信が失敗したときの処理を上書きする
+);
 
 /***/ }),
 
@@ -22089,7 +22264,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   user: null,
   apiStatus: null,
-  loginErrorMessages: null
+  loginErrorMessages: null,
+  registerErrorMessages: null,
+  updateErrorMessages: null
 };
 var getters = {
   // ログインチェック 確実に真偽値を返すために二重否定
@@ -22122,6 +22299,12 @@ var mutations = {
   },
   setLoginErrorMessages: function setLoginErrorMessages(state, messages) {
     state.loginErrorMessages = messages;
+  },
+  setRegisterErrorMessages: function setRegisterErrorMessages(state, messages) {
+    state.registerErrorMessages = messages;
+  },
+  setUpdateErrorMessages: function setUpdateErrorMessages(state, messages) {
+    state.updateErrorMessages = messages;
   }
 };
 var actions = {
@@ -22134,11 +22317,10 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              context.commit('setApiStatus', null);
+              context.commit('setApiStatus', null); // apiStatus始めはnull
+
               _context.next = 3;
-              return axios.post('/login', data)["catch"](function (err) {
-                return err.response || err;
-              });
+              return axios.post('/login', data);
 
             case 3:
               response = _context.sent;
@@ -22148,12 +22330,14 @@ var actions = {
                 break;
               }
 
+              // レスポンスがOK(200)なら以下の処理を実行
               context.commit('setApiStatus', true);
               context.commit('setUser', response.data);
               return _context.abrupt("return", false);
 
             case 8:
-              context.commit('setApiStatus', false); // バリデーションエラーの場合は、loginErrorMessagesにエラーメッセージをセットする
+              context.commit('setApiStatus', false); // レスポンスがOK以外ならapiStatusをfalse
+              // バリデーションエラーの場合は、loginErrorMessagesにエラーメッセージをセットする
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
                 context.commit('setLoginErrorMessages', response.data.errors);
@@ -22179,7 +22363,8 @@ var actions = {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
+              context.commit('setApiStatus', null);
+              _context2.next = 3;
               return axios.post('/register', data, {
                 headers: {
                   'Content-Type': 'multipart/form-data' // 画像の更新のために追加
@@ -22187,11 +22372,30 @@ var actions = {
                 }
               });
 
-            case 2:
+            case 3:
               response = _context2.sent;
-              context.commit('setUser', response.data);
 
-            case 4:
+              if (!(response.status === CREATED)) {
+                _context2.next = 8;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setUser', response.data);
+              return _context2.abrupt("return", false);
+
+            case 8:
+              context.commit('setApiStatus', false);
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                context.commit('setRegisterErrorMessages', response.data.errors);
+              } else {
+                context.commit('error/setCode', response.status, {
+                  root: true
+                });
+              }
+
+            case 10:
             case "end":
               return _context2.stop();
           }
@@ -22207,14 +22411,29 @@ var actions = {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.next = 2;
+              context.commit('setApiStatus', null);
+              _context3.next = 3;
               return axios.post('/logout');
 
-            case 2:
+            case 3:
               response = _context3.sent;
-              context.commit('setUser', null);
 
-            case 4:
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context3.next = 8;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setUser', null);
+              return _context3.abrupt("return", false);
+
+            case 8:
+              context.commit('setApiStatus', false);
+              context.commit('error/setCode', response.status, {
+                root: true
+              });
+
+            case 10:
             case "end":
               return _context3.stop();
           }
@@ -22230,7 +22449,8 @@ var actions = {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              _context4.next = 2;
+              context.commit('setApiStatus', null);
+              _context4.next = 3;
               return axios.post('/users/' + data.get('id'), data, {
                 headers: {
                   'Content-Type': 'multipart/form-data',
@@ -22240,11 +22460,30 @@ var actions = {
                 }
               });
 
-            case 2:
+            case 3:
               response = _context4.sent;
-              context.commit('setUser', response.data);
 
-            case 4:
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context4.next = 8;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setUser', response.data);
+              return _context4.abrupt("return", false);
+
+            case 8:
+              context.commit('setApiStatus', false);
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                context.commit('setUpdateErrorMessages', response.data.errors);
+              } else {
+                context.commit('error/setCode', response.status, {
+                  root: true
+                });
+              }
+
+            case 10:
             case "end":
               return _context4.stop();
           }
@@ -22260,15 +22499,30 @@ var actions = {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              _context5.next = 2;
+              context.commit('setApiStatus', null);
+              _context5.next = 3;
               return axios.get('/user');
 
-            case 2:
+            case 3:
               response = _context5.sent;
               user = response.data || null;
-              context.commit('setUser', user);
 
-            case 5:
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context5.next = 9;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setUser', user);
+              return _context5.abrupt("return", false);
+
+            case 9:
+              context.commit('setApiStatus', false);
+              context.commit('error/setCode', response.status, {
+                root: true
+              });
+
+            case 11:
             case "end":
               return _context5.stop();
           }
