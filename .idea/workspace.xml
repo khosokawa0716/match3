@@ -2,11 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/System.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/error.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Footer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,13 +99,13 @@
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1680.950@0.23.1680.950" timestamp="1586843701338" />
-    <state x="363" y="291" width="689" height="472" key="find.popup" timestamp="1586822706168">
+    <state x="363" y="291" width="761" height="472" key="find.popup" timestamp="1586936749588">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="363" y="291" width="689" height="472" key="find.popup/0.23.1680.950@0.23.1680.950" timestamp="1586822706168" />
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1586914134562">
+    <state x="363" y="291" width="761" height="472" key="find.popup/0.23.1680.950@0.23.1680.950" timestamp="1586936749588" />
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1586928572181">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1586914134562" />
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1586928572181" />
   </component>
 </project>

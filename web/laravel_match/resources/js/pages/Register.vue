@@ -2,6 +2,26 @@
     <div>
         <h1 class="l-container__title">ユーザー登録</h1>
         <form class="form" @submit.prevent="register" enctype="multipart/form-data">
+            <div v-if="registerErrors" class="errors">
+                <ul v-if="registerErrors.name">
+                    <li v-for="msg in registerErrors.name" :key="msg">{{ msg }}</li>
+                </ul>
+                <ul v-if="registerErrors.email">
+                    <li v-for="msg in registerErrors.email" :key="msg">{{ msg }}</li>
+                </ul>
+                <ul v-if="registerErrors.password">
+                    <li v-for="msg in registerErrors.password" :key="msg">{{ msg }}</li>
+                </ul>
+                <ul v-if="registerErrors.password_confirmation">
+                    <li v-for="msg in registerErrors.password_confirmation" :key="msg">{{ msg }}</li>
+                </ul>
+                <ul v-if="registerErrors.icon_file">
+                    <li v-for="msg in registerErrors.icon_file" :key="msg">{{ msg }}</li>
+                </ul>
+                <ul v-if="registerErrors.profile_fields">
+                    <li v-for="msg in registerErrors.profile_fields" :key="msg">{{ msg }}</li>
+                </ul>
+            </div>
             <label for="username">お名前</label>
             <input type="text" class="form__item" id="username" v-model="registerForm.name">
             <label for="email">メールアドレス</label>
@@ -54,8 +74,13 @@
                 // authストアのregisterアクションを呼び出す
                 await this.$store.dispatch('auth/register', data)
 
-                // 登録ができたらマイページに移動する
-                this.$router.push('/mypage')
+                if (this.apiStatus) {
+                    // registerアクションが成功だった場合、マイページに移動する
+                    this.$router.push('/mypage')
+                }
+            },
+            clearError () {
+                this.$store.commit('auth/setRegisterErrorMessages', null)
             },
             onFileChange (event) {
                 // アイコン画像のプレビューを表示するメソッド
@@ -100,6 +125,17 @@
                 this.registerForm.icon_file = null
                 this.$el.querySelector('input[type="file"]').value = null
             },
+        },
+        created() {
+            this.clearError()
+        },
+        computed: {
+            apiStatus () {
+                return this.$store.state.auth.apiStatus
+            },
+            registerErrors () {
+                return this.$store.state.auth.registerErrorMessages
+            }
         }
     }
 </script>

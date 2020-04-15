@@ -4,10 +4,18 @@ import router from './router' // ルーティングの定義をインポート�
 import store from './store' // Vuexストアをインポートする
 import App from './App.vue' // ルートコンポーネントをインポートする
 
-new Vue({
-    el: '#app',
-    router, // ルーティングの定義を読み込む
-    store, // ストアの使用を宣言する
-    components: { App }, // ルートコンポーネントの使用を宣言する
-    template: '<App />' // ルートコンポーネントを描画する
-})
+const createApp = async () => {
+    await store.dispatch('auth/currentUser')
+
+    // currentUserアクションの非同期処理が終わってからVueインスタンスを生成する
+    // インスタンス生成前にログインチェックをおこなっている
+    new Vue({
+        el: '#app',
+        router, // ルーティングの定義を読み込む
+        store, // ストアの使用を宣言する
+        components: { App }, // ルートコンポーネントの使用を宣言する
+        template: '<App />' // ルートコンポーネントを描画する
+    })
+}
+
+createApp()

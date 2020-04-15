@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import store from './store' // ナビゲーションガードを追加するためにauthストアのcheckゲッターを使用する
+
 // ページコンポーネントをインポートする
 import Top from './pages/Top.vue'
 import Mypage from './pages/Mypage.vue'
@@ -11,6 +13,9 @@ import Register from './pages/Register.vue'
 import Edit from './pages/Edit.vue'
 import PassResetEmail from './pages/PassResetEmail.vue'
 import PassReset from './pages/PassReset.vue'
+
+import SystemError from './pages/errors/System.vue'
+
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
@@ -32,50 +37,74 @@ const routes = [
     },
     {
         path: '/register',
-        component: Register
+        component: Register,
+        beforeEnter (to, from, next) { // ログイン状態でアクセスがあったらマイページへ遷移する
+            if (store.getters['auth/check']) {
+                next('/mypage')
+            } else {
+                next()
+            }
+        }
     },
     {
         path: '/users/:userId/edit',
         name: 'edit',
-        component: Edit
+        component: Edit,
+        beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
+            if (store.getters['auth/check']) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
     },
     {
         path: '/login',
-        component: Login
+        component: Login,
+        beforeEnter (to, from, next) { // ログイン状態でアクセスがあったらマイページへ遷移する
+            if (store.getters['auth/check']) {
+                next('/mypage')
+            } else {
+                next()
+            }
+        }
     },
     {
         path: '/password/email',
         component: PassResetEmail,
-        // beforeEnter (to, from, next) {
-        //     if (this.$store.getters['auth/check']) {
-        //         next('/mypage')
-        //     } else {
-        //         next()
-        //     }
-        // }
+        beforeEnter (to, from, next) { // ログイン状態でアクセスがあったらマイページへ遷移する
+            if (store.getters['auth/check']) {
+                next('/mypage')
+            } else {
+                next()
+            }
+        }
     },
     {
         path: '/password/reset/*',
         component: PassReset,
-        // beforeEnter (to, from, next) {
-        //     if (this.$store.getters['auth/check']) {
-        //         next('/mypage')
-        //     } else {
-        //         next()
-        //     }
-        // }
+        beforeEnter (to, from, next) { // ログイン状態でアクセスがあったらマイページへ遷移する
+            if (store.getters['auth/check']) {
+                next('/mypage')
+            } else {
+                next()
+            }
+        }
     },
     {
         path: '/mypage',
         component: Mypage,
-        // beforeEnter (to, from, next) {
-        //     // ログインしていない状態でマイページのリクエストがあったら、ログインページに移動する
-        //     if (this.$store.getters['auth/check']) {
-        //         next('')
-        //     } else {
-        //         next('/login')
-        //     }
-        // }
+        beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
+            if (store.getters['auth/check']) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
+    },
+    {
+        path: '/500',
+        component: SystemError
     }
 ]
 
