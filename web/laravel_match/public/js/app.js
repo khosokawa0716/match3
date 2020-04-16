@@ -2172,9 +2172,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4182,12 +4179,6 @@ var render = function() {
                 : _vm._e()
             ])
           : _vm._e(),
-        _vm._v(" "),
-        _c("div", [
-          _c("img", {
-            attrs: { src: _vm.icon_path, alt: "アイコン画像", height: "20" }
-          })
-        ]),
         _vm._v(" "),
         _c("input", {
           attrs: { type: "hidden", name: "_method", value: "PUT" }
@@ -22187,8 +22178,8 @@ var routes = [{
     }
   }
 }, {
-  // path: '/users/:userId/edit',
-  path: '/users/edit',
+  path: '/users/:userId/edit',
+  // path: '/users/edit',
   name: 'edit',
   component: _pages_Edit_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
   beforeEnter: function beforeEnter(to, from, next) {

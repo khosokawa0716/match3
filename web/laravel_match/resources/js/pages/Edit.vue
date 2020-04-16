@@ -14,9 +14,6 @@
                     <li v-for="msg in updateErrors.profile_fields" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <div>
-                <img :src="icon_path" alt="アイコン画像"  height="20">
-            </div>
             <input type="hidden" name="_method" value="PUT">
             <label for="email">メールアドレス</label>
             <input type="text" class="form__item" id="email" v-model="editForm.email" :placeholder="email">
