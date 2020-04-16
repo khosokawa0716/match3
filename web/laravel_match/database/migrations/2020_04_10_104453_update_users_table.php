@@ -27,7 +27,7 @@ class UpdateUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('image_name');
+            $table->dropColumn('icon_path');
             $table->dropColumn('profile_fields');
         });
     }

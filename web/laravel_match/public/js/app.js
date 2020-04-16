@@ -1953,9 +1953,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     // サーバーエラーが発生したら、System.vueに遷移する
-    handler: function handler(val) {
-      if (val === _util__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"]) {
-        this.$router.push('/500');
+    errorCode: {
+      handler: function handler(val) {
+        if (val === _util__WEBPACK_IMPORTED_MODULE_2__["INTERNAL_SERVER_ERROR"]) {
+          this.$router.push('/500');
+        }
       }
     },
     immediate: true
@@ -2048,6 +2050,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -2169,6 +2174,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2195,22 +2201,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data.append('id', _this.editForm.id);
                 data.append('email', _this.editForm.email);
                 data.append('file', _this.editForm.icon_file);
-                data.append('profile_fields', _this.editForm.profile_fields); // console.log(data.get('id'))
-                // authストアのupdateアクションを呼び出す
+                data.append('profile_fields', _this.editForm.profile_fields); // authストアのupdateアクションを呼び出す
 
                 _context.next = 7;
                 return _this.$store.dispatch('auth/update', data);
 
               case 7:
-                // authストアを経由せずに直接たたく userのstateが更新されないが、更新処理自体は確認
-                // await axios.post('/users/' + this.editForm.id, data,{
-                //     headers: {
-                //         'Content-Type': 'multipart/form-data', // 画像の更新のために追加
-                //         'X-HTTP-Method-Override': 'PUT', // data = new FormData これをバックエンド側に渡すためにいったんpostで送りputで上書き
-                //     }
-                // })
-                // 更新ができたらマイページに移動する
-                _this.$router.push('/mypage');
+                if (_this.apiStatus) {
+                  // updateアクションが成功だった場合、マイページに移動する
+                  _this.$router.push('/mypage');
+                }
 
               case 8:
               case "end":
@@ -2281,14 +2281,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
     },
-    username: function username() {
-      return this.$store.getters['auth/username'];
-    },
     email: function email() {
       return this.$store.getters['auth/email'];
     },
+    // icon_path () {
+    //     return this.$store.getters['auth/icon_path']
+    // },
     icon_path: function icon_path() {
-      return this.$store.getters['auth/icon_path'];
+      // Navbar.vueでは上のコメントかした相対パスで画像が表示できるのに、Edit.vueでは下記絶対パスでないと表示できない
+      // メンテナンスしづらいので、可能であれば修正する
+      return 'http://0.0.0.0:3000/' + this.$store.getters['auth/icon_path'];
     },
     profile_fields: function profile_fields() {
       return this.$store.getters['auth/profile_fields'];
@@ -4044,21 +4046,35 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "navbar__menu" }, [
         _vm.isLogin
-          ? _c("div", { staticClass: "navbar__item" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "button button--link",
-                  on: { click: _vm.logout }
-                },
-                [_vm._v("ログアウト")]
-              )
-            ])
+          ? _c(
+              "div",
+              { staticClass: "navbar__item" },
+              [
+                _c(
+                  "RouterLink",
+                  {
+                    staticClass: "button button--link",
+                    attrs: { to: "/mypage" }
+                  },
+                  [_vm._v("\n                マイページ\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "button button--link",
+                    on: { click: _vm.logout }
+                  },
+                  [_vm._v("ログアウト")]
+                )
+              ],
+              1
+            )
           : _vm._e(),
         _vm._v(" "),
         _vm.isLogin
           ? _c("span", { staticClass: "navbar__item" }, [
-              _vm._v("\n            " + _vm._s(_vm.username) + "\n        ")
+              _vm._v("\n            " + _vm._s(_vm.username) + "様\n        ")
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -4066,29 +4082,30 @@ var render = function() {
           ? _c("img", {
               attrs: { src: _vm.icon_path, alt: "アイコン画像", height: "20" }
             })
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "navbar__item" },
-          [
-            _c(
-              "RouterLink",
-              { staticClass: "button button--link", attrs: { to: "/login" } },
-              [_vm._v("\n                ログイン\n            ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "RouterLink",
-              {
-                staticClass: "button button--link",
-                attrs: { to: "/register" }
-              },
-              [_vm._v("\n                ユーザー登録\n            ")]
+          : _c(
+              "div",
+              { staticClass: "navbar__item" },
+              [
+                _c(
+                  "RouterLink",
+                  {
+                    staticClass: "button button--link",
+                    attrs: { to: "/login" }
+                  },
+                  [_vm._v("\n                ログイン\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "RouterLink",
+                  {
+                    staticClass: "button button--link",
+                    attrs: { to: "/register" }
+                  },
+                  [_vm._v("\n                ユーザー登録\n            ")]
+                )
+              ],
+              1
             )
-          ],
-          1
-        )
       ])
     ],
     1
@@ -4118,12 +4135,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h1", { staticClass: "l-container__title" }, [_vm._v("登録情報の編集")]),
-    _vm._v(" "),
-    _vm.isLogin
-      ? _c("span", { staticClass: "navbar__item" }, [
-          _vm._v("\n            " + _vm._s(_vm.username) + "\n        ")
-        ])
-      : _vm._e(),
     _vm._v(" "),
     _c(
       "form",
@@ -4172,6 +4183,12 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
+        _c("div", [
+          _c("img", {
+            attrs: { src: _vm.icon_path, alt: "アイコン画像", height: "20" }
+          })
+        ]),
+        _vm._v(" "),
         _c("input", {
           attrs: { type: "hidden", name: "_method", value: "PUT" }
         }),
@@ -4202,11 +4219,9 @@ var render = function() {
         _vm._v(" "),
         _c("label", { attrs: { for: "icon-image" } }, [_vm._v("アイコン画像")]),
         _vm._v(" "),
-        _vm.isLogin
-          ? _c("img", {
-              attrs: { src: _vm.icon_path, alt: "アイコン画像", height: "20" }
-            })
-          : _vm._e(),
+        _c("img", {
+          attrs: { src: _vm.icon_path, alt: "アイコン画像", height: "20" }
+        }),
         _vm._v(" "),
         _c("input", {
           staticClass: "form__item",
@@ -4271,7 +4286,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "button button--inverse", attrs: { type: "submit" } },
-        [_vm._v("update")]
+        [_vm._v("更新する")]
       )
     ])
   }
@@ -22172,7 +22187,8 @@ var routes = [{
     }
   }
 }, {
-  path: '/users/:userId/edit',
+  // path: '/users/:userId/edit',
+  path: '/users/edit',
   name: 'edit',
   component: _pages_Edit_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
@@ -22389,8 +22405,6 @@ var actions = {
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
                 context.commit('setRegisterErrorMessages', response.data.errors);
-                console.log('422がきているよ');
-                console.log(response.data.errors);
               } else {
                 context.commit('error/setCode', response.status, {
                   root: true
@@ -22451,8 +22465,9 @@ var actions = {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
+              console.log('auth/update起動');
               context.commit('setApiStatus', null);
-              _context4.next = 3;
+              _context4.next = 4;
               return axios.post('/users/' + data.get('id'), data, {
                 headers: {
                   'Content-Type': 'multipart/form-data',
@@ -22462,22 +22477,24 @@ var actions = {
                 }
               });
 
-            case 3:
+            case 4:
               response = _context4.sent;
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context4.next = 8;
+                _context4.next = 10;
                 break;
               }
 
+              console.log('auth/updateレスポンスステータス200');
               context.commit('setApiStatus', true);
               context.commit('setUser', response.data);
               return _context4.abrupt("return", false);
 
-            case 8:
+            case 10:
               context.commit('setApiStatus', false);
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                console.log('auth/updateレスポンスステータス422');
                 context.commit('setUpdateErrorMessages', response.data.errors);
               } else {
                 context.commit('error/setCode', response.status, {
@@ -22485,7 +22502,7 @@ var actions = {
                 });
               }
 
-            case 10:
+            case 12:
             case "end":
               return _context4.stop();
           }

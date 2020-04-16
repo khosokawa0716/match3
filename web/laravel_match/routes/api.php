@@ -7,13 +7,14 @@ Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
 // ユーザー情報の取得
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
+//Route::get('/users/edit', 'UserController@edit')->name('users.edit');
 
 // ユーザー情報の更新
 Route::put('/users/{user}', 'UserController@update')->name('users.update');
+//Route::put('/users', 'UserController@update')->name('users.update');
 
 // ログイン
 Route::post('/login', 'Auth\LoginController@login')->name('login');
-//Route::delete('/login', 'Auth\LoginController@login')->name('login');
 
 // ログアウト
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');

@@ -5,13 +5,16 @@
         </RouterLink>
         <div class="navbar__menu">
             <div v-if="isLogin" class="navbar__item">
+                <RouterLink class="button button--link" to="/mypage">
+                    マイページ
+                </RouterLink>
                 <button class="button button--link" @click="logout">ログアウト</button>
             </div>
             <span v-if="isLogin" class="navbar__item">
-                {{ username }}
+                {{ username }}様
             </span>
             <img v-if="isLogin" :src="icon_path" alt="アイコン画像"  height="20">
-            <div class="navbar__item">
+            <div v-else class="navbar__item">
                 <RouterLink class="button button--link" to="/login">
                     ログイン
                 </RouterLink>

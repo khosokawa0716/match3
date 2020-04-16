@@ -14,7 +14,7 @@ import Edit from './pages/Edit.vue'
 import PassResetEmail from './pages/PassResetEmail.vue'
 import PassReset from './pages/PassReset.vue'
 
-import SystemError from './pages/errors/System.vue'
+import System from './pages/errors/System.vue'
 
 
 // VueRouterプラグインを使用する
@@ -48,6 +48,7 @@ const routes = [
     },
     {
         path: '/users/:userId/edit',
+        // path: '/users/edit',
         name: 'edit',
         component: Edit,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
@@ -104,7 +105,7 @@ const routes = [
     },
     {
         path: '/500',
-        component: SystemError
+        component: System
     }
 ]
 

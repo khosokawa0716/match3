@@ -28,9 +28,11 @@
             }
         },
         watch: { // サーバーエラーが発生したら、System.vueに遷移する
-            handler (val) {
-                if (val === INTERNAL_SERVER_ERROR) {
-                    this.$router.push('/500')
+            errorCode: {
+                handler (val) {
+                    if (val === INTERNAL_SERVER_ERROR) {
+                        this.$router.push('/500')
+                    }
                 }
             },
             immediate: true

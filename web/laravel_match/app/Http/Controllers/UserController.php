@@ -72,47 +72,43 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-//        ini_set('memory_limit', '256M');
-//        Log::debug(print_r($request, true));
-        // $requestをログ出力させようとすると、メモリが128Mでは足りなくなるので注意...
+        // 入力された項目だけ更新をおこなう
+        // 入力項目の有無に関わらずユーザー情報を返却する
+        if ( $request->filled('email') | $request->filled('file') | $request->filled('profile_fields')) {
 
-//        $user->email = $request->email;
-//        $user->profile_fields = $request->profile_fields;
-        // this.editFormのまま値を渡すときに上記の書き方になる
+            if ( $request->filled('email') ) {
+                $this->validate($request, [
+                    'email' => 'email|max:100'
+                ]);
+                $user->email = $request['email'];
+            }
 
-        // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
-        $file_name = time().'.'.$request['file']->getClientOriginalName();
-        $request['file']->storeAs('public', $file_name);
+            if ( $request->filled('file') ) {
+                // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
+                $file_name = time().'.'.$request['file']->getClientOriginalName();
+                $request['file']->storeAs('public', $file_name);
+                $user->icon_path = 'storage/'.$file_name;
+            }
 
-        $user->email = $request['email'];
-        $user->icon_path = 'storage/'.$file_name;
-        $user->profile_fields = $request['profile_fields'];
-        $user->save();
+            if ( $request->filled('profile_fields') ) {
+                $this->validate($request, [
+                    'profile_fields' => 'max:500'
+                ]);
+                $user->profile_fields = $request['profile_fields'];
+            }
+            $user->save();
+        }
 
         return $user;
-//        return redirect('users/'.$user->id);
     }
-//    /**
-//     * Update the specified resource in storage.
-//     *
-//     * @param  array $data
-//     * @return \App\User
-//     */
-//    public function update(array $data)
-//    protected function update(array $data)
-//    {
-//        Log::debug('UserController.php/update起動');
-        // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
-//        $file_name = time().'.'.$data['file']->getClientOriginalName();
-//        $data['file']->storeAs('public', $file_name);
-//
-//        $user = \App\User::findOrFail($data['id']);
-//
-//        $user->email = $data['email'];
-//        $user->icon_path = 'storage/'.$file_name;
-//        $user->profile_fields = $data['profile_fields'];
-//        $user->save();
-//
+
+//    public function rules() {
+//        return [
+//            'email' => 'email|max:100',
+            // ユニーク。ただし、自分のメールアドレス自体はエラーにならない
+//            'email' => 'unique:users,email,'.$this->me->id,
+//            'profile_fields' => 'max:500',
+//        ];
 //    }
 
     /**

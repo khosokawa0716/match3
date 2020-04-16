@@ -1,9 +1,7 @@
 <template>
     <div>
         <h1 class="l-container__title">登録情報の編集</h1>
-        <span v-if="isLogin" class="navbar__item">
-                {{ username }}
-            </span>
+
         <form class="form" @submit.prevent="update" enctype="multipart/form-data" method="POST">
             <div v-if="updateErrors" class="errors">
                 <ul v-if="updateErrors.email">
@@ -16,11 +14,14 @@
                     <li v-for="msg in updateErrors.profile_fields" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
+            <div>
+                <img :src="icon_path" alt="アイコン画像"  height="20">
+            </div>
             <input type="hidden" name="_method" value="PUT">
             <label for="email">メールアドレス</label>
             <input type="text" class="form__item" id="email" v-model="editForm.email" :placeholder="email">
             <label for="icon-image">アイコン画像</label>
-            <img v-if="isLogin" :src="icon_path" alt="アイコン画像"  height="20">
+            <img :src="icon_path" alt="アイコン画像"  height="20">
             <input class="form__item" type="file" id="icon-image" @change="onFileChange">
             <output class="form__output" v-if="preview">
                 <img :src="preview" alt="選択した画像"  width="30" height="30">
@@ -28,7 +29,7 @@
             <label for="self-introduction">自己紹介</label>
             <input type="text" class="form__item" id="self-introduction" v-model="editForm.profile_fields" :placeholder="profile_fields">
             <div class="form__button">
-                <button type="submit" class="button button--inverse">update</button>
+                <button type="submit" class="button button--inverse">更新する</button>
             </div>
         </form>
     </div>
@@ -54,21 +55,13 @@
                 data.append('file',this.editForm.icon_file)
                 data.append('profile_fields',this.editForm.profile_fields)
 
-                // console.log(data.get('id'))
-
                 // authストアのupdateアクションを呼び出す
                 await this.$store.dispatch('auth/update', data)
 
-                // authストアを経由せずに直接たたく userのstateが更新されないが、更新処理自体は確認
-                // await axios.post('/users/' + this.editForm.id, data,{
-                //     headers: {
-                //         'Content-Type': 'multipart/form-data', // 画像の更新のために追加
-                //         'X-HTTP-Method-Override': 'PUT', // data = new FormData これをバックエンド側に渡すためにいったんpostで送りputで上書き
-                //     }
-                // })
-
-                // 更新ができたらマイページに移動する
-                this.$router.push('/mypage')
+                if (this.apiStatus) {
+                    // updateアクションが成功だった場合、マイページに移動する
+                    this.$router.push('/mypage')
+                }
             },
             clearError () {
                 this.$store.commit('auth/setUpdateErrorMessages', null)
@@ -115,10 +108,10 @@
                 this.preview = ''
                 this.editForm.icon_file = null
                 this.$el.querySelector('input[type="file"]').value = null
-            },
+            }
         },
         created() {
-            this.clearError()
+            this.clearError ()
         },
         computed: {
             apiStatus () {
@@ -130,14 +123,16 @@
             isLogin () {
                 return this.$store.getters['auth/check']
             },
-            username () {
-                return this.$store.getters['auth/username']
-            },
             email () {
                 return this.$store.getters['auth/email']
             },
+            // icon_path () {
+            //     return this.$store.getters['auth/icon_path']
+            // },
             icon_path () {
-                return this.$store.getters['auth/icon_path']
+                // Navbar.vueでは上のコメントかした相対パスで画像が表示できるのに、Edit.vueでは下記絶対パスでないと表示できない
+                // メンテナンスしづらいので、可能であれば修正する
+                return 'http://0.0.0.0:3000/' + this.$store.getters['auth/icon_path']
             },
             profile_fields () {
                 return this.$store.getters['auth/profile_fields']
