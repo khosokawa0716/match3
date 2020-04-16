@@ -22375,7 +22375,7 @@ var actions = {
             case 3:
               response = _context2.sent;
 
-              if (!(response.status === CREATED)) {
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
                 _context2.next = 8;
                 break;
               }
@@ -22389,6 +22389,8 @@ var actions = {
 
               if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
                 context.commit('setRegisterErrorMessages', response.data.errors);
+                console.log('422がきているよ');
+                console.log(response.data.errors);
               } else {
                 context.commit('error/setCode', response.status, {
                   root: true

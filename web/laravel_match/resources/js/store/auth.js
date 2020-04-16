@@ -1,4 +1,4 @@
-import { OK, UNPROCESSABLE_ENTITY } from '../util'
+import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../util'
 
 const state = {
     user: null,
@@ -75,6 +75,8 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         context.commit('setApiStatus', false)
         if (response.status === UNPROCESSABLE_ENTITY) {
             context.commit('setRegisterErrorMessages', response.data.errors)
+            console.log('422がきているよ')
+            console.log(response.data.errors)
         } else {
             context.commit('error/setCode', response.status, { root: true })
         }
