@@ -6,8 +6,8 @@ import store from './store' // ナビゲーションガードを追加するた�
 // ページコンポーネントをインポートする
 import Top from './pages/Top.vue'
 import Mypage from './pages/Mypage.vue'
-import ProjectList from './pages/ProjectList.vue'
-import RegisterProject from './pages/RegisterProject.vue'
+import Projects from './pages/Projects.vue'
+import ProjectsRegister from './pages/ProjectsRegister.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
 import Edit from './pages/Edit.vue'
@@ -28,8 +28,8 @@ const routes = [
         component: Top
     },
     {
-        path: '/project-list',
-        component: ProjectList
+        path: '/projects',
+        component: Projects
     },
     {
         path: '/register-project',
@@ -95,6 +95,17 @@ const routes = [
     {
         path: '/mypage',
         component: Mypage,
+        beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
+            if (store.getters['auth/check']) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
+    },
+    {
+        path: '/projects/register',
+        component: ProjectsRegister,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {
                 next()
