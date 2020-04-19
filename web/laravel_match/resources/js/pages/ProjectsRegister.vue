@@ -11,7 +11,7 @@
             <label for="minimum-amount">下限金額</label>
             <input type="number" class="form__item" id="minimum-amount" max="10000000" v-model="projectsRegisterForm.minmum_amount">
             <label for="max-amount">上限金額</label>
-            <input type="number" class="form__item" id="max-amount" max="10000000" v-model="projectsRegisterForm.max">
+            <input type="number" class="form__item" id="max-amount" max="10000000" v-model="projectsRegisterForm.max_amount">
             <label for="detail">詳細</label>
             <input type="text" class="form__item" id="detail" v-model="projectsRegisterForm.detail">
             <div class="form__button">
@@ -27,7 +27,15 @@
                 projectsRegisterForm: {
                     title: '',
                     type: '',
-
+                    minmum_amount: '',
+                    max_amount: '',
+                    detail: ''
+                }
+            }
+        },
+        methods: {
+            projectsRegister () {
+                console.log(this.projectsRegisterForm)
             }
         }
     }

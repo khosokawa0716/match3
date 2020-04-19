@@ -122,7 +122,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     // 起動時にログインチェックをおこなう
     async currentUser (context) {
         context.commit('setApiStatus', null)
-        const response = await axios.get('/user')
+        const response = await axios.get('/user/info')
         const user = response.data || null
 
         if (response.status === OK) {

@@ -47,7 +47,9 @@
                 return this.$store.getters['auth/username']
             },
             icon_path () {
-                return this.$store.getters['auth/icon_path']
+                // 画面をリロードすると、相対パスの場合表示できない
+                // メンテナンスしづらいので、可能であれば修正する
+                return 'http://0.0.0.0:3000/' + this.$store.getters['auth/icon_path']
             }
         }
     }

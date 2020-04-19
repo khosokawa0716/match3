@@ -4,14 +4,14 @@ use Illuminate\Http\Request;
 
 // ***** 認証 *****
 Route::post('/register', 'Auth\RegisterController@register')->name('register'); // ユーザー登録
-Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit'); // ユーザー編集画面の表示
-Route::put('/users/{user}', 'UserController@update')->name('users.update'); // ユーザー情報の更新
+Route::get('/users/:userId/edit', 'UserController@edit')->name('users.edit'); // ユーザー編集画面の表示
+Route::put('/users/:userId', 'UserController@update')->name('users.update'); // ユーザー情報の更新
 Route::post('/login', 'Auth\LoginController@login')->name('login'); // ログイン
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout'); // ログアウト
 Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email'); // パスワードリセット用のメールを送信
 Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset'); // パスワードリセット用のフォームを表示
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update'); // パスワードリセット
-Route::get('/user', fn() => Auth::user())->name('user'); // ログインユーザーの返却
+Route::get('/user/info', fn() => Auth::user())->name('user'); // ログインユーザーの返却
 
 // ***** 案件 *****
 Route::post('/projects/register', 'ProjectController@register')->name('projects.register'); // 案件登録

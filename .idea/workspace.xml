@@ -4,10 +4,12 @@
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Projects.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/RegisterProject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsRegister.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsRegister.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsRegister.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

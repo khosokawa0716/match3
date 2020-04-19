@@ -32,10 +32,6 @@ const routes = [
         component: Projects
     },
     {
-        path: '/register-project',
-        component: RegisterProject
-    },
-    {
         path: '/register',
         component: Register,
         beforeEnter (to, from, next) { // ログイン状態でアクセスがあったらマイページへ遷移する
@@ -48,7 +44,7 @@ const routes = [
     },
     {
         path: '/users/:userId/edit',
-        // path: '/users/edit',
+        // path: '/users/{user}/edit',
         name: 'edit',
         component: Edit,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
