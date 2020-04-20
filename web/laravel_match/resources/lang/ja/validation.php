@@ -150,6 +150,9 @@ return [
         'password' => 'パスワード',
         'password_confirmation' => 'パスワード（確認）',
         'name' => 'ユーザー名',
-        'profile_fields' => '自己紹介'
+        'profile_fields' => '自己紹介',
+        'title' => 'タイトル',
+        'detail' => '詳細',
+
     ],
 ];

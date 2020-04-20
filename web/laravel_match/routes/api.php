@@ -14,10 +14,10 @@ Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('pass
 Route::get('/user/info', fn() => Auth::user())->name('user'); // ログインユーザーの返却
 
 // ***** 案件 *****
-Route::post('/projects/register', 'ProjectController@register')->name('projects.register'); // 案件登録
+Route::post('/projects/register', 'ProjectController@create')->name('project.create'); // 案件登録
 Route::get('/projects', 'ProjectController@index')->name('projects.index'); // 案件一覧表示
-Route::get('/projects/edit/{project}', 'ProjectController@edit')->name('projects.edit'); // 案件編集画面の表示
-Route::put('/projects/edit', 'ProjectController@update')->name('projects.update'); // 案件更新
+Route::get('/projects/:projectId/edit', 'ProjectController@edit')->name('projects.edit'); // 案件編集画面の表示
+Route::put('/projects/:projectId', 'ProjectController@update')->name('projects.update'); // 案件更新
 
 // ***** 案件詳細 *****
 Route::get('/project/{project}', 'ProjectDetailController@show')->name('project.show'); // 案件詳細画面の表示

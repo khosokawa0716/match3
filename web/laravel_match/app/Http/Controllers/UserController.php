@@ -92,7 +92,7 @@ class UserController extends Controller
 
             if ( $request->filled('profile_fields') ) {
                 $this->validate($request, [
-                    'profile_fields' => 'max:500'
+                    'profile_fields' => 'string|max:2550'
                 ]);
                 $user->profile_fields = $request['profile_fields'];
             }

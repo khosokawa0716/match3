@@ -8,6 +8,7 @@ import Top from './pages/Top.vue'
 import Mypage from './pages/Mypage.vue'
 import Projects from './pages/Projects.vue'
 import ProjectsRegister from './pages/ProjectsRegister.vue'
+import ProjectsEdit from './pages/ProjectsEdit.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
 import Edit from './pages/Edit.vue'
@@ -44,7 +45,6 @@ const routes = [
     },
     {
         path: '/users/:userId/edit',
-        // path: '/users/{user}/edit',
         name: 'edit',
         component: Edit,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
@@ -102,6 +102,17 @@ const routes = [
     {
         path: '/projects/register',
         component: ProjectsRegister,
+        beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
+            if (store.getters['auth/check']) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
+    },
+    {
+        path: '/projects/:projectId/edit',
+        component: ProjectsEdit,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {
                 next()

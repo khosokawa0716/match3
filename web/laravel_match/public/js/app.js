@@ -2571,6 +2571,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2598,8 +2625,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       projectsRegisterForm: {
         title: '',
-        type: '',
-        minmum_amount: '',
+        type: 'one-off',
+        minimum_amount: '',
         max_amount: '',
         detail: ''
       }
@@ -2607,7 +2634,46 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     projectsRegister: function projectsRegister() {
-      console.log(this.projectsRegisterForm);
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log(_this.projectsRegisterForm); // projectストアのregisterアクションを呼び出す
+
+                _context.next = 3;
+                return _this.$store.dispatch('project/register', _this.projectsRegisterForm);
+
+              case 3:
+                if (_this.apiStatus) {
+                  // registerアクションが成功だった場合、マイページに移動する
+                  _this.$router.push('/mypage');
+                }
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  computed: {
+    apiStatus: function apiStatus() {
+      return this.$store.state.project.apiStatus;
+    },
+    registerErrors: function registerErrors() {
+      return this.$store.state.project.registerErrorMessages;
+    },
+    isOneOff: function isOneOff() {
+      if (this.projectsRegisterForm.type === 'one-off') {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 });
@@ -4802,6 +4868,60 @@ var render = function() {
         }
       },
       [
+        _vm.registerErrors
+          ? _c("div", { staticClass: "errors" }, [
+              _vm.registerErrors.title
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.title, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.type
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.type, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.minimum_amount
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.minimum_amount, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.max_amount
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.max_amount, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.registerErrors.detail
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.registerErrors.detail, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("label", { attrs: { for: "title" } }, [_vm._v("タイトル")]),
         _vm._v(" "),
         _c("input", {
@@ -4874,61 +4994,73 @@ var render = function() {
           _vm._v("サービス開始後の売り上げを分け合う")
         ]),
         _vm._v(" "),
-        _c("label", { attrs: { for: "minimum-amount" } }, [_vm._v("下限金額")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.projectsRegisterForm.minmum_amount,
-              expression: "projectsRegisterForm.minmum_amount"
-            }
-          ],
-          staticClass: "form__item",
-          attrs: { type: "number", id: "minimum-amount", max: "10000000" },
-          domProps: { value: _vm.projectsRegisterForm.minmum_amount },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(
-                _vm.projectsRegisterForm,
-                "minmum_amount",
-                $event.target.value
-              )
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "max-amount" } }, [_vm._v("上限金額")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.projectsRegisterForm.max_amount,
-              expression: "projectsRegisterForm.max_amount"
-            }
-          ],
-          staticClass: "form__item",
-          attrs: { type: "number", id: "max-amount", max: "10000000" },
-          domProps: { value: _vm.projectsRegisterForm.max_amount },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(
-                _vm.projectsRegisterForm,
-                "max_amount",
-                $event.target.value
-              )
-            }
-          }
-        }),
+        _vm.isOneOff
+          ? _c("div", [
+              _c("label", { attrs: { for: "minimum-amount" } }, [
+                _vm._v("下限金額")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.projectsRegisterForm.minimum_amount,
+                    expression: "projectsRegisterForm.minimum_amount"
+                  }
+                ],
+                staticClass: "form__item",
+                attrs: {
+                  type: "number",
+                  id: "minimum-amount",
+                  max: "10000000"
+                },
+                domProps: { value: _vm.projectsRegisterForm.minimum_amount },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.projectsRegisterForm,
+                      "minimum_amount",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "max-amount" } }, [
+                _vm._v("上限金額")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.projectsRegisterForm.max_amount,
+                    expression: "projectsRegisterForm.max_amount"
+                  }
+                ],
+                staticClass: "form__item",
+                attrs: { type: "number", id: "max-amount", max: "10000000" },
+                domProps: { value: _vm.projectsRegisterForm.max_amount },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.projectsRegisterForm,
+                      "max_amount",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("label", { attrs: { for: "detail" } }, [_vm._v("詳細")]),
         _vm._v(" "),
@@ -22134,6 +22266,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/ProjectsEdit.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/pages/ProjectsEdit.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/pages/ProjectsEdit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/pages/ProjectsRegister.vue":
 /*!*************************************************!*\
   !*** ./resources/js/pages/ProjectsRegister.vue ***!
@@ -22395,16 +22559,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Mypage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Mypage.vue */ "./resources/js/pages/Mypage.vue");
 /* harmony import */ var _pages_Projects_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Projects.vue */ "./resources/js/pages/Projects.vue");
 /* harmony import */ var _pages_ProjectsRegister_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/ProjectsRegister.vue */ "./resources/js/pages/ProjectsRegister.vue");
-/* harmony import */ var _pages_Login_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Login.vue */ "./resources/js/pages/Login.vue");
-/* harmony import */ var _pages_Register_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Register.vue */ "./resources/js/pages/Register.vue");
-/* harmony import */ var _pages_Edit_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/Edit.vue */ "./resources/js/pages/Edit.vue");
-/* harmony import */ var _pages_PassResetEmail_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/PassResetEmail.vue */ "./resources/js/pages/PassResetEmail.vue");
-/* harmony import */ var _pages_PassReset_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/PassReset.vue */ "./resources/js/pages/PassReset.vue");
-/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
+/* harmony import */ var _pages_ProjectsEdit_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/ProjectsEdit.vue */ "./resources/js/pages/ProjectsEdit.vue");
+/* harmony import */ var _pages_Login_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Login.vue */ "./resources/js/pages/Login.vue");
+/* harmony import */ var _pages_Register_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/Register.vue */ "./resources/js/pages/Register.vue");
+/* harmony import */ var _pages_Edit_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/Edit.vue */ "./resources/js/pages/Edit.vue");
+/* harmony import */ var _pages_PassResetEmail_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/PassResetEmail.vue */ "./resources/js/pages/PassResetEmail.vue");
+/* harmony import */ var _pages_PassReset_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/PassReset.vue */ "./resources/js/pages/PassReset.vue");
+/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
 
 
  // ナビゲーションガードを追加するためにauthストアのcheckゲッターを使用する
 // ページコンポーネントをインポートする
+
 
 
 
@@ -22428,7 +22594,7 @@ var routes = [{
   component: _pages_Projects_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/register',
-  component: _pages_Register_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+  component: _pages_Register_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
     // ログイン状態でアクセスがあったらマイページへ遷移する
     if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
@@ -22439,9 +22605,8 @@ var routes = [{
   }
 }, {
   path: '/users/:userId/edit',
-  // path: '/users/{user}/edit',
   name: 'edit',
-  component: _pages_Edit_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+  component: _pages_Edit_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
     // 未ログイン状態でアクセスがあったらログインページへ遷移する
     if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
@@ -22452,7 +22617,7 @@ var routes = [{
   }
 }, {
   path: '/login',
-  component: _pages_Login_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _pages_Login_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
     // ログイン状態でアクセスがあったらマイページへ遷移する
     if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
@@ -22463,7 +22628,7 @@ var routes = [{
   }
 }, {
   path: '/password/email',
-  component: _pages_PassResetEmail_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+  component: _pages_PassResetEmail_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
     // ログイン状態でアクセスがあったらマイページへ遷移する
     if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
@@ -22474,7 +22639,7 @@ var routes = [{
   }
 }, {
   path: '/password/reset/*',
-  component: _pages_PassReset_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+  component: _pages_PassReset_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
     // ログイン状態でアクセスがあったらマイページへ遷移する
     if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
@@ -22506,8 +22671,19 @@ var routes = [{
     }
   }
 }, {
+  path: '/projects/:projectId/edit',
+  component: _pages_ProjectsEdit_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    // 未ログイン状態でアクセスがあったらログインページへ遷移する
+    if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
+      next();
+    } else {
+      next('/login');
+    }
+  }
+}, {
   path: '/500',
-  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
 }]; // VueRouterインスタンスを作成する
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -22860,7 +23036,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./resources/js/store/auth.js");
-/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./resources/js/store/error.js");
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project */ "./resources/js/store/project.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./error */ "./resources/js/store/error.js");
+
 
 
 
@@ -22869,10 +23047,158 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     auth: _auth__WEBPACK_IMPORTED_MODULE_2__["default"],
-    error: _error__WEBPACK_IMPORTED_MODULE_3__["default"]
+    project: _project__WEBPACK_IMPORTED_MODULE_3__["default"],
+    error: _error__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/project.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/project.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var state = {
+  project: null,
+  apiStatus: null,
+  registerErrorMessages: null,
+  updateErrorMessages: null
+};
+var getters = {
+  // projectのstateが存在する場合には名前などの値を返す。ない場合に呼ばれたら空文字を返す
+  projectid: function projectid(state) {
+    return state.project ? state.project.id : '';
+  },
+  title: function title(state) {
+    return state.project ? state.project.title : '';
+  }
+};
+var mutations = {
+  setProject: function setProject(state, project) {
+    state.project = project;
+  },
+  setApiStatus: function setApiStatus(state, status) {
+    state.apiStatus = status;
+  },
+  setRegisterErrorMessages: function setRegisterErrorMessages(state, messages) {
+    state.registerErrorMessages = messages;
+  },
+  setUpdateErrorMessages: function setUpdateErrorMessages(state, messages) {
+    state.updateErrorMessages = messages;
+  }
+};
+var actions = {
+  // それぞれのアクションは、非同期処理の結果によって後続の処理を分岐させる
+  // 案件登録
+  register: function register(context, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              context.commit('setApiStatus', null);
+              _context.next = 3;
+              return axios.post('/projects/register', data);
+
+            case 3:
+              response = _context.sent;
+
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
+                _context.next = 8;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setProject', response.data);
+              return _context.abrupt("return", false);
+
+            case 8:
+              context.commit('setApiStatus', false);
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                context.commit('setRegisterErrorMessages', response.data.errors);
+              } else {
+                context.commit('error/setCode', response.status, {
+                  root: true
+                });
+              }
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  // 案件更新
+  update: function update(context, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              context.commit('setApiStatus', null);
+              _context2.next = 3;
+              return axios.put('/projects/' + data.get('id'), data);
+
+            case 3:
+              response = _context2.sent;
+
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context2.next = 8;
+                break;
+              }
+
+              context.commit('setApiStatus', true);
+              context.commit('setProject', response.data);
+              return _context2.abrupt("return", false);
+
+            case 8:
+              context.commit('setApiStatus', false);
+
+              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                context.commit('setUpdateErrorMessages', response.data.errors);
+              } else {
+                context.commit('error/setCode', response.status, {
+                  root: true
+                });
+              }
+
+            case 10:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  mutations: mutations,
+  actions: actions
+});
 
 /***/ }),
 
