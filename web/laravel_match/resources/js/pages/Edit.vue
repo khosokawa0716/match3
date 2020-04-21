@@ -56,7 +56,13 @@
                 await this.$store.dispatch('auth/update', data)
 
                 if (this.apiStatus) {
-                    // updateアクションが成功だった場合、マイページに移動する
+                    // updateアクションが成功だった場合、ストアにメッセージを格納する
+                    this.$store.commit('message/setContent', {
+                        content: 'お客様の情報を更新しました！',
+                        timeout: 5000
+                    })
+
+                    // そのあとマイページに移動する
                     this.$router.push('/mypage')
                 }
             },

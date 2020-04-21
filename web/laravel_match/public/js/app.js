@@ -2160,6 +2160,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2174,6 +2194,43 @@ __webpack_require__.r(__webpack_exports__);
     item: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    edit: function edit() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$store.dispatch('project/edit', _this.item.id);
+
+              case 2:
+                if (_this.apiStatus) {
+                  // loginアクションが成功だった場合、案件編集に移動する
+                  console.log('移動するステップが実行されている'); // ここ入っていないな...
+
+                  _this.$router.push('/projects/' + _this.item.id + '/edit');
+                }
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  computed: {
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    },
+    isLogin: function isLogin() {
+      return this.$store.getters['auth/check'];
     }
   }
 });
@@ -2263,7 +2320,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 7:
                 if (_this.apiStatus) {
-                  // updateアクションが成功だった場合、マイページに移動する
+                  // updateアクションが成功だった場合、ストアにメッセージを格納する
+                  _this.$store.commit('message/setContent', {
+                    content: 'お客様の情報を更新しました！',
+                    timeout: 5000
+                  }); // そのあとマイページに移動する
+
+
                   _this.$router.push('/mypage');
                 }
 
@@ -2457,6 +2520,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
+/* harmony import */ var _components_Project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Project */ "./resources/js/components/Project.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2474,13 +2547,90 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Project: _components_Project__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       id: this.$store.getters['auth/userid'],
-      // いったんprojectのストア管理をやめてみる
-      pid: this.$store.getters['project/projectid']
+      projects: [] // いったんprojectのストア管理をやめてみる
+      // pid: this.$store.getters['project/projectid']
+
     };
+  },
+  methods: {
+    fetchProjects: function fetchProjects() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('/mypage');
+
+              case 2:
+                response = _context.sent;
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 6:
+                _this.projects = response.data.data;
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this2 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.next = 2;
+                  return _this2.fetchProjects();
+
+                case 2:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }))();
+      },
+      immediate: true
+    }
   }
 });
 
@@ -4619,7 +4769,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h5", [_vm._v(_vm._s(_vm.item.owner.name))]),
+    _c("p", [_vm._v("案件ID: "), _c("span", [_vm._v(_vm._s(_vm.item.id))])]),
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.item.title))]),
     _vm._v(" "),
@@ -4627,10 +4777,37 @@ var render = function() {
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(_vm.item.minimum_amount))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.item.max_amount))])
+    _c("p", [_vm._v(_vm._s(_vm.item.max_amount))]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.edit($event)
+          }
+        }
+      },
+      [_vm._m(0)]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form__button" }, [
+      _c(
+        "button",
+        { staticClass: "button button--inverse", attrs: { type: "submit" } },
+        [_vm._v("編集する")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -4976,10 +5153,20 @@ var render = function() {
     [
       _c("h1", { staticClass: "l-container__title" }, [_vm._v("マイページ")]),
       _vm._v(" "),
+      _c("h5", [_vm._v("自分の登録した案件一覧")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.projects, function(project) {
+          return _c("Project", { key: project.id, attrs: { item: project } })
+        }),
+        1
+      ),
+      _vm._v(" "),
       _c(
         "RouterLink",
         { staticClass: "button button--link", attrs: { to: "/projects/list" } },
-        [_vm._v("\n        案件の一覧を見る\n    ")]
+        [_vm._v("\n            案件の一覧を見る\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -4988,18 +5175,7 @@ var render = function() {
           staticClass: "button button--link",
           attrs: { to: "/projects/register" }
         },
-        [_vm._v("\n        案件を登録する\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "RouterLink",
-        {
-          staticClass: "button button--link",
-          attrs: {
-            to: { name: "projectsEdit", params: { projectId: _vm.pid } }
-          }
-        },
-        [_vm._v("\n        今登録した案件の編集\n    ")]
+        [_vm._v("\n            案件を登録する\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -5008,7 +5184,7 @@ var render = function() {
           staticClass: "button button--link",
           attrs: { to: { name: "edit", params: { userId: _vm.id } } }
         },
-        [_vm._v("\n        お客様の登録情報\n    ")]
+        [_vm._v("\n            お客様の登録情報\n        ")]
       )
     ],
     1
@@ -6096,7 +6272,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", { staticClass: "l-container__title" }, [_vm._v("match")])
+  return _c(
+    "div",
+    [
+      _c("h1", { staticClass: "l-container__title" }, [_vm._v("match")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "会員内でエンジニア向けの単発案件やサービス立ち上げ案を投稿、その案件に応募できる。\n        今のランサーズなどサービスはオプションや入力項目が色々ありすぎてわかりにくすぎるため、簡単に案件を投稿し、簡単に応募、やり取りが出来るようにする。\n        イメージは「エンジニア案件マッチング版のメルカリ」という感じ。\n        主婦でも投稿できるくらいの手軽さを提供する。"
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "RouterLink",
+        { staticClass: "button button--link", attrs: { to: "/projects/list" } },
+        [_vm._v("\n        案件の一覧を見る\n    ")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -24045,29 +24239,74 @@ var mutations = {
 };
 var actions = {
   // それぞれのアクションは、非同期処理の結果によって後続の処理を分岐させる
-  // 案件登録
-  register: function register(context, data) {
+  // 案件編集画面の表示。表示だけでなくstateに編集するプロジェクトを格納する
+  // フォームを表示するだけならstateに入れる必要はないが、変更前の値を表示させるため
+  edit: function edit(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              console.log(data); // console.log(data.id) // これはundefined
+
+              context.commit('setApiStatus', null); // apiStatus始めはnull
+
+              _context.next = 4;
+              return axios.get('/projects/' + data + '/edit', data);
+
+            case 4:
+              response = _context.sent;
+
+              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                _context.next = 11;
+                break;
+              }
+
+              // レスポンスがOK(200)なら以下の処理を実行
+              console.log('editアクションでレスポンス200を取得');
+              context.commit('setApiStatus', true);
+              console.dir(response.data);
+              context.commit('setProject', response.data);
+              return _context.abrupt("return", false);
+
+            case 11:
+              context.commit('setApiStatus', false);
+              context.commit('error/setCode', response.status, {
+                root: true
+              });
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  // 案件登録
+  register: function register(context, data) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
               context.commit('setApiStatus', null);
-              _context.next = 3;
+              _context2.next = 3;
               return axios.post('/projects/register', data);
 
             case 3:
-              response = _context.sent;
+              response = _context2.sent;
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                _context.next = 8;
+                _context2.next = 8;
                 break;
               }
 
               context.commit('setApiStatus', true);
               context.commit('setProject', response.data);
-              return _context.abrupt("return", false);
+              return _context2.abrupt("return", false);
 
             case 8:
               context.commit('setApiStatus', false);
@@ -24082,36 +24321,36 @@ var actions = {
 
             case 10:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }))();
   },
   // 案件更新
   update: function update(context, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               console.log(data.id);
               context.commit('setApiStatus', null);
-              _context2.next = 4;
+              _context3.next = 4;
               return axios.put('/projects/' + data.id, data);
 
             case 4:
-              response = _context2.sent;
+              response = _context3.sent;
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context2.next = 9;
+                _context3.next = 9;
                 break;
               }
 
               context.commit('setApiStatus', true);
               context.commit('setProject', response.data);
-              return _context2.abrupt("return", false);
+              return _context3.abrupt("return", false);
 
             case 9:
               context.commit('setApiStatus', false);
@@ -24126,39 +24365,39 @@ var actions = {
 
             case 11:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }))();
   },
   // 画面更新時にプロジェクトのストアを更新しない
   currentProject: function currentProject(context) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var response, project;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
               console.log('currentProject起動!!');
               context.commit('setApiStatus', null);
-              _context3.next = 4;
+              _context4.next = 4;
               return axios.get('/project/info');
 
             case 4:
-              response = _context3.sent;
+              response = _context4.sent;
               console.dir(response);
               project = response.data || null;
               console.dir(project);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context3.next = 12;
+                _context4.next = 12;
                 break;
               }
 
               context.commit('setApiStatus', true);
               context.commit('setProject', project);
-              return _context3.abrupt("return", false);
+              return _context4.abrupt("return", false);
 
             case 12:
               context.commit('setApiStatus', false);
@@ -24168,10 +24407,10 @@ var actions = {
 
             case 14:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }))();
   }
 };

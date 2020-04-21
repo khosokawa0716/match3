@@ -56,12 +56,12 @@ class UserController extends Controller
      * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
-    {
-        Log::info('UserControllerのedit起動');
-//        Log::info('index起動');
-        return $user;
-    }
+    // 多分このコントローラいらない ルーティングから削除しても動作するから
+//    public function edit(User $user)
+//    {
+//        Log::info('UserControllerのedit起動');
+//        return $user;
+//    }
 
     // 実際の更新処理
     // 終わったら、そのユーザのページへ移動
@@ -72,8 +72,11 @@ class UserController extends Controller
      * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id) // 引数Users $userを削除
     {
+        Log::info('UserControllerのupdate起動');
+        $user = User::find($id);
+
         // 入力された項目だけ更新をおこなう
         // 入力項目の有無に関わらずユーザー情報を返却する
         if ( $request->filled('email') | $request->filled('file') | $request->filled('profile_fields')) {

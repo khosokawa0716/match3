@@ -43,9 +43,13 @@ class ProjectController extends Controller
         return $project;
     }
 
-    public function edit($id)
+    // 多分このコントローラいらない ルーティングから削除しても動作するから
+    public function edit($data)
     {
+        $id = $data;
         Log::info('ProjectControllerのedit起動');
+//        Log::info(print_r($data, true));
+        Log::info('$idの値: '.$id);
         if (ctype_digit($id)) {
             $project = Project::find($id);
             Log::info(print_r($project, true));
@@ -53,14 +57,50 @@ class ProjectController extends Controller
         }
     }
 
-    public function update (Request $request, Project $project, $id)
+    public function update (Request $request, $id) // 引数Project $project を削除
     {
         Log::info('ProjectControllerのupdate起動');
         $project = Project::find($id);
 
-        $project->title = $request['title'];
+        // 入力された項目だけ更新をおこなう
+        // 入力項目の有無に関わらずユーザー情報を返却する
+        if ( $request->filled('title') | $request->filled('type') | $request->filled('minimum_amount') | $request->filled('max_amount') | $request->filled('detail') ) {
 
-        $project->save();
+            if ( $request->filled('title')) {
+                $this->validate($request, [
+                    'title' => 'string|max:255'
+                ]);
+                $project->title = $request['title'];
+            }
+
+            if ( $request->filled('type')) {
+                // ラジオボタンなので、バリデーションなし
+                $project->type = $request['type'];
+            }
+
+            if ( $request->filled('minimum_amount')) {
+                $this->validate($request, [
+                    'minimum_amount' => 'integer|max:10000000'
+                ]);
+                $project->minimum_amount = $request['minimum_amount'];
+            }
+
+            if ( $request->filled('max_amount')) {
+                $this->validate($request, [
+                    'max_amount' => 'integer|max:10000000'
+                ]);
+                $project->max_amount = $request['max_amount'];
+            }
+
+            if ( $request->filled('detail') ) {
+                $this->validate($request, [
+                    'detail' => 'string|max:2550'
+                ]);
+                $project->detail = $request['detail'];
+            }
+
+            $project->save();
+        }
 
         return $project;
     }
