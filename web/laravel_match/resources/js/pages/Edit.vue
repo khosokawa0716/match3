@@ -123,13 +123,8 @@
             email () {
                 return this.$store.getters['auth/email']
             },
-            // icon_path () {
-            //     return this.$store.getters['auth/icon_path']
-            // },
             icon_path () {
-                // 画面をリロードすると、相対パスの場合表示できない
-                // メンテナンスしづらいので、可能であれば修正する
-                return 'http://0.0.0.0:3000/' + this.$store.getters['auth/icon_path']
+                return this.$store.getters['auth/icon_path']
             },
             profile_fields () {
                 return this.$store.getters['auth/profile_fields']

@@ -59,7 +59,13 @@
                 await this.$store.dispatch('project/register', this.projectsRegisterForm)
 
                 if (this.apiStatus) {
-                    // registerアクションが成功だった場合、マイページに移動する
+                    // registerアクションが成功だった場合、ストアにメッセージを格納する
+                    this.$store.commit('message/setContent', {
+                        content: '案件を登録しました！',
+                        timeout: 5000
+                    })
+
+                    // そのあとマイページに移動する
                     this.$router.push('/mypage')
                 }
             }

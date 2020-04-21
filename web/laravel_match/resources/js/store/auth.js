@@ -95,7 +95,6 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     },
     // ユーザー更新
     async update (context, data) {
-        console.log('auth/update起動')
         context.commit('setApiStatus', null)
         const response = await axios.post('/users/' + data.get('id'), data, {
             headers: {
@@ -105,7 +104,6 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         })
 
         if (response.status === OK) {
-            console.log('auth/updateレスポンスステータス200')
             context.commit('setApiStatus', true)
             context.commit('setUser', response.data)
             return false
@@ -113,7 +111,6 @@ const actions = { // それぞれのアクションは、非同期処理の結�
 
         context.commit('setApiStatus', false)
         if (response.status === UNPROCESSABLE_ENTITY) {
-            console.log('auth/updateレスポンスステータス422')
             context.commit('setUpdateErrorMessages', response.data.errors)
         } else {
             context.commit('error/setCode', response.status, { root: true })

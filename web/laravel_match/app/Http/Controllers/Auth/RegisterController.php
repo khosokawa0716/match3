@@ -67,20 +67,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-//        Log::debug('RegisterController.php/create起動');
-//        Log::debug(print_r($data, true));
-//        Log::debug(print_r($data['file'], true));
+        // 入力が任意の項目は、未入力時にはnullをDBに書き込む
+        if ( $data['file'] ) {
+            // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
+            $file_name = time() . '.' . $data['file']->getClientOriginalName();
+            $data['file']->storeAs('public', $file_name);
+            $icon_path = env('APP_URL').'/storage/' . $file_name;
+        } else {
+            $icon_path = null;
+        }
 
-        // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
-        $file_name = time().'.'.$data['file']->getClientOriginalName();
-        $data['file']->storeAs('public', $file_name);
+        if ( $data['profile_fields'] ) {
+            $profile_fields = $data['profile_fields'];
+        } else {
+            $profile_fields = null;
+        }
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'icon_path' => 'storage/'.$file_name,
-            'profile_fields' => $data['profile_fields']
+            'icon_path' => $icon_path,
+            'profile_fields' => $profile_fields
         ]);
     }
 

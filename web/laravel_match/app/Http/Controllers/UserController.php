@@ -58,6 +58,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        Log::info('UserControllerのedit起動');
+//        Log::info('index起動');
         return $user;
     }
 
@@ -87,7 +89,7 @@ class UserController extends Controller
                 // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
                 $file_name = time().'.'.$request['file']->getClientOriginalName();
                 $request['file']->storeAs('public', $file_name);
-                $user->icon_path = 'storage/'.$file_name;
+                $user->icon_path = env('APP_URL').'/storage/'.$file_name;
             }
 
             if ( $request->filled('profile_fields') ) {

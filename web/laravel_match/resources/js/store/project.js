@@ -10,7 +10,11 @@ const state = {
 const getters = {
     // projectのstateが存在する場合には名前などの値を返す。ない場合に呼ばれたら空文字を返す
     projectid: state => state.project ? state.project.id : '',
-    title: state => state.project ? state.project.title : ''
+    title: state => state.project ? state.project.title : '',
+    type: state => state.project ? state.project.type : '',
+    minimum_amount: state => state.project ? state.project.minimum_amount() : '',
+    max_amount: state => state.project ? state.project.max_amount() : '',
+    detail: state => state.project ? state.project.detail() : '',
 }
 
 const mutations = {
@@ -49,8 +53,9 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     },
     // 案件更新
     async update (context, data) {
+        console.log(data.id);
         context.commit('setApiStatus', null)
-        const response = await axios.put('/projects/' + data.get('id'), data)
+        const response = await axios.put('/projects/' + data.id, data)
 
         if (response.status === OK) {
             context.commit('setApiStatus', true)
@@ -64,6 +69,24 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         } else {
             context.commit('error/setCode', response.status, { root: true })
         }
+    },
+    // 画面更新時にプロジェクトのストアを更新しない
+    async currentProject (context) {
+        console.log('currentProject起動!!')
+    context.commit('setApiStatus', null)
+    const response = await axios.get('/project/info')
+        console.dir(response)
+    const project = response.data || null
+        console.dir(project)
+
+    if (response.status === OK) {
+        context.commit('setApiStatus', true)
+        context.commit('setProject', project)
+        return false
+    }
+
+    context.commit('setApiStatus', false)
+    context.commit('error/setCode', response.status, { root: true })
     }
 }
 

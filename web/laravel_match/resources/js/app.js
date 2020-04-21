@@ -7,6 +7,9 @@ import App from './App.vue' // ルートコンポーネントをインポート�
 const createApp = async () => {
     await store.dispatch('auth/currentUser')
 
+    // いったんprojectのストア管理をやめてみる
+    // await store.dispatch('project/currentProject')
+
     // currentUserアクションの非同期処理が終わってからVueインスタンスを生成する
     // インスタンス生成前にログインチェックをおこなっている
     new Vue({
