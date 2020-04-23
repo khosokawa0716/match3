@@ -89,7 +89,22 @@ const actions = { // それぞれのアクションは、非同期処理の結�
             context.commit('error/setCode', response.status, { root: true })
         }
     },
-    // 画面更新時にプロジェクトのストアを更新しない
+    // async detail (context, data) {
+    //     context.commit('setApiStatus', null)
+    //     const response = await axios.get('/project/detail/' + data, data)
+    //
+    //     if (response.status === OK) { // レスポンスがOK(200)なら以下の処理を実行
+    //         console.log('editアクションでレスポンス200を取得')
+    //         context.commit('setApiStatus', true)
+    //         console.dir(response.data)
+    //         context.commit('setProject', response.data)
+    //         return false
+    //     }
+    //
+    //     context.commit('setApiStatus', false)
+    //     context.commit('error/setCode', response.status, { root: true })
+    // },
+    // // 画面更新時にプロジェクトのストアを更新しない
     async currentProject (context) {
         console.log('currentProject起動!!')
     context.commit('setApiStatus', null)

@@ -114,6 +114,7 @@
             }
         },
         created() {
+            // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError ()
         },
         computed: {

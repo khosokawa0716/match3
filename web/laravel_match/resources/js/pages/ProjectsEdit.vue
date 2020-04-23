@@ -21,19 +21,19 @@
             </div>
             <input type="hidden" name="_method" value="PUT">
             <label for="title">タイトル</label>
-            <input type="text" class="form__item" id="title" v-model="projectsUpdateForm.title">
-            <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type">
+            <input type="text" class="form__item" id="title" v-model="projectsUpdateForm.title" :placeholder="title">
+            <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type" :placeholder="type">
             <label for="one-off">決まった金額を支払う</label>
-            <input type="radio" id="service" value="service" v-model="projectsUpdateForm.type">
+            <input type="radio" id="service" value="service" v-model="projectsUpdateForm.type" :placeholder="type">
             <label for="service">サービス開始後の売り上げを分け合う</label>
             <div v-if="isOneOff">
                 <label for="minimum-amount">下限金額</label>
-                <input type="number" class="form__item" id="minimum-amount" max="10000000" v-model="projectsUpdateForm.minimum_amount">
+                <input type="number" class="form__item" id="minimum-amount" max="10000000" v-model="projectsUpdateForm.minimum_amount" :placeholder="minimum_amount">
                 <label for="max-amount">上限金額</label>
-                <input type="number" class="form__item" id="max-amount" max="10000000" v-model="projectsUpdateForm.max_amount">
+                <input type="number" class="form__item" id="max-amount" max="10000000" v-model="projectsUpdateForm.max_amount" :placeholder="max_amount">
             </div>
             <label for="detail">詳細</label>
-            <input type="text" class="form__item" id="detail" v-model="projectsUpdateForm.detail">
+            <input type="text" class="form__item" id="detail" v-model="projectsUpdateForm.detail" :placeholder="detail">
             <div class="form__button">
                 <button type="submit" class="button button--inverse">案件を更新する</button>
             </div>
@@ -80,11 +80,10 @@
                 this.$store.commit('project/setUpdateErrorMessages', null)
             },
         },
-        // created() {
-        //     //初期値の設定
-        //     console.log('created()の起動')
-        //     this.projectsUpdateForm.title = this.$store.state.project.title
-        // },
+        created() {
+            // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
+            this.clearError ()
+        },
         computed: {
             apiStatus () {
                 return this.$store.state.project.apiStatus
@@ -96,19 +95,19 @@
                 return this.projectsUpdateForm.type === 'one-off';
             },
             title () {
-                return this.$store.state.project.title
+                return this.$store.getters['project/title']
             },
             type () {
-                return this.$store.state.project.type
+                return this.$store.getters['project/type']
             },
             minimum_amount () {
-                return this.$store.state.project.minimum_amount
+                return this.$store.getters['project/minimum_amount']
             },
             max_amount () {
-                return this.$store.state.project.max_amount
+                return this.$store.getters['project/max_amount']
             },
             detail () {
-                return this.$store.state.project.detail
+                return this.$store.getters['project/detail']
             },
         }
     }

@@ -14,6 +14,7 @@ import Register from './pages/Register.vue'
 import Edit from './pages/Edit.vue'
 import PassResetEmail from './pages/PassResetEmail.vue'
 import PassReset from './pages/PassReset.vue'
+import ProjectDetail from './pages/ProjectDetail.vue'
 
 import System from './pages/errors/System.vue'
 
@@ -114,6 +115,18 @@ const routes = [
         path: '/projects/:projectId/edit',
         name: 'projectsEdit',
         component: ProjectsEdit,
+        beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
+            if (store.getters['auth/check']) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
+    },
+    {
+        path: '/project/detail/:projectId',
+        name: 'projectDetail',
+        component: ProjectDetail,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {
                 next()

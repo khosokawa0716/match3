@@ -17,6 +17,11 @@
             <button type="submit" class="button button--inverse">編集する</button>
         </div>
         </form>
+        <form class="form" @submit.prevent="showDetail">
+            <div class="form__button">
+                <button type="submit" class="button button--inverse">詳細</button>
+            </div>
+        </form>
     </div>
 </template>
 <script>
@@ -37,6 +42,16 @@
                     // editアクションが成功だった場合、案件編集に移動する
                     this.$router.push('/projects/' + this.item.id + '/edit')
                 }
+            },
+            async showDetail () {
+                // projectストアのdetailアクションを呼び出す ここはわざわざストアにすることはないと感じていったん直接コントローラを読んでみる
+                // await this.$store.dispatch('project/detail', this.item.id)
+                //
+                // if (this.apiStatus) {
+                //     // editアクションが成功だった場合、案件編集に移動する
+                //     this.$router.push('/project/detail/' + this.item.id)
+                // }
+                this.$router.push('/project/detail/' + this.item.id)
             }
         },
         computed: {

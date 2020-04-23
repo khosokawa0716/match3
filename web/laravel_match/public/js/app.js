@@ -2189,6 +2189,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -2210,9 +2215,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 if (_this.apiStatus) {
-                  // loginアクションが成功だった場合、案件編集に移動する
-                  console.log('移動するステップが実行されている'); // ここ入っていないな...
-
+                  // editアクションが成功だった場合、案件編集に移動する
                   _this.$router.push('/projects/' + _this.item.id + '/edit');
                 }
 
@@ -2222,6 +2225,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    showDetail: function showDetail() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                // projectストアのdetailアクションを呼び出す ここはわざわざストアにすることはないと感じていったん直接コントローラを読んでみる
+                // await this.$store.dispatch('project/detail', this.item.id)
+                //
+                // if (this.apiStatus) {
+                //     // editアクションが成功だった場合、案件編集に移動する
+                //     this.$router.push('/project/detail/' + this.item.id)
+                // }
+                _this2.$router.push('/project/detail/' + _this2.item.id);
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   },
@@ -2387,6 +2415,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
+    // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
     this.clearError();
   },
   computed: {
@@ -2993,11 +3022,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.commit('project/setUpdateErrorMessages', null);
     }
   },
-  // created() {
-  //     //初期値の設定
-  //     console.log('created()の起動')
-  //     this.projectsUpdateForm.title = this.$store.state.project.title
-  // },
+  created: function created() {
+    // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
+    this.clearError();
+  },
   computed: {
     apiStatus: function apiStatus() {
       return this.$store.state.project.apiStatus;
@@ -3009,19 +3037,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.projectsUpdateForm.type === 'one-off';
     },
     title: function title() {
-      return this.$store.state.project.title;
+      return this.$store.getters['project/title'];
     },
     type: function type() {
-      return this.$store.state.project.type;
+      return this.$store.getters['project/type'];
     },
     minimum_amount: function minimum_amount() {
-      return this.$store.state.project.minimum_amount;
+      return this.$store.getters['project/minimum_amount'];
     },
     max_amount: function max_amount() {
-      return this.$store.state.project.max_amount;
+      return this.$store.getters['project/max_amount'];
     },
     detail: function detail() {
-      return this.$store.state.project.detail;
+      return this.$store.getters['project/detail'];
     }
   }
 });
@@ -4791,6 +4819,20 @@ var render = function() {
         }
       },
       [_vm._m(0)]
+    ),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.showDetail($event)
+          }
+        }
+      },
+      [_vm._m(1)]
     )
   ])
 }
@@ -4804,6 +4846,18 @@ var staticRenderFns = [
         "button",
         { staticClass: "button button--inverse", attrs: { type: "submit" } },
         [_vm._v("編集する")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form__button" }, [
+      _c(
+        "button",
+        { staticClass: "button button--inverse", attrs: { type: "submit" } },
+        [_vm._v("詳細")]
       )
     ])
   }
@@ -5406,6 +5460,37 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/ProjectDetail.vue?vue&type=template&id=41190d11&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/ProjectDetail.vue?vue&type=template&id=41190d11& ***!
+  \***********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("案件詳細画面")])])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Projects.vue?vue&type=template&id=55bf53fa&":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Projects.vue?vue&type=template&id=55bf53fa& ***!
@@ -5540,7 +5625,7 @@ var render = function() {
             }
           ],
           staticClass: "form__item",
-          attrs: { type: "text", id: "title" },
+          attrs: { type: "text", id: "title", placeholder: _vm.title },
           domProps: { value: _vm.projectsUpdateForm.title },
           on: {
             input: function($event) {
@@ -5561,7 +5646,12 @@ var render = function() {
               expression: "projectsUpdateForm.type"
             }
           ],
-          attrs: { type: "radio", id: "one-off", value: "one-off" },
+          attrs: {
+            type: "radio",
+            id: "one-off",
+            value: "one-off",
+            placeholder: _vm.type
+          },
           domProps: { checked: _vm._q(_vm.projectsUpdateForm.type, "one-off") },
           on: {
             change: function($event) {
@@ -5583,7 +5673,12 @@ var render = function() {
               expression: "projectsUpdateForm.type"
             }
           ],
-          attrs: { type: "radio", id: "service", value: "service" },
+          attrs: {
+            type: "radio",
+            id: "service",
+            value: "service",
+            placeholder: _vm.type
+          },
           domProps: { checked: _vm._q(_vm.projectsUpdateForm.type, "service") },
           on: {
             change: function($event) {
@@ -5615,7 +5710,8 @@ var render = function() {
                 attrs: {
                   type: "number",
                   id: "minimum-amount",
-                  max: "10000000"
+                  max: "10000000",
+                  placeholder: _vm.minimum_amount
                 },
                 domProps: { value: _vm.projectsUpdateForm.minimum_amount },
                 on: {
@@ -5646,7 +5742,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form__item",
-                attrs: { type: "number", id: "max-amount", max: "10000000" },
+                attrs: {
+                  type: "number",
+                  id: "max-amount",
+                  max: "10000000",
+                  placeholder: _vm.max_amount
+                },
                 domProps: { value: _vm.projectsUpdateForm.max_amount },
                 on: {
                   input: function($event) {
@@ -5676,7 +5777,7 @@ var render = function() {
             }
           ],
           staticClass: "form__item",
-          attrs: { type: "text", id: "detail" },
+          attrs: { type: "text", id: "detail", placeholder: _vm.detail },
           domProps: { value: _vm.projectsUpdateForm.detail },
           on: {
             input: function($event) {
@@ -23246,6 +23347,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/ProjectDetail.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/pages/ProjectDetail.vue ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProjectDetail_vue_vue_type_template_id_41190d11___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectDetail.vue?vue&type=template&id=41190d11& */ "./resources/js/pages/ProjectDetail.vue?vue&type=template&id=41190d11&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _ProjectDetail_vue_vue_type_template_id_41190d11___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ProjectDetail_vue_vue_type_template_id_41190d11___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/ProjectDetail.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/ProjectDetail.vue?vue&type=template&id=41190d11&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/pages/ProjectDetail.vue?vue&type=template&id=41190d11& ***!
+  \*****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectDetail_vue_vue_type_template_id_41190d11___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectDetail.vue?vue&type=template&id=41190d11& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/ProjectDetail.vue?vue&type=template&id=41190d11&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectDetail_vue_vue_type_template_id_41190d11___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectDetail_vue_vue_type_template_id_41190d11___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/Projects.vue":
 /*!*****************************************!*\
   !*** ./resources/js/pages/Projects.vue ***!
@@ -23651,11 +23805,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Edit_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/Edit.vue */ "./resources/js/pages/Edit.vue");
 /* harmony import */ var _pages_PassResetEmail_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/PassResetEmail.vue */ "./resources/js/pages/PassResetEmail.vue");
 /* harmony import */ var _pages_PassReset_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/PassReset.vue */ "./resources/js/pages/PassReset.vue");
-/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
+/* harmony import */ var _pages_ProjectDetail_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/ProjectDetail.vue */ "./resources/js/pages/ProjectDetail.vue");
+/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
 
 
  // ナビゲーションガードを追加するためにauthストアのcheckゲッターを使用する
 // ページコンポーネントをインポートする
+
 
 
 
@@ -23769,8 +23925,20 @@ var routes = [{
     }
   }
 }, {
+  path: '/project/detail/:projectId',
+  name: 'projectDetail',
+  component: _pages_ProjectDetail_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    // 未ログイン状態でアクセスがあったらログインページへ遷移する
+    if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
+      next();
+    } else {
+      next('/login');
+    }
+  }
+}, {
   path: '/500',
-  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }]; // VueRouterインスタンスを作成する
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -24214,13 +24382,13 @@ var getters = {
     return state.project ? state.project.type : '';
   },
   minimum_amount: function minimum_amount(state) {
-    return state.project ? state.project.minimum_amount() : '';
+    return state.project ? state.project.minimum_amount : '';
   },
   max_amount: function max_amount(state) {
-    return state.project ? state.project.max_amount() : '';
+    return state.project ? state.project.max_amount : '';
   },
   detail: function detail(state) {
-    return state.project ? state.project.detail() : '';
+    return state.project ? state.project.detail : '';
   }
 };
 var mutations = {
@@ -24371,7 +24539,22 @@ var actions = {
       }, _callee3);
     }))();
   },
-  // 画面更新時にプロジェクトのストアを更新しない
+  // async detail (context, data) {
+  //     context.commit('setApiStatus', null)
+  //     const response = await axios.get('/project/detail/' + data, data)
+  //
+  //     if (response.status === OK) { // レスポンスがOK(200)なら以下の処理を実行
+  //         console.log('editアクションでレスポンス200を取得')
+  //         context.commit('setApiStatus', true)
+  //         console.dir(response.data)
+  //         context.commit('setProject', response.data)
+  //         return false
+  //     }
+  //
+  //     context.commit('setApiStatus', false)
+  //     context.commit('error/setCode', response.status, { root: true })
+  // },
+  // // 画面更新時にプロジェクトのストアを更新しない
   currentProject: function currentProject(context) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var response, project;
