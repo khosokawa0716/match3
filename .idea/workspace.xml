@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectDetailController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/app/PrivateMessage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/app/PublicMessage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/MypageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/MypageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Project.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/ExampleComponent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Project.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Project.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/store/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/project.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,10 +96,14 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1587448826940">
+    <state x="188" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587617653545">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1680.950@0.23.1680.950" timestamp="1587448826940" />
+    <state x="188" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.950@0.23.1680.950" timestamp="1587617653545" />
+    <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1587615195502">
+      <screen x="0" y="23" width="1680" height="950" />
+    </state>
+    <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1680.950@0.23.1680.950" timestamp="1587615195502" />
     <state x="363" y="291" width="761" height="472" key="find.popup" timestamp="1586936749588">
       <screen x="0" y="23" width="1680" height="950" />
     </state>

@@ -23,9 +23,10 @@ Route::put('/projects/{id}', 'ProjectController@update')->name('projects.update'
 Route::get('/project/info', function (Project $project) { return $project; })->name('project'); // プロジェクト情報の返却
 Route::get('/projects/list', 'ProjectController@index')->name('projects.index'); // 案件一覧表示
 
-// ***** 案件詳細 ***** まだコントローラを作っていないのでコメント化
-//Route::get('/project/{project}', 'ProjectDetailController@show')->name('project.show'); // 案件詳細画面の表示
+// ***** 案件詳細 *****
+Route::get('/project/detail/{id}', 'ProjectDetailController@show')->name('project.show'); // 案件詳細画面の表示
 //Route::post('/project', 'ProjectDetailController@update')->name('project.update'); // 案件詳細画面の更新 *「応募」と「パブリックメッセージ投稿」がある
+Route::post('/project/detail/{id}', 'ProjectDetailController@create')->name('project.create');
 
 // ***** メッセージ
 

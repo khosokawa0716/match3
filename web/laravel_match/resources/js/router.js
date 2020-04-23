@@ -124,9 +124,9 @@ const routes = [
         }
     },
     {
-        path: '/project/detail/:projectId',
-        name: 'projectDetail',
+        path: '/project/detail/:id',
         component: ProjectDetail,
+        props: true,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {
                 next()

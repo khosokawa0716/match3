@@ -15,7 +15,7 @@ class ProjectController extends Controller
     }
 
     public function index(){
-        Log::info('ProjectControllerのindex起動');
+//        Log::info('ProjectControllerのindex起動');
         $projects = Project::with(['owner'])
             ->orderBy(Project::CREATED_AT, 'desc')->paginate();
 
@@ -43,13 +43,12 @@ class ProjectController extends Controller
         return $project;
     }
 
-    // 多分このコントローラいらない ルーティングから削除しても動作するから
     public function edit($data)
     {
         $id = $data;
-        Log::info('ProjectControllerのedit起動');
+//        Log::info('ProjectControllerのedit起動');
 //        Log::info(print_r($data, true));
-        Log::info('$idの値: '.$id);
+//        Log::info('$idの値: '.$id);
         if (ctype_digit($id)) {
             $project = Project::find($id);
             Log::info(print_r($project, true));
@@ -59,7 +58,7 @@ class ProjectController extends Controller
 
     public function update (Request $request, $id) // 引数Project $project を削除
     {
-        Log::info('ProjectControllerのupdate起動');
+//        Log::info('ProjectControllerのupdate起動');
         $project = Project::find($id);
 
         // 入力された項目だけ更新をおこなう
