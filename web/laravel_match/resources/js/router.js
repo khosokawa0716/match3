@@ -91,6 +91,7 @@ const routes = [
     },
     {
         path: '/mypage',
+        name: 'mypage',
         component: Mypage,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {

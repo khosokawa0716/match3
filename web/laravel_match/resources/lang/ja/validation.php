@@ -153,6 +153,7 @@ return [
         'profile_fields' => '自己紹介',
         'title' => 'タイトル',
         'detail' => '詳細',
+        'content' => 'テキストエリアの内容',
 
     ],
 ];

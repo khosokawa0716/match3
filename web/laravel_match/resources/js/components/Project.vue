@@ -1,17 +1,11 @@
 <template>
     <div>
-<!--        <h5>{{ item.owner.name }}</h5>-->
-        <p>案件ID: <span>{{ item.id }}</span></p>
-        <p>{{ item.title }}</p>
-        <p>{{ item.type }}</p>
-        <p>{{ item.minimum_amount }}</p>
-        <p>{{ item.max_amount }}</p>
-<!--        <RouterLink-->
-<!--            v-if="isLogin"-->
-<!--            :to="`/projects/${item.id}/edit`"-->
-<!--            >-->
-<!--            編集する-->
-<!--        </RouterLink>-->
+        <h5>登録した人: {{ item.owner.name }}</h5>
+<!--        <p>案件ID: <span>{{ item.id }}</span></p>-->
+        <p>タイトル: {{ item.title }}</p>
+        <p>タイプ: {{ item.type }}</p>
+        <p>下限金額: {{ item.minimum_amount }}</p>
+        <p>上限金額: {{ item.max_amount }}</p>
         <form class="form" @submit.prevent="edit">
         <div class="form__button">
             <button type="submit" class="button button--inverse">編集する</button>

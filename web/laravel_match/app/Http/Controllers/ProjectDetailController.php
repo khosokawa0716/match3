@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\PrivateMessage;
 use App\Project;
 use App\PublicMessage;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -46,5 +48,29 @@ class ProjectDetailController extends Controller
         $public_messages = PublicMessage::where('project_id', $project_id)->with(['author'])->orderBy(PublicMessage::CREATED_AT, 'desc')->get();
 
         return $public_messages;
+    }
+
+    public function update(PrivateMessage $privateMessage, $data)
+    {
+        Log::info('ProjectDetailControllerのupdate起動');
+        $id = $data;
+        $user = Auth::user();
+        $user_id = Auth::id();
+        $name = $user->name;
+        if (ctype_digit($id)) {
+            $project = Project::where('id', $id)->with(['owner'])->first();
+
+            $project->status = 0;
+            $project->applicant_id = $user_id;
+            $project->save();
+
+            $user->number_unread_messages += 1;
+            $user->save();
+
+            $privateMessage->user_id = $user_id;
+            $privateMessage->project_id = $id;
+            $privateMessage->content = $name.'さんがこの案件に応募しました!';
+            $privateMessage->save();
+        }
     }
 }

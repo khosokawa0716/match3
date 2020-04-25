@@ -39,7 +39,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         console.log(data)
         // console.log(data.id) // これはundefined
         context.commit('setApiStatus', null) // apiStatus始めはnull
-        const response = await axios.get('/projects/' + data + '/edit', data)
+        const response = await axios.get('/api/projects/' + data + '/edit', data)
 
         if (response.status === OK) { // レスポンスがOK(200)なら以下の処理を実行
             console.log('editアクションでレスポンス200を取得')
@@ -55,7 +55,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     // 案件登録
     async register (context, data) {
         context.commit('setApiStatus', null)
-        const response = await axios.post('/projects/register', data)
+        const response = await axios.post('/api/projects/register', data)
 
         if (response.status === CREATED) {
             context.commit('setApiStatus', true)
@@ -74,7 +74,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     async update (context, data) {
         console.log(data.id);
         context.commit('setApiStatus', null)
-        const response = await axios.put('/projects/' + data.id, data)
+        const response = await axios.put('/api/projects/' + data.id, data)
 
         if (response.status === OK) {
             context.commit('setApiStatus', true)

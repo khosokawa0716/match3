@@ -31,7 +31,7 @@
         },
         methods: {
             async sendEmail () {
-                await axios.post('/password/email', this.passResetEmailForm)
+                await axios.post('/api/password/email', this.passResetEmailForm)
             }
         }
     }

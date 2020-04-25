@@ -41,7 +41,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     // ログイン
     async login (context, data) {
         context.commit('setApiStatus', null) // apiStatus始めはnull
-        const response = await axios.post('/login', data)
+        const response = await axios.post('/api/login', data)
 
         if (response.status === OK) { // レスポンスがOK(200)なら以下の処理を実行
             context.commit('setApiStatus', true)
@@ -60,7 +60,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     // ユーザー登録
     async register (context, data) {
         context.commit('setApiStatus', null)
-        const response = await axios.post('/register', data, {
+        const response = await axios.post('/api/register', data, {
             headers: {
                 'Content-Type': 'multipart/form-data' // 画像の更新のために追加
             }
@@ -82,7 +82,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     // ログアウト userのstateをnullにする
     async logout (context) {
         context.commit('setApiStatus', null)
-        const response = await axios.post('/logout')
+        const response = await axios.post('/api/logout')
 
         if (response.status === OK) {
             context.commit('setApiStatus', true)
@@ -96,7 +96,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     // ユーザー更新
     async update (context, data) {
         context.commit('setApiStatus', null)
-        const response = await axios.post('/users/' + data.get('id'), data, {
+        const response = await axios.post('/api/users/' + data.get('id'), data, {
             headers: {
                 'Content-Type': 'multipart/form-data', // 画像の更新のために追加
                 'X-HTTP-Method-Override': 'PUT', // data = new FormData これをバックエンド側に渡すためにいったんpostで送りputで上書き
@@ -119,7 +119,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
     // 起動時にログインチェックをおこなう
     async currentUser (context) {
         context.commit('setApiStatus', null)
-        const response = await axios.get('/user/info')
+        const response = await axios.get('/api/user/info')
         const user = response.data || null
 
         if (response.status === OK) {

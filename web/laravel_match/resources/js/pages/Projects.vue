@@ -26,7 +26,7 @@
         },
         methods: {
             async fetchProjects () {
-                const response = await axios.get('/projects/list')
+                const response = await axios.get('/api/projects/list')
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)

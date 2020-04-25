@@ -19,6 +19,11 @@ class User extends Authenticatable
         'name', 'email', 'password', 'icon_path', 'profile_fields','number_unread_messages'
     ];
 
+    /** JSONに含める属性 */
+    protected $visible = [
+        'id', 'name', 'email', 'icon_path', 'profile_fields','number_unread_messages'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

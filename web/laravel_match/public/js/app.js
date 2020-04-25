@@ -2188,12 +2188,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -2713,7 +2707,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/password/reset/', _this.passResetForm);
+                return axios.post('/api/password/reset/', _this.passResetForm);
 
               case 2:
               case "end":
@@ -2785,7 +2779,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/password/email', _this.passResetEmailForm);
+                return axios.post('/api/password/email', _this.passResetEmailForm);
 
               case 2:
               case "end":
@@ -2847,6 +2841,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2857,9 +2861,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      public_message_content: '',
       project: null,
-      public_messages: []
+      public_message_content: '',
+      public_messages: [],
+      public_message_errors: null
     };
   },
   methods: {
@@ -2873,7 +2878,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/project/detail/".concat(_this.id));
+                return axios.get("/api/project/detail/".concat(_this.id));
 
               case 2:
                 response = _context.sent;
@@ -2909,52 +2914,113 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.post("/project/detail/".concat(_this2.id), {
+                return axios.post("/api/project/detail/".concat(_this2.id), {
                   content: _this2.public_message_content
                 });
 
               case 2:
                 response = _context2.sent;
-                _this2.public_message_content = '';
-                _context2.next = 6;
-                return axios.get("/project/detail/".concat(_this2.id));
+
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _this2.public_message_errors = response.data.errors;
+                return _context2.abrupt("return", false);
 
               case 6:
-                response2 = _context2.sent;
-                _this2.public_messages = response2.data.public_messages;
+                // POST成功
+                // テキスト入力部分を空にする
+                _this2.public_message_content = ''; // エラーメッセージをクリア
 
-              case 8:
+                _this2.public_message_errors = null; // メッセージを全件取得して、再表示
+
+                _context2.next = 10;
+                return axios.get("/api/project/detail/".concat(_this2.id));
+
+              case 10:
+                response2 = _context2.sent;
+                _this2.public_messages = response2.data.public_messages; // その他のエラー
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
+                  _context2.next = 15;
+                  break;
+                }
+
+                _this2.$store.commit('error/setCode', response.status);
+
+                return _context2.abrupt("return", false);
+
+              case 15:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
       }))();
+    },
+    apply: function apply() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios.put("/api/project/detail/".concat(_this3.id), _this3.id);
+
+              case 2:
+                response = _context3.sent;
+
+                _this3.$router.push('mypage'); // if (response === OK) {
+                //     // updateアクションが成功だった場合、ストアにメッセージを格納する
+                //     this.$store.commit('message/setContent', {
+                //         content: '案件に応募しました！',
+                //         timeout: 5000
+                //     })
+                //
+                //     // マイページに移動する
+                //     this.$router.push('/mypage')
+                // }
+                //
+                // // エラー
+                // if (response.status !== OK) {
+                //     this.$store.commit('error/setCode', response.status)
+                //     return false
+                // }
+
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   },
   watch: {
     $route: {
       handler: function handler() {
-        var _this3 = this;
+        var _this4 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
             while (1) {
-              switch (_context3.prev = _context3.next) {
+              switch (_context4.prev = _context4.next) {
                 case 0:
-                  _context3.next = 2;
-                  return _this3.fetchProjectDetail();
+                  _context4.next = 2;
+                  return _this4.fetchProjectDetail();
 
                 case 2:
-                  _context3.next = 4;
-                  return _this3.publicMessageRegister();
-
-                case 4:
                 case "end":
-                  return _context3.stop();
+                  return _context4.stop();
               }
             }
-          }, _callee3);
+          }, _callee4);
         }))();
       },
       immediate: true
@@ -3018,7 +3084,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/projects/list');
+                return axios.get('/api/projects/list');
 
               case 2:
                 response = _context.sent;
@@ -4961,15 +5027,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("p", [_vm._v("案件ID: "), _c("span", [_vm._v(_vm._s(_vm.item.id))])]),
+    _c("h5", [_vm._v("登録した人: " + _vm._s(_vm.item.owner.name))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.item.title))]),
+    _c("p", [_vm._v("タイトル: " + _vm._s(_vm.item.title))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.item.type))]),
+    _c("p", [_vm._v("タイプ: " + _vm._s(_vm.item.type))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.item.minimum_amount))]),
+    _c("p", [_vm._v("下限金額: " + _vm._s(_vm.item.minimum_amount))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.item.max_amount))]),
+    _c("p", [_vm._v("上限金額: " + _vm._s(_vm.item.max_amount))]),
     _vm._v(" "),
     _c(
       "form",
@@ -5664,6 +5730,8 @@ var render = function() {
       _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
     ]),
     _vm._v(" "),
+    _c("form", { staticClass: "form", on: { submit: _vm.apply } }, [_vm._m(0)]),
+    _vm._v(" "),
     _c(
       "form",
       {
@@ -5676,6 +5744,20 @@ var render = function() {
         }
       },
       [
+        _vm.public_message_errors
+          ? _c("div", { staticClass: "errors" }, [
+              _vm.public_message_errors.content
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.public_message_errors.content, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("textarea", {
           directives: [
             {
@@ -5697,7 +5779,7 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _vm._m(0)
+        _vm._m(1)
       ]
     ),
     _vm._v(" "),
@@ -5723,6 +5805,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form_button" }, [
+      _c(
+        "button",
+        { staticClass: "button button--inverse", attrs: { type: "submit" } },
+        [_vm._v("この案件に応募する")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -24159,6 +24253,7 @@ var routes = [{
   }
 }, {
   path: '/mypage',
+  name: 'mypage',
   component: _pages_Mypage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
     // 未ログイン状態でアクセスがあったらログインページへ遷移する
@@ -24296,7 +24391,7 @@ var actions = {
               context.commit('setApiStatus', null); // apiStatus始めはnull
 
               _context.next = 3;
-              return axios.post('/login', data);
+              return axios.post('/api/login', data);
 
             case 3:
               response = _context.sent;
@@ -24341,7 +24436,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context2.next = 3;
-              return axios.post('/register', data, {
+              return axios.post('/api/register', data, {
                 headers: {
                   'Content-Type': 'multipart/form-data' // 画像の更新のために追加
 
@@ -24389,7 +24484,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context3.next = 3;
-              return axios.post('/logout');
+              return axios.post('/api/logout');
 
             case 3:
               response = _context3.sent;
@@ -24427,7 +24522,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context4.next = 3;
-              return axios.post('/users/' + data.get('id'), data, {
+              return axios.post('/api/users/' + data.get('id'), data, {
                 headers: {
                   'Content-Type': 'multipart/form-data',
                   // 画像の更新のために追加
@@ -24477,7 +24572,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context5.next = 3;
-              return axios.get('/user/info');
+              return axios.get('/api/user/info');
 
             case 3:
               response = _context5.sent;
@@ -24688,7 +24783,7 @@ var actions = {
               context.commit('setApiStatus', null); // apiStatus始めはnull
 
               _context.next = 4;
-              return axios.get('/projects/' + data + '/edit', data);
+              return axios.get('/api/projects/' + data + '/edit', data);
 
             case 4:
               response = _context.sent;
@@ -24729,7 +24824,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context2.next = 3;
-              return axios.post('/projects/register', data);
+              return axios.post('/api/projects/register', data);
 
             case 3:
               response = _context2.sent;
@@ -24773,7 +24868,7 @@ var actions = {
               console.log(data.id);
               context.commit('setApiStatus', null);
               _context3.next = 4;
-              return axios.put('/projects/' + data.id, data);
+              return axios.put('/api/projects/' + data.id, data);
 
             case 4:
               response = _context3.sent;
