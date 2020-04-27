@@ -1,16 +1,22 @@
 <template>
     <div>
         <h1>案件一覧</h1>
-        <h5>募集しているかどうかを絞り込む</h5>
+        <h5>タイプを絞り込む</h5>
         <label v-for="label in options">
             <input type="radio"
                    v-model="current"
                    v-bind:value="label.value">{{ label.label }}
         </label>
+<!--        <h5>募集しているかどうかを絞り込む</h5>-->
+<!--        <label v-for="label in options2">-->
+<!--            <input type="radio"-->
+<!--                   v-model="current2"-->
+<!--                   v-bind:value="label.value">{{ label.label }}-->
+<!--        </label>-->
         <div>
             <Project
                 class=""
-                v-for="project in computedProjects"
+                v-for="project in filterType"
                 :key="project.id"
                 :item="project"
                 />
@@ -30,12 +36,16 @@
                 projects: [],
                 options: [
                     { value: -1, label: 'すべて' },
-                    { value: 1,  label: '募集中' },
-                    { value: 0,  label: '募集終了' }
+                    { value: 'one-off', label: '依頼のときに一定の金額を支払う' },
+                    { value: 'service', label: 'サービス公開後の収益を分け合う' }
                 ],
-                // 選択している options の value を記憶するためのデータ
-                // 初期値を「-1」つまり「すべて」にする
-                current: -1
+                current: -1,
+                // options2: [
+                //     { value: -1, label: 'すべて' },
+                //     { value: 1,  label: '募集中' },
+                //     { value: 0,  label: '募集終了' }
+                // ],
+                // current2: -1
             }
         },
         methods: {
@@ -50,12 +60,25 @@
                 this.projects = response.data.data
             }
         },
+        // filters: { // currentの値が未定義となりエラー
+        //     filterType: function (el) {
+        //         return this.current < 0 ? true : this.current === el.type
+        //     },
+        //     filterStatus: function(el) {
+        //         return this.current2 < 0 ? true : this.current2 === el.status
+        //     }
+        // },
         computed: {
-            computedProjects () {
+            filterType () {
                 return this.projects.filter(function(el) {
-                    return this.current < 0 ? true : this.current === el.status
+                    return this.current < 0 ? true : this.current === el.type
                 }, this)
-            }
+            },
+            // filterStatus () {
+            //     return this.projects.filter(function(el) {
+            //         return this.current2 < 0 ? true : this.current2 === el.status
+            //     }, this)
+            // }
         },
         watch: {
             $route: {

@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/Forbidden.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/NotFound.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/private_messages.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/private_messages.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/projects.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/projects.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/users.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/users.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/MypageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/MypageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectDetailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectDetailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Project.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Project.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Project.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Projects.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Projects.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

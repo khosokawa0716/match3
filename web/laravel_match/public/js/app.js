@@ -3125,6 +3125,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3138,15 +3144,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: -1,
         label: 'すべて'
       }, {
-        value: 1,
-        label: '募集中'
+        value: 'one-off',
+        label: '依頼のときに一定の金額を支払う'
       }, {
-        value: 0,
-        label: '募集終了'
+        value: 'service',
+        label: 'サービス公開後の収益を分け合う'
       }],
-      // 選択している options の value を記憶するためのデータ
-      // 初期値を「-1」つまり「すべて」にする
-      current: -1
+      current: -1 // options2: [
+      //     { value: -1, label: 'すべて' },
+      //     { value: 1,  label: '募集中' },
+      //     { value: 0,  label: '募集終了' }
+      // ],
+      // current2: -1
+
     };
   },
   methods: {
@@ -3186,12 +3196,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
+  // filters: { // currentの値が未定義となりエラー
+  //     filterType: function (el) {
+  //         return this.current < 0 ? true : this.current === el.type
+  //     },
+  //     filterStatus: function(el) {
+  //         return this.current2 < 0 ? true : this.current2 === el.status
+  //     }
+  // },
   computed: {
-    computedProjects: function computedProjects() {
+    filterType: function filterType() {
       return this.projects.filter(function (el) {
-        return this.current < 0 ? true : this.current === el.status;
+        return this.current < 0 ? true : this.current === el.type;
       }, this);
-    }
+    } // filterStatus () {
+    //     return this.projects.filter(function(el) {
+    //         return this.current2 < 0 ? true : this.current2 === el.status
+    //     }, this)
+    // }
+
   },
   watch: {
     $route: {
@@ -5169,19 +5192,21 @@ var render = function() {
       ? _c("p", [_vm._v("上限金額: " + _vm._s(_vm.item.max_amount) + "円")])
       : _vm._e(),
     _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "form",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.edit($event)
-          }
-        }
-      },
-      [_vm._m(0)]
-    ),
+    _vm.isLogin && _vm.isOwner && _vm.isRecruiting
+      ? _c(
+          "form",
+          {
+            staticClass: "form",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.edit($event)
+              }
+            }
+          },
+          [_vm._m(0)]
+        )
+      : _vm._e(),
     _vm._v(" "),
     _vm.isLogin
       ? _c(
@@ -6008,7 +6033,7 @@ var render = function() {
     [
       _c("h1", [_vm._v("案件一覧")]),
       _vm._v(" "),
-      _c("h5", [_vm._v("募集しているかどうかを絞り込む")]),
+      _c("h5", [_vm._v("タイプを絞り込む")]),
       _vm._v(" "),
       _vm._l(_vm.options, function(label) {
         return _c("label", [
@@ -6032,13 +6057,13 @@ var render = function() {
               }
             }
           }),
-          _vm._v(_vm._s(label.label) + "\n    ")
+          _vm._v(_vm._s(label.label) + "\n        ")
         ])
       }),
       _vm._v(" "),
       _c(
         "div",
-        _vm._l(_vm.computedProjects, function(project) {
+        _vm._l(_vm.filterType, function(project) {
           return _c("Project", { key: project.id, attrs: { item: project } })
         }),
         1
