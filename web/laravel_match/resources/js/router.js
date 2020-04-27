@@ -16,6 +16,8 @@ import PassResetEmail from './pages/PassResetEmail.vue'
 import PassReset from './pages/PassReset.vue'
 import ProjectDetail from './pages/ProjectDetail.vue'
 
+import NotFound from './pages/errors/NotFound.vue'
+import Forbidden from './pages/errors/Forbidden.vue'
 import System from './pages/errors/System.vue'
 
 
@@ -113,7 +115,7 @@ const routes = [
         }
     },
     {
-        path: '/projects/:projectId/edit',
+        path: '/projects/:id/edit',
         name: 'projectsEdit',
         component: ProjectsEdit,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
@@ -139,6 +141,14 @@ const routes = [
     {
         path: '/500',
         component: System
+    },
+    {
+        path: '/403',
+        component: Forbidden
+    },
+    {
+        path: '*',
+        component: NotFound
     }
 ]
 

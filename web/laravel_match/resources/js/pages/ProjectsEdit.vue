@@ -48,7 +48,7 @@
                     // id: this.$store.getters['project/projectid'],
 
                     // ストアでない場合はこっちかな もしかするとこっちならURLが取得できるのかな
-                    id: this.$route.params.projectId,
+                    id: this.$route.params.id,
                     title: '',
                     type: '',
                     minimum_amount: '',
@@ -58,6 +58,9 @@
             }
         },
         methods: {
+            async fetchProject () {
+                await this.$store.dispatch('project/edit', this.projectsUpdateForm.id)
+            },
             async projectsUpdate () {
                 console.log(this.projectsUpdateForm)
                 // projectストアのupdateアクションを呼び出す
@@ -77,8 +80,8 @@
                 }
             },
             clearError () {
-                this.$store.commit('project/setUpdateErrorMessages', null)
-            },
+                this.$store.commit('error/setCode', null)
+            }
         },
         created() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
@@ -109,6 +112,14 @@
             detail () {
                 return this.$store.getters['project/detail']
             },
+        },
+        watch: {
+            $route: {
+                async handler () {
+                    await this.fetchProject()
+                },
+                immediate: true
+            }
         }
     }
 </script>

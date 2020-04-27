@@ -1,17 +1,19 @@
 <template>
     <div>
         <h5>登録した人: {{ item.owner.name }}</h5>
-<!--        <p>案件ID: <span>{{ item.id }}</span></p>-->
         <p>タイトル: {{ item.title }}</p>
-        <p>タイプ: {{ item.type }}</p>
-        <p>下限金額: {{ item.minimum_amount }}</p>
-        <p>上限金額: {{ item.max_amount }}</p>
+        <p>状態: {{ status }}</p>
+        <p>タイプ: {{ type }}</p>
+        <p v-if="item.type === 'one-off'">下限金額: {{ item.minimum_amount }}円</p>
+        <p v-if="item.type === 'one-off'">上限金額: {{ item.max_amount }}円</p>
+<!--    <form class="form" @submit.prevent="edit" v-if="isLogin && isOwner && isRecruiting">-->
+<!--        ProjectController.phpの例外処理を確認するときは下の行を有効にする-->
         <form class="form" @submit.prevent="edit">
         <div class="form__button">
             <button type="submit" class="button button--inverse">編集する</button>
         </div>
         </form>
-        <form class="form" @submit.prevent="showDetail">
+        <form class="form" @submit.prevent="showDetail" v-if="isLogin">
             <div class="form__button">
                 <button type="submit" class="button button--inverse">詳細</button>
             </div>
@@ -28,14 +30,16 @@
         },
         methods: {
             async edit () {
+                this.$router.push('/projects/' + this.item.id + '/edit')
+
                 // console.log(this.item.id) // methodでidが使えることを確認した。
                 // projectストアのeditアクションを呼び出す
-                await this.$store.dispatch('project/edit', this.item.id)
+                // await this.$store.dispatch('project/edit', this.item.id)
 
-                if (this.apiStatus) {
+                // if (this.apiStatus) {
                     // editアクションが成功だった場合、案件編集に移動する
-                    this.$router.push('/projects/' + this.item.id + '/edit')
-                }
+                    // this.$router.push('/projects/' + this.item.id + '/edit')
+                // }
             },
             async showDetail () {
                 // projectストアのdetailアクションを呼び出す ここはわざわざストアにすることはないと感じていったん直接コントローラを読んでみる
@@ -46,7 +50,13 @@
                 //     this.$router.push('/project/detail/' + this.item.id)
                 // }
                 this.$router.push('/project/detail/' + this.item.id)
+            },
+            clearError () {
+                this.$store.commit('error/setCode', null)
             }
+        },
+        created() {
+            this.clearError()
         },
         computed: {
             apiStatus () {
@@ -54,6 +64,26 @@
             },
             isLogin () {
                 return this.$store.getters['auth/check']
+            },
+            isOwner () {
+                return this.$store.getters['auth/userid'] === this.item.owner.id
+            },
+            isRecruiting () {
+                return this.item.status === 1
+            },
+            status () {
+                if (this.item.status === 1) {
+                    return '募集中'
+                } else {
+                    return '募集終了'
+                }
+            },
+            type () {
+                if (this.item.type === 'one-off') {
+                    return '依頼のときに一定の金額を支払う'
+                } else {
+                    return 'サービス公開後の収益を分け合う'
+                }
             }
         }
     }

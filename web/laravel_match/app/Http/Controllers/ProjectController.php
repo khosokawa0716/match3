@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ProjectController extends Controller
@@ -43,26 +44,53 @@ class ProjectController extends Controller
         return $project;
     }
 
+    // 編集する案件を取得する。引数$dataはprojectsのid
     public function edit($data)
     {
-        $id = $data;
-//        Log::info('ProjectControllerのedit起動');
-//        Log::info(print_r($data, true));
-//        Log::info('$idの値: '.$id);
-        if (ctype_digit($id)) {
-            $project = Project::find($id);
-            Log::info(print_r($project, true));
+        $user_id = Auth::id();
+        $project_id = $data;
+        Log::info('ProjectControllerのedit起動');
+        if (ctype_digit($project_id)) {
+            $project = Project::find($project_id);
+            // 検索結果がない場合には、エラーコード404を返却する
+            if ($project === null) { return abort(404); }
+
+            // vueファイルでボタンを非表示にしているので普通はあり得ないが、以下2つのケースでエラーコード403を返却する
+            // 1.応募が終了した案件を編集しようとした
+            // 2.他人が登録した案件を編集しようとした
+            if ($project->status === 0 || $project->user_id !== $user_id) { return abort(403); }
+
             return $project;
+        } else {
+            // URLのID部分に数値でない入力でリクエストがあった場合にも、エラーコード404を返却する
+            return abort(404);
         }
     }
 
-    public function update (Request $request, $id) // 引数Project $project を削除
+    // 案件の更新。引数は、Request $request:編集フォームに入力された値と $id:projectsのid
+    public function update (Request $request, $id)
     {
+        $user_id = Auth::id();
+        $project_id = $id;
+
 //        Log::info('ProjectControllerのupdate起動');
-        $project = Project::find($id);
+        if (ctype_digit($project_id)) {
+            $project = Project::find($project_id);
+            // 検索結果がない場合には、エラーコード404を返却する
+            if ($project === null) { return abort(404); }
+
+            // vueファイルでボタンを非表示にしているので普通はあり得ないが、以下2つのケースでエラーコード403を返却する
+            // 1.応募が終了した案件を編集しようとした
+            // 2.他人が登録した案件を編集しようとした
+            if ($project->status === 0 || $project->user_id !== $user_id) { return abort(403); }
+
+        } else {
+            // URLのID部分に数値でない入力でリクエストがあった場合にも、エラーコード404を返却する
+            return abort(404);
+        }
 
         // 入力された項目だけ更新をおこなう
-        // 入力項目の有無に関わらずユーザー情報を返却する
+        // 入力項目の有無に関わらずプロジェクト情報を返却する
         if ( $request->filled('title') | $request->filled('type') | $request->filled('minimum_amount') | $request->filled('max_amount') | $request->filled('detail') ) {
 
             if ( $request->filled('title')) {

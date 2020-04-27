@@ -17,7 +17,7 @@ class MypageController extends Controller
     }
 
     public function index(){
-//        Log::info('MypageControllerのindex起動');
+        Log::info('MypageControllerのindex起動');
         $id = Auth::id();
         $projects = Project::with(['owner'])
             ->where('user_id', $id)

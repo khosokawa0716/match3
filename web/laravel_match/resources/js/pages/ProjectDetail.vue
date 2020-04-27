@@ -5,12 +5,16 @@
         <dl>
             <dt>依頼した人</dt><dd>{{ project.owner.name }}</dd>
             <dt>案件名</dt><dd>{{ project.title }}</dd>
-            <dt>タイプ</dt><dd>{{ project.type }}</dd>
+            <dt>タイプ</dt><dd>{{ type }}</dd>
+            <div v-if="isOneOff">
             <dt>下限金額</dt><dd>{{ project.minimum_amount }}</dd>
             <dt>上限金額</dt><dd>{{ project.max_amount }}</dd>
+            </div>
             <dt>詳細</dt><dd>{{ project.detail }}</dd>
         </dl>
-        <form class="form" @submit="apply">
+        <form class="form" @submit.prevent="apply" v-if="isRecruiting && notOwner">
+<!--        ProjectDetailController.phpの例外処理を確認するときは下の行を有効にする-->
+<!--        <form class="form" @submit.prevent="apply">-->
             <div class="form_button">
                 <button type="submit" class="button button--inverse">この案件に応募する</button>
             </div>
@@ -96,30 +100,52 @@
             async apply () {
                 const response = await axios.put(`/api/project/detail/${this.id}`, this.id)
 
-                this.$router.push('mypage')
-                // if (response === OK) {
-                //     // updateアクションが成功だった場合、ストアにメッセージを格納する
-                //     this.$store.commit('message/setContent', {
-                //         content: '案件に応募しました！',
-                //         timeout: 5000
-                //     })
-                //
-                //     // マイページに移動する
-                //     this.$router.push('/mypage')
-                // }
-                //
-                // // エラー
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
+                if (response.status === OK) {
+                    // updateアクションが成功だった場合、ストアにメッセージを格納する
+                    this.$store.commit('message/setContent', {
+                        content: '案件に応募しました！',
+                        timeout: 5000
+                    })
+
+                    // マイページに移動する
+                    this.$router.push('/mypage')
+                }
+
+                // エラー
+                if (response.status !== OK) {
+                    this.$store.commit('error/setCode', response.status)
+                    return false
+                }
+            },
+            clearError () {
+                this.$store.commit('error/setCode', null)
+            }
+        },
+        created() {
+            this.clearError()
+        },
+        computed: {
+            notOwner () {
+                return this.$store.getters['auth/userid'] !== this.project.owner.id
+            },
+            isRecruiting () {
+                return this.project.status === 1
+            },
+            type () {
+                if (this.project.type === 'one-off') {
+                    return '依頼のときに一定の金額を支払う'
+                } else {
+                    return 'サービス公開後の収益を分け合う'
+                }
+            },
+            isOneOff () {
+                return this.project.type === 'one-off';
             }
         },
         watch: {
             $route: {
                 async handler () {
                     await this.fetchProjectDetail()
-                    // await this.publicMessageRegister()
                 },
                 immediate: true
             }

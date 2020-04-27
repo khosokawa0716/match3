@@ -16,18 +16,14 @@
         <RouterLink class="button button--link" to="/projects/register">
             案件を登録する
         </RouterLink>
-<!--        ここのリンクは、updateテスト用　削除予定　　　-->
-<!--        <RouterLink class="button button&#45;&#45;link" :to="{name: 'projectsEdit', params: { projectId: pid }}">-->
-<!--            今登録した案件の編集-->
-<!--        </RouterLink>-->
         <RouterLink class="button button--link" :to="{name: 'edit', params: { userId: id }}">
             お客様の登録情報
         </RouterLink>
     </div>
 </template>
 <script>
-    import { OK } from '../util';
-    import Project from '../components/Project';
+    import { OK } from '../util'
+    import Project from '../components/Project.vue'
 
     export default {
         components: {
@@ -37,13 +33,11 @@
             return {
                 id: this.$store.getters['auth/userid'],
                 projects: []
-                // いったんprojectのストア管理をやめてみる
-                // pid: this.$store.getters['project/projectid']
             }
         },
         methods: {
             async fetchProjects () {
-                const response = await axios.get('/mypage')
+                const response = await axios.get('/api/mypage')
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)

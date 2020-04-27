@@ -1961,6 +1961,10 @@ __webpack_require__.r(__webpack_exports__);
       handler: function handler(val) {
         if (val === _util__WEBPACK_IMPORTED_MODULE_3__["INTERNAL_SERVER_ERROR"]) {
           this.$router.push('/500');
+        } else if (val === _util__WEBPACK_IMPORTED_MODULE_3__["FORBIDDEN"]) {
+          this.$router.push('/403');
+        } else if (val === _util__WEBPACK_IMPORTED_MODULE_3__["NOT_FOUND"]) {
+          this.$router.push('/not-found');
         }
       }
     },
@@ -2188,6 +2192,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -2204,16 +2210,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _this.$store.dispatch('project/edit', _this.item.id);
+                _this.$router.push('/projects/' + _this.item.id + '/edit'); // console.log(this.item.id) // methodでidが使えることを確認した。
+                // projectストアのeditアクションを呼び出す
+                // await this.$store.dispatch('project/edit', this.item.id)
+                // if (this.apiStatus) {
+                // editアクションが成功だった場合、案件編集に移動する
+                // this.$router.push('/projects/' + this.item.id + '/edit')
+                // }
 
-              case 2:
-                if (_this.apiStatus) {
-                  // editアクションが成功だった場合、案件編集に移動する
-                  _this.$router.push('/projects/' + _this.item.id + '/edit');
-                }
 
-              case 3:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -2245,7 +2251,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    clearError: function clearError() {
+      this.$store.commit('error/setCode', null);
     }
+  },
+  created: function created() {
+    this.clearError();
   },
   computed: {
     apiStatus: function apiStatus() {
@@ -2253,6 +2265,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
+    },
+    isOwner: function isOwner() {
+      return this.$store.getters['auth/userid'] === this.item.owner.id;
+    },
+    isRecruiting: function isRecruiting() {
+      return this.item.status === 1;
+    },
+    status: function status() {
+      if (this.item.status === 1) {
+        return '募集中';
+      } else {
+        return '募集終了';
+      }
+    },
+    type: function type() {
+      if (this.item.type === 'one-off') {
+        return '依頼のときに一定の金額を支払う';
+      } else {
+        return 'サービス公開後の収益を分け合う';
+      }
     }
   }
 });
@@ -2546,7 +2578,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
-/* harmony import */ var _components_Project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Project */ "./resources/js/components/Project.vue");
+/* harmony import */ var _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Project.vue */ "./resources/js/components/Project.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2576,22 +2608,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Project: _components_Project__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Project: _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
       id: this.$store.getters['auth/userid'],
-      projects: [] // いったんprojectのストア管理をやめてみる
-      // pid: this.$store.getters['project/projectid']
-
+      projects: []
     };
   },
   methods: {
@@ -2605,7 +2631,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/mypage');
+                return axios.get('/api/mypage');
 
               case 2:
                 response = _context.sent;
@@ -2851,6 +2877,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2975,31 +3005,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context3.sent;
 
-                _this3.$router.push('mypage'); // if (response === OK) {
-                //     // updateアクションが成功だった場合、ストアにメッセージを格納する
-                //     this.$store.commit('message/setContent', {
-                //         content: '案件に応募しました！',
-                //         timeout: 5000
-                //     })
-                //
-                //     // マイページに移動する
-                //     this.$router.push('/mypage')
-                // }
-                //
-                // // エラー
-                // if (response.status !== OK) {
-                //     this.$store.commit('error/setCode', response.status)
-                //     return false
-                // }
+                if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
+                  // updateアクションが成功だった場合、ストアにメッセージを格納する
+                  _this3.$store.commit('message/setContent', {
+                    content: '案件に応募しました！',
+                    timeout: 5000
+                  }); // マイページに移動する
 
 
-              case 4:
+                  _this3.$router.push('/mypage');
+                } // エラー
+
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                _this3.$store.commit('error/setCode', response.status);
+
+                return _context3.abrupt("return", false);
+
+              case 7:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3);
       }))();
+    },
+    clearError: function clearError() {
+      this.$store.commit('error/setCode', null);
+    }
+  },
+  created: function created() {
+    this.clearError();
+  },
+  computed: {
+    notOwner: function notOwner() {
+      return this.$store.getters['auth/userid'] !== this.project.owner.id;
+    },
+    isRecruiting: function isRecruiting() {
+      return this.project.status === 1;
+    },
+    type: function type() {
+      if (this.project.type === 'one-off') {
+        return '依頼のときに一定の金額を支払う';
+      } else {
+        return 'サービス公開後の収益を分け合う';
+      }
+    },
+    isOneOff: function isOneOff() {
+      return this.project.type === 'one-off';
     }
   },
   watch: {
@@ -3062,6 +3119,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3070,7 +3133,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      projects: []
+      projects: [],
+      options: [{
+        value: -1,
+        label: 'すべて'
+      }, {
+        value: 1,
+        label: '募集中'
+      }, {
+        value: 0,
+        label: '募集終了'
+      }],
+      // 選択している options の value を記憶するためのデータ
+      // 初期値を「-1」つまり「すべて」にする
+      current: -1
     };
   },
   methods: {
@@ -3108,6 +3184,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    }
+  },
+  computed: {
+    computedProjects: function computedProjects() {
+      return this.projects.filter(function (el) {
+        return this.current < 0 ? true : this.current === el.status;
+      }, this);
     }
   },
   watch: {
@@ -3203,7 +3286,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       projectsUpdateForm: {
         // id: this.$store.getters['project/projectid'],
         // ストアでない場合はこっちかな もしかするとこっちならURLが取得できるのかな
-        id: this.$route.params.projectId,
+        id: this.$route.params.id,
         title: '',
         type: '',
         minimum_amount: '',
@@ -3213,7 +3296,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    projectsUpdate: function projectsUpdate() {
+    fetchProject: function fetchProject() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -3221,26 +3304,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(_this.projectsUpdateForm); // projectストアのupdateアクションを呼び出す
+                _context.next = 2;
+                return _this.$store.dispatch('project/edit', _this.projectsUpdateForm.id);
 
-                _context.next = 3;
-                return _this.$store.dispatch('project/update', _this.projectsUpdateForm);
-
-              case 3:
-                // いったんprojectのストア管理をやめてみる
-                // await axios.put('/projects/' + this.projectsUpdateForm.id, this.projectsUpdateForm)
-                if (_this.apiStatus) {
-                  // updateアクションが成功だった場合、ストアにメッセージを格納する
-                  _this.$store.commit('message/setContent', {
-                    content: '案件を更新しました！',
-                    timeout: 5000
-                  }); // そのあとマイページに移動する
-
-
-                  _this.$router.push('/mypage');
-                }
-
-              case 4:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -3248,8 +3315,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    projectsUpdate: function projectsUpdate() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log(_this2.projectsUpdateForm); // projectストアのupdateアクションを呼び出す
+
+                _context2.next = 3;
+                return _this2.$store.dispatch('project/update', _this2.projectsUpdateForm);
+
+              case 3:
+                // いったんprojectのストア管理をやめてみる
+                // await axios.put('/projects/' + this.projectsUpdateForm.id, this.projectsUpdateForm)
+                if (_this2.apiStatus) {
+                  // updateアクションが成功だった場合、ストアにメッセージを格納する
+                  _this2.$store.commit('message/setContent', {
+                    content: '案件を更新しました！',
+                    timeout: 5000
+                  }); // そのあとマイページに移動する
+
+
+                  _this2.$router.push('/mypage');
+                }
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     clearError: function clearError() {
-      this.$store.commit('project/setUpdateErrorMessages', null);
+      this.$store.commit('error/setCode', null);
     }
   },
   created: function created() {
@@ -3280,6 +3382,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     detail: function detail() {
       return this.$store.getters['project/detail'];
+    }
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this3 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.next = 2;
+                  return _this3.fetchProject();
+
+                case 2:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }))();
+      },
+      immediate: true
     }
   }
 });
@@ -5031,11 +5157,17 @@ var render = function() {
     _vm._v(" "),
     _c("p", [_vm._v("タイトル: " + _vm._s(_vm.item.title))]),
     _vm._v(" "),
-    _c("p", [_vm._v("タイプ: " + _vm._s(_vm.item.type))]),
+    _c("p", [_vm._v("状態: " + _vm._s(_vm.status))]),
     _vm._v(" "),
-    _c("p", [_vm._v("下限金額: " + _vm._s(_vm.item.minimum_amount))]),
+    _c("p", [_vm._v("タイプ: " + _vm._s(_vm.type))]),
     _vm._v(" "),
-    _c("p", [_vm._v("上限金額: " + _vm._s(_vm.item.max_amount))]),
+    _vm.item.type === "one-off"
+      ? _c("p", [_vm._v("下限金額: " + _vm._s(_vm.item.minimum_amount) + "円")])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.item.type === "one-off"
+      ? _c("p", [_vm._v("上限金額: " + _vm._s(_vm.item.max_amount) + "円")])
+      : _vm._e(),
     _vm._v(" "),
     _c(
       "form",
@@ -5051,19 +5183,21 @@ var render = function() {
       [_vm._m(0)]
     ),
     _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "form",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.showDetail($event)
-          }
-        }
-      },
-      [_vm._m(1)]
-    )
+    _vm.isLogin
+      ? _c(
+          "form",
+          {
+            staticClass: "form",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.showDetail($event)
+              }
+            }
+          },
+          [_vm._m(1)]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -5450,7 +5584,7 @@ var render = function() {
       _c(
         "RouterLink",
         { staticClass: "button button--link", attrs: { to: "/projects/list" } },
-        [_vm._v("\n            案件の一覧を見る\n        ")]
+        [_vm._v("\n        案件の一覧を見る\n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -5459,7 +5593,7 @@ var render = function() {
           staticClass: "button button--link",
           attrs: { to: "/projects/register" }
         },
-        [_vm._v("\n            案件を登録する\n        ")]
+        [_vm._v("\n        案件を登録する\n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -5468,7 +5602,7 @@ var render = function() {
           staticClass: "button button--link",
           attrs: { to: { name: "edit", params: { userId: _vm.id } } }
         },
-        [_vm._v("\n            お客様の登録情報\n        ")]
+        [_vm._v("\n        お客様の登録情報\n    ")]
       )
     ],
     1
@@ -5718,19 +5852,37 @@ var render = function() {
       _c("dd", [_vm._v(_vm._s(_vm.project.title))]),
       _vm._v(" "),
       _c("dt", [_vm._v("タイプ")]),
-      _c("dd", [_vm._v(_vm._s(_vm.project.type))]),
+      _c("dd", [_vm._v(_vm._s(_vm.type))]),
       _vm._v(" "),
-      _c("dt", [_vm._v("下限金額")]),
-      _c("dd", [_vm._v(_vm._s(_vm.project.minimum_amount))]),
-      _vm._v(" "),
-      _c("dt", [_vm._v("上限金額")]),
-      _c("dd", [_vm._v(_vm._s(_vm.project.max_amount))]),
+      _vm.isOneOff
+        ? _c("div", [
+            _c("dt", [_vm._v("下限金額")]),
+            _c("dd", [_vm._v(_vm._s(_vm.project.minimum_amount))]),
+            _vm._v(" "),
+            _c("dt", [_vm._v("上限金額")]),
+            _c("dd", [_vm._v(_vm._s(_vm.project.max_amount))])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("dt", [_vm._v("詳細")]),
       _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
     ]),
     _vm._v(" "),
-    _c("form", { staticClass: "form", on: { submit: _vm.apply } }, [_vm._m(0)]),
+    _vm.isRecruiting && _vm.notOwner
+      ? _c(
+          "form",
+          {
+            staticClass: "form",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.apply($event)
+              }
+            }
+          },
+          [_vm._m(0)]
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c(
       "form",
@@ -5790,13 +5942,13 @@ var render = function() {
       _vm._l(_vm.public_messages, function(public_message) {
         return _c("li", _vm._b({}, "li", public_message.id, false), [
           _vm._v(
-            "\n            " +
+            "\n                " +
               _vm._s(public_message.author.name) +
-              "\n            " +
+              "\n                " +
               _vm._s(public_message.content) +
-              "\n            " +
+              "\n                " +
               _vm._s(public_message.created_at) +
-              "\n        "
+              "\n            "
           )
         ])
       }),
@@ -5851,17 +6003,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("案件一覧")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      _vm._l(_vm.projects, function(project) {
-        return _c("Project", { key: project.id, attrs: { item: project } })
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("案件一覧")]),
+      _vm._v(" "),
+      _c("h5", [_vm._v("募集しているかどうかを絞り込む")]),
+      _vm._v(" "),
+      _vm._l(_vm.options, function(label) {
+        return _c("label", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.current,
+                expression: "current"
+              }
+            ],
+            attrs: { type: "radio" },
+            domProps: {
+              value: label.value,
+              checked: _vm._q(_vm.current, label.value)
+            },
+            on: {
+              change: function($event) {
+                _vm.current = label.value
+              }
+            }
+          }),
+          _vm._v(_vm._s(label.label) + "\n    ")
+        ])
       }),
-      1
-    )
-  ])
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.computedProjects, function(project) {
+          return _c("Project", { key: project.id, attrs: { item: project } })
+        }),
+        1
+      )
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -6737,6 +6921,54 @@ var render = function() {
     ],
     1
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/errors/Forbidden.vue?vue&type=template&id=555e191e&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/errors/Forbidden.vue?vue&type=template&id=555e191e& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("p", [_vm._v("この操作をおこなうことができませんでした。")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/errors/NotFound.vue?vue&type=template&id=2eaaa6da&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/errors/NotFound.vue?vue&type=template&id=2eaaa6da& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("p", [_vm._v("お探しのページは見つかりませんでした。")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -24090,6 +24322,112 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/errors/Forbidden.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/pages/errors/Forbidden.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Forbidden_vue_vue_type_template_id_555e191e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Forbidden.vue?vue&type=template&id=555e191e& */ "./resources/js/pages/errors/Forbidden.vue?vue&type=template&id=555e191e&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Forbidden_vue_vue_type_template_id_555e191e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Forbidden_vue_vue_type_template_id_555e191e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/errors/Forbidden.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/errors/Forbidden.vue?vue&type=template&id=555e191e&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/pages/errors/Forbidden.vue?vue&type=template&id=555e191e& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Forbidden_vue_vue_type_template_id_555e191e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Forbidden.vue?vue&type=template&id=555e191e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/errors/Forbidden.vue?vue&type=template&id=555e191e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Forbidden_vue_vue_type_template_id_555e191e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Forbidden_vue_vue_type_template_id_555e191e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/errors/NotFound.vue":
+/*!************************************************!*\
+  !*** ./resources/js/pages/errors/NotFound.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NotFound_vue_vue_type_template_id_2eaaa6da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NotFound.vue?vue&type=template&id=2eaaa6da& */ "./resources/js/pages/errors/NotFound.vue?vue&type=template&id=2eaaa6da&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _NotFound_vue_vue_type_template_id_2eaaa6da___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NotFound_vue_vue_type_template_id_2eaaa6da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/errors/NotFound.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/errors/NotFound.vue?vue&type=template&id=2eaaa6da&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/pages/errors/NotFound.vue?vue&type=template&id=2eaaa6da& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_2eaaa6da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./NotFound.vue?vue&type=template&id=2eaaa6da& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/errors/NotFound.vue?vue&type=template&id=2eaaa6da&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_2eaaa6da___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_2eaaa6da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/errors/System.vue":
 /*!**********************************************!*\
   !*** ./resources/js/pages/errors/System.vue ***!
@@ -24167,11 +24505,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_PassResetEmail_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/PassResetEmail.vue */ "./resources/js/pages/PassResetEmail.vue");
 /* harmony import */ var _pages_PassReset_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/PassReset.vue */ "./resources/js/pages/PassReset.vue");
 /* harmony import */ var _pages_ProjectDetail_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/ProjectDetail.vue */ "./resources/js/pages/ProjectDetail.vue");
-/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
+/* harmony import */ var _pages_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/errors/NotFound.vue */ "./resources/js/pages/errors/NotFound.vue");
+/* harmony import */ var _pages_errors_Forbidden_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./pages/errors/Forbidden.vue */ "./resources/js/pages/errors/Forbidden.vue");
+/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
 
 
  // ナビゲーションガードを追加するためにauthストアのcheckゲッターを使用する
 // ページコンポーネントをインポートする
+
+
 
 
 
@@ -24275,7 +24617,7 @@ var routes = [{
     }
   }
 }, {
-  path: '/projects/:projectId/edit',
+  path: '/projects/:id/edit',
   name: 'projectsEdit',
   component: _pages_ProjectsEdit_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
@@ -24300,7 +24642,13 @@ var routes = [{
   }
 }, {
   path: '/500',
-  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
+}, {
+  path: '/403',
+  component: _pages_errors_Forbidden_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+}, {
+  path: '*',
+  component: _pages_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }]; // VueRouterインスタンスを作成する
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -24973,7 +25321,7 @@ var actions = {
 /*!******************************!*\
   !*** ./resources/js/util.js ***!
   \******************************/
-/*! exports provided: getCookieValue, OK, CREATED, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR */
+/*! exports provided: getCookieValue, OK, CREATED, FORBIDDEN, NOT_FOUND, UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24981,6 +25329,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookieValue", function() { return getCookieValue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OK", function() { return OK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATED", function() { return CREATED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FORBIDDEN", function() { return FORBIDDEN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NOT_FOUND", function() { return NOT_FOUND; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNPROCESSABLE_ENTITY", function() { return UNPROCESSABLE_ENTITY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INTERNAL_SERVER_ERROR", function() { return INTERNAL_SERVER_ERROR; });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -25023,6 +25373,8 @@ function getCookieValue(searchKey) {
 
 var OK = 200;
 var CREATED = 201;
+var FORBIDDEN = 403;
+var NOT_FOUND = 404;
 var UNPROCESSABLE_ENTITY = 422;
 var INTERNAL_SERVER_ERROR = 500;
 
