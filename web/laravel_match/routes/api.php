@@ -25,13 +25,14 @@ Route::get('/projects/list', 'ProjectController@index')->name('projects.index');
 
 // ***** 案件詳細 *****
 Route::get('/project/detail/{id}', 'ProjectDetailController@show')->name('projectDetail.show'); // 案件詳細画面の表示
-//Route::post('/project', 'ProjectDetailController@update')->name('project.update'); // 案件詳細画面の更新 *「応募」と「パブリックメッセージ投稿」がある
-Route::post('/project/detail/{id}', 'ProjectDetailController@create')->name('projectDetail.create');
-Route::put('/project/detail/{id}', 'ProjectDetailController@update')->name('projectDetail.update');
+Route::post('/project/detail/{id}', 'ProjectDetailController@create')->name('projectDetail.create'); // 案件詳細画面でのパブリックメッセージ投稿
+Route::put('/project/detail/{id}', 'ProjectDetailController@update')->name('projectDetail.update'); // 案件詳細画面での応募
 
 // ***** メッセージ
-
-
+Route::get('/public_messages/list', 'PublicMessagesController@show')->name('publicMessages.show'); // パブリックメッセージ一覧の表示
+Route::get('/private_messages/list', 'PrivateMessagesController@show')->name('privateMessages.show'); // プライベートメッセージ一覧の表示
+Route::get('/private_messages/detail', 'PrivateMessagesDetailController@show')->name('privateMessagesDetail.show'); // プライベートメッセージ詳細の表示
+Route::post('/private_messages/detail', 'PrivateMessagesDetailController@create')->name('privateMessagesDetail.create'); // プライベートメッセージの投稿
 
 // ***** 削除候補 *****
 

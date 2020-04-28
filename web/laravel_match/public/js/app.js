@@ -2633,6 +2633,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3584,6 +3590,122 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         return false;
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PublicMessages.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/PublicMessages.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      public_message: '',
+      projects: []
+    };
+  },
+  methods: {
+    fetchPublicMessages: function fetchPublicMessages() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/api/public_messages/list");
+
+              case 2:
+                response = _context.sent;
+                console.dir(response);
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 7:
+                _this.public_message = response.data.latest_public_message;
+                _this.projects = response.data.exchanged_messages_projects;
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this2 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.next = 2;
+                  return _this2.fetchPublicMessages();
+
+                case 2:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }))();
+      },
+      immediate: true
     }
   }
 });
@@ -5627,6 +5749,48 @@ var render = function() {
     [
       _c("h1", { staticClass: "l-container__title" }, [_vm._v("マイページ")]),
       _vm._v(" "),
+      _c(
+        "RouterLink",
+        { staticClass: "button button--link", attrs: { to: "/projects/list" } },
+        [_vm._v("\n        案件の一覧を見る\n    ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "RouterLink",
+        {
+          staticClass: "button button--link",
+          attrs: { to: "/projects/register" }
+        },
+        [_vm._v("\n        案件を登録する\n    ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "RouterLink",
+        {
+          staticClass: "button button--link",
+          attrs: { to: { name: "edit", params: { userId: _vm.id } } }
+        },
+        [_vm._v("\n        お客様の登録情報\n    ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "RouterLink",
+        {
+          staticClass: "button button--link",
+          attrs: { to: "/public_messages/list" }
+        },
+        [_vm._v("\n        公開メッセージ一覧を見る\n    ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "RouterLink",
+        {
+          staticClass: "button button--link",
+          attrs: { to: "/private_messages/list" }
+        },
+        [_vm._v("\n        非公開メッセージ一覧を見る\n    ")]
+      ),
+      _vm._v(" "),
       _c("h5", [_vm._v("登録した案件一覧")]),
       _vm._v(" "),
       _c(
@@ -5685,30 +5849,6 @@ var render = function() {
           ])
         }),
         0
-      ),
-      _vm._v(" "),
-      _c(
-        "RouterLink",
-        { staticClass: "button button--link", attrs: { to: "/projects/list" } },
-        [_vm._v("\n        案件の一覧を見る\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "RouterLink",
-        {
-          staticClass: "button button--link",
-          attrs: { to: "/projects/register" }
-        },
-        [_vm._v("\n        案件を登録する\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "RouterLink",
-        {
-          staticClass: "button button--link",
-          attrs: { to: { name: "edit", params: { userId: _vm.id } } }
-        },
-        [_vm._v("\n        お客様の登録情報\n    ")]
       )
     ],
     1
@@ -5922,6 +6062,37 @@ var staticRenderFns = [
         [_vm._v("リンクを送信する")]
       )
     ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PrivateMessages.vue?vue&type=template&id=ff5cfc14&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/PrivateMessages.vue?vue&type=template&id=ff5cfc14& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("非公開メッセージ一覧")])])
   }
 ]
 render._withStripped = true
@@ -6716,6 +6887,68 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PublicMessages.vue?vue&type=template&id=143883c4&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/PublicMessages.vue?vue&type=template&id=143883c4& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h1", [_vm._v("公開メッセージ一覧")]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h5", [_vm._v("最新の公開メッセージ1件")]),
+      _vm._v(" "),
+      _c("ul", [
+        _c("li", { attrs: { id: _vm.public_message } }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.public_message.content) +
+              "\n                " +
+              _vm._s(_vm.public_message.created_at) +
+              "\n            "
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h5", [_vm._v("公開メッセージを送った案件一覧")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.projects, function(project) {
+          return _c("li", { attrs: { id: _vm.projects } }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(project.title) +
+                "\n                " +
+                _vm._s(project.detail) +
+                "\n            "
+            )
+          ])
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -24030,6 +24263,91 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/PrivateMessages.vue":
+/*!************************************************!*\
+  !*** ./resources/js/pages/PrivateMessages.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrivateMessages.vue?vue&type=template&id=ff5cfc14& */ "./resources/js/pages/PrivateMessages.vue?vue&type=template&id=ff5cfc14&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/PrivateMessages.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/PrivateMessages.vue?vue&type=template&id=ff5cfc14&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/pages/PrivateMessages.vue?vue&type=template&id=ff5cfc14& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PrivateMessages.vue?vue&type=template&id=ff5cfc14& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PrivateMessages.vue?vue&type=template&id=ff5cfc14&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/PrivateMessagesDetail.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/PrivateMessagesDetail.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/pages/PrivateMessagesDetail.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/pages/ProjectDetail.vue":
 /*!**********************************************!*\
   !*** ./resources/js/pages/ProjectDetail.vue ***!
@@ -24301,6 +24619,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsRegister_vue_vue_type_template_id_297d9774___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsRegister_vue_vue_type_template_id_297d9774___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/PublicMessages.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/pages/PublicMessages.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PublicMessages_vue_vue_type_template_id_143883c4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PublicMessages.vue?vue&type=template&id=143883c4& */ "./resources/js/pages/PublicMessages.vue?vue&type=template&id=143883c4&");
+/* harmony import */ var _PublicMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PublicMessages.vue?vue&type=script&lang=js& */ "./resources/js/pages/PublicMessages.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PublicMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PublicMessages_vue_vue_type_template_id_143883c4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PublicMessages_vue_vue_type_template_id_143883c4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/PublicMessages.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/PublicMessages.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/pages/PublicMessages.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PublicMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PublicMessages.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PublicMessages.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PublicMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/PublicMessages.vue?vue&type=template&id=143883c4&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/pages/PublicMessages.vue?vue&type=template&id=143883c4& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PublicMessages_vue_vue_type_template_id_143883c4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PublicMessages.vue?vue&type=template&id=143883c4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PublicMessages.vue?vue&type=template&id=143883c4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PublicMessages_vue_vue_type_template_id_143883c4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PublicMessages_vue_vue_type_template_id_143883c4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -24611,13 +24998,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_PassResetEmail_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/PassResetEmail.vue */ "./resources/js/pages/PassResetEmail.vue");
 /* harmony import */ var _pages_PassReset_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/PassReset.vue */ "./resources/js/pages/PassReset.vue");
 /* harmony import */ var _pages_ProjectDetail_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/ProjectDetail.vue */ "./resources/js/pages/ProjectDetail.vue");
-/* harmony import */ var _pages_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/errors/NotFound.vue */ "./resources/js/pages/errors/NotFound.vue");
-/* harmony import */ var _pages_errors_Forbidden_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./pages/errors/Forbidden.vue */ "./resources/js/pages/errors/Forbidden.vue");
-/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
+/* harmony import */ var _pages_PublicMessages_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/PublicMessages.vue */ "./resources/js/pages/PublicMessages.vue");
+/* harmony import */ var _pages_PrivateMessages_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./pages/PrivateMessages.vue */ "./resources/js/pages/PrivateMessages.vue");
+/* harmony import */ var _pages_PrivateMessagesDetail_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./pages/PrivateMessagesDetail.vue */ "./resources/js/pages/PrivateMessagesDetail.vue");
+/* harmony import */ var _pages_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./pages/errors/NotFound.vue */ "./resources/js/pages/errors/NotFound.vue");
+/* harmony import */ var _pages_errors_Forbidden_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./pages/errors/Forbidden.vue */ "./resources/js/pages/errors/Forbidden.vue");
+/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
 
 
  // ナビゲーションガードを追加するためにauthストアのcheckゲッターを使用する
 // ページコンポーネントをインポートする
+
+
+
 
 
 
@@ -24747,14 +25140,47 @@ var routes = [{
     }
   }
 }, {
+  path: '/public_messages/list',
+  component: _pages_PublicMessages_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    // 未ログイン状態でアクセスがあったらログインページへ遷移する
+    if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
+      next();
+    } else {
+      next('/login');
+    }
+  }
+}, {
+  path: '/private_messages/list',
+  component: _pages_PrivateMessages_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    // 未ログイン状態でアクセスがあったらログインページへ遷移する
+    if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
+      next();
+    } else {
+      next('/login');
+    }
+  }
+}, {
+  path: '/private_messages/detail',
+  component: _pages_PrivateMessagesDetail_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    // 未ログイン状態でアクセスがあったらログインページへ遷移する
+    if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
+      next();
+    } else {
+      next('/login');
+    }
+  }
+}, {
   path: '/500',
-  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
+  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
 }, {
   path: '/403',
-  component: _pages_errors_Forbidden_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+  component: _pages_errors_Forbidden_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
 }, {
   path: '*',
-  component: _pages_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _pages_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
 }]; // VueRouterインスタンスを作成する
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

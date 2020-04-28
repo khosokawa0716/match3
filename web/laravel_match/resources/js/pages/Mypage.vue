@@ -1,6 +1,21 @@
 <template>
     <div>
         <h1 class="l-container__title">マイページ</h1>
+        <RouterLink class="button button--link" to="/projects/list">
+            案件の一覧を見る
+        </RouterLink>
+        <RouterLink class="button button--link" to="/projects/register">
+            案件を登録する
+        </RouterLink>
+        <RouterLink class="button button--link" :to="{name: 'edit', params: { userId: id }}">
+            お客様の登録情報
+        </RouterLink>
+        <RouterLink class="button button--link" to="/public_messages/list">
+            公開メッセージ一覧を見る
+        </RouterLink>
+        <RouterLink class="button button--link" to="/private_messages/list">
+            非公開メッセージ一覧を見る
+        </RouterLink>
         <h5>登録した案件一覧</h5>
         <div>
             <Project
@@ -35,15 +50,6 @@
                 {{ private_message.created_at }}
             </li>
         </ul>
-        <RouterLink class="button button--link" to="/projects/list">
-            案件の一覧を見る
-        </RouterLink>
-        <RouterLink class="button button--link" to="/projects/register">
-            案件を登録する
-        </RouterLink>
-        <RouterLink class="button button--link" :to="{name: 'edit', params: { userId: id }}">
-            お客様の登録情報
-        </RouterLink>
     </div>
 </template>
 <script>

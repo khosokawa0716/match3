@@ -15,6 +15,9 @@ import Edit from './pages/Edit.vue'
 import PassResetEmail from './pages/PassResetEmail.vue'
 import PassReset from './pages/PassReset.vue'
 import ProjectDetail from './pages/ProjectDetail.vue'
+import PublicMessages from './pages/PublicMessages.vue'
+import PrivateMessages from './pages/PrivateMessages.vue'
+import PrivateMessagesDetail from './pages/PrivateMessagesDetail.vue'
 
 import NotFound from './pages/errors/NotFound.vue'
 import Forbidden from './pages/errors/Forbidden.vue'
@@ -130,6 +133,39 @@ const routes = [
         path: '/project/detail/:id',
         component: ProjectDetail,
         props: true,
+        beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
+            if (store.getters['auth/check']) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
+    },
+    {
+        path: '/public_messages/list',
+        component: PublicMessages,
+        beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
+            if (store.getters['auth/check']) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
+    },
+    {
+        path: '/private_messages/list',
+        component: PrivateMessages,
+        beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
+            if (store.getters['auth/check']) {
+                next()
+            } else {
+                next('/login')
+            }
+        }
+    },
+    {
+        path: '/private_messages/detail',
+        component: PrivateMessagesDetail,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {
                 next()
