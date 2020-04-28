@@ -2608,6 +2608,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2617,7 +2642,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       id: this.$store.getters['auth/userid'],
-      projects: []
+      registered_projects: [],
+      applied_projects: [],
+      exchanged_public_messages: [],
+      exchanged_private_messages: []
     };
   },
   methods: {
@@ -2646,9 +2674,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
-                _this.projects = response.data.data;
+                _this.registered_projects = response.data.registered_projects.data;
+                _this.applied_projects = response.data.applied_projects.data;
+                _this.exchanged_public_messages = response.data.exchanged_public_messages.data;
+                _this.exchanged_private_messages = response.data.exchanged_private_messages.data;
 
-              case 7:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -5596,14 +5627,64 @@ var render = function() {
     [
       _c("h1", { staticClass: "l-container__title" }, [_vm._v("マイページ")]),
       _vm._v(" "),
-      _c("h5", [_vm._v("自分の登録した案件一覧")]),
+      _c("h5", [_vm._v("登録した案件一覧")]),
       _vm._v(" "),
       _c(
         "div",
-        _vm._l(_vm.projects, function(project) {
+        _vm._l(_vm.registered_projects, function(project) {
           return _c("Project", { key: project.id, attrs: { item: project } })
         }),
         1
+      ),
+      _vm._v(" "),
+      _c("h5", [_vm._v("応募した案件一覧")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.applied_projects, function(project) {
+          return _c("Project", { key: project.id, attrs: { item: project } })
+        }),
+        1
+      ),
+      _vm._v(" "),
+      _c("h5", [_vm._v("やりとりした公開メッセージ")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.exchanged_public_messages, function(public_message) {
+          return _c("li", _vm._b({}, "li", public_message.id, false), [
+            _vm._v(
+              "\n            " +
+                _vm._s(public_message.author.name) +
+                "\n            " +
+                _vm._s(public_message.content) +
+                "\n            " +
+                _vm._s(public_message.created_at) +
+                "\n        "
+            )
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("h5", [_vm._v("やりとりした非公開メッセージ")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.exchanged_private_messages, function(private_message) {
+          return _c("li", _vm._b({}, "li", private_message.id, false), [
+            _vm._v(
+              "\n            " +
+                _vm._s(private_message.author.name) +
+                "\n            " +
+                _vm._s(private_message.content) +
+                "\n            " +
+                _vm._s(private_message.created_at) +
+                "\n        "
+            )
+          ])
+        }),
+        0
       ),
       _vm._v(" "),
       _c(

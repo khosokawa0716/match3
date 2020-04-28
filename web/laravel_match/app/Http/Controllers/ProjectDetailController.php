@@ -63,9 +63,11 @@ class ProjectDetailController extends Controller
 //        Log::info('ProjectDetailControllerのupdate起動');
         $id = $data;
         Log::info('projectのid'.$id);
-        $user = Auth::user();
-        $user_id = Auth::id();
-        $name = $user->name;
+
+        // 応募した人 = ログインして応募の操作をした人
+        $applicant = Auth::user();
+        $applicant_id = Auth::id();
+//        $applicant_name = $applicant->name;
 
         if (ctype_digit($id)) {
             $project = Project::where('id', $id)->with(['owner'])->first();
@@ -75,18 +77,20 @@ class ProjectDetailController extends Controller
             // vueファイルでボタンを非表示にしているので普通はあり得ないが、以下2つのケースでエラーコード403を返却する
             // 1.応募が終了した案件に応募しようとした
             // 2.自分が登録した案件に応募しようとした
-            if ($project->status === 0 || $project->user_id === $user_id) { return abort(403); }
+            if ($project->status === 0 || $project->user_id === $applicant_id) { return abort(403); }
 
             $project->status = 0;
-            $project->applicant_id = $user_id;
+            $project->applicant_id = $applicant_id;
             $project->save();
 
+            $user = User::where('id', $project->user_id)->first();
+            Log::debug(print_r($user,true));
             $user->number_unread_messages += 1;
             $user->save();
 
-            $privateMessage->user_id = $user_id;
+            $privateMessage->user_id = $applicant_id;
             $privateMessage->project_id = $id;
-            $privateMessage->content = $name.'さんがこの案件に応募しました!';
+            $privateMessage->content = $project->title.'の案件に応募がありました!';
             $privateMessage->save();
 
             return $project;

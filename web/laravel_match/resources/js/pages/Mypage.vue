@@ -1,15 +1,40 @@
 <template>
     <div>
         <h1 class="l-container__title">マイページ</h1>
-        <h5>自分の登録した案件一覧</h5>
+        <h5>登録した案件一覧</h5>
         <div>
             <Project
                 class=""
-                v-for="project in projects"
+                v-for="project in registered_projects"
                 :key="project.id"
                 :item="project"
             />
         </div>
+        <h5>応募した案件一覧</h5>
+        <div>
+            <Project
+                class=""
+                v-for="project in applied_projects"
+                :key="project.id"
+                :item="project"
+            />
+        </div>
+        <h5>やりとりした公開メッセージ</h5>
+        <ul>
+            <li v-for="public_message in exchanged_public_messages" v-bind="public_message.id">
+                {{ public_message.author.name }}
+                {{ public_message.content }}
+                {{ public_message.created_at }}
+            </li>
+        </ul>
+        <h5>やりとりした非公開メッセージ</h5>
+        <ul>
+            <li v-for="private_message in exchanged_private_messages" v-bind="private_message.id">
+                {{ private_message.author.name }}
+                {{ private_message.content }}
+                {{ private_message.created_at }}
+            </li>
+        </ul>
         <RouterLink class="button button--link" to="/projects/list">
             案件の一覧を見る
         </RouterLink>
@@ -32,7 +57,10 @@
         data () {
             return {
                 id: this.$store.getters['auth/userid'],
-                projects: []
+                registered_projects: [],
+                applied_projects: [],
+                exchanged_public_messages: [],
+                exchanged_private_messages: []
             }
         },
         methods: {
@@ -44,7 +72,10 @@
                     return false
                 }
 
-                this.projects = response.data.data
+                this.registered_projects = response.data.registered_projects.data
+                this.applied_projects = response.data.applied_projects.data
+                this.exchanged_public_messages = response.data.exchanged_public_messages.data
+                this.exchanged_private_messages = response.data.exchanged_private_messages.data
             }
         },
         watch: {
