@@ -83,12 +83,14 @@ class ProjectDetailController extends Controller
             $project->applicant_id = $applicant_id;
             $project->save();
 
-            $user = User::where('id', $project->user_id)->first();
-            Log::debug(print_r($user,true));
-            $user->number_unread_messages += 1;
-            $user->save();
+            // number_unread_messagesは削除したためusersテーブルの処理はなし。削除予定
+//            $user = User::where('id', $project->user_id)->first();
+//            Log::debug(print_r($user,true));
+//            $user->number_unread_messages += 1;
+//            $user->save();
 
             $privateMessage->user_id = $applicant_id;
+            $privateMessage->received_user_id = $project->user_id; // 相手はプロジェクトのオーナー 2020/04/29に追加
             $privateMessage->project_id = $id;
             $privateMessage->content = $project->title.'の案件に応募がありました!';
             $privateMessage->save();

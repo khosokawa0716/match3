@@ -8,7 +8,7 @@ class PrivateMessage extends Model
 {
     /** JSONに含める属性 */
     protected $visible = [
-        'author', 'content',
+        'author', 'content', 'project_id', 'created_at'
     ];
 
     public function author()

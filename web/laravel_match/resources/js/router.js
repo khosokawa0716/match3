@@ -164,7 +164,8 @@ const routes = [
         }
     },
     {
-        path: '/private_messages/detail',
+        path: '/private_messages/detail/:id',
+        name: 'privateMessagesDetail',
         component: PrivateMessagesDetail,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {

@@ -2639,6 +2639,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2651,7 +2652,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       registered_projects: [],
       applied_projects: [],
       exchanged_public_messages: [],
-      exchanged_private_messages: []
+      exchanged_private_messages: [],
+      unread_private_messages: null
     };
   },
   methods: {
@@ -2669,9 +2671,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
+                console.dir(response);
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 6;
+                  _context.next = 7;
                   break;
                 }
 
@@ -2679,13 +2682,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 6:
+              case 7:
                 _this.registered_projects = response.data.registered_projects.data;
                 _this.applied_projects = response.data.applied_projects.data;
                 _this.exchanged_public_messages = response.data.exchanged_public_messages.data;
                 _this.exchanged_private_messages = response.data.exchanged_private_messages.data;
+                _this.unread_private_messages = response.data.unread_private_messages;
 
-              case 10:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -2857,6 +2861,343 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PrivateMessages.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/PrivateMessages.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      private_messages: [],
+      projects: []
+    };
+  },
+  methods: {
+    fetchPrivateMessages: function fetchPrivateMessages() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/api/private_messages/list");
+
+              case 2:
+                response = _context.sent;
+                console.dir(response);
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 7:
+                _this.private_messages = response.data.unread_private_messages;
+                _this.projects = response.data.exchaged_private_messages_projects;
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this2 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.next = 2;
+                  return _this2.fetchPrivateMessages();
+
+                case 2:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }))();
+      },
+      immediate: true
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PrivateMessagesDetail.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/PrivateMessagesDetail.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  // props: {
+  //     id: {
+  //         type: String,
+  //         required: true
+  //     }
+  // },
+  data: function data() {
+    return {
+      id: this.$route.params.id,
+      project: [],
+      private_message_content: '',
+      private_messages: [],
+      private_message_errors: null
+    };
+  },
+  methods: {
+    fetchPrivateMessages: function fetchPrivateMessages() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/api/private_messages/detail/".concat(_this.id));
+
+              case 2:
+                response = _context.sent;
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 6:
+                _this.project = response.data.project;
+                _this.private_messages = response.data.private_messages;
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    privateMessageRegister: function privateMessageRegister() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response, response2;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.post("/api/private_messages/detail/".concat(_this2.id), {
+                  content: _this2.private_message_content
+                });
+
+              case 2:
+                response = _context2.sent;
+
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _this2.private_message_errors = response.data.errors;
+                return _context2.abrupt("return", false);
+
+              case 6:
+                // POST成功
+                // テキスト入力部分を空にする
+                _this2.private_message_content = ''; // エラーメッセージをクリア
+
+                _this2.private_message_errors = null; // メッセージを全件取得して、再表示
+
+                _context2.next = 10;
+                return axios.get("/api/private_messages/detail/".concat(_this2.id));
+
+              case 10:
+                response2 = _context2.sent;
+                _this2.private_messages = response2.data.private_messages; // その他のエラー
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
+                  _context2.next = 15;
+                  break;
+                }
+
+                _this2.$store.commit('error/setCode', response.status);
+
+                return _context2.abrupt("return", false);
+
+              case 15:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    clearError: function clearError() {
+      this.$store.commit('error/setCode', null);
+    }
+  },
+  created: function created() {
+    this.clearError();
+  },
+  computed: {
+    // notOwner () {
+    //     return this.$store.getters['auth/userid'] !== this.project.owner.id
+    // },
+    // isRecruiting () {
+    //     return this.project.status === 1
+    // },
+    type: function type() {
+      if (this.project.type === 'one-off') {
+        return '依頼のときに一定の金額を支払う';
+      } else {
+        return 'サービス公開後の収益を分け合う';
+      }
+    },
+    isOneOff: function isOneOff() {
+      return this.project.type === 'one-off';
+    }
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this3 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.next = 2;
+                  return _this3.fetchPrivateMessages();
+
+                case 2:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }))();
+      },
+      immediate: true
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/ProjectDetail.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/ProjectDetail.vue?vue&type=script&lang=js& ***!
@@ -2875,7 +3216,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -5749,6 +6089,12 @@ var render = function() {
     [
       _c("h1", { staticClass: "l-container__title" }, [_vm._v("マイページ")]),
       _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "未読のメッセージ: " + _vm._s(_vm.unread_private_messages) + "件"
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "RouterLink",
         { staticClass: "button button--link", attrs: { to: "/projects/list" } },
@@ -6085,14 +6431,226 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("h1", [_vm._v("非公開メッセージ一覧")]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h5", [_vm._v("未読の非公開メッセージ")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.private_messages, function(private_message) {
+          return _c(
+            "li",
+            { attrs: { id: _vm.private_messages } },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(private_message.content) +
+                  "\n                " +
+                  _vm._s(private_message.created_at) +
+                  "\n                " +
+                  _vm._s(private_message.project_id) +
+                  "\n                "
+              ),
+              _c(
+                "RouterLink",
+                {
+                  staticClass: "button button--link",
+                  attrs: {
+                    to: {
+                      name: "privateMessagesDetail",
+                      params: { id: private_message.project_id }
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    非公開メッセージ詳細を見る\n                "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h5", [_vm._v("非公開メッセージを送った案件一覧")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.projects, function(project) {
+          return _c(
+            "li",
+            { attrs: { id: _vm.projects } },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(project.title) +
+                  "\n                " +
+                  _vm._s(project.detail) +
+                  "\n                " +
+                  _vm._s(project.id) +
+                  "\n                "
+              ),
+              _c(
+                "RouterLink",
+                {
+                  staticClass: "button button--link",
+                  attrs: {
+                    to: {
+                      name: "privateMessagesDetail",
+                      params: { id: project.id }
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    非公開メッセージ詳細を見る\n                "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PrivateMessagesDetail.vue?vue&type=template&id=87ad3132&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/PrivateMessagesDetail.vue?vue&type=template&id=87ad3132& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h1", [_vm._v("非公開メッセージ詳細画面")]),
+    _vm._v(" "),
+    _c("dl", [
+      _c("dt", [_vm._v("案件名")]),
+      _c("dd", [_vm._v(_vm._s(_vm.project.title))]),
+      _vm._v(" "),
+      _c("dt", [_vm._v("タイプ")]),
+      _c("dd", [_vm._v(_vm._s(_vm.type))]),
+      _vm._v(" "),
+      _vm.isOneOff
+        ? _c("div", [
+            _c("dt", [_vm._v("下限金額")]),
+            _c("dd", [_vm._v(_vm._s(_vm.project.minimum_amount))]),
+            _vm._v(" "),
+            _c("dt", [_vm._v("上限金額")]),
+            _c("dd", [_vm._v(_vm._s(_vm.project.max_amount))])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("dt", [_vm._v("詳細")]),
+      _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
+    ]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.private_messages, function(private_message) {
+        return _c("li", _vm._b({}, "li", private_message.id, false), [
+          _vm._v(
+            "\n            " +
+              _vm._s(private_message.author.name) +
+              "\n            " +
+              _vm._s(private_message.content) +
+              "\n            " +
+              _vm._s(private_message.created_at) +
+              "\n        "
+          )
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.privateMessageRegister($event)
+          }
+        }
+      },
+      [
+        _vm.private_message_errors
+          ? _c("div", { staticClass: "errors" }, [
+              _vm.private_message_errors.content
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.private_message_errors.content, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.private_message_content,
+              expression: "private_message_content"
+            }
+          ],
+          staticClass: "form__item",
+          domProps: { value: _vm.private_message_content },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.private_message_content = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm._m(0)
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("非公開メッセージ一覧")])])
+    return _c("div", { staticClass: "form__button" }, [
+      _c(
+        "button",
+        { staticClass: "button button--inverse", attrs: { type: "submit" } },
+        [_vm._v("メッセージを送信する")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -6118,8 +6676,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("h1", [_vm._v("案件詳細画面")]),
-    _vm._v(" "),
-    _c("h5", [_vm._v("案件の内容")]),
     _vm._v(" "),
     _c("dl", [
       _c("dt", [_vm._v("依頼した人")]),
@@ -24273,15 +24829,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrivateMessages.vue?vue&type=template&id=ff5cfc14& */ "./resources/js/pages/PrivateMessages.vue?vue&type=template&id=ff5cfc14&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _PrivateMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrivateMessages.vue?vue&type=script&lang=js& */ "./resources/js/pages/PrivateMessages.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PrivateMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__["render"],
   _PrivateMessages_vue_vue_type_template_id_ff5cfc14___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -24295,6 +24853,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/pages/PrivateMessages.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/PrivateMessages.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/pages/PrivateMessages.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PrivateMessages.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PrivateMessages.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -24325,17 +24897,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
+/* harmony import */ var _PrivateMessagesDetail_vue_vue_type_template_id_87ad3132___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PrivateMessagesDetail.vue?vue&type=template&id=87ad3132& */ "./resources/js/pages/PrivateMessagesDetail.vue?vue&type=template&id=87ad3132&");
+/* harmony import */ var _PrivateMessagesDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrivateMessagesDetail.vue?vue&type=script&lang=js& */ "./resources/js/pages/PrivateMessagesDetail.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PrivateMessagesDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PrivateMessagesDetail_vue_vue_type_template_id_87ad3132___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PrivateMessagesDetail_vue_vue_type_template_id_87ad3132___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -24343,8 +24918,42 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
+/* hot reload */
+if (false) { var api; }
 component.options.__file = "resources/js/pages/PrivateMessagesDetail.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/PrivateMessagesDetail.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/pages/PrivateMessagesDetail.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessagesDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PrivateMessagesDetail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PrivateMessagesDetail.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessagesDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/PrivateMessagesDetail.vue?vue&type=template&id=87ad3132&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/pages/PrivateMessagesDetail.vue?vue&type=template&id=87ad3132& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessagesDetail_vue_vue_type_template_id_87ad3132___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PrivateMessagesDetail.vue?vue&type=template&id=87ad3132& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/PrivateMessagesDetail.vue?vue&type=template&id=87ad3132&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessagesDetail_vue_vue_type_template_id_87ad3132___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PrivateMessagesDetail_vue_vue_type_template_id_87ad3132___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -25162,7 +25771,8 @@ var routes = [{
     }
   }
 }, {
-  path: '/private_messages/detail',
+  path: '/private_messages/detail/:id',
+  name: 'privateMessagesDetail',
   component: _pages_PrivateMessagesDetail_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
     // 未ログイン状態でアクセスがあったらログインページへ遷移する

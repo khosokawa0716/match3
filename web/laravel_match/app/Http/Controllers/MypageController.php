@@ -37,7 +37,7 @@ class MypageController extends Controller
         $registered_project_ids = \DB::table('projects')
             ->where('user_id', $id)
             ->pluck('id');
-        Log::debug('$registered_project_idsの中身: '.print_r($registered_project_ids, true));
+//        Log::debug('$registered_project_idsの中身: '.print_r($registered_project_ids, true));
 
         // 送受信したパブリックメッセージ
         $exchanged_public_messages = PublicMessage::with(['author'])
@@ -47,15 +47,23 @@ class MypageController extends Controller
 
         // 送受信したプライベートメッセージ
         $exchanged_private_messages = PrivateMessage::with(['author'])
-            ->whereIn('project_id', $registered_project_ids) // 受信したメッセージ
+            ->where('received_user_id', $id) // 受信したメッセージ
             ->orWhere('user_id', $id) // または送信したメッセージ
             ->orderBy(PrivateMessage::CREATED_AT, 'desc')->paginate();
+
+        // 未読の受信した非公開メッセージの件数
+        $unread_private_messages = PrivateMessage::with(['author'])
+            ->where('received_user_id', $id)
+            ->where('unread',true)
+            ->count();
+        Log::debug('$unread_private_messagesの中身: '.print_r($unread_private_messages, true));
 
         return [
             'registered_projects' => $registered_projects,
             'applied_projects' => $applied_projects,
             'exchanged_public_messages' => $exchanged_public_messages,
-            'exchanged_private_messages' => $exchanged_private_messages
+            'exchanged_private_messages' => $exchanged_private_messages,
+            'unread_private_messages' => $unread_private_messages
             ];
     }
 }

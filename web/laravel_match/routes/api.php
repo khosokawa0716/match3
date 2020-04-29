@@ -31,8 +31,8 @@ Route::put('/project/detail/{id}', 'ProjectDetailController@update')->name('proj
 // ***** メッセージ
 Route::get('/public_messages/list', 'PublicMessagesController@show')->name('publicMessages.show'); // パブリックメッセージ一覧の表示
 Route::get('/private_messages/list', 'PrivateMessagesController@show')->name('privateMessages.show'); // プライベートメッセージ一覧の表示
-Route::get('/private_messages/detail', 'PrivateMessagesDetailController@show')->name('privateMessagesDetail.show'); // プライベートメッセージ詳細の表示
-Route::post('/private_messages/detail', 'PrivateMessagesDetailController@create')->name('privateMessagesDetail.create'); // プライベートメッセージの投稿
+Route::get('/private_messages/detail/{id}', 'PrivateMessagesDetailController@show')->name('privateMessagesDetail.show'); // プライベートメッセージ詳細の表示
+Route::post('/private_messages/detail/{id}', 'PrivateMessagesDetailController@create')->name('privateMessagesDetail.create'); // プライベートメッセージの投稿
 
 // ***** 削除候補 *****
 

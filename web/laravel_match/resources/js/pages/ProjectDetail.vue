@@ -1,7 +1,6 @@
 <template>
     <div>
         <h1>案件詳細画面</h1>
-        <h5>案件の内容</h5>
         <dl>
             <dt>依頼した人</dt><dd>{{ project.owner.name }}</dd>
             <dt>案件名</dt><dd>{{ project.title }}</dd>

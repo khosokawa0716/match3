@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1 class="l-container__title">マイページ</h1>
+        <p>未読のメッセージ: {{ unread_private_messages }}件</p>
         <RouterLink class="button button--link" to="/projects/list">
             案件の一覧を見る
         </RouterLink>
@@ -66,12 +67,14 @@
                 registered_projects: [],
                 applied_projects: [],
                 exchanged_public_messages: [],
-                exchanged_private_messages: []
+                exchanged_private_messages: [],
+                unread_private_messages: null
             }
         },
         methods: {
             async fetchProjects () {
                 const response = await axios.get('/api/mypage')
+                console.dir(response);
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
@@ -82,6 +85,7 @@
                 this.applied_projects = response.data.applied_projects.data
                 this.exchanged_public_messages = response.data.exchanged_public_messages.data
                 this.exchanged_private_messages = response.data.exchanged_private_messages.data
+                this.unread_private_messages = response.data.unread_private_messages
             }
         },
         watch: {
