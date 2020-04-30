@@ -3,29 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/migrations.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/migrations.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/password_resets.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/password_resets.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/private_messages.frm" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/private_messages.frm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/private_messages.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/private_messages.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/projects.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/projects.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/public_messages.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/public_messages.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/users.frm" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/users.frm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/matchdb/users.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/users.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/MypageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/MypageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/PrivateMessagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/PrivateMessagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/PrivateMessagesDetailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/PrivateMessagesDetailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectDetailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/ProjectDetailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/PrivateMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/PrivateMessage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/PublicMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/PublicMessage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/database/migrations/2020_04_16_163605_update2_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/database/migrations/2020_04_29_130923_update_private_messages_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PrivateMessages.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PrivateMessages.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PrivateMessagesDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PrivateMessagesDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/store/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/store/project.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

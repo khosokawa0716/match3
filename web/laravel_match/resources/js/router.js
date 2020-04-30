@@ -32,7 +32,14 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: Top
+        component: Top,
+        beforeEnter (to, from, next) { // ログイン状態でアクセスがあったらマイページへ遷移する
+            if (store.getters['auth/check']) {
+                next('/mypage')
+            } else {
+                next()
+            }
+        }
     },
     {
         path: '/projects/list',

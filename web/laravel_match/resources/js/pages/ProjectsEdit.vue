@@ -21,19 +21,19 @@
             </div>
             <input type="hidden" name="_method" value="PUT">
             <label for="title">タイトル</label>
-            <input type="text" class="form__item" id="title" v-model="projectsUpdateForm.title" :placeholder="title">
-            <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type" :placeholder="type">
+            <input type="text" class="form__item" id="title" v-model="projectsUpdateForm.title">
+            <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type">
             <label for="one-off">決まった金額を支払う</label>
-            <input type="radio" id="service" value="service" v-model="projectsUpdateForm.type" :placeholder="type">
+            <input type="radio" id="service" value="service" v-model="projectsUpdateForm.type">
             <label for="service">サービス開始後の売り上げを分け合う</label>
             <div v-if="isOneOff">
                 <label for="minimum-amount">下限金額</label>
-                <input type="number" class="form__item" id="minimum-amount" max="10000000" v-model="projectsUpdateForm.minimum_amount" :placeholder="minimum_amount">
+                <input type="number" class="form__item" id="minimum-amount" max="10000000" v-model="projectsUpdateForm.minimum_amount">
                 <label for="max-amount">上限金額</label>
-                <input type="number" class="form__item" id="max-amount" max="10000000" v-model="projectsUpdateForm.max_amount" :placeholder="max_amount">
+                <input type="number" class="form__item" id="max-amount" max="10000000" v-model="projectsUpdateForm.max_amount">
             </div>
             <label for="detail">詳細</label>
-            <input type="text" class="form__item" id="detail" v-model="projectsUpdateForm.detail" :placeholder="detail">
+            <input type="text" class="form__item" id="detail" v-model="projectsUpdateForm.detail">
             <div class="form__button">
                 <button type="submit" class="button button--inverse">案件を更新する</button>
             </div>
@@ -41,13 +41,12 @@
     </div>
 </template>
 <script>
+    import {OK} from "../util";
+
     export default {
         data () {
             return {
                 projectsUpdateForm: {
-                    // id: this.$store.getters['project/projectid'],
-
-                    // ストアでない場合はこっちかな もしかするとこっちならURLが取得できるのかな
                     id: this.$route.params.id,
                     title: '',
                     type: '',
@@ -59,7 +58,23 @@
         },
         methods: {
             async fetchProject () {
-                await this.$store.dispatch('project/edit', this.projectsUpdateForm.id)
+                // await this.$store.dispatch('project/edit', this.projectsUpdateForm.id)
+
+                const response = await axios.get(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm.id)
+                console.dir(response)
+
+                if (response.status !== OK) {
+                    this.$store.commit('error/setCode', response.status)
+                    return false
+                }
+
+                this.project = response.data
+
+                this.projectsUpdateForm.title = this.project.title
+                this.projectsUpdateForm.type = this.project.type
+                this.projectsUpdateForm.minimum_amount = this.project.minimum_amount
+                this.projectsUpdateForm.max_amount = this.project.max_amount
+                this.projectsUpdateForm.detail = this.project.detail
             },
             async projectsUpdate () {
                 console.log(this.projectsUpdateForm)
@@ -97,21 +112,21 @@
             isOneOff () {
                 return this.projectsUpdateForm.type === 'one-off';
             },
-            title () {
-                return this.$store.getters['project/title']
-            },
-            type () {
-                return this.$store.getters['project/type']
-            },
-            minimum_amount () {
-                return this.$store.getters['project/minimum_amount']
-            },
-            max_amount () {
-                return this.$store.getters['project/max_amount']
-            },
-            detail () {
-                return this.$store.getters['project/detail']
-            },
+            // title () {
+            //     return this.$store.getters['project/title']
+            // },
+            // type () {
+            //     return this.$store.getters['project/type']
+            // },
+            // minimum_amount () {
+            //     return this.$store.getters['project/minimum_amount']
+            // },
+            // max_amount () {
+            //     return this.$store.getters['project/max_amount']
+            // },
+            // detail () {
+            //     return this.$store.getters['project/detail']
+            // },
         },
         watch: {
             $route: {

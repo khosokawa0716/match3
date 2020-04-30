@@ -3037,12 +3037,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // props: {
-  //     id: {
-  //         type: String,
-  //         required: true
-  //     }
-  // },
   data: function data() {
     return {
       id: this.$route.params.id,
@@ -3632,6 +3626,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3680,12 +3675,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       projectsUpdateForm: {
-        // id: this.$store.getters['project/projectid'],
-        // ストアでない場合はこっちかな もしかするとこっちならURLが取得できるのかな
         id: this.$route.params.id,
         title: '',
         type: '',
@@ -3700,14 +3694,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$store.dispatch('project/edit', _this.projectsUpdateForm.id);
+                return axios.get("/api/projects/".concat(_this.projectsUpdateForm.id, "/edit"), _this.projectsUpdateForm.id);
 
               case 2:
+                response = _context.sent;
+                console.dir(response);
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 7:
+                _this.project = response.data;
+                _this.projectsUpdateForm.title = _this.project.title;
+                _this.projectsUpdateForm.type = _this.project.type;
+                _this.projectsUpdateForm.minimum_amount = _this.project.minimum_amount;
+                _this.projectsUpdateForm.max_amount = _this.project.max_amount;
+                _this.projectsUpdateForm.detail = _this.project.detail;
+
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -3767,22 +3783,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     isOneOff: function isOneOff() {
       return this.projectsUpdateForm.type === 'one-off';
-    },
-    title: function title() {
-      return this.$store.getters['project/title'];
-    },
-    type: function type() {
-      return this.$store.getters['project/type'];
-    },
-    minimum_amount: function minimum_amount() {
-      return this.$store.getters['project/minimum_amount'];
-    },
-    max_amount: function max_amount() {
-      return this.$store.getters['project/max_amount'];
-    },
-    detail: function detail() {
-      return this.$store.getters['project/detail'];
-    }
+    } // title () {
+    //     return this.$store.getters['project/title']
+    // },
+    // type () {
+    //     return this.$store.getters['project/type']
+    // },
+    // minimum_amount () {
+    //     return this.$store.getters['project/minimum_amount']
+    // },
+    // max_amount () {
+    //     return this.$store.getters['project/max_amount']
+    // },
+    // detail () {
+    //     return this.$store.getters['project/detail']
+    // },
+
   },
   watch: {
     $route: {
@@ -6987,7 +7003,7 @@ var render = function() {
             }
           ],
           staticClass: "form__item",
-          attrs: { type: "text", id: "title", placeholder: _vm.title },
+          attrs: { type: "text", id: "title" },
           domProps: { value: _vm.projectsUpdateForm.title },
           on: {
             input: function($event) {
@@ -7008,12 +7024,7 @@ var render = function() {
               expression: "projectsUpdateForm.type"
             }
           ],
-          attrs: {
-            type: "radio",
-            id: "one-off",
-            value: "one-off",
-            placeholder: _vm.type
-          },
+          attrs: { type: "radio", id: "one-off", value: "one-off" },
           domProps: { checked: _vm._q(_vm.projectsUpdateForm.type, "one-off") },
           on: {
             change: function($event) {
@@ -7035,12 +7046,7 @@ var render = function() {
               expression: "projectsUpdateForm.type"
             }
           ],
-          attrs: {
-            type: "radio",
-            id: "service",
-            value: "service",
-            placeholder: _vm.type
-          },
+          attrs: { type: "radio", id: "service", value: "service" },
           domProps: { checked: _vm._q(_vm.projectsUpdateForm.type, "service") },
           on: {
             change: function($event) {
@@ -7072,8 +7078,7 @@ var render = function() {
                 attrs: {
                   type: "number",
                   id: "minimum-amount",
-                  max: "10000000",
-                  placeholder: _vm.minimum_amount
+                  max: "10000000"
                 },
                 domProps: { value: _vm.projectsUpdateForm.minimum_amount },
                 on: {
@@ -7104,12 +7109,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form__item",
-                attrs: {
-                  type: "number",
-                  id: "max-amount",
-                  max: "10000000",
-                  placeholder: _vm.max_amount
-                },
+                attrs: { type: "number", id: "max-amount", max: "10000000" },
                 domProps: { value: _vm.projectsUpdateForm.max_amount },
                 on: {
                   input: function($event) {
@@ -7139,7 +7139,7 @@ var render = function() {
             }
           ],
           staticClass: "form__item",
-          attrs: { type: "text", id: "detail", placeholder: _vm.detail },
+          attrs: { type: "text", id: "detail" },
           domProps: { value: _vm.projectsUpdateForm.detail },
           on: {
             input: function($event) {
@@ -25641,7 +25641,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 var routes = [{
   path: '/',
-  component: _pages_Top_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _pages_Top_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    // ログイン状態でアクセスがあったらマイページへ遷移する
+    if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
+      next('/mypage');
+    } else {
+      next();
+    }
+  }
 }, {
   path: '/projects/list',
   component: _pages_Projects_vue__WEBPACK_IMPORTED_MODULE_5__["default"]

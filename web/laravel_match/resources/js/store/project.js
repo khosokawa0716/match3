@@ -35,23 +35,24 @@ const mutations = {
 const actions = { // それぞれのアクションは、非同期処理の結果によって後続の処理を分岐させる
     // 案件編集画面の表示。表示だけでなくstateに編集するプロジェクトを格納する
     // フォームを表示するだけならstateに入れる必要はないが、変更前の値を表示させるため
-    async edit (context, data) {
-        console.log(data)
-        // console.log(data.id) // これはundefined
-        context.commit('setApiStatus', null) // apiStatus始めはnull
-        const response = await axios.get('/api/projects/' + data + '/edit', data)
-
-        if (response.status === OK) { // レスポンスがOK(200)なら以下の処理を実行
-            console.log('editアクションでレスポンス200を取得')
-            context.commit('setApiStatus', true)
-            console.dir(response.data)
-            context.commit('setProject', response.data)
-            return false
-        }
-
-        context.commit('setApiStatus', false)
-        context.commit('error/setCode', response.status, { root: true })
-    },
+    // 20200429 ストアを使わない処理にしたため、editをコメント化
+    // async edit (context, data) {
+    //     console.log(data)
+    //     // console.log(data.id) // これはundefined
+    //     context.commit('setApiStatus', null) // apiStatus始めはnull
+    //     const response = await axios.get('/api/projects/' + data + '/edit', data)
+    //
+    //     if (response.status === OK) { // レスポンスがOK(200)なら以下の処理を実行
+    //         console.log('editアクションでレスポンス200を取得')
+    //         context.commit('setApiStatus', true)
+    //         console.dir(response.data)
+    //         context.commit('setProject', response.data)
+    //         return false
+    //     }
+    //
+    //     context.commit('setApiStatus', false)
+    //     context.commit('error/setCode', response.status, { root: true })
+    // },
     // 案件登録
     async register (context, data) {
         context.commit('setApiStatus', null)

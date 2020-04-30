@@ -19,7 +19,7 @@ class MypageController extends Controller
     }
 
     public function index(){
-        Log::info('MypageControllerのindex起動');
+//        Log::info('MypageControllerのindex起動');
         $id = Auth::id();
 
         // 登録した案件
@@ -56,7 +56,7 @@ class MypageController extends Controller
             ->where('received_user_id', $id)
             ->where('unread',true)
             ->count();
-        Log::debug('$unread_private_messagesの中身: '.print_r($unread_private_messages, true));
+//        Log::debug('$unread_private_messagesの中身: '.print_r($unread_private_messages, true));
 
         return [
             'registered_projects' => $registered_projects,
