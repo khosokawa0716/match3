@@ -41,7 +41,7 @@
     </div>
 </template>
 <script>
-    import {OK} from "../util";
+    import {OK, UNPROCESSABLE_ENTITY} from "../util";
 
     export default {
         data () {
@@ -53,7 +53,8 @@
                     minimum_amount: '',
                     max_amount: '',
                     detail: ''
-                }
+                },
+                updateErrors: null
             }
         },
         methods: {
@@ -61,7 +62,7 @@
                 // await this.$store.dispatch('project/edit', this.projectsUpdateForm.id)
 
                 const response = await axios.get(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm.id)
-                console.dir(response)
+                // console.dir(response)
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
@@ -76,24 +77,31 @@
                 this.projectsUpdateForm.max_amount = this.project.max_amount
                 this.projectsUpdateForm.detail = this.project.detail
             },
+
+            // 案件更新の処理
             async projectsUpdate () {
-                console.log(this.projectsUpdateForm)
-                // projectストアのupdateアクションを呼び出す
-                await this.$store.dispatch('project/update', this.projectsUpdateForm)
-                // いったんprojectのストア管理をやめてみる
-                // await axios.put('/projects/' + this.projectsUpdateForm.id, this.projectsUpdateForm)
+                //
+                const response = await axios.put(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm)
 
-                if (this.apiStatus) {
-                    // updateアクションが成功だった場合、ストアにメッセージを格納する
-                    this.$store.commit('message/setContent', {
-                        content: '案件を更新しました！',
-                        timeout: 5000
-                    })
-
-                    // そのあとマイページに移動する
-                    this.$router.push('/mypage')
+                // バリデーションエラー
+                if (response.status === UNPROCESSABLE_ENTITY) {
+                    this.updateErrors = response.data.errors
+                    return false
+                } else if (response.status !== OK) { // その他のエラー
+                    this.$store.commit('error/setCode', response.status)
+                    return false
                 }
+
+                // 成功だった場合
+                // 1.ストアにメッセージを格納する
+                this.$store.commit('message/setContent', {
+                    content: '案件を更新しました！',
+                    timeout: 5000
+                })
+                // 2.マイページに移動する
+                this.$router.push('/mypage')
             },
+            // ストアerror.jsにあるコードをクリアする
             clearError () {
                 this.$store.commit('error/setCode', null)
             }
@@ -103,30 +111,9 @@
             this.clearError ()
         },
         computed: {
-            apiStatus () {
-                return this.$store.state.project.apiStatus
-            },
-            updateErrors () {
-                return this.$store.state.project.updateErrorMessages
-            },
             isOneOff () {
                 return this.projectsUpdateForm.type === 'one-off';
-            },
-            // title () {
-            //     return this.$store.getters['project/title']
-            // },
-            // type () {
-            //     return this.$store.getters['project/type']
-            // },
-            // minimum_amount () {
-            //     return this.$store.getters['project/minimum_amount']
-            // },
-            // max_amount () {
-            //     return this.$store.getters['project/max_amount']
-            // },
-            // detail () {
-            //     return this.$store.getters['project/detail']
-            // },
+            }
         },
         watch: {
             $route: {

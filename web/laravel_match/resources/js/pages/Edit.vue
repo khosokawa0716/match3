@@ -16,15 +16,15 @@
             </div>
             <input type="hidden" name="_method" value="PUT">
             <label for="email">メールアドレス</label>
-            <input type="text" class="form__item" id="email" v-model="editForm.email" :placeholder="email">
+            <input type="text" class="form__item" id="email" v-model="editForm.email">
             <label for="icon-image">アイコン画像</label>
-            <img :src="icon_path" alt="アイコン画像"  height="20">
+            <img :src="editForm.icon_path" alt="アイコン画像"  height="20">
             <input class="form__item" type="file" id="icon-image" @change="onFileChange">
             <output class="form__output" v-if="preview">
                 <img :src="preview" alt="選択した画像"  width="30" height="30">
             </output>
             <label for="self-introduction">自己紹介</label>
-            <input type="text" class="form__item" id="self-introduction" v-model="editForm.profile_fields" :placeholder="profile_fields">
+            <input type="text" class="form__item" id="self-introduction" v-model="editForm.profile_fields">
             <div class="form__button">
                 <button type="submit" class="button button--inverse">更新する</button>
             </div>
@@ -32,12 +32,15 @@
     </div>
 </template>
 <script>
+    import {OK} from "../util";
+
     export default {
         data () {
             return {
                 editForm: {
                     id: this.$store.getters['auth/userid'],
                     email: '',
+                    icon_path: '',
                     icon_file: '',
                     profile_fields: ''
                 },
@@ -45,7 +48,29 @@
             }
         },
         methods: {
+            // 編集しようとするユーザーの情報をとってくる
+            async fetchUser () {
+                // UserController@editを起動
+                // 返却されたオブジェクトをresponseに代入
+                const response = await axios.get(`/api/users/${this.editForm.id}/edit`)
+                // console.dir(response)
+
+                // エラーの場合
+                if (response.status !== OK) {
+                    this.$store.commit('error/setCode', response.status)
+                    return false
+                }
+
+                // 返却されたユーザー情報を初期値としてinputに代入
+                this.user = response.data
+                this.editForm.email = this.user.email
+                this.editForm.icon_path = this.user.icon_path
+                this.editForm.profile_fields = this.user.profile_fields
+            },
+
+            // ユーザー情報の更新
             async update () {
+                // 画像データを扱うためnew FormData()を定義、入力項目を代入する
                 const data = new FormData()
                 data.append('id',this.editForm.id)
                 data.append('email',this.editForm.email)
@@ -62,12 +87,9 @@
                         timeout: 5000
                     })
 
-                    // そのあとマイページに移動する
+                    // マイページに移動する
                     this.$router.push('/mypage')
                 }
-            },
-            clearError () {
-                this.$store.commit('auth/setUpdateErrorMessages', null)
             },
             onFileChange (event) {
                 // アイコン画像のプレビューを表示するメソッド
@@ -111,7 +133,11 @@
                 this.preview = ''
                 this.editForm.icon_file = null
                 this.$el.querySelector('input[type="file"]').value = null
-            }
+            },
+            // ストアerror.jsにあるコードをクリアする
+            clearError () {
+                this.$store.commit('auth/setUpdateErrorMessages', null)
+            },
         },
         created() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
@@ -127,14 +153,15 @@
             isLogin () {
                 return this.$store.getters['auth/check']
             },
-            email () {
-                return this.$store.getters['auth/email']
-            },
-            icon_path () {
-                return this.$store.getters['auth/icon_path']
-            },
-            profile_fields () {
-                return this.$store.getters['auth/profile_fields']
+        },
+
+        // 画面遷移直後にfetchUserメソッドを呼ぶ
+        watch: {
+            $route: {
+                async handler () {
+                    await this.fetchUser()
+                },
+                immediate: true
             }
         }
     }

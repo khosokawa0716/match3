@@ -56,12 +56,14 @@ class UserController extends Controller
      * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
-    // 多分このコントローラいらない ルーティングから削除しても動作するから
-//    public function edit(User $user)
-//    {
-//        Log::info('UserControllerのedit起動');
-//        return $user;
-//    }
+
+    public function edit($id) // 引数Users $userを削除
+    {
+        Log::info('UserControllerのedit起動');
+        $user = User::find($id);
+//        Log::info('$idの中身: '.$id);
+        return $user;
+    }
 
     // 実際の更新処理
     // 終わったら、そのユーザのページへ移動

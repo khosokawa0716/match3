@@ -40,6 +40,8 @@
     </div>
 </template>
 <script>
+    import {CREATED, UNPROCESSABLE_ENTITY} from "../util";
+
     export default {
         data () {
             return {
@@ -49,40 +51,48 @@
                     minimum_amount: '',
                     max_amount: '',
                     detail: ''
-                }
+                },
+                registerErrors: null
             }
         },
         methods: {
+            // 案件を登録する
             async projectsRegister () {
-                console.log(this.projectsRegisterForm)
-                // projectストアのregisterアクションを呼び出す
-                await this.$store.dispatch('project/register', this.projectsRegisterForm)
+                // projectsRegisterFormの入力内容で、ProjectController@createを起動
+                // 返却されたオブジェクトをresponseに代入
+                const response = await axios.post('/api/projects/register', this.projectsRegisterForm)
 
-                if (this.apiStatus) {
-                    // registerアクションが成功だった場合、ストアにメッセージを格納する
-                    this.$store.commit('message/setContent', {
-                        content: '案件を登録しました！',
-                        timeout: 5000
-                    })
-
-                    // そのあとマイページに移動する
-                    this.$router.push('/mypage')
-                }
-            }
-        },
-        computed: {
-            apiStatus () {
-                return this.$store.state.project.apiStatus
-            },
-            registerErrors () {
-                return this.$store.state.project.registerErrorMessages
-            },
-            isOneOff () {
-                if (this.projectsRegisterForm.type === 'one-off'){
-                    return true
-                } else {
+                // バリデーションエラー
+                if (response.status === UNPROCESSABLE_ENTITY) {
+                    this.registerErrors = response.data.errors
+                    return false
+                } else if (response.status !== CREATED) { // その他のエラー
+                    this.$store.commit('error/setCode', response.status)
                     return false
                 }
+
+                // 成功だった場合
+                // 1.ストアにメッセージを格納する
+                this.$store.commit('message/setContent', {
+                    content: '案件を登録しました！',
+                    timeout: 5000
+                })
+                // 2.マイページに移動する
+                this.$router.push('/mypage')
+            },
+            // ストアerror.jsにあるコードをクリアする
+            clearError () {
+                this.$store.commit('error/setCode', null)
+            }
+        },
+        created() {
+            // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
+            this.clearError ()
+        },
+        computed: {
+            // 案件のタイプで'one-off'が選択されていればtrue、'service'ならfalseを返却
+            isOneOff () {
+                return this.projectsRegisterForm.type === 'one-off';
             }
         }
     }

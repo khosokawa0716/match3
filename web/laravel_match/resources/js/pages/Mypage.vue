@@ -8,7 +8,7 @@
         <RouterLink class="button button--link" to="/projects/register">
             案件を登録する
         </RouterLink>
-        <RouterLink class="button button--link" :to="{name: 'edit', params: { userId: id }}">
+        <RouterLink class="button button--link" :to="{name: 'edit', params: { id: this.id }}">
             お客様の登録情報
         </RouterLink>
         <RouterLink class="button button--link" to="/public_messages/list">
@@ -74,7 +74,7 @@
         methods: {
             async fetchProjects () {
                 const response = await axios.get('/api/mypage')
-                console.dir(response);
+                // console.dir(response);
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
@@ -86,7 +86,15 @@
                 this.exchanged_public_messages = response.data.exchanged_public_messages.data
                 this.exchanged_private_messages = response.data.exchanged_private_messages.data
                 this.unread_private_messages = response.data.unread_private_messages
+            },
+            // ストアerror.jsにあるコードをクリアする
+            clearError () {
+                this.$store.commit('error/setCode', null)
             }
+        },
+        created() {
+            // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
+            this.clearError ()
         },
         watch: {
             $route: {

@@ -36,6 +36,7 @@
             }
         },
         methods: {
+            // ログイン
             async login () {
                 // authストアのloginアクションを呼び出す
                 await this.$store.dispatch('auth/login', this.loginForm)
@@ -45,6 +46,7 @@
                     this.$router.push('/mypage')
                 }
             },
+            // ストアerror.jsにあるコードをクリアする
             clearError () {
                 this.$store.commit('auth/setLoginErrorMessages', null)
             }

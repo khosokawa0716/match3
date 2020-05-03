@@ -31,24 +31,8 @@
         methods: {
             async edit () {
                 this.$router.push('/projects/' + this.item.id + '/edit')
-
-                // console.log(this.item.id) // methodでidが使えることを確認した。
-                // projectストアのeditアクションを呼び出す
-                // await this.$store.dispatch('project/edit', this.item.id)
-
-                // if (this.apiStatus) {
-                    // editアクションが成功だった場合、案件編集に移動する
-                    // this.$router.push('/projects/' + this.item.id + '/edit')
-                // }
             },
             async showDetail () {
-                // projectストアのdetailアクションを呼び出す ここはわざわざストアにすることはないと感じていったん直接コントローラを読んでみる
-                // await this.$store.dispatch('project/detail', this.item.id)
-                //
-                // if (this.apiStatus) {
-                //     // editアクションが成功だった場合、案件編集に移動する
-                //     this.$router.push('/project/detail/' + this.item.id)
-                // }
                 this.$router.push('/project/detail/' + this.item.id)
             },
             clearError () {

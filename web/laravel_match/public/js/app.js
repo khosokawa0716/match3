@@ -2210,14 +2210,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.$router.push('/projects/' + _this.item.id + '/edit'); // console.log(this.item.id) // methodでidが使えることを確認した。
-                // projectストアのeditアクションを呼び出す
-                // await this.$store.dispatch('project/edit', this.item.id)
-                // if (this.apiStatus) {
-                // editアクションが成功だった場合、案件編集に移動する
-                // this.$router.push('/projects/' + this.item.id + '/edit')
-                // }
-
+                _this.$router.push('/projects/' + _this.item.id + '/edit');
 
               case 1:
               case "end":
@@ -2235,13 +2228,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                // projectストアのdetailアクションを呼び出す ここはわざわざストアにすることはないと感じていったん直接コントローラを読んでみる
-                // await this.$store.dispatch('project/detail', this.item.id)
-                //
-                // if (this.apiStatus) {
-                //     // editアクションが成功だった場合、案件編集に移動する
-                //     this.$router.push('/project/detail/' + this.item.id)
-                // }
                 _this2.$router.push('/project/detail/' + _this2.item.id);
 
               case 1:
@@ -2302,6 +2288,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2341,12 +2328,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       editForm: {
         id: this.$store.getters['auth/userid'],
         email: '',
+        icon_path: '',
         icon_file: '',
         profile_fields: ''
       },
@@ -2354,37 +2343,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    update: function update() {
+    // 編集しようとするユーザーの情報をとってくる
+    fetchUser: function fetchUser() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var data;
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                data = new FormData();
-                data.append('id', _this.editForm.id);
-                data.append('email', _this.editForm.email);
-                data.append('file', _this.editForm.icon_file);
-                data.append('profile_fields', _this.editForm.profile_fields); // authストアのupdateアクションを呼び出す
+                _context.next = 2;
+                return axios.get("/api/users/".concat(_this.editForm.id, "/edit"));
 
-                _context.next = 7;
-                return _this.$store.dispatch('auth/update', data);
+              case 2:
+                response = _context.sent;
 
-              case 7:
-                if (_this.apiStatus) {
-                  // updateアクションが成功だった場合、ストアにメッセージを格納する
-                  _this.$store.commit('message/setContent', {
-                    content: 'お客様の情報を更新しました！',
-                    timeout: 5000
-                  }); // そのあとマイページに移動する
-
-
-                  _this.$router.push('/mypage');
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 6;
+                  break;
                 }
 
-              case 8:
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 6:
+                // 返却されたユーザー情報を初期値としてinputに代入
+                _this.user = response.data;
+                _this.editForm.email = _this.user.email;
+                _this.editForm.icon_path = _this.user.icon_path;
+                _this.editForm.profile_fields = _this.user.profile_fields;
+
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -2392,11 +2383,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    clearError: function clearError() {
-      this.$store.commit('auth/setUpdateErrorMessages', null);
+    // ユーザー情報の更新
+    update: function update() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                // 画像データを扱うためnew FormData()を定義、入力項目を代入する
+                data = new FormData();
+                data.append('id', _this2.editForm.id);
+                data.append('email', _this2.editForm.email);
+                data.append('file', _this2.editForm.icon_file);
+                data.append('profile_fields', _this2.editForm.profile_fields); // authストアのupdateアクションを呼び出す
+
+                _context2.next = 7;
+                return _this2.$store.dispatch('auth/update', data);
+
+              case 7:
+                if (_this2.apiStatus) {
+                  // updateアクションが成功だった場合、ストアにメッセージを格納する
+                  _this2.$store.commit('message/setContent', {
+                    content: 'お客様の情報を更新しました！',
+                    timeout: 5000
+                  }); // マイページに移動する
+
+
+                  _this2.$router.push('/mypage');
+                }
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     onFileChange: function onFileChange(event) {
-      var _this2 = this;
+      var _this3 = this;
 
       // アイコン画像のプレビューを表示するメソッド
       // 何も選択されていなかったら処理中断
@@ -2425,7 +2453,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // previewに値が入ると<output>につけたv-ifがtrueと判定される
         // また<output>内部の<img>のsrc属性はpreviewの値を参照しているので
         // 結果として画像が表示される
-        _this2.preview = e.target.result;
+        _this3.preview = e.target.result;
       }; // ファイルを読み込む
       // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
 
@@ -2438,6 +2466,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.preview = '';
       this.editForm.icon_file = null;
       this.$el.querySelector('input[type="file"]').value = null;
+    },
+    // ストアerror.jsにあるコードをクリアする
+    clearError: function clearError() {
+      this.$store.commit('auth/setUpdateErrorMessages', null);
     }
   },
   created: function created() {
@@ -2453,15 +2485,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
-    },
-    email: function email() {
-      return this.$store.getters['auth/email'];
-    },
-    icon_path: function icon_path() {
-      return this.$store.getters['auth/icon_path'];
-    },
-    profile_fields: function profile_fields() {
-      return this.$store.getters['auth/profile_fields'];
+    }
+  },
+  // 画面遷移直後にfetchUserメソッドを呼ぶ
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this4 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.next = 2;
+                  return _this4.fetchUser();
+
+                case 2:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }))();
+      },
+      immediate: true
     }
   }
 });
@@ -2522,6 +2570,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // ログイン
     login: function login() {
       var _this = this;
 
@@ -2547,6 +2596,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('auth/setLoginErrorMessages', null);
     }
@@ -2671,10 +2721,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.dir(response);
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
@@ -2682,21 +2731,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 _this.registered_projects = response.data.registered_projects.data;
                 _this.applied_projects = response.data.applied_projects.data;
                 _this.exchanged_public_messages = response.data.exchanged_public_messages.data;
                 _this.exchanged_private_messages = response.data.exchanged_private_messages.data;
                 _this.unread_private_messages = response.data.unread_private_messages;
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    // ストアerror.jsにあるコードをクリアする
+    clearError: function clearError() {
+      this.$store.commit('error/setCode', null);
     }
+  },
+  created: function created() {
+    // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
+    this.clearError();
   },
   watch: {
     $route: {
@@ -2737,6 +2794,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2752,6 +2810,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2761,14 +2828,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         password: '',
         password_confirmation: '',
         token: this.$route.params.pathMatch
-      }
+      },
+      passResetErrors: null
     };
   },
   methods: {
+    // パスワードリセット、その後自動でログインをおこないマイページに遷移する
     passReset: function passReset() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2777,12 +2847,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post('/api/password/reset/', _this.passResetForm);
 
               case 2:
+                response = _context.sent;
+                console.dir(response); // バリデーションエラー
+
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context.next = 9;
+                  break;
+                }
+
+                _this.passResetErrors = response.data.errors;
+                return _context.abrupt("return", false);
+
+              case 9:
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 12;
+                  break;
+                }
+
+                // その他のエラー
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 12:
+                _context.next = 14;
+                return _this.$store.dispatch('auth/login', _this.passResetForm);
+
+              case 14:
+                if (_this.apiStatus) {
+                  // loginアクションが成功だった場合、ストアにメッセージを格納する
+                  _this.$store.commit('message/setContent', {
+                    content: 'お客様のパスワードを更新しました！',
+                    timeout: 5000
+                  }); // マイページに遷移する
+
+
+                  _this.$router.push('/mypage');
+                }
+
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    }
+  },
+  computed: {
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
     }
   }
 });
@@ -2800,6 +2914,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2828,27 +2943,74 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       passResetEmailForm: {
         email: ''
-      }
+      },
+      passResetEmailErrors: null
     };
   },
+  // パスワードリセットのためのメールを送信する
   methods: {
     sendEmail: function sendEmail() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                // フォーム上のメッセージをクリアする
+                _this.passResetEmailErrors = null; // this.$store.commit('error/setCode', null)
+                // Auth\ForgotPasswordController@sendResetLinkEmailを起動
+                // 返却されたオブジェクトをresponseに代入
+
+                _context.next = 3;
                 return axios.post('/api/password/email', _this.passResetEmailForm);
 
-              case 2:
+              case 3:
+                response = _context.sent;
+                console.dir(response); // バリデーションエラー
+
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context.next = 10;
+                  break;
+                }
+
+                _this.passResetEmailErrors = response.data.errors;
+                return _context.abrupt("return", false);
+
+              case 10:
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context.next = 13;
+                  break;
+                }
+
+                // その他のエラー
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 13:
+                // 成功の場合
+                // 画面上にメッセージを表示する
+                _this.passResetEmailErrors = 'メールをお送りしました。メールのボタンを押して、パスワードリセットの画面を開いてください。' + 'パスワードリセットの画面が開けましたら、この画面は閉じてください。' + 'しばらく経ってもメールが届かない場合には、メールアドレスが間違っている可能性があります。'; //     this.$store.commit('message/setContent', {
+                //     content: 'メールをお送りしました。メールのボタンを押して、パスワードリセットの画面を開いてください。' +
+                //         'パスワードリセットの画面が開けましたら、この画面は閉じてください。' +
+                //         'しばらく経ってもメールが届かない場合には、メールアドレスが間違っている可能性があります。',
+                //     timeout: 20000
+                // })
+
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -3686,7 +3848,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         minimum_amount: '',
         max_amount: '',
         detail: ''
-      }
+      },
+      updateErrors: null
     };
   },
   methods: {
@@ -3704,10 +3867,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.dir(response);
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
@@ -3715,7 +3877,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 _this.project = response.data;
                 _this.projectsUpdateForm.title = _this.project.title;
                 _this.projectsUpdateForm.type = _this.project.type;
@@ -3723,7 +3885,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.projectsUpdateForm.max_amount = _this.project.max_amount;
                 _this.projectsUpdateForm.detail = _this.project.detail;
 
-              case 13:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -3731,34 +3893,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // 案件更新の処理
     projectsUpdate: function projectsUpdate() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log(_this2.projectsUpdateForm); // projectストアのupdateアクションを呼び出す
+                _context2.next = 2;
+                return axios.put("/api/projects/".concat(_this2.projectsUpdateForm.id, "/edit"), _this2.projectsUpdateForm);
 
-                _context2.next = 3;
-                return _this2.$store.dispatch('project/update', _this2.projectsUpdateForm);
+              case 2:
+                response = _context2.sent;
 
-              case 3:
-                // いったんprojectのストア管理をやめてみる
-                // await axios.put('/projects/' + this.projectsUpdateForm.id, this.projectsUpdateForm)
-                if (_this2.apiStatus) {
-                  // updateアクションが成功だった場合、ストアにメッセージを格納する
-                  _this2.$store.commit('message/setContent', {
-                    content: '案件を更新しました！',
-                    timeout: 5000
-                  }); // そのあとマイページに移動する
-
-
-                  _this2.$router.push('/mypage');
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context2.next = 8;
+                  break;
                 }
 
-              case 4:
+                _this2.updateErrors = response.data.errors;
+                return _context2.abrupt("return", false);
+
+              case 8:
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context2.next = 11;
+                  break;
+                }
+
+                // その他のエラー
+                _this2.$store.commit('error/setCode', response.status);
+
+                return _context2.abrupt("return", false);
+
+              case 11:
+                // 成功だった場合
+                // 1.ストアにメッセージを格納する
+                _this2.$store.commit('message/setContent', {
+                  content: '案件を更新しました！',
+                  timeout: 5000
+                }); // 2.マイページに移動する
+
+
+                _this2.$router.push('/mypage');
+
+              case 13:
               case "end":
                 return _context2.stop();
             }
@@ -3766,6 +3947,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
     }
@@ -3775,30 +3957,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.clearError();
   },
   computed: {
-    apiStatus: function apiStatus() {
-      return this.$store.state.project.apiStatus;
-    },
-    updateErrors: function updateErrors() {
-      return this.$store.state.project.updateErrorMessages;
-    },
     isOneOff: function isOneOff() {
       return this.projectsUpdateForm.type === 'one-off';
-    } // title () {
-    //     return this.$store.getters['project/title']
-    // },
-    // type () {
-    //     return this.$store.getters['project/type']
-    // },
-    // minimum_amount () {
-    //     return this.$store.getters['project/minimum_amount']
-    // },
-    // max_amount () {
-    //     return this.$store.getters['project/max_amount']
-    // },
-    // detail () {
-    //     return this.$store.getters['project/detail']
-    // },
-
+    }
   },
   watch: {
     $route: {
@@ -3839,6 +4000,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3886,6 +4048,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3895,57 +4058,78 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         minimum_amount: '',
         max_amount: '',
         detail: ''
-      }
+      },
+      registerErrors: null
     };
   },
   methods: {
+    // 案件を登録する
     projectsRegister: function projectsRegister() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(_this.projectsRegisterForm); // projectストアのregisterアクションを呼び出す
+                _context.next = 2;
+                return axios.post('/api/projects/register', _this.projectsRegisterForm);
 
-                _context.next = 3;
-                return _this.$store.dispatch('project/register', _this.projectsRegisterForm);
+              case 2:
+                response = _context.sent;
 
-              case 3:
-                if (_this.apiStatus) {
-                  // registerアクションが成功だった場合、ストアにメッセージを格納する
-                  _this.$store.commit('message/setContent', {
-                    content: '案件を登録しました！',
-                    timeout: 5000
-                  }); // そのあとマイページに移動する
-
-
-                  _this.$router.push('/mypage');
+                if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
+                  _context.next = 8;
+                  break;
                 }
 
-              case 4:
+                _this.registerErrors = response.data.errors;
+                return _context.abrupt("return", false);
+
+              case 8:
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
+                  _context.next = 11;
+                  break;
+                }
+
+                // その他のエラー
+                _this.$store.commit('error/setCode', response.status);
+
+                return _context.abrupt("return", false);
+
+              case 11:
+                // 成功だった場合
+                // 1.ストアにメッセージを格納する
+                _this.$store.commit('message/setContent', {
+                  content: '案件を登録しました！',
+                  timeout: 5000
+                }); // 2.マイページに移動する
+
+
+                _this.$router.push('/mypage');
+
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    // ストアerror.jsにあるコードをクリアする
+    clearError: function clearError() {
+      this.$store.commit('error/setCode', null);
     }
   },
+  created: function created() {
+    // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
+    this.clearError();
+  },
   computed: {
-    apiStatus: function apiStatus() {
-      return this.$store.state.project.apiStatus;
-    },
-    registerErrors: function registerErrors() {
-      return this.$store.state.project.registerErrorMessages;
-    },
+    // 案件のタイプで'one-off'が選択されていればtrue、'service'ならfalseを返却
     isOneOff: function isOneOff() {
-      if (this.projectsRegisterForm.type === 'one-off') {
-        return true;
-      } else {
-        return false;
-      }
+      return this.projectsRegisterForm.type === 'one-off';
     }
   }
 });
@@ -5847,7 +6031,7 @@ var render = function() {
             }
           ],
           staticClass: "form__item",
-          attrs: { type: "text", id: "email", placeholder: _vm.email },
+          attrs: { type: "text", id: "email" },
           domProps: { value: _vm.editForm.email },
           on: {
             input: function($event) {
@@ -5862,7 +6046,11 @@ var render = function() {
         _c("label", { attrs: { for: "icon-image" } }, [_vm._v("アイコン画像")]),
         _vm._v(" "),
         _c("img", {
-          attrs: { src: _vm.icon_path, alt: "アイコン画像", height: "20" }
+          attrs: {
+            src: _vm.editForm.icon_path,
+            alt: "アイコン画像",
+            height: "20"
+          }
         }),
         _vm._v(" "),
         _c("input", {
@@ -5898,11 +6086,7 @@ var render = function() {
             }
           ],
           staticClass: "form__item",
-          attrs: {
-            type: "text",
-            id: "self-introduction",
-            placeholder: _vm.profile_fields
-          },
+          attrs: { type: "text", id: "self-introduction" },
           domProps: { value: _vm.editForm.profile_fields },
           on: {
             input: function($event) {
@@ -6130,7 +6314,7 @@ var render = function() {
         "RouterLink",
         {
           staticClass: "button button--link",
-          attrs: { to: { name: "edit", params: { userId: _vm.id } } }
+          attrs: { to: { name: "edit", params: { id: this.id } } }
         },
         [_vm._v("\n        お客様の登録情報\n    ")]
       ),
@@ -6250,6 +6434,32 @@ var render = function() {
         }
       },
       [
+        _vm.passResetErrors
+          ? _c("div", { staticClass: "errors" }, [
+              _vm.passResetErrors.password
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.passResetErrors.password, function(msg) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.passResetErrors.password_confirmation
+                ? _c(
+                    "ul",
+                    _vm._l(_vm.passResetErrors.password_confirmation, function(
+                      msg
+                    ) {
+                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", [
           _c("input", {
             directives: [
@@ -6357,6 +6567,20 @@ var render = function() {
           }
         },
         [
+          _vm.passResetEmailErrors
+            ? _c("div", { staticClass: "errors" }, [
+                _vm.passResetEmailErrors.email
+                  ? _c(
+                      "ul",
+                      _vm._l(_vm.passResetEmailErrors.email, function(msg) {
+                        return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                      }),
+                      0
+                    )
+                  : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", [
             _c("h2", [_vm._v("ログインできない場合")]),
             _vm._v(" "),
@@ -25665,7 +25889,7 @@ var routes = [{
     }
   }
 }, {
-  path: '/users/:userId/edit',
+  path: '/users/:id/edit',
   name: 'edit',
   component: _pages_Edit_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
@@ -26148,10 +26372,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./resources/js/store/auth.js");
-/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project */ "./resources/js/store/project.js");
-/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./error */ "./resources/js/store/error.js");
-/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./message */ "./resources/js/store/message.js");
-
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./resources/js/store/error.js");
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./message */ "./resources/js/store/message.js");
 
 
 
@@ -26161,9 +26383,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     auth: _auth__WEBPACK_IMPORTED_MODULE_2__["default"],
-    project: _project__WEBPACK_IMPORTED_MODULE_3__["default"],
-    error: _error__WEBPACK_IMPORTED_MODULE_4__["default"],
-    message: _message__WEBPACK_IMPORTED_MODULE_5__["default"]
+    error: _error__WEBPACK_IMPORTED_MODULE_3__["default"],
+    message: _message__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -26201,268 +26422,6 @@ var mutations = {
   namespaced: true,
   state: state,
   mutations: mutations
-});
-
-/***/ }),
-
-/***/ "./resources/js/store/project.js":
-/*!***************************************!*\
-  !*** ./resources/js/store/project.js ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-var state = {
-  project: null,
-  apiStatus: null,
-  registerErrorMessages: null,
-  updateErrorMessages: null
-};
-var getters = {
-  // projectのstateが存在する場合には名前などの値を返す。ない場合に呼ばれたら空文字を返す
-  projectid: function projectid(state) {
-    return state.project ? state.project.id : '';
-  },
-  title: function title(state) {
-    return state.project ? state.project.title : '';
-  },
-  type: function type(state) {
-    return state.project ? state.project.type : '';
-  },
-  minimum_amount: function minimum_amount(state) {
-    return state.project ? state.project.minimum_amount : '';
-  },
-  max_amount: function max_amount(state) {
-    return state.project ? state.project.max_amount : '';
-  },
-  detail: function detail(state) {
-    return state.project ? state.project.detail : '';
-  }
-};
-var mutations = {
-  setProject: function setProject(state, project) {
-    state.project = project;
-  },
-  setApiStatus: function setApiStatus(state, status) {
-    state.apiStatus = status;
-  },
-  setRegisterErrorMessages: function setRegisterErrorMessages(state, messages) {
-    state.registerErrorMessages = messages;
-  },
-  setUpdateErrorMessages: function setUpdateErrorMessages(state, messages) {
-    state.updateErrorMessages = messages;
-  }
-};
-var actions = {
-  // それぞれのアクションは、非同期処理の結果によって後続の処理を分岐させる
-  // 案件編集画面の表示。表示だけでなくstateに編集するプロジェクトを格納する
-  // フォームを表示するだけならstateに入れる必要はないが、変更前の値を表示させるため
-  edit: function edit(context, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              console.log(data); // console.log(data.id) // これはundefined
-
-              context.commit('setApiStatus', null); // apiStatus始めはnull
-
-              _context.next = 4;
-              return axios.get('/api/projects/' + data + '/edit', data);
-
-            case 4:
-              response = _context.sent;
-
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context.next = 11;
-                break;
-              }
-
-              // レスポンスがOK(200)なら以下の処理を実行
-              console.log('editアクションでレスポンス200を取得');
-              context.commit('setApiStatus', true);
-              console.dir(response.data);
-              context.commit('setProject', response.data);
-              return _context.abrupt("return", false);
-
-            case 11:
-              context.commit('setApiStatus', false);
-              context.commit('error/setCode', response.status, {
-                root: true
-              });
-
-            case 13:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  },
-  // 案件登録
-  register: function register(context, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              context.commit('setApiStatus', null);
-              _context2.next = 3;
-              return axios.post('/api/projects/register', data);
-
-            case 3:
-              response = _context2.sent;
-
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                _context2.next = 8;
-                break;
-              }
-
-              context.commit('setApiStatus', true);
-              context.commit('setProject', response.data);
-              return _context2.abrupt("return", false);
-
-            case 8:
-              context.commit('setApiStatus', false);
-
-              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
-                context.commit('setRegisterErrorMessages', response.data.errors);
-              } else {
-                context.commit('error/setCode', response.status, {
-                  root: true
-                });
-              }
-
-            case 10:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
-  },
-  // 案件更新
-  update: function update(context, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              console.log(data.id);
-              context.commit('setApiStatus', null);
-              _context3.next = 4;
-              return axios.put('/api/projects/' + data.id, data);
-
-            case 4:
-              response = _context3.sent;
-
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context3.next = 9;
-                break;
-              }
-
-              context.commit('setApiStatus', true);
-              context.commit('setProject', response.data);
-              return _context3.abrupt("return", false);
-
-            case 9:
-              context.commit('setApiStatus', false);
-
-              if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
-                context.commit('setUpdateErrorMessages', response.data.errors);
-              } else {
-                context.commit('error/setCode', response.status, {
-                  root: true
-                });
-              }
-
-            case 11:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }))();
-  },
-  // async detail (context, data) {
-  //     context.commit('setApiStatus', null)
-  //     const response = await axios.get('/project/detail/' + data, data)
-  //
-  //     if (response.status === OK) { // レスポンスがOK(200)なら以下の処理を実行
-  //         console.log('editアクションでレスポンス200を取得')
-  //         context.commit('setApiStatus', true)
-  //         console.dir(response.data)
-  //         context.commit('setProject', response.data)
-  //         return false
-  //     }
-  //
-  //     context.commit('setApiStatus', false)
-  //     context.commit('error/setCode', response.status, { root: true })
-  // },
-  // // 画面更新時にプロジェクトのストアを更新しない
-  currentProject: function currentProject(context) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var response, project;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              console.log('currentProject起動!!');
-              context.commit('setApiStatus', null);
-              _context4.next = 4;
-              return axios.get('/project/info');
-
-            case 4:
-              response = _context4.sent;
-              console.dir(response);
-              project = response.data || null;
-              console.dir(project);
-
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                _context4.next = 12;
-                break;
-              }
-
-              context.commit('setApiStatus', true);
-              context.commit('setProject', project);
-              return _context4.abrupt("return", false);
-
-            case 12:
-              context.commit('setApiStatus', false);
-              context.commit('error/setCode', response.status, {
-                root: true
-              });
-
-            case 14:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    }))();
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = ({
-  namespaced: true,
-  state: state,
-  getters: getters,
-  mutations: mutations,
-  actions: actions
 });
 
 /***/ }),

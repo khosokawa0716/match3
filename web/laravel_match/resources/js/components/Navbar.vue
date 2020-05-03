@@ -13,7 +13,7 @@
             <span v-if="isLogin" class="navbar__item">
                 {{ username }}様
             </span>
-            <img v-if="isLogin" :src="icon_path" alt="アイコン画像"  height="20">
+            <img v-if="isLogin" :src="icon_path" alt="アイコン画像"  height="20" class="imgIcon">
             <div v-else class="navbar__item">
                 <RouterLink class="button button--link" to="/login">
                     ログイン

@@ -49,7 +49,7 @@ class ProjectController extends Controller
     {
         $user_id = Auth::id();
         $project_id = $data;
-        Log::info('ProjectControllerのedit起動');
+//        Log::info('ProjectControllerのedit起動');
         if (ctype_digit($project_id)) {
             $project = Project::find($project_id);
             // 検索結果がない場合には、エラーコード404を返却する
