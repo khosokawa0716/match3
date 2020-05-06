@@ -1,10 +1,8 @@
 <template>
     <div>
-        <header>
-            <Navbar />
-        </header>
+        <Navbar />
         <main>
-            <div class="container">
+            <div class="l-container">
                 <Message />
                 <RouterView />
             </div>

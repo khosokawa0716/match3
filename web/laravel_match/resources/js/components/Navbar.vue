@@ -1,40 +1,49 @@
 <template>
-    <div>
     <header class="l-header">
         <h1><RouterLink class="l-header__title" to="/">match</RouterLink></h1>
-    <nav class="l-nav">
+        <div class="p-menuTrigger" @click="toggleActiveStatus" :class="{'active': activeStatus}">
+            <span class="p-menuTrigger__barger"></span>
+            <span class="p-menuTrigger__barger"></span>
+            <span class="p-menuTrigger__barger"></span>
+        </div>
+    <nav class="l-nav" :class="{'active': activeStatus}">
         <div v-if="isLogin">
         <ul class="c-menu">
-            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/projects/list">案件を探す</RouterLink></li>
-            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/projects/register">案件を登録する</RouterLink></li>
-            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/public_messages/list">公開メッセージ</RouterLink></li>
-            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/private_messages/list">ダイレクトメッセージ</RouterLink></li>
-            <li class="c-menu__item">
-                <RouterLink class="c-menu__link" to="/mypage">マイページ</RouterLink>
-                <img :src="icon_path" alt="アイコン画像"  height="30" class="imgIcon">
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/projects/list">案件を探す</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/projects/register">案件を登録する</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/public_messages/list">公開メッセージ</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/private_messages/list">ダイレクトメッセージ</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus">
+                <RouterLink class="c-menu__link" to="/mypage">
+                    <img :src="icon_path" alt="アイコン画像"  height="30" class="imgIcon">
+                    マイページ
+                </RouterLink>
             </li>
-            <li class="c-menu__item"><RouterLink class="c-menu__link" :to="{name: 'edit', params: { id: userid }}">本人情報</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" :to="{name: 'edit', params: { id: userid }}">本人情報</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><button class="c-btn" @click="logout">ログアウト</button></li>
         </ul>
-            <button class="c-btn" @click="logout">ログアウト</button>
         </div>
         <div v-else>
         <ul class="c-menu">
-            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/login">ログイン</RouterLink></li>
-            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/register">ユーザー登録</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/projects/list">案件を見る</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/login">ログイン</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/register">ユーザー登録</RouterLink></li>
         </ul>
         </div>
     </nav>
     </header>
-    </div>
 </template>
 <script>
     export default {
-        // data () {
-        //     return {
-        //         id: this.$store.getters['auth/userid']
-        //     }
-        // },
+        data () {
+            return {
+                activeStatus: false
+            }
+        },
         methods: {
+            toggleActiveStatus () {
+                this.activeStatus = !this.activeStatus
+            },
             async logout () {
                 await this.$store.dispatch('auth/logout')
 

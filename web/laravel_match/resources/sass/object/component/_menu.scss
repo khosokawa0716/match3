@@ -5,17 +5,18 @@
 .c-menu {
     display: flex;
     align-items: center;
-    font-size: $font-size_xl;
+    //font-size: $font-size_xl;
     //font-family: $font-family_corp;
     &__item {
         margin-right: $space_xl;
+        border-right: $border_default;
     }
     &__link {
         -webkit-font-smoothing: initial;
     }
     @include mq() {
         display: block;
-        font-size: $font-size_xxl;
+        font-size: $font-size_l;
         &__item {
             margin-right: initial;
         }

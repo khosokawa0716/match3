@@ -185,7 +185,6 @@ img {
 }
 
 .l-container__title {
-  font-family: "Amatic SC", cursive;
   text-align: center;
   font-size: 38px;
   margin-bottom: 40px;
@@ -400,11 +399,11 @@ img {
 .c-menu {
   display: flex;
   align-items: center;
-  font-size: 24px;
 }
 
 .c-menu__item {
   margin-right: 20px;
+  border-right: 1px solid #e8e8e8;
 }
 
 .c-menu__link {
@@ -414,7 +413,7 @@ img {
 @media screen and (max-width: 414px) {
   .c-menu {
     display: block;
-    font-size: 30px;
+    font-size: 18px;
   }
 
   .c-menu__item {
@@ -635,7 +634,6 @@ img {
 .p-news__date {
   color: #e37b89;
   font-weight: bold;
-  font-family: "Amatic SC", cursive;
   -webkit-font-smoothing: initial;
   margin-right: 10px;
 }
@@ -664,11 +662,6 @@ img {
 
 .u-box-shadow {
   box-shadow: 0px 0px 8px 2px #ddd inset;
-}
-
-.u-ft-corp {
-  font-weight: bold;
-  font-family: "Amatic SC", cursive;
 }
 
 .u-ft-l {
