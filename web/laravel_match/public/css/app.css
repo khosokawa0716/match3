@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -143,7 +141,7 @@ body {
   color: #775;
   font-size: 16px;
   line-height: 1.6;
-  font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "\30D2\30E9\30AE\30CE\89D2\30B4\30B7\30C3\30AF   Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "\FF2D\FF33   \FF30\30B4\30B7\30C3\30AF", "MS PGothic", sans-serif;
+  font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
      -moz-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
@@ -266,7 +264,6 @@ img {
   justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
-  position: fixed;
   transition: 0.3s;
   z-index: 2;
 }
@@ -286,7 +283,6 @@ img {
 
 .l-header__title {
   font-size: 30px;
-  font-family: "Amatic SC", cursive;
   font-weight: bold;
 }
 
@@ -405,7 +401,6 @@ img {
   display: flex;
   align-items: center;
   font-size: 24px;
-  font-family: "Amatic SC", cursive;
 }
 
 .c-menu__item {
@@ -535,5 +530,166 @@ img {
     width: 100%;
     margin: 0 auto 15px auto;
   }
+}
+
+.p-hero {
+  background-image: url("https://cdn.pixabay.com/photo/2019/08/06/02/16/landscape-4387209_1280.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-hero__title {
+  font-size: 60px;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(227, 123, 137, 0.4), 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 414px) {
+  .p-hero__title {
+    text-align: center;
+  }
+}
+
+.p-hero__br {
+  display: none;
+}
+
+@media screen and (max-width: 414px) {
+  .p-hero__br {
+    display: block;
+  }
+}
+
+.p-menuTrigger {
+  display: none;
+  transition: all 0.4s;
+  box-sizing: border-box;
+  position: relative;
+  width: 40px;
+  height: 32px;
+  z-index: 3;
+}
+
+@media screen and (max-width: 414px) {
+  .p-menuTrigger {
+    display: inline-block;
+  }
+}
+
+.p-menuTrigger__barger {
+  display: inline-block;
+  transition: all 0.4s;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #775;
+  border-radius: 4px;
+}
+
+.p-menuTrigger__barger:nth-of-type(1) {
+  top: 0;
+}
+
+.p-menuTrigger__barger:nth-of-type(2) {
+  top: 14px;
+}
+
+.p-menuTrigger__barger:nth-of-type(3) {
+  bottom: 0;
+}
+
+.p-menuTrigger.active span:nth-of-type(1) {
+  transform: translateY(12px) rotate(-45deg);
+}
+
+.p-menuTrigger.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.p-menuTrigger.active span:nth-of-type(3) {
+  transform: translateY(-15px) rotate(45deg);
+}
+
+.p-news {
+  width: 70%;
+  height: 180px;
+  overflow-y: scroll;
+  margin: 0 auto;
+  border-radius: 5px;
+  background: #f8f7fc;
+  padding: 15px 20px;
+}
+
+.p-news__item {
+  margin-bottom: 5px;
+}
+
+.p-news__date {
+  color: #e37b89;
+  font-weight: bold;
+  font-family: "Amatic SC", cursive;
+  -webkit-font-smoothing: initial;
+  margin-right: 10px;
+}
+
+.p-news__title {
+  font-size: 14px;
+}
+
+.p-contact {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 0;
+  padding-bottom: 120px;
+}
+
+@media screen and (max-width: 414px) {
+  .p-contact {
+    width: 100%;
+  }
+}
+
+.u-bgColor__project {
+  background: #f8f7fc;
+}
+
+.u-box-shadow {
+  box-shadow: 0px 0px 8px 2px #ddd inset;
+}
+
+.u-ft-corp {
+  font-weight: bold;
+  font-family: "Amatic SC", cursive;
+}
+
+.u-ft-l {
+  font-size: 24px;
+}
+
+.mb-xxl {
+  margin-bottom: 30px;
+}
+
+.u-mr-0 {
+  margin-right: 0;
+}
+
+.u-width {
+  width: 100%;
+}
+
+.imgIcon {
+  width: auto;
+  border-radius: 15px;
+  vertical-align: auto;
 }
 

@@ -11,7 +11,7 @@
     justify-content: space-between;
     padding-left: $space_xl;
     padding-right: $space_xl;
-    position: fixed;
+    //position: fixed;
     transition: .3s;
     z-index: 2;
     &.float-active {
@@ -25,7 +25,7 @@
     }
     &__title {
         font-size: $font-size_xxl;
-        font-family: $font-family_corp;
+        //font-family: $font-family_default;
         font-weight: bold;
     }
 

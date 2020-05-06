@@ -1,32 +1,39 @@
 <template>
-    <nav class="navbar">
-        <RouterLink class="navbar__brand" to="/">
-            match
-        </RouterLink>
-        <div class="navbar__menu">
-            <div v-if="isLogin" class="navbar__item">
-                <RouterLink class="button button--link" to="/mypage">
-                    マイページ
-                </RouterLink>
-                <button class="button button--link" @click="logout">ログアウト</button>
-            </div>
-            <span v-if="isLogin" class="navbar__item">
-                {{ username }}様
-            </span>
-            <img v-if="isLogin" :src="icon_path" alt="アイコン画像"  height="20" class="imgIcon">
-            <div v-else class="navbar__item">
-                <RouterLink class="button button--link" to="/login">
-                    ログイン
-                </RouterLink>
-                <RouterLink class="button button--link" to="/register">
-                    ユーザー登録
-                </RouterLink>
-            </div>
+    <div>
+    <header class="l-header">
+        <h1><RouterLink class="l-header__title" to="/">match</RouterLink></h1>
+    <nav class="l-nav">
+        <div v-if="isLogin">
+        <ul class="c-menu">
+            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/projects/list">案件を探す</RouterLink></li>
+            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/projects/register">案件を登録する</RouterLink></li>
+            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/public_messages/list">公開メッセージ</RouterLink></li>
+            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/private_messages/list">ダイレクトメッセージ</RouterLink></li>
+            <li class="c-menu__item">
+                <RouterLink class="c-menu__link" to="/mypage">マイページ</RouterLink>
+                <img :src="icon_path" alt="アイコン画像"  height="30" class="imgIcon">
+            </li>
+            <li class="c-menu__item"><RouterLink class="c-menu__link" :to="{name: 'edit', params: { id: userid }}">本人情報</RouterLink></li>
+        </ul>
+            <button class="c-btn" @click="logout">ログアウト</button>
+        </div>
+        <div v-else>
+        <ul class="c-menu">
+            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/login">ログイン</RouterLink></li>
+            <li class="c-menu__item"><RouterLink class="c-menu__link" to="/register">ユーザー登録</RouterLink></li>
+        </ul>
         </div>
     </nav>
+    </header>
+    </div>
 </template>
 <script>
     export default {
+        // data () {
+        //     return {
+        //         id: this.$store.getters['auth/userid']
+        //     }
+        // },
         methods: {
             async logout () {
                 await this.$store.dispatch('auth/logout')
@@ -43,8 +50,8 @@
             isLogin () {
                 return this.$store.getters['auth/check']
             },
-            username () {
-                return this.$store.getters['auth/username']
+            userid () {
+                return this.$store.getters['auth/userid']
             },
             icon_path () {
                 return this.$store.getters['auth/icon_path']

@@ -3,7 +3,50 @@
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/auto.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/database/auto.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ca-key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/database/ca-key.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ca.pem" beforeDir="false" afterPath="$PROJECT_DIR$/database/ca.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/client-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/database/client-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/client-key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/database/client-key.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/database/ib_buffer_pool" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/database/ib_logfile0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/database/ibdata1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/database/ibtmp1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/db.opt" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/db.opt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/migrations.frm" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/migrations.frm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/migrations.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/migrations.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/password_resets.frm" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/password_resets.frm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/password_resets.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/password_resets.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/private_messages.frm" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/private_messages.frm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/private_messages.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/private_messages.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/projects.frm" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/projects.frm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/projects.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/projects.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/public_messages.frm" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/public_messages.frm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/public_messages.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/public_messages.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/users.frm" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/users.frm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/users.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/users.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/private_key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/database/private_key.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/public_key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/database/public_key.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/server-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/database/server-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/server-key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/database/server-key.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Footer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_base.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_var.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_var.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_container.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_container.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/layout/_header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_form.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_menu.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_menu.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_hero.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_hero.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_news.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_news.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_ft-corp.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_imgIcon.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/utility/_imgIcon.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,9 +54,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -38,7 +79,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -52,6 +92,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -73,11 +114,16 @@
       <option name="presentableId" value="Default" />
       <updated>1586234126073</updated>
       <workItem from="1586234127263" duration="96806000" />
+      <workItem from="1588596286136" duration="40000" />
+      <workItem from="1588596358333" duration="39000" />
+      <workItem from="1588598314900" duration="183000" />
+      <workItem from="1588598632053" duration="18635000" />
+      <workItem from="1588682702922" duration="2005000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
@@ -87,6 +133,14 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="311" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588648141661">
+      <screen x="0" y="23" width="1680" height="950" />
+    </state>
+    <state x="552" y="311" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.950@0.23.1680.950" timestamp="1588648141661" />
+    <state x="521" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1588596318218">
+      <screen x="0" y="23" width="1680" height="950" />
+    </state>
+    <state x="521" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1680.950@0.23.1680.950" timestamp="1588596318218" />
     <state x="188" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587617653545">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
@@ -95,13 +149,17 @@
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1680.950@0.23.1680.950" timestamp="1588140998002" />
+    <state x="225" y="141" key="SettingsEditor" timestamp="1588643799065">
+      <screen x="0" y="23" width="1680" height="950" />
+    </state>
+    <state x="225" y="141" key="SettingsEditor/0.23.1680.950@0.23.1680.950" timestamp="1588643799065" />
     <state x="363" y="291" width="761" height="472" key="find.popup" timestamp="1586936749588">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="363" y="291" width="761" height="472" key="find.popup/0.23.1680.950@0.23.1680.950" timestamp="1586936749588" />
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1588465067429">
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1588644993761">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1588465067429" />
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1588644993761" />
   </component>
 </project>
