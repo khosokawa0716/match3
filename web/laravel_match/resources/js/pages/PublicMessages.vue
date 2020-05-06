@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>公開メッセージ一覧</h1>
+    <section class="l-container">
+        <h1 class="l-container__title">公開メッセージ一覧</h1>
         <div>
             <h5>最新の公開メッセージ1件</h5>
             <ul>
@@ -19,7 +19,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </section>
 </template>
 <script>
     import { OK } from '../util'

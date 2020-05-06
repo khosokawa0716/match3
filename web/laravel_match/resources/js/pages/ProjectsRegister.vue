@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <section class="l-container">
         <h1 class="l-container__title">案件登録</h1>
-        <form class="form" @submit.prevent="projectsRegister">
+        <form class="c-form" @submit.prevent="projectsRegister">
             <div v-if="registerErrors" class="errors">
                 <ul v-if="registerErrors.title">
                     <li v-for="msg in registerErrors.title" :key="msg">{{ msg }}</li>
@@ -19,25 +19,19 @@
                     <li v-for="msg in registerErrors.detail" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <label for="title">タイトル</label>
-            <input type="text" class="form__item" id="title" v-model="projectsRegisterForm.title">
+            <input type="text" class="c-input c-input__l" v-model="projectsRegisterForm.title" placeholder="タイトル">
             <input type="radio" id="one-off" value="one-off" v-model="projectsRegisterForm.type">
             <label for="one-off">決まった金額を支払う</label>
             <input type="radio" id="service" value="service" v-model="projectsRegisterForm.type">
             <label for="service">サービス開始後の売り上げを分け合う</label>
             <div v-if="isOneOff">
-                <label for="minimum-amount">下限金額</label>
-                <input type="number" class="form__item" id="minimum-amount" max="10000000" v-model="projectsRegisterForm.minimum_amount">
-                <label for="max-amount">上限金額</label>
-                <input type="number" class="form__item" id="max-amount" max="10000000" v-model="projectsRegisterForm.max_amount">
+                <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsRegisterForm.minimum_amount" placeholder="下限金額">
+                <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsRegisterForm.max_amount" placeholder="上限金額">
             </div>
-            <label for="detail">詳細</label>
-            <input type="text" class="form__item" id="detail" v-model="projectsRegisterForm.detail">
-            <div class="form__button">
-                <button type="submit" class="button button--inverse">案件を登録する</button>
-            </div>
+            <input type="text" class="c-input c-input__textarea" id="detail" v-model="projectsRegisterForm.detail" placeholder="詳細">
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を登録する</button>
         </form>
-    </div>
+    </section>
 </template>
 <script>
     import {CREATED, UNPROCESSABLE_ENTITY} from "../util";

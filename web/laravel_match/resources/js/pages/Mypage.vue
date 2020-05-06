@@ -1,22 +1,6 @@
 <template>
     <div>
         <h1 class="l-container__title">マイページ</h1>
-        <p>未読のメッセージ: {{ unread_private_messages }}件</p>
-<!--        <RouterLink class="button button&#45;&#45;link" to="/projects/list">-->
-<!--            案件の一覧を見る-->
-<!--        </RouterLink>-->
-<!--        <RouterLink class="button button&#45;&#45;link" to="/projects/register">-->
-<!--            案件を登録する-->
-<!--        </RouterLink>-->
-        <RouterLink class="button button--link" :to="{name: 'edit', params: { id: this.id }}">
-            お客様の登録情報
-        </RouterLink>
-<!--        <RouterLink class="button button&#45;&#45;link" to="/public_messages/list">-->
-<!--            公開メッセージ一覧を見る-->
-<!--        </RouterLink>-->
-<!--        <RouterLink class="button button&#45;&#45;link" to="/private_messages/list">-->
-<!--            非公開メッセージ一覧を見る-->
-<!--        </RouterLink>-->
         <h5>登録した案件一覧</h5>
         <div>
             <Project

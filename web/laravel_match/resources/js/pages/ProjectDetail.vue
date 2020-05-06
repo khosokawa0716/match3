@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>案件詳細画面</h1>
+    <section class="l-container">
+        <h1 class="l-container__title">案件詳細画面</h1>
         <dl>
             <dt>依頼した人</dt><dd>{{ project.owner.name }}</dd>
             <dt>案件名</dt><dd>{{ project.title }}</dd>
@@ -11,23 +11,19 @@
             </div>
             <dt>詳細</dt><dd>{{ project.detail }}</dd>
         </dl>
-        <form class="form" @submit.prevent="apply" v-if="isRecruiting && notOwner">
+        <form class="c-form" @submit.prevent="apply" v-if="isRecruiting && notOwner">
 <!--        ProjectDetailController.phpの例外処理を確認するときは下の行を有効にする-->
-<!--        <form class="form" @submit.prevent="apply">-->
-            <div class="form_button">
-                <button type="submit" class="button button--inverse">この案件に応募する</button>
-            </div>
+<!--        <form class="c-form" @submit.prevent="apply">-->
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">この案件に応募する</button>
         </form>
-        <form class="form" @submit.prevent="publicMessageRegister">
+        <form class="c-form" @submit.prevent="publicMessageRegister">
             <div v-if="public_message_errors" class="errors">
                 <ul v-if="public_message_errors.content">
                     <li v-for="msg in public_message_errors.content" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <textarea class="form__item" v-model="public_message_content"></textarea>
-            <div class="form__button">
-                <button type="submit" class="button button--inverse">メッセージを送信する</button>
-            </div>
+            <input type="text" class="c-input c-input__textarea" v-model="public_message_content" placeholder="メッセージを入力">
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">送信する</button>
         </form>
         <h5>この案件に関するやりとり</h5>
         <ul>
@@ -37,7 +33,7 @@
                 {{ public_message.created_at }}
             </li>
         </ul>
-    </div>
+    </section>
 
 </template>
 <script>

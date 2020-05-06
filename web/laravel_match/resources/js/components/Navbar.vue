@@ -20,7 +20,7 @@
                 </RouterLink>
             </li>
             <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" :to="{name: 'edit', params: { id: userid }}">本人情報</RouterLink></li>
-            <li class="c-menu__item" @click="toggleActiveStatus"><button class="c-btn" @click="logout">ログアウト</button></li>
+            <li class="c-menu__item"><button class="c-btn c-btn__corp c-btn__l" @click="logout">ログアウト</button></li>
         </ul>
         </div>
         <div v-else>
@@ -45,6 +45,7 @@
                 this.activeStatus = !this.activeStatus
             },
             async logout () {
+                this.activeStatus = !this.activeStatus
                 await this.$store.dispatch('auth/logout')
 
                 if (this.apiStatus) {

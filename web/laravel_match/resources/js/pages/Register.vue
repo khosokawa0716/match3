@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <section class="l-container">
         <h1 class="l-container__title">ユーザー登録</h1>
-        <form class="form" @submit.prevent="register" enctype="multipart/form-data">
+        <form class="c-form" @submit.prevent="register" enctype="multipart/form-data">
             <div v-if="registerErrors" class="errors">
                 <ul v-if="registerErrors.name">
                     <li v-for="msg in registerErrors.name" :key="msg">{{ msg }}</li>
@@ -22,26 +22,19 @@
                     <li v-for="msg in registerErrors.profile_fields" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <label for="username">お名前</label>
-            <input type="text" class="form__item" id="username" v-model="registerForm.name">
-            <label for="email">メールアドレス</label>
-            <input type="text" class="form__item" id="email" v-model="registerForm.email">
-            <label for="password">パスワード</label>
-            <input type="password" class="form__item" id="password" v-model="registerForm.password">
-            <label for="password-confirmation">パスワード (再入力)</label>
-            <input type="password" class="form__item" id="password-confirmation" v-model="registerForm.password_confirmation">
+            <input type="text" class="c-input c-input__l" v-model="registerForm.name" placeholder="お名前（20文字以内）">
+            <input type="text" class="c-input c-input__l" v-model="registerForm.email" placeholder="メールアドレス">
+            <input type="password" class="c-input c-input__l" v-model="registerForm.password" placeholder="パスワード（半角英数8文字以上）">
+            <input type="password" class="c-input c-input__l" v-model="registerForm.password_confirmation" placeholder="パスワード (再入力)">
             <label for="icon-image">アイコン画像</label>
-            <input class="form__item" type="file" id="icon-image" @change="onFileChange">
+            <input class="c-input c-input__l" type="file" id="icon-image" @change="onFileChange">
             <output class="form__output" v-if="preview">
-                <img :src="preview" alt="選択した画像"  width="30" height="30">
+                <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">
             </output>
-            <label for="self-introduction">自己紹介</label>
-            <input type="text" class="form__item" id="self-introduction" v-model="registerForm.profile_fields">
-            <div class="form__button">
-                <button type="submit" class="button button--inverse">register</button>
-            </div>
+            <input type="text" class="c-input c-input__textarea" v-model="registerForm.profile_fields" placeholder="自己紹介（255文字以内）">
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">register</button>
         </form>
-    </div>
+    </section>
 </template>
 <script>
     export default {

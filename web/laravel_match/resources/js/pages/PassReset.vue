@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <form @submit.prevent="passReset">
+    <section class="l-container">
+        <form class="c-form" @submit.prevent="passReset">
             <div v-if="passResetErrors" class="errors">
                 <ul v-if="passResetErrors.password">
                     <li v-for="msg in passResetErrors.password" :key="msg">{{ msg }}</li>
@@ -9,11 +9,11 @@
                     <li v-for="msg in passResetErrors.password_confirmation" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <div><input type="password" v-model="passResetForm.password" placeholder="新しいパスワード"></div>
-            <div><input type="password" v-model="passResetForm.password_confirmation" placeholder="新しいパスワード（確認用）"></div>
-            <div><button type="submit" class="button button--inverse">パスワードを変更する</button></div>
+            <input type="password" class="c-input c-input__l" v-model="passResetForm.password" placeholder="新しいパスワード">
+            <input type="password" class="c-input c-input__l" v-model="passResetForm.password_confirmation" placeholder="新しいパスワード（確認用）">
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">パスワードを変更する</button>
         </form>
-    </div>
+    </section>
 </template>
 <script>
     import {OK, UNPROCESSABLE_ENTITY} from "../util";

@@ -2,9 +2,9 @@
 // container
 // ==================================
 .l-container {
-    width: $site-width;
+    width: $site-width_m;
     @include mq() {
-        width: 100%;
+        width: $site-width_l;
     }
     margin-left: auto;
     margin-right: auto;
@@ -13,7 +13,7 @@
     &__title {
         //font-family: $font-family_corp;
         text-align: center;
-        font-size: $font-size_3l;
+        font-size: $font-size_xl;
         margin-bottom: $space_3l;
         @include mq() {
             width: 70%;
@@ -22,6 +22,8 @@
         }
     }
     &__body {
+        padding-left: $space_xxl;
+        padding-right: $space_xxl;
         overflow: hidden;
         &-course {
             padding-top: 30px;

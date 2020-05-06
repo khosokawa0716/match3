@@ -6,18 +6,14 @@
         <p>タイプ: {{ type }}</p>
         <p v-if="item.type === 'one-off'">下限金額: {{ item.minimum_amount }}円</p>
         <p v-if="item.type === 'one-off'">上限金額: {{ item.max_amount }}円</p>
-    <form class="form" @submit.prevent="edit" v-if="isLogin && isOwner && isRecruiting">
+    <form class="c-form" @submit.prevent="edit" v-if="isLogin && isOwner && isRecruiting">
 <!--        ProjectController.phpの例外処理を確認するときは下の行を有効にする-->
 <!--        <form class="form" @submit.prevent="edit">-->
-        <div class="form__button">
-            <button type="submit" class="button button--inverse">編集する</button>
-        </div>
-        </form>
-        <form class="form" @submit.prevent="showDetail" v-if="isLogin">
-            <div class="form__button">
-                <button type="submit" class="button button--inverse">詳細</button>
-            </div>
-        </form>
+        <button type="submit" class="c-btn c-btn__corp c-btn__l">編集する</button>
+    </form>
+    <form class="c-form" @submit.prevent="showDetail" v-if="isLogin">
+        <button type="submit" class="c-btn c-btn__corp c-btn__l">詳細</button>
+    </form>
     </div>
 </template>
 <script>

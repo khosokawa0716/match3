@@ -1,29 +1,17 @@
 <template>
-    <div>
-        <form @submit.prevent="sendEmail">
+    <section class="l-container">
+        <h1 class="l-container__title">パスワードを忘れてしまった場合</h1>
+        <form class="c-form" @submit.prevent="sendEmail">
             <div v-if="passResetEmailErrors" class="errors">
                 <ul v-if="passResetEmailErrors.email">
                     <li v-for="msg in passResetEmailErrors.email" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <div>
-                <h2>ログインできない場合</h2>
-                <p>パスワード再設定用のログインリンクをお送りしますので、メールアドレスを入力してください。</p>
-                <label for="pass-reset-email">メールアドレス</label>
-                <input type="text" class="form__item" id="pass-reset-email" v-model="passResetEmailForm.email">
-            </div>
-            <div>
-                <button type="submit" class="button button--inverse">リンクを送信する</button>
-            </div>
+            <p>パスワード再設定用のログインリンクをお送りしますので、メールアドレスを入力してください。</p>
+            <input type="text" class="c-input c-input__l" v-model="passResetEmailForm.email" placeholder="メールアドレス">
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">リンクを送信する</button>
         </form>
-
-        <RouterLink class="button button--link" to="/login">
-            ログインに戻る
-        </RouterLink>
-        <RouterLink class="button button--link" to="/register">
-            ユーザー登録
-        </RouterLink>
-    </div>
+    </section>
 </template>
 <script>
     import {OK, UNPROCESSABLE_ENTITY} from "../util";

@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <h1>ログイン</h1>
-        <form class="form" @submit.prevent="login">
+    <section class="l-container">
+        <h1 class="l-container__title">ログイン</h1>
+        <form class="c-form" @submit.prevent="login">
             <div v-if="loginErrors" class="errors">
                 <ul v-if="loginErrors.email">
                     <li v-for="msg in loginErrors.email" :key="msg">{{ msg }}</li>
@@ -10,20 +10,16 @@
                     <li v-for="msg in loginErrors.password" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <label for="login-email">メールアドレス</label>
-            <input type="text" class="form__item" id="login-email" v-model="loginForm.email">
-            <label for="login-password">パスワード</label>
-            <input type="password" class="form__item" id="login-password" v-model="loginForm.password">
-            <div class="form__button">
-                <button type="submit" class="button button--inverse">login</button>
-            </div>
+            <input type="text" class="c-input c-input__l" v-model="loginForm.email" placeholder="メールアドレス">
+            <input type="password" class="c-input c-input__l" v-model="loginForm.password" placeholder="パスワード">
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">login</button>
         </form>
         <div>
             <RouterLink class="button button--link" to="/password/email">
                 パスワードをお忘れの方はこちら
             </RouterLink>
         </div>
-    </div>
+    </section>
 </template>
 <script>
     export default {

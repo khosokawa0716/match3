@@ -2,10 +2,8 @@
     <div>
         <Navbar />
         <main>
-            <div class="l-container">
                 <Message />
                 <RouterView />
-            </div>
         </main>
         <Footer />
     </div>

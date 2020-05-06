@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>非公開メッセージ詳細画面</h1>
+    <section class="l-container">
+        <h1 class="l-container__title">非公開メッセージ詳細画面</h1>
         <dl>
             <dt>案件名</dt><dd>{{ project.title }}</dd>
             <dt>タイプ</dt><dd>{{ type }}</dd>
@@ -17,18 +17,16 @@
                 {{ private_message.created_at }}
             </li>
         </ul>
-        <form class="form" @submit.prevent="privateMessageRegister">
+        <form class="c-form" @submit.prevent="privateMessageRegister">
             <div v-if="private_message_errors" class="errors">
                 <ul v-if="private_message_errors.content">
                     <li v-for="msg in private_message_errors.content" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <textarea class="form__item" v-model="private_message_content"></textarea>
-            <div class="form__button">
-                <button type="submit" class="button button--inverse">メッセージを送信する</button>
-            </div>
+            <input type="text" class="c-input c-input__textarea" v-model="private_message_content" placeholder="メッセージを入力">
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">送信する</button>
         </form>
-    </div>
+    </section>
 </template>
 <script>
     import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../util'

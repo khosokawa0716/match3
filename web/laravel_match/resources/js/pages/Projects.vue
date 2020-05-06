@@ -1,19 +1,13 @@
 <template>
-    <div>
-        <h1>案件一覧</h1>
+    <section class="l-container">
+        <h1 class="l-container__title">案件一覧</h1>
+        <div class="l-container__body">
         <h5>タイプを絞り込む</h5>
         <label v-for="label in options">
             <input type="radio"
                    v-model="current"
                    v-bind:value="label.value">{{ label.label }}
         </label>
-<!--        <h5>募集しているかどうかを絞り込む</h5>-->
-<!--        <label v-for="label in options2">-->
-<!--            <input type="radio"-->
-<!--                   v-model="current2"-->
-<!--                   v-bind:value="label.value">{{ label.label }}-->
-<!--        </label>-->
-        <div>
             <Project
                 class=""
                 v-for="project in filterType"
@@ -21,7 +15,7 @@
                 :item="project"
                 />
         </div>
-    </div>
+    </section>
 </template>
 <script>
     import { OK } from '../util'

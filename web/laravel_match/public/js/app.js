@@ -1935,8 +1935,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2585,22 +2583,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3608,12 +3590,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4219,8 +4195,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
 //
 //
 //
@@ -5606,14 +5580,7 @@ var render = function() {
     [
       _c("Navbar"),
       _vm._v(" "),
-      _c("main", [
-        _c(
-          "div",
-          { staticClass: "l-container" },
-          [_c("Message"), _vm._v(" "), _c("RouterView")],
-          1
-        )
-      ]),
+      _c("main", [_c("Message"), _vm._v(" "), _c("RouterView")], 1),
       _vm._v(" "),
       _c("Footer")
     ],
@@ -6382,88 +6349,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", { staticClass: "l-container__title" }, [_vm._v("マイページ")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "未読のメッセージ: " + _vm._s(_vm.unread_private_messages) + "件"
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "RouterLink",
-        {
-          staticClass: "button button--link",
-          attrs: { to: { name: "edit", params: { id: this.id } } }
-        },
-        [_vm._v("\n            お客様の登録情報\n        ")]
-      ),
-      _vm._v(" "),
-      _c("h5", [_vm._v("登録した案件一覧")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        _vm._l(_vm.registered_projects, function(project) {
-          return _c("Project", { key: project.id, attrs: { item: project } })
-        }),
-        1
-      ),
-      _vm._v(" "),
-      _c("h5", [_vm._v("応募した案件一覧")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        _vm._l(_vm.applied_projects, function(project) {
-          return _c("Project", { key: project.id, attrs: { item: project } })
-        }),
-        1
-      ),
-      _vm._v(" "),
-      _c("h5", [_vm._v("やりとりした公開メッセージ")]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        _vm._l(_vm.exchanged_public_messages, function(public_message) {
-          return _c("li", _vm._b({}, "li", public_message.id, false), [
-            _vm._v(
-              "\n                " +
-                _vm._s(public_message.author.name) +
-                "\n                " +
-                _vm._s(public_message.content) +
-                "\n                " +
-                _vm._s(public_message.created_at) +
-                "\n            "
-            )
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c("h5", [_vm._v("やりとりした非公開メッセージ")]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        _vm._l(_vm.exchanged_private_messages, function(private_message) {
-          return _c("li", _vm._b({}, "li", private_message.id, false), [
-            _vm._v(
-              "\n                " +
-                _vm._s(private_message.author.name) +
-                "\n                " +
-                _vm._s(private_message.content) +
-                "\n                " +
-                _vm._s(private_message.created_at) +
-                "\n            "
-            )
-          ])
-        }),
-        0
-      )
-    ],
-    1
-  )
+  return _c("div", [
+    _c("h1", { staticClass: "l-container__title" }, [_vm._v("マイページ")]),
+    _vm._v(" "),
+    _c("h5", [_vm._v("登録した案件一覧")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      _vm._l(_vm.registered_projects, function(project) {
+        return _c("Project", { key: project.id, attrs: { item: project } })
+      }),
+      1
+    ),
+    _vm._v(" "),
+    _c("h5", [_vm._v("応募した案件一覧")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      _vm._l(_vm.applied_projects, function(project) {
+        return _c("Project", { key: project.id, attrs: { item: project } })
+      }),
+      1
+    ),
+    _vm._v(" "),
+    _c("h5", [_vm._v("やりとりした公開メッセージ")]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.exchanged_public_messages, function(public_message) {
+        return _c("li", _vm._b({}, "li", public_message.id, false), [
+          _vm._v(
+            "\n            " +
+              _vm._s(public_message.author.name) +
+              "\n            " +
+              _vm._s(public_message.content) +
+              "\n            " +
+              _vm._s(public_message.created_at) +
+              "\n        "
+          )
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("h5", [_vm._v("やりとりした非公開メッセージ")]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.exchanged_private_messages, function(private_message) {
+        return _c("li", _vm._b({}, "li", private_message.id, false), [
+          _vm._v(
+            "\n            " +
+              _vm._s(private_message.author.name) +
+              "\n            " +
+              _vm._s(private_message.content) +
+              "\n            " +
+              _vm._s(private_message.created_at) +
+              "\n        "
+          )
+        ])
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -7141,49 +7089,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("案件一覧")]),
-      _vm._v(" "),
-      _c("h5", [_vm._v("タイプを絞り込む")]),
-      _vm._v(" "),
-      _vm._l(_vm.options, function(label) {
-        return _c("label", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.current,
-                expression: "current"
+  return _c("section", { staticClass: "l-container" }, [
+    _c("h1", { staticClass: "l-container__title" }, [_vm._v("案件一覧")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "l-container__body" },
+      [
+        _c("h5", [_vm._v("タイプを絞り込む")]),
+        _vm._v(" "),
+        _vm._l(_vm.options, function(label) {
+          return _c("label", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.current,
+                  expression: "current"
+                }
+              ],
+              attrs: { type: "radio" },
+              domProps: {
+                value: label.value,
+                checked: _vm._q(_vm.current, label.value)
+              },
+              on: {
+                change: function($event) {
+                  _vm.current = label.value
+                }
               }
-            ],
-            attrs: { type: "radio" },
-            domProps: {
-              value: label.value,
-              checked: _vm._q(_vm.current, label.value)
-            },
-            on: {
-              change: function($event) {
-                _vm.current = label.value
-              }
-            }
-          }),
-          _vm._v(_vm._s(label.label) + "\n        ")
-        ])
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
+            }),
+            _vm._v(_vm._s(label.label) + "\n    ")
+          ])
+        }),
+        _vm._v(" "),
         _vm._l(_vm.filterType, function(project) {
           return _c("Project", { key: project.id, attrs: { item: project } })
-        }),
-        1
-      )
-    ],
-    2
-  )
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -7815,13 +7762,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("section", { staticClass: "l-container" }, [
     _c("h1", { staticClass: "l-container__title" }, [_vm._v("ユーザー登録")]),
     _vm._v(" "),
     _c(
       "form",
       {
-        staticClass: "form",
+        staticClass: "c-form",
         attrs: { enctype: "multipart/form-data" },
         on: {
           submit: function($event) {
@@ -7897,8 +7844,6 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("label", { attrs: { for: "username" } }, [_vm._v("お名前")]),
-        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -7908,8 +7853,12 @@ var render = function() {
               expression: "registerForm.name"
             }
           ],
-          staticClass: "form__item",
-          attrs: { type: "text", id: "username" },
+          staticClass: "c-input c-input__l",
+          attrs: {
+            type: "text",
+            id: "username",
+            placeholder: "お名前（20文字以内）"
+          },
           domProps: { value: _vm.registerForm.name },
           on: {
             input: function($event) {
@@ -7921,8 +7870,6 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("label", { attrs: { for: "email" } }, [_vm._v("メールアドレス")]),
-        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -7932,8 +7879,8 @@ var render = function() {
               expression: "registerForm.email"
             }
           ],
-          staticClass: "form__item",
-          attrs: { type: "text", id: "email" },
+          staticClass: "c-input c-input__l",
+          attrs: { type: "text", id: "email", placeholder: "メールアドレス" },
           domProps: { value: _vm.registerForm.email },
           on: {
             input: function($event) {
@@ -7945,8 +7892,6 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("label", { attrs: { for: "password" } }, [_vm._v("パスワード")]),
-        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -7956,8 +7901,12 @@ var render = function() {
               expression: "registerForm.password"
             }
           ],
-          staticClass: "form__item",
-          attrs: { type: "password", id: "password" },
+          staticClass: "c-input c-input__l",
+          attrs: {
+            type: "password",
+            id: "password",
+            placeholder: "パスワード（半角英数8文字以上）"
+          },
           domProps: { value: _vm.registerForm.password },
           on: {
             input: function($event) {
@@ -7969,10 +7918,6 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("label", { attrs: { for: "password-confirmation" } }, [
-          _vm._v("パスワード (再入力)")
-        ]),
-        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -7982,8 +7927,12 @@ var render = function() {
               expression: "registerForm.password_confirmation"
             }
           ],
-          staticClass: "form__item",
-          attrs: { type: "password", id: "password-confirmation" },
+          staticClass: "c-input c-input__l",
+          attrs: {
+            type: "password",
+            id: "password-confirmation",
+            placeholder: "パスワード (再入力)"
+          },
           domProps: { value: _vm.registerForm.password_confirmation },
           on: {
             input: function($event) {
@@ -8002,7 +7951,7 @@ var render = function() {
         _c("label", { attrs: { for: "icon-image" } }, [_vm._v("アイコン画像")]),
         _vm._v(" "),
         _c("input", {
-          staticClass: "form__item",
+          staticClass: "c-input c-input__l",
           attrs: { type: "file", id: "icon-image" },
           on: { change: _vm.onFileChange }
         }),
@@ -8010,19 +7959,11 @@ var render = function() {
         _vm.preview
           ? _c("output", { staticClass: "form__output" }, [
               _c("img", {
-                attrs: {
-                  src: _vm.preview,
-                  alt: "選択した画像",
-                  width: "30",
-                  height: "30"
-                }
+                staticClass: "imgIcon_l",
+                attrs: { src: _vm.preview, alt: "選択した画像", height: "100" }
               })
             ])
           : _vm._e(),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "self-introduction" } }, [
-          _vm._v("自己紹介")
-        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -8033,8 +7974,12 @@ var render = function() {
               expression: "registerForm.profile_fields"
             }
           ],
-          staticClass: "form__item",
-          attrs: { type: "text", id: "self-introduction" },
+          staticClass: "c-input c-input__l",
+          attrs: {
+            type: "text",
+            id: "self-introduction",
+            placeholder: "自己紹介（255文字以内）"
+          },
           domProps: { value: _vm.registerForm.profile_fields },
           on: {
             input: function($event) {
@@ -8046,25 +7991,19 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _vm._m(0)
+        _c(
+          "button",
+          {
+            staticClass: "c-btn c-btn__corp c-btn__l",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("register")]
+        )
       ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form__button" }, [
-      _c(
-        "button",
-        { staticClass: "button button--inverse", attrs: { type: "submit" } },
-        [_vm._v("register")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -8093,13 +8032,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("section", { staticClass: "l-container" }, [
       _c("h1", { staticClass: "l-container__title" }, [_vm._v("match")]),
       _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "会員内でエンジニア向けの単発案件やサービス立ち上げ案を投稿、その案件に応募できる。\n        今のランサーズなどサービスはオプションや入力項目が色々ありすぎてわかりにくすぎるため、簡単に案件を投稿し、簡単に応募、やり取りが出来るようにする。\n        イメージは「エンジニア案件マッチング版のメルカリ」という感じ。\n        主婦でも投稿できるくらいの手軽さを提供する。私の願い"
-        )
+      _c("div", { staticClass: "l-container__body" }, [
+        _c("p", [
+          _vm._v(
+            "会員内でエンジニア向けの単発案件やサービス立ち上げ案を投稿、その案件に応募できる。\n        今のランサーズなどサービスはオプションや入力項目が色々ありすぎてわかりにくすぎるため、簡単に案件を投稿し、簡単に応募、やり取りが出来るようにする。\n        イメージは「エンジニア案件マッチング版のメルカリ」という感じ。\n        主婦でも投稿できるくらいの手軽さを提供する。私の願い"
+          )
+        ])
       ])
     ])
   }

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>非公開メッセージ一覧</h1>
+    <section class="l-container">
+        <h1 class="l-container__title">非公開メッセージ一覧</h1>
         <div>
             <h5>未読の非公開メッセージ</h5>
             <ul>
@@ -27,7 +27,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </section>
 </template>
 <script>
     import { OK } from '../util'

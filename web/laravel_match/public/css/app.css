@@ -171,7 +171,7 @@ img {
 }
 
 .l-container {
-  width: 100%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 80px;
@@ -186,7 +186,7 @@ img {
 
 .l-container__title {
   text-align: center;
-  font-size: 38px;
+  font-size: 24px;
   margin-bottom: 40px;
 }
 
@@ -199,6 +199,8 @@ img {
 }
 
 .l-container__body {
+  padding-left: 30px;
+  padding-right: 30px;
   overflow: hidden;
 }
 
@@ -336,17 +338,13 @@ img {
 }
 
 .c-form {
-  width: 100%;
-}
-
-.c-form__m {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
 
 @media screen and (max-width: 414px) {
-  .c-form__m {
+  .c-form {
     width: 100%;
   }
 }
@@ -683,6 +681,12 @@ img {
 .imgIcon {
   width: auto;
   border-radius: 15px;
+  vertical-align: auto;
+}
+
+.imgIcon_l {
+  width: auto;
+  border-radius: 50px;
   vertical-align: auto;
 }
 
