@@ -2,7 +2,7 @@
     <section class="l-container">
         <h1 class="l-container__title">案件の編集</h1>
         <form class="c-form" @submit.prevent="projectsUpdate">
-            <div v-if="updateErrors" class="errors">
+            <div v-if="updateErrors" class="c-error">
                 <ul v-if="updateErrors.title">
                     <li v-for="msg in updateErrors.title" :key="msg">{{ msg }}</li>
                 </ul>

@@ -1,6 +1,7 @@
 <template>
-    <div>
+    <section class="l-container">
         <h1 class="l-container__title">マイページ</h1>
+        <a href="https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！〜&hashtags=ウェブカツ&url=https://match3.xyz/" class="twitter-icon" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
         <h5>登録した案件一覧</h5>
         <div>
             <Project
@@ -35,7 +36,7 @@
                 {{ private_message.created_at }}
             </li>
         </ul>
-    </div>
+    </section>
 </template>
 <script>
     import { OK } from '../util'

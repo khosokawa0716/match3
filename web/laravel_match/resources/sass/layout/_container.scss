@@ -2,14 +2,14 @@
 // container
 // ==================================
 .l-container {
-    width: $site-width_m;
-    @include mq() {
-        width: $site-width_l;
+    width: $site-width_max;
+    @include mxl() {
+        width: 100%;
     }
     margin-left: auto;
     margin-right: auto;
-    padding-top: 80px;
-    padding-bottom: 120px;
+    padding-top: $space_3l;
+    padding-bottom: $space_3l;
     &__title {
         //font-family: $font-family_corp;
         text-align: center;
@@ -22,15 +22,11 @@
         }
     }
     &__body {
-        padding-left: $space_xxl;
-        padding-right: $space_xxl;
+        padding: $space_xl;
         overflow: hidden;
-        &-course {
-            padding-top: 30px;
-        }
+
         @include mq() {
-            padding-left: $space_l;
-            padding-right: $space_l;
+            padding: $space_l;
         }
     }
     //もともとは&-ornamentのcontainer-title

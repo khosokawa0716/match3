@@ -1,7 +1,7 @@
 <template>
     <section class="l-container">
         <form class="c-form" @submit.prevent="passReset">
-            <div v-if="passResetErrors" class="errors">
+            <div v-if="passResetErrors" class="c-error">
                 <ul v-if="passResetErrors.password">
                     <li v-for="msg in passResetErrors.password" :key="msg">{{ msg }}</li>
                 </ul>

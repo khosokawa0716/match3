@@ -2,7 +2,7 @@
 // _contact.scss
 // ==================================
 .p-contact {
-    width: $site-width;
+    width: $site-width_max;
     @include mq() {
         width: 100%;
     }

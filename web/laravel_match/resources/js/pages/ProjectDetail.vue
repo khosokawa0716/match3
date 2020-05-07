@@ -17,7 +17,7 @@
             <button type="submit" class="c-btn c-btn__corp c-btn__l">この案件に応募する</button>
         </form>
         <form class="c-form" @submit.prevent="publicMessageRegister">
-            <div v-if="public_message_errors" class="errors">
+            <div v-if="public_message_errors" class="c-error">
                 <ul v-if="public_message_errors.content">
                     <li v-for="msg in public_message_errors.content" :key="msg">{{ msg }}</li>
                 </ul>

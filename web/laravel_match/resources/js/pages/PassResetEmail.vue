@@ -2,7 +2,7 @@
     <section class="l-container">
         <h1 class="l-container__title">パスワードを忘れてしまった場合</h1>
         <form class="c-form" @submit.prevent="sendEmail">
-            <div v-if="passResetEmailErrors" class="errors">
+            <div v-if="passResetEmailErrors" class="c-error">
                 <ul v-if="passResetEmailErrors.email">
                     <li v-for="msg in passResetEmailErrors.email" :key="msg">{{ msg }}</li>
                 </ul>

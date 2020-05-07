@@ -16,11 +16,12 @@
     &__corp {
         // グラーデーション参考 https://uigradients.com/
         color: #fff;
-        background: #ee9ca7; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: #007BFF;
+        //background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7); /* Chrome 10-25, Safari 5.1-6 */
+        //background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
     &__l {
+        margin: $space_xxl 0;
         padding: $space_l $space_xxl;
         width: 100%;
         font-size: $font-size_l;

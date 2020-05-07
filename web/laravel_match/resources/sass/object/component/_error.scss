@@ -1,0 +1,7 @@
+.c-error {
+    margin: $space_l 0;
+    color: $font-color_error;
+    @include mq() {
+        font-size: $font-size_s;
+    }
+}

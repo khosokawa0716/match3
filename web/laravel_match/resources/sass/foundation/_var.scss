@@ -4,12 +4,13 @@
 $font-family_default: sans-serif;
 $font-color_default: #775;
 $font-color_date: #e37b89; // TODO:リファクタ必要
-$color_corp: #e3a8b1;
 $font-color_sub1: #b6a489;
+$font-color_error: #ea352d;
+$color_corp: #e3a8b1;
 
-$site-width: 100%;
-$site-width_m: 80%;
-$site-width_l: 100%;
+
+$site-width_max: 1200px;
+$site-width_form: 410px;
 
 $font-size_s: 12px;
 $font-size_m: 14px;

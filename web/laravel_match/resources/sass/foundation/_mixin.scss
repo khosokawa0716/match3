@@ -8,3 +8,20 @@
         @content;
     }
 }
+@mixin mmd($breakpoint: md) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+@mixin ml($breakpoint: lg) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+@mixin mxl($breakpoint: xl) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}

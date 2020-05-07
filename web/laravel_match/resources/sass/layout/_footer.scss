@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     height: 80px;
-    @include mq() {
-        font-size: $font-size_s;
+    @include mmd() {
+        display: none;
     }
 }

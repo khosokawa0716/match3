@@ -171,14 +171,14 @@ img {
 }
 
 .l-container {
-  width: 80%;
+  width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 80px;
-  padding-bottom: 120px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 1200px) {
   .l-container {
     width: 100%;
   }
@@ -199,19 +199,13 @@ img {
 }
 
 .l-container__body {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 20px;
   overflow: hidden;
-}
-
-.l-container__body-course {
-  padding-top: 30px;
 }
 
 @media screen and (max-width: 414px) {
   .l-container__body {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 15px;
   }
 }
 
@@ -249,15 +243,17 @@ img {
   height: 80px;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 768px) {
   .l-footer {
-    font-size: 12px;
+    display: none;
   }
 }
 
 .l-header {
   box-sizing: border-box;
-  width: 100%;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   height: 80px;
   color: #775;
   display: flex;
@@ -267,6 +263,12 @@ img {
   padding-right: 20px;
   transition: 0.3s;
   z-index: 2;
+}
+
+@media screen and (max-width: 1200px) {
+  .l-header {
+    width: 100%;
+  }
 }
 
 .l-header.float-active {
@@ -287,7 +289,7 @@ img {
   font-weight: bold;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 1000px) {
   .l-nav {
     display: block;
     position: absolute;
@@ -324,28 +326,26 @@ img {
 
 .c-btn__corp {
   color: #fff;
-  background: #ee9ca7;
-  /* fallback for old browsers */
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ffdde1, #ee9ca7);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #007BFF;
 }
 
 .c-btn__l {
+  margin: 30px 0;
   padding: 15px 30px;
   width: 100%;
   font-size: 18px;
 }
 
 .c-form {
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 410px;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 414px) {
   .c-form {
-    width: 100%;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 }
 
@@ -361,6 +361,12 @@ img {
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 1000px) {
+  .c-input {
+    font-size: 12px;
+  }
+}
+
 .c-input__l {
   padding: 5px 10px;
   width: 100%;
@@ -372,6 +378,7 @@ img {
 
 .c-input__textarea {
   height: 200px;
+  width: 100%;
 }
 
 ::-webkit-input-placeholder {
@@ -394,13 +401,25 @@ img {
   color: #ccc;
 }
 
+.c-error {
+  margin: 15px 0;
+  color: #ea352d;
+}
+
+@media screen and (max-width: 414px) {
+  .c-error {
+    font-size: 12px;
+  }
+}
+
 .c-menu {
   display: flex;
   align-items: center;
 }
 
-.c-menu__item {
-  margin-right: 20px;
+.c-menu__item:not(:last-child) {
+  padding-right: 10px;
+  margin-right: 10px;
   border-right: 1px solid #e8e8e8;
 }
 
@@ -408,7 +427,7 @@ img {
   -webkit-font-smoothing: initial;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 1000px) {
   .c-menu {
     display: block;
     font-size: 18px;
@@ -530,7 +549,6 @@ img {
 }
 
 .p-hero {
-  background-image: url("https://cdn.pixabay.com/photo/2019/08/06/02/16/landscape-4387209_1280.jpg");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -573,7 +591,7 @@ img {
   z-index: 3;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 1000px) {
   .p-menuTrigger {
     display: inline-block;
   }
@@ -641,7 +659,7 @@ img {
 }
 
 .p-contact {
-  width: 100%;
+  width: 1200px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 0;

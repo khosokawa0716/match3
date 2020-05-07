@@ -3,7 +3,7 @@
         <h1 class="l-container__title">登録情報の編集</h1>
 
         <form class="c-form" @submit.prevent="update" enctype="multipart/form-data" method="POST">
-            <div v-if="updateErrors" class="errors">
+            <div v-if="updateErrors" class="c-error">
                 <ul v-if="updateErrors.email">
                     <li v-for="msg in updateErrors.email" :key="msg">{{ msg }}</li>
                 </ul>

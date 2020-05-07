@@ -2,7 +2,7 @@
     <section class="l-container">
         <h1 class="l-container__title">案件登録</h1>
         <form class="c-form" @submit.prevent="projectsRegister">
-            <div v-if="registerErrors" class="errors">
+            <div v-if="registerErrors" class="c-error">
                 <ul v-if="registerErrors.title">
                     <li v-for="msg in registerErrors.title" :key="msg">{{ msg }}</li>
                 </ul>
