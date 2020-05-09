@@ -31,7 +31,7 @@
                 <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">
             </output>
             <input class="c-input c-input__l" type="file" id="icon-image" @change="onFileChange">
-            <textarea name="" id="" cols="30" class="c-input c-input__textarea" rows="10" v-model="registerForm.profile_fields" placeholder="自己紹介（255文字以内）"></textarea>
+            <textarea cols="30" class="c-input c-input__textarea" rows="10" v-model="registerForm.profile_fields" placeholder="自己紹介（255文字以内）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">登録する</button>
         </form>
     </section>

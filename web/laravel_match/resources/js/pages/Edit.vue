@@ -16,14 +16,17 @@
             </div>
             <input type="hidden" name="_method" value="PUT">
 
+            <label class="c-input__label">メールアドレス</label>
             <input type="text" class="c-input c-input__l" v-model="editForm.email" placeholder="メールアドレス">
-            <label for="icon-image">アイコン画像</label>
-            <img :src="editForm.icon_path" alt="アイコン画像" height="100" class="imgIcon_l">
+            <label class="c-input__label">今のアイコン画像</label>
+            <img :src="editForm.icon_path" alt="今のアイコン画像" height="100" class="imgIcon_l">
+            <label class="c-input__label">新しいアイコン画像</label>
             <input class="form__item" type="file" id="icon-image" @change="onFileChange">
             <output class="form__output" v-if="preview">
                 <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">
             </output>
-            <input type="text" class="c-input c-input__textarea" v-model="editForm.profile_fields" placeholder="自己紹介">
+            <label class="c-input__label">自己紹介</label>
+            <textarea type="text" class="c-input c-input__textarea" v-model="editForm.profile_fields" placeholder="自己紹介"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">更新する</button>
         </form>
     </section>

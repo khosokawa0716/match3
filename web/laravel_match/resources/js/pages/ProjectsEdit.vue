@@ -21,15 +21,21 @@
             </div>
             <input type="hidden" name="_method" value="PUT">
             <input type="text" class="c-input c-input__l" v-model="projectsUpdateForm.title" placeholder="タイトル">
-            <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type">
-            <label for="one-off">決まった金額を支払う</label>
-            <input type="radio" id="service" value="service" v-model="projectsUpdateForm.type">
-            <label for="service">サービス開始後の売り上げを分け合う</label>
+            <div class="c-input__radio__l">
+            <label for="one-off" class="c-input__radio">
+                <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type">
+                決まった金額を支払う
+            </label>
+            <label for="service" class="c-input__radio">
+                <input type="radio" id="service" value="service" v-model="projectsUpdateForm.type">
+                サービス開始後の売り上げを分け合う
+            </label>
+            </div>
             <div v-if="isOneOff">
                 <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsUpdateForm.minimum_amount" placeholder="下限金額">
                 <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsUpdateForm.max_amount" placeholder="上限金額">
             </div>
-            <input type="text" class="c-input c-input__textarea" v-model="projectsUpdateForm.detail" placeholder="詳細">
+            <textarea type="text" class="c-input c-input__textarea" v-model="projectsUpdateForm.detail" placeholder="詳細"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を更新する</button>
         </form>
     </section>

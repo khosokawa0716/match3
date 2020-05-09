@@ -1,19 +1,27 @@
 <template>
-    <div>
-        <h5>登録した人: {{ item.owner.name }}</h5>
-        <p>タイトル: {{ item.title }}</p>
-        <p>状態: {{ status }}</p>
-        <p>タイプ: {{ type }}</p>
-        <p v-if="item.type === 'one-off'">下限金額: {{ item.minimum_amount }}円</p>
-        <p v-if="item.type === 'one-off'">上限金額: {{ item.max_amount }}円</p>
-    <form class="c-form" @submit.prevent="edit" v-if="isLogin && isOwner && isRecruiting">
-<!--        ProjectController.phpの例外処理を確認するときは下の行を有効にする-->
-<!--        <form class="form" @submit.prevent="edit">-->
-        <button type="submit" class="c-btn c-btn__corp c-btn__l">編集する</button>
-    </form>
-    <form class="c-form" @submit.prevent="showDetail" v-if="isLogin">
-        <button type="submit" class="c-btn c-btn__corp c-btn__l">詳細</button>
-    </form>
+    <div class="">
+        <ul>
+            <li><span class="c-panel__title">{{ item.title }}</span></li>
+            <li>{{ status }}</li>
+            <li>{{ type }}</li>
+            <li v-if="item.type === 'one-off'">{{ item.minimum_amount }}円 〜 {{ item.max_amount }}円</li>
+            <li>
+                <span class="c-panel__link">
+                <RouterLink
+                    v-if="isLogin"
+                    :to="{name: 'projectDetail', params: { id: this.item.id }}"
+                >
+                    詳細を見る
+                </RouterLink>
+                <RouterLink
+                    v-if="isLogin && isOwner && isRecruiting"
+                    :to="{name: 'projectsEdit', params: { id: this.item.id }}"
+                >
+                    編集する
+                </RouterLink>
+                </span>
+            </li>
+        </ul>
     </div>
 </template>
 <script>
@@ -25,12 +33,6 @@
             }
         },
         methods: {
-            async edit () {
-                this.$router.push('/projects/' + this.item.id + '/edit')
-            },
-            async showDetail () {
-                this.$router.push('/project/detail/' + this.item.id)
-            },
             clearError () {
                 this.$store.commit('error/setCode', null)
             }

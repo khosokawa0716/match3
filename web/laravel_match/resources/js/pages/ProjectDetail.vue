@@ -1,38 +1,38 @@
 <template>
-    <section class="l-container">
-        <h1 class="l-container__title">案件詳細画面</h1>
-        <dl>
+    <section class="p-projectDetail">
+        <h1 class="l-container__title">案件詳細</h1>
+        <div class="p-projectDetail__body">
+        <dl class="c-dl">
             <dt>依頼した人</dt><dd>{{ project.owner.name }}</dd>
             <dt>案件名</dt><dd>{{ project.title }}</dd>
             <dt>タイプ</dt><dd>{{ type }}</dd>
-            <div v-if="isOneOff">
-            <dt>下限金額</dt><dd>{{ project.minimum_amount }}</dd>
-            <dt>上限金額</dt><dd>{{ project.max_amount }}</dd>
-            </div>
+            <dt v-if="isOneOff">金額</dt><dd v-if="isOneOff">{{ project.minimum_amount }}円 〜 {{ project.max_amount }}円</dd>
             <dt>詳細</dt><dd>{{ project.detail }}</dd>
         </dl>
+            <h5><span>コメント</span></h5>
+            <ul>
+                <li v-for="public_message in public_messages" v-bind="public_message.id">
+                    {{ public_message.author.name }}
+                    {{ public_message.content }}
+                    {{ public_message.created_at }}
+                </li>
+            </ul>
         <form class="c-form" @submit.prevent="apply" v-if="isRecruiting && notOwner">
 <!--        ProjectDetailController.phpの例外処理を確認するときは下の行を有効にする-->
 <!--        <form class="c-form" @submit.prevent="apply">-->
             <button type="submit" class="c-btn c-btn__corp c-btn__l">この案件に応募する</button>
         </form>
-        <form class="c-form" @submit.prevent="publicMessageRegister">
+        <form class="p-projectDetail__form" @submit.prevent="publicMessageRegister">
             <div v-if="public_message_errors" class="c-error">
                 <ul v-if="public_message_errors.content">
                     <li v-for="msg in public_message_errors.content" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <input type="text" class="c-input c-input__textarea" v-model="public_message_content" placeholder="メッセージを入力">
+            <textarea type="text" class="c-input p-projectDetail__textarea" v-model="public_message_content" placeholder="メッセージを入力"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">送信する</button>
         </form>
-        <h5>この案件に関するやりとり</h5>
-        <ul>
-            <li v-for="public_message in public_messages" v-bind="public_message.id">
-                {{ public_message.author.name }}
-                {{ public_message.content }}
-                {{ public_message.created_at }}
-            </li>
-        </ul>
+
+        </div>
     </section>
 
 </template>

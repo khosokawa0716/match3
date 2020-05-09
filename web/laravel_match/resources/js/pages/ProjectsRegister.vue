@@ -20,15 +20,21 @@
                 </ul>
             </div>
             <input type="text" class="c-input c-input__l" v-model="projectsRegisterForm.title" placeholder="タイトル">
-            <input type="radio" id="one-off" value="one-off" v-model="projectsRegisterForm.type">
-            <label for="one-off">決まった金額を支払う</label>
-            <input type="radio" id="service" value="service" v-model="projectsRegisterForm.type">
-            <label for="service">サービス開始後の売り上げを分け合う</label>
+            <div class="c-input__radio__l">
+            <label for="one-off" class="c-input__radio">
+                <input type="radio" id="one-off" value="one-off" v-model="projectsRegisterForm.type">
+                決まった金額を支払う
+            </label>
+            <label for="service" class="c-input__radio">
+                <input type="radio" id="service" value="service" v-model="projectsRegisterForm.type">
+                サービス開始後の売り上げを分け合う
+            </label>
+            </div>
             <div v-if="isOneOff">
                 <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsRegisterForm.minimum_amount" placeholder="下限金額">
                 <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsRegisterForm.max_amount" placeholder="上限金額">
             </div>
-            <input type="text" class="c-input c-input__textarea" id="detail" v-model="projectsRegisterForm.detail" placeholder="詳細">
+            <textarea cols="30" rows="10" type="text" class="c-input c-input__textarea" id="detail" v-model="projectsRegisterForm.detail" placeholder="詳細"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を登録する</button>
         </form>
     </section>

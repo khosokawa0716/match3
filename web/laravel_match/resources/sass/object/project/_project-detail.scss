@@ -1,0 +1,34 @@
+// ==================================
+// project-detail
+// ==================================
+
+.p-projectDetail {
+    width: $site-width_project;
+    @include mmd() {
+        width: 100%;
+    }
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: $space_3l;
+    padding-bottom: $space_3l;
+    &__body {
+        background: $color_corp;
+        padding: $space_xl;
+        overflow: hidden;
+
+        @include mq() {
+            padding: $space_l;
+        }
+    }
+    &__form {
+        width: 90%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    &__textarea {
+        padding: 5px 10px;
+        height: 100px;
+        width: 100%;
+    }
+}
+

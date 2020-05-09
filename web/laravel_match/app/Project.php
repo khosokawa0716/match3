@@ -10,7 +10,7 @@ class Project extends Model
 
     /** JSONに含める属性 */
     protected $visible = [
-        'id', 'title', 'owner', 'applicant', 'type', 'minimum_amount', 'max_amount', 'detail', 'status'
+        'id', 'title', 'owner', 'applicant', 'type', 'minimum_amount', 'max_amount', 'detail', 'status', 'created_at'
     ];
 
     public function owner()

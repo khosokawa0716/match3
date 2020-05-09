@@ -18,6 +18,7 @@
 // ==========================================================================
 
 @import "layout/_container";
+@import "layout/_message";
 @import "layout/_footer";
 @import "layout/_header";
 @import "layout/_nav";
@@ -32,15 +33,17 @@
 
 @import "object/component/_button";
 @import "object/component/_form";
+@import "object/component/_input";
 @import "object/component/_error";
 @import "object/component/_menu";
 @import "object/component/_panel";
+@import "object/component/_description";
 
  //-----------------------------------------------------------------
  //Project
  //-----------------------------------------------------------------
 
-@import "object/project/_hero";
+@import "object/project/_project-detail";
 @import "object/project/_menu-trigger";
 @import "object/project/_news";
 @import "object/project/_contact";

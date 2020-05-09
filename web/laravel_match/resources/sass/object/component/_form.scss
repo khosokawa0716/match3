@@ -11,33 +11,3 @@
         padding-right: 5%;
     }
 }
-
-.c-input {
-    display: block;
-    margin-bottom: $space_m;
-    border: 3px solid #f6f5f4;
-    border-radius: 4px;
-    outline: none;
-    height: 60px;
-    font-size: $font-size_l;
-    @include ml() {
-        font-size: $font-size_s;
-    }
-    color: $font-color_default;
-    box-sizing: border-box;
-    &__l {
-        padding: 5px 10px;
-        width: 100%;
-    }
-    &:focus {
-        border: 3px solid $color_corp;
-    }
-    &__textarea {
-        height: 200px;
-        width: 100%;
-    }
-}
-
-::placeholder {
-    color: #ccc;
-}

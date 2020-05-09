@@ -3,17 +3,19 @@
         <h1 class="l-container__title">案件一覧</h1>
         <div class="l-container__body">
         <h5>タイプを絞り込む</h5>
-        <label v-for="label in options">
+        <label v-for="label in options" class="c-panel__radio">
             <input type="radio"
                    v-model="current"
                    v-bind:value="label.value">{{ label.label }}
         </label>
+            <div class="c-panel">
             <Project
-                class=""
+                class="c-panel__item"
                 v-for="project in filterType"
                 :key="project.id"
                 :item="project"
                 />
+            </div>
         </div>
     </section>
 </template>

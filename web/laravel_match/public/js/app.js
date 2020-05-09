@@ -1988,6 +1988,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     message: function message() {
@@ -2113,14 +2115,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2147,42 +2149,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    edit: function edit() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _this.$router.push('/projects/' + _this.item.id + '/edit');
-
-              case 1:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    showDetail: function showDetail() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _this2.$router.push('/project/detail/' + _this2.item.id);
-
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
     }
@@ -2240,6 +2206,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -2571,6 +2540,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -3316,7 +3287,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -3561,6 +3531,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3692,6 +3664,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3898,6 +3876,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5599,7 +5583,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "section",
     {
       directives: [
         {
@@ -5609,9 +5593,9 @@ var render = function() {
           expression: "message"
         }
       ],
-      staticClass: "message"
+      staticClass: "l-message"
     },
-    [_vm._v("\n    " + _vm._s(_vm.message) + "\n")]
+    [_c("span", [_vm._v("\n    " + _vm._s(_vm.message) + "\n    ")])]
   )
 }
 var staticRenderFns = []
@@ -5883,72 +5867,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h5", [_vm._v("登録した人: " + _vm._s(_vm.item.owner.name))]),
-    _vm._v(" "),
-    _c("p", [_vm._v("タイトル: " + _vm._s(_vm.item.title))]),
-    _vm._v(" "),
-    _c("p", [_vm._v("状態: " + _vm._s(_vm.status))]),
-    _vm._v(" "),
-    _c("p", [_vm._v("タイプ: " + _vm._s(_vm.type))]),
-    _vm._v(" "),
-    _vm.item.type === "one-off"
-      ? _c("p", [_vm._v("下限金額: " + _vm._s(_vm.item.minimum_amount) + "円")])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.item.type === "one-off"
-      ? _c("p", [_vm._v("上限金額: " + _vm._s(_vm.item.max_amount) + "円")])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.isLogin && _vm.isOwner && _vm.isRecruiting
-      ? _c(
-          "form",
-          {
-            staticClass: "c-form",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.edit($event)
-              }
-            }
-          },
-          [
-            _c(
-              "button",
-              {
-                staticClass: "c-btn c-btn__corp c-btn__l",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("編集する")]
+  return _c("div", {}, [
+    _c("ul", [
+      _c("li", [
+        _c("span", { staticClass: "c-panel__title" }, [
+          _vm._v(_vm._s(_vm.item.title))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", [_vm._v(_vm._s(_vm.status))]),
+      _vm._v(" "),
+      _c("li", [_vm._v(_vm._s(_vm.type))]),
+      _vm._v(" "),
+      _vm.item.type === "one-off"
+        ? _c("li", [
+            _vm._v(
+              _vm._s(_vm.item.minimum_amount) +
+                "円 〜 " +
+                _vm._s(_vm.item.max_amount) +
+                "円"
             )
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.isLogin
-      ? _c(
-          "form",
-          {
-            staticClass: "c-form",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.showDetail($event)
-              }
-            }
-          },
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("li", [
+        _c(
+          "span",
+          { staticClass: "c-panel__link" },
           [
-            _c(
-              "button",
-              {
-                staticClass: "c-btn c-btn__corp c-btn__l",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("詳細")]
-            )
-          ]
+            _vm.isLogin
+              ? _c(
+                  "RouterLink",
+                  {
+                    attrs: {
+                      to: {
+                        name: "projectDetail",
+                        params: { id: this.item.id }
+                      }
+                    }
+                  },
+                  [_vm._v("\n                詳細を見る\n            ")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isLogin && _vm.isOwner && _vm.isRecruiting
+              ? _c(
+                  "RouterLink",
+                  {
+                    attrs: {
+                      to: { name: "projectsEdit", params: { id: this.item.id } }
+                    }
+                  },
+                  [_vm._v("\n                編集する\n            ")]
+                )
+              : _vm._e()
+          ],
+          1
         )
-      : _vm._e()
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -6027,6 +6004,10 @@ var render = function() {
           attrs: { type: "hidden", name: "_method", value: "PUT" }
         }),
         _vm._v(" "),
+        _c("label", { staticClass: "c-input__label" }, [
+          _vm._v("メールアドレス")
+        ]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -6049,16 +6030,22 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("label", { attrs: { for: "icon-image" } }, [_vm._v("アイコン画像")]),
+        _c("label", { staticClass: "c-input__label" }, [
+          _vm._v("今のアイコン画像")
+        ]),
         _vm._v(" "),
         _c("img", {
           staticClass: "imgIcon_l",
           attrs: {
             src: _vm.editForm.icon_path,
-            alt: "アイコン画像",
+            alt: "今のアイコン画像",
             height: "100"
           }
         }),
+        _vm._v(" "),
+        _c("label", { staticClass: "c-input__label" }, [
+          _vm._v("新しいアイコン画像")
+        ]),
         _vm._v(" "),
         _c("input", {
           staticClass: "form__item",
@@ -6075,7 +6062,9 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("input", {
+        _c("label", { staticClass: "c-input__label" }, [_vm._v("自己紹介")]),
+        _vm._v(" "),
+        _c("textarea", {
           directives: [
             {
               name: "model",
@@ -6263,65 +6252,77 @@ var render = function() {
     _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
-    _c("h5", [_vm._v("登録した案件一覧")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      _vm._l(_vm.registered_projects, function(project) {
-        return _c("Project", { key: project.id, attrs: { item: project } })
-      }),
-      1
-    ),
-    _vm._v(" "),
-    _c("h5", [_vm._v("応募した案件一覧")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      _vm._l(_vm.applied_projects, function(project) {
-        return _c("Project", { key: project.id, attrs: { item: project } })
-      }),
-      1
-    ),
-    _vm._v(" "),
-    _c("h5", [_vm._v("やりとりした公開メッセージ")]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.exchanged_public_messages, function(public_message) {
-        return _c("li", _vm._b({}, "li", public_message.id, false), [
-          _vm._v(
-            "\n            " +
-              _vm._s(public_message.author.name) +
+    _c("div", { staticClass: "l-container__body" }, [
+      _c("h5", [_vm._v("登録した案件一覧")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "c-panel" },
+        _vm._l(_vm.registered_projects, function(project) {
+          return _c("Project", {
+            key: project.id,
+            staticClass: "c-panel__item",
+            attrs: { item: project }
+          })
+        }),
+        1
+      ),
+      _vm._v(" "),
+      _c("h5", [_vm._v("応募した案件一覧")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "c-panel" },
+        _vm._l(_vm.applied_projects, function(project) {
+          return _c("Project", {
+            key: project.id,
+            staticClass: "c-panel__item",
+            attrs: { item: project }
+          })
+        }),
+        1
+      ),
+      _vm._v(" "),
+      _c("h5", [_vm._v("やりとりした公開メッセージ")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.exchanged_public_messages, function(public_message) {
+          return _c("li", _vm._b({}, "li", public_message.id, false), [
+            _vm._v(
               "\n            " +
-              _vm._s(public_message.content) +
+                _vm._s(public_message.author.name) +
+                "\n            " +
+                _vm._s(public_message.content) +
+                "\n            " +
+                _vm._s(public_message.created_at) +
+                "\n        "
+            )
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("h5", [_vm._v("やりとりした非公開メッセージ")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.exchanged_private_messages, function(private_message) {
+          return _c("li", _vm._b({}, "li", private_message.id, false), [
+            _vm._v(
               "\n            " +
-              _vm._s(public_message.created_at) +
-              "\n        "
-          )
-        ])
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c("h5", [_vm._v("やりとりした非公開メッセージ")]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.exchanged_private_messages, function(private_message) {
-        return _c("li", _vm._b({}, "li", private_message.id, false), [
-          _vm._v(
-            "\n            " +
-              _vm._s(private_message.author.name) +
-              "\n            " +
-              _vm._s(private_message.content) +
-              "\n            " +
-              _vm._s(private_message.created_at) +
-              "\n        "
-          )
-        ])
-      }),
-      0
-    )
+                _vm._s(private_message.author.name) +
+                "\n            " +
+                _vm._s(private_message.content) +
+                "\n            " +
+                _vm._s(private_message.created_at) +
+                "\n        "
+            )
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -6823,136 +6824,140 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "l-container" }, [
-    _c("h1", { staticClass: "l-container__title" }, [_vm._v("案件詳細画面")]),
+  return _c("section", { staticClass: "p-projectDetail" }, [
+    _c("h1", { staticClass: "l-container__title" }, [_vm._v("案件詳細")]),
     _vm._v(" "),
-    _c("dl", [
-      _c("dt", [_vm._v("依頼した人")]),
-      _c("dd", [_vm._v(_vm._s(_vm.project.owner.name))]),
-      _vm._v(" "),
-      _c("dt", [_vm._v("案件名")]),
-      _c("dd", [_vm._v(_vm._s(_vm.project.title))]),
-      _vm._v(" "),
-      _c("dt", [_vm._v("タイプ")]),
-      _c("dd", [_vm._v(_vm._s(_vm.type))]),
-      _vm._v(" "),
-      _vm.isOneOff
-        ? _c("div", [
-            _c("dt", [_vm._v("下限金額")]),
-            _c("dd", [_vm._v(_vm._s(_vm.project.minimum_amount))]),
-            _vm._v(" "),
-            _c("dt", [_vm._v("上限金額")]),
-            _c("dd", [_vm._v(_vm._s(_vm.project.max_amount))])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("dt", [_vm._v("詳細")]),
-      _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
-    ]),
-    _vm._v(" "),
-    _vm.isRecruiting && _vm.notOwner
-      ? _c(
-          "form",
-          {
-            staticClass: "c-form",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.apply($event)
-              }
-            }
-          },
-          [
-            _c(
-              "button",
-              {
-                staticClass: "c-btn c-btn__corp c-btn__l",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("この案件に応募する")]
-            )
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "c-form",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.publicMessageRegister($event)
-          }
-        }
-      },
-      [
-        _vm.public_message_errors
-          ? _c("div", { staticClass: "c-error" }, [
-              _vm.public_message_errors.content
-                ? _c(
-                    "ul",
-                    _vm._l(_vm.public_message_errors.content, function(msg) {
-                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
-                    }),
-                    0
-                  )
-                : _vm._e()
+    _c("div", { staticClass: "p-projectDetail__body" }, [
+      _c("dl", { staticClass: "c-dl" }, [
+        _c("dt", [_vm._v("依頼した人")]),
+        _c("dd", [_vm._v(_vm._s(_vm.project.owner.name))]),
+        _vm._v(" "),
+        _c("dt", [_vm._v("案件名")]),
+        _c("dd", [_vm._v(_vm._s(_vm.project.title))]),
+        _vm._v(" "),
+        _c("dt", [_vm._v("タイプ")]),
+        _c("dd", [_vm._v(_vm._s(_vm.type))]),
+        _vm._v(" "),
+        _vm.isOneOff ? _c("dt", [_vm._v("金額")]) : _vm._e(),
+        _vm.isOneOff
+          ? _c("dd", [
+              _vm._v(
+                _vm._s(_vm.project.minimum_amount) +
+                  "円 〜 " +
+                  _vm._s(_vm.project.max_amount) +
+                  "円"
+              )
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("input", {
-          directives: [
+        _c("dt", [_vm._v("詳細")]),
+        _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
+      ]),
+      _vm._v(" "),
+      _vm.isRecruiting && _vm.notOwner
+        ? _c(
+            "form",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.public_message_content,
-              expression: "public_message_content"
-            }
-          ],
-          staticClass: "c-input c-input__textarea",
-          attrs: { type: "text", placeholder: "メッセージを入力" },
-          domProps: { value: _vm.public_message_content },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+              staticClass: "c-form",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.apply($event)
+                }
               }
-              _vm.public_message_content = $event.target.value
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "c-btn c-btn__corp c-btn__l",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("この案件に応募する")]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "p-projectDetail__form",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.publicMessageRegister($event)
             }
           }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "c-btn c-btn__corp c-btn__l",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("送信する")]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c("h5", [_vm._v("この案件に関するやりとり")]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.public_messages, function(public_message) {
-        return _c("li", _vm._b({}, "li", public_message.id, false), [
-          _vm._v(
-            "\n                " +
-              _vm._s(public_message.author.name) +
-              "\n                " +
-              _vm._s(public_message.content) +
-              "\n                " +
-              _vm._s(public_message.created_at) +
-              "\n            "
+        },
+        [
+          _vm.public_message_errors
+            ? _c("div", { staticClass: "c-error" }, [
+                _vm.public_message_errors.content
+                  ? _c(
+                      "ul",
+                      _vm._l(_vm.public_message_errors.content, function(msg) {
+                        return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                      }),
+                      0
+                    )
+                  : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.public_message_content,
+                expression: "public_message_content"
+              }
+            ],
+            staticClass: "c-input p-projectDetail__textarea",
+            attrs: { type: "text", placeholder: "メッセージを入力" },
+            domProps: { value: _vm.public_message_content },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.public_message_content = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "c-btn c-btn__corp c-btn__l",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("送信する")]
           )
-        ])
-      }),
-      0
-    )
+        ]
+      ),
+      _vm._v(" "),
+      _c("h5", [_vm._v("この案件に関するやりとり")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.public_messages, function(public_message) {
+          return _c("li", _vm._b({}, "li", public_message.id, false), [
+            _vm._v(
+              "\n                " +
+                _vm._s(public_message.author.name) +
+                "\n                " +
+                _vm._s(public_message.content) +
+                "\n                " +
+                _vm._s(public_message.created_at) +
+                "\n            "
+            )
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -6987,7 +6992,7 @@ var render = function() {
         _c("h5", [_vm._v("タイプを絞り込む")]),
         _vm._v(" "),
         _vm._l(_vm.options, function(label) {
-          return _c("label", [
+          return _c("label", { staticClass: "c-panel__radio" }, [
             _c("input", {
               directives: [
                 {
@@ -7012,9 +7017,18 @@ var render = function() {
           ])
         }),
         _vm._v(" "),
-        _vm._l(_vm.filterType, function(project) {
-          return _c("Project", { key: project.id, attrs: { item: project } })
-        })
+        _c(
+          "div",
+          { staticClass: "c-panel" },
+          _vm._l(_vm.filterType, function(project) {
+            return _c("Project", {
+              key: project.id,
+              staticClass: "c-panel__item",
+              attrs: { item: project }
+            })
+          }),
+          1
+        )
       ],
       2
     )
@@ -7137,48 +7151,62 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.projectsUpdateForm.type,
-              expression: "projectsUpdateForm.type"
-            }
-          ],
-          attrs: { type: "radio", id: "one-off", value: "one-off" },
-          domProps: { checked: _vm._q(_vm.projectsUpdateForm.type, "one-off") },
-          on: {
-            change: function($event) {
-              return _vm.$set(_vm.projectsUpdateForm, "type", "one-off")
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "one-off" } }, [
-          _vm._v("決まった金額を支払う")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.projectsUpdateForm.type,
-              expression: "projectsUpdateForm.type"
-            }
-          ],
-          attrs: { type: "radio", id: "service", value: "service" },
-          domProps: { checked: _vm._q(_vm.projectsUpdateForm.type, "service") },
-          on: {
-            change: function($event) {
-              return _vm.$set(_vm.projectsUpdateForm, "type", "service")
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "service" } }, [
-          _vm._v("サービス開始後の売り上げを分け合う")
+        _c("div", { staticClass: "c-input__radio__l" }, [
+          _c(
+            "label",
+            { staticClass: "c-input__radio", attrs: { for: "one-off" } },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.projectsUpdateForm.type,
+                    expression: "projectsUpdateForm.type"
+                  }
+                ],
+                attrs: { type: "radio", id: "one-off", value: "one-off" },
+                domProps: {
+                  checked: _vm._q(_vm.projectsUpdateForm.type, "one-off")
+                },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.projectsUpdateForm, "type", "one-off")
+                  }
+                }
+              }),
+              _vm._v("\n            決まった金額を支払う\n        ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "c-input__radio", attrs: { for: "service" } },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.projectsUpdateForm.type,
+                    expression: "projectsUpdateForm.type"
+                  }
+                ],
+                attrs: { type: "radio", id: "service", value: "service" },
+                domProps: {
+                  checked: _vm._q(_vm.projectsUpdateForm.type, "service")
+                },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.projectsUpdateForm, "type", "service")
+                  }
+                }
+              }),
+              _vm._v(
+                "\n            サービス開始後の売り上げを分け合う\n        "
+              )
+            ]
+          )
         ]),
         _vm._v(" "),
         _vm.isOneOff
@@ -7245,7 +7273,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("input", {
+        _c("textarea", {
           directives: [
             {
               name: "model",
@@ -7392,52 +7420,62 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.projectsRegisterForm.type,
-              expression: "projectsRegisterForm.type"
-            }
-          ],
-          attrs: { type: "radio", id: "one-off", value: "one-off" },
-          domProps: {
-            checked: _vm._q(_vm.projectsRegisterForm.type, "one-off")
-          },
-          on: {
-            change: function($event) {
-              return _vm.$set(_vm.projectsRegisterForm, "type", "one-off")
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "one-off" } }, [
-          _vm._v("決まった金額を支払う")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.projectsRegisterForm.type,
-              expression: "projectsRegisterForm.type"
-            }
-          ],
-          attrs: { type: "radio", id: "service", value: "service" },
-          domProps: {
-            checked: _vm._q(_vm.projectsRegisterForm.type, "service")
-          },
-          on: {
-            change: function($event) {
-              return _vm.$set(_vm.projectsRegisterForm, "type", "service")
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "service" } }, [
-          _vm._v("サービス開始後の売り上げを分け合う")
+        _c("div", { staticClass: "c-input__radio__l" }, [
+          _c(
+            "label",
+            { staticClass: "c-input__radio", attrs: { for: "one-off" } },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.projectsRegisterForm.type,
+                    expression: "projectsRegisterForm.type"
+                  }
+                ],
+                attrs: { type: "radio", id: "one-off", value: "one-off" },
+                domProps: {
+                  checked: _vm._q(_vm.projectsRegisterForm.type, "one-off")
+                },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.projectsRegisterForm, "type", "one-off")
+                  }
+                }
+              }),
+              _vm._v("\n            決まった金額を支払う\n        ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "c-input__radio", attrs: { for: "service" } },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.projectsRegisterForm.type,
+                    expression: "projectsRegisterForm.type"
+                  }
+                ],
+                attrs: { type: "radio", id: "service", value: "service" },
+                domProps: {
+                  checked: _vm._q(_vm.projectsRegisterForm.type, "service")
+                },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.projectsRegisterForm, "type", "service")
+                  }
+                }
+              }),
+              _vm._v(
+                "\n            サービス開始後の売り上げを分け合う\n        "
+              )
+            ]
+          )
         ]),
         _vm._v(" "),
         _vm.isOneOff
@@ -7504,7 +7542,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("input", {
+        _c("textarea", {
           directives: [
             {
               name: "model",
@@ -7514,7 +7552,13 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__textarea",
-          attrs: { type: "text", id: "detail", placeholder: "詳細" },
+          attrs: {
+            cols: "30",
+            rows: "10",
+            type: "text",
+            id: "detail",
+            placeholder: "詳細"
+          },
           domProps: { value: _vm.projectsRegisterForm.detail },
           on: {
             input: function($event) {
@@ -7829,8 +7873,6 @@ var render = function() {
           ],
           staticClass: "c-input c-input__textarea",
           attrs: {
-            name: "",
-            id: "",
             cols: "30",
             rows: "10",
             placeholder: "自己紹介（255文字以内）"
@@ -25812,6 +25854,7 @@ var routes = [{
   }
 }, {
   path: '/project/detail/:id',
+  name: 'projectDetail',
   component: _pages_ProjectDetail_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
   props: true,
   beforeEnter: function beforeEnter(to, from, next) {

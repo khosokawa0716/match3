@@ -1,0 +1,22 @@
+// ==================================
+// description
+// ==================================
+
+.c-dl {
+    margin-bottom: $space_l;
+    @include mmd() {
+        font-size: $font-size_s;
+    }
+    dt {
+        clear: left;
+        float: left;
+        width: 20%;
+        font-weight: bold;
+    }
+    dd {
+        margin: 0 0 0 20%;
+    }
+    dd:before {
+        content: '…　';
+    }
+}

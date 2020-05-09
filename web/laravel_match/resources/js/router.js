@@ -138,6 +138,7 @@ const routes = [
     },
     {
         path: '/project/detail/:id',
+        name: 'projectDetail',
         component: ProjectDetail,
         props: true,
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する

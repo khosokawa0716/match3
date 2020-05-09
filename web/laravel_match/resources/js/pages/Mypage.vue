@@ -2,19 +2,20 @@
     <section class="l-container">
         <h1 class="l-container__title">マイページ</h1>
         <a href="https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！〜&hashtags=ウェブカツ&url=https://match3.xyz/" class="twitter-icon" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
+        <div class="l-container__body">
         <h5>登録した案件一覧</h5>
-        <div>
+        <div class="c-panel">
             <Project
-                class=""
+                class="c-panel__item"
                 v-for="project in registered_projects"
                 :key="project.id"
                 :item="project"
             />
         </div>
         <h5>応募した案件一覧</h5>
-        <div>
+        <div class="c-panel">
             <Project
-                class=""
+                class="c-panel__item"
                 v-for="project in applied_projects"
                 :key="project.id"
                 :item="project"
@@ -36,6 +37,7 @@
                 {{ private_message.created_at }}
             </li>
         </ul>
+        </div>
     </section>
 </template>
 <script>
