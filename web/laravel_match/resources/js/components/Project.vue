@@ -21,6 +21,11 @@
                 </RouterLink>
                 </span>
             </li>
+            <li class="u-twitter-icon__project">
+                <a :href=twitter target="_blank">
+                    <i class="fab fa-twitter-square fa-2x"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </template>
@@ -65,6 +70,20 @@
                     return '依頼のときに一定の金額を支払う'
                 } else {
                     return 'サービス公開後の収益を分け合う'
+                }
+            },
+            twitter () {
+                const url = this.$router.resolve({
+                    name: 'projectsList'
+                }).href
+
+                if (this.item.type === 'one-off') {
+                    return 'https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！%0a' + this.item.title +
+                        '%0a（' + this.item.minimum_amount + '円 〜 ' + this.item.max_amount + '円 ）' +
+                        '%0a&hashtags=match%0a&url=' + location.origin + url
+                } else {
+                    return 'https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！%0a' + this.item.title +
+                        '%0a&hashtags=match%0a&url=' + location.origin + url
                 }
             }
         }

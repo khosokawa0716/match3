@@ -1,7 +1,8 @@
 <template>
-    <section class="l-container">
-        <h1 class="l-container__title">非公開メッセージ詳細画面</h1>
-        <dl>
+    <section class="p-projectDetail">
+        <h1 class="l-container__title">メッセージ詳細</h1>
+        <div class="p-projectDetail__body">
+        <dl class="c-dl">
             <dt>案件名</dt><dd>{{ project.title }}</dd>
             <dt>タイプ</dt><dd>{{ type }}</dd>
             <div v-if="isOneOff">
@@ -11,21 +12,30 @@
             <dt>詳細</dt><dd>{{ project.detail }}</dd>
         </dl>
         <ul>
-            <li v-for="private_message in private_messages" v-bind="private_message.id">
-                {{ private_message.author.name }}
+            <li v-for="private_message in private_messages" v-bind="private_message.id" class="p-message">
+                <div class="p-message__author">
+                    <img :src="private_message.author.icon_path" alt="アイコン画像"  height="30" class="imgIcon">
+                    {{ private_message.author.name }}
+                </div>
+                <div class="p-message__content">
                 {{ private_message.content }}
+                </div>
+                <div class="p-message__date">
                 {{ private_message.created_at }}
+                </div>
             </li>
         </ul>
-        <form class="c-form" @submit.prevent="privateMessageRegister">
-            <div v-if="private_message_errors" class="errors">
+        <form class="p-projectDetail__form" @submit.prevent="privateMessageRegister">
+            <div v-if="private_message_errors" class="c-error">
                 <ul v-if="private_message_errors.content">
                     <li v-for="msg in private_message_errors.content" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <input type="text" class="c-input c-input__textarea" v-model="private_message_content" placeholder="メッセージを入力">
+            <input type="text" class="c-input p-projectDetail__textarea" v-model="private_message_content" placeholder="メッセージを入力">
             <button type="submit" class="c-btn c-btn__corp c-btn__l">送信する</button>
         </form>
+
+        </div>
     </section>
 </template>
 <script>

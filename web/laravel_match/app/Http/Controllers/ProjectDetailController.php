@@ -29,7 +29,12 @@ class ProjectDetailController extends Controller
             // 検索結果がない場合には、エラーコード404を返却する
             if ($project === null) { return abort(404); }
 
-            $public_messages = PublicMessage::where('project_id', $id)->with(['author'])->orderBy(PublicMessage::CREATED_AT, 'desc')->get();
+            $public_messages = PublicMessage::where('project_id', $id)
+                ->with(['author'])
+                ->oldest()
+//                ->orderBy(PublicMessage::CREATED_AT, 'desc')
+                ->get();
+
             return [ 'project' => $project, 'public_messages' => $public_messages ];
         } else {
             // URLのID部分に数値でない入力でリクエストがあった場合にも、エラーコード404を返却する

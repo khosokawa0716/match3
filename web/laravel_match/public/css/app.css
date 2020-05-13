@@ -140,7 +140,7 @@ table {
 html,
 body {
   width: 100%;
-  color: #775;
+  color: #000033;
   font-size: 16px;
   line-height: 1.6;
   font-family: sans-serif;
@@ -157,13 +157,13 @@ a {
 }
 
 a {
-  color: #775;
+  color: #000033;
   text-decoration: none;
   transition: 0.3s;
 }
 
 a:hover {
-  color: #e3a8b1;
+  color: #ffffcc;
   transition: 0.3s;
 }
 
@@ -209,7 +209,7 @@ span {
 }
 
 .l-container__body {
-  background: #e3a8b1;
+  background: #ffffff;
   padding: 20px;
   overflow: hidden;
 }
@@ -253,7 +253,7 @@ span {
   margin-right: auto;
   padding: 20px;
   color: green;
-  background: #CCFFCC;
+  background: #ccffcc;
 }
 
 @media screen and (max-width: 1200px) {
@@ -263,17 +263,31 @@ span {
 }
 
 .l-footer {
-  background: #555;
-  color: #fff;
+  background: #000033;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 80px;
 }
 
+.l-footer__large {
+  display: block;
+}
+
 @media screen and (max-width: 768px) {
-  .l-footer {
+  .l-footer__large {
     display: none;
+  }
+}
+
+.l-footer__small {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .l-footer__small {
+    display: block;
   }
 }
 
@@ -283,7 +297,7 @@ span {
   margin-left: auto;
   margin-right: auto;
   height: 80px;
-  color: #775;
+  color: #000033;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -385,7 +399,7 @@ span {
   outline: none;
   height: 60px;
   font-size: 18px;
-  color: #775;
+  color: #000033;
   box-sizing: border-box;
 }
 
@@ -406,7 +420,7 @@ span {
 }
 
 .c-input:focus {
-  border: 3px solid #e3a8b1;
+  border: 3px solid #ffffcc;
 }
 
 .c-input__textarea {
@@ -470,7 +484,7 @@ span {
 .c-menu__item:not(:last-child) {
   padding-right: 10px;
   margin-right: 10px;
-  border-right: 1px solid #e8e8e8;
+  border-right: 1px solid #000033;
 }
 
 .c-menu__link {
@@ -511,8 +525,9 @@ span {
 .c-panel__item {
   width: 373px;
   box-sizing: border-box;
+  border: 1px solid #000033;
   border-radius: 5px;
-  background: #fff3cd;
+  background: #ffffcc;
   padding: 15px;
   margin-bottom: 15px;
 }
@@ -573,7 +588,7 @@ span {
 }
 
 .p-projectDetail__body {
-  background: #e3a8b1;
+  background: #ffffcc;
   padding: 20px;
   overflow: hidden;
 }
@@ -620,7 +635,7 @@ span {
   left: 0;
   width: 100%;
   height: 4px;
-  background-color: #775;
+  background-color: #000033;
   border-radius: 4px;
 }
 
@@ -648,59 +663,29 @@ span {
   transform: translateY(-15px) rotate(45deg);
 }
 
-.p-news {
-  width: 70%;
-  height: 180px;
-  overflow-y: scroll;
-  margin: 0 auto;
-  border-radius: 5px;
-  background: #f8f7fc;
-  padding: 15px 20px;
+.p-message {
+  margin-top: 10px;
 }
 
-.p-news__item {
-  margin-bottom: 5px;
-}
-
-.p-news__date {
-  color: #e37b89;
-  font-weight: bold;
-  -webkit-font-smoothing: initial;
-  margin-right: 10px;
-}
-
-.p-news__title {
-  font-size: 14px;
-}
-
-.p-contact {
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 0;
-  padding-bottom: 120px;
-}
-
-@media screen and (max-width: 414px) {
-  .p-contact {
-    width: 100%;
+@media screen and (max-width: 768px) {
+  .p-message {
+    font-size: 12px;
   }
 }
 
-.u-bgColor__project {
-  background: #f8f7fc;
+.p-message__author {
+  font-size: 14px;
 }
 
-.u-box-shadow {
-  box-shadow: 0px 0px 8px 2px #ddd inset;
+.p-message__content {
+  padding: 15px;
+  border-radius: 5px;
+  background: #ccffcc;
 }
 
-.u-ft-l {
-  font-size: 24px;
-}
-
-.mb-xxl {
-  margin-bottom: 30px;
+.p-message__date {
+  text-align: right;
+  font-size: 14px;
 }
 
 .u-mr-0 {
@@ -721,5 +706,17 @@ span {
   width: auto;
   border-radius: 50px;
   vertical-align: auto;
+}
+
+.u-twitter-icon {
+  background: #000033;
+  color: #ffffff;
+}
+
+.u-twitter-icon__project {
+  background: #ffffcc;
+  color: #000033;
+  width: 30px;
+  margin-left: auto;
 }
 

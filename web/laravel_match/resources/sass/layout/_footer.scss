@@ -2,13 +2,22 @@
 // footer
 // ==================================
 .l-footer {
-    background: #555;
-    color: #fff;
+    background: $color_footer_background;
+    color: $font-color_footer;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 80px;
-    @include mmd() {
+    &__large {
+        display: block;
+        @include  mmd() {
+            display: none;
+        }
+    }
+    &__small {
         display: none;
+        @include  mmd() {
+            display: block;
+        }
     }
 }

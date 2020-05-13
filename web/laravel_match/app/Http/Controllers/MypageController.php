@@ -41,12 +41,14 @@ class MypageController extends Controller
 
         // 送受信したパブリックメッセージ
         $exchanged_public_messages = PublicMessage::with(['author'])
+            ->with(['project'])
             ->whereIn('project_id', $registered_project_ids) // 受信したメッセージ
             ->orWhere('user_id', $id) // または送信したメッセージ
             ->orderBy(PublicMessage::CREATED_AT, 'desc')->paginate();
 
         // 送受信したプライベートメッセージ
         $exchanged_private_messages = PrivateMessage::with(['author'])
+            ->with(['project'])
             ->where('received_user_id', $id) // 受信したメッセージ
             ->orWhere('user_id', $id) // または送信したメッセージ
             ->orderBy(PrivateMessage::CREATED_AT, 'desc')->paginate();

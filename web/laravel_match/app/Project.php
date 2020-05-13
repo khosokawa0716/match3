@@ -8,11 +8,6 @@ class Project extends Model
 {
     protected $guarded = ['id', 'user_id'];
 
-    /** JSONに含める属性 */
-    protected $visible = [
-        'id', 'title', 'owner', 'applicant', 'type', 'minimum_amount', 'max_amount', 'detail', 'status', 'created_at'
-    ];
-
     public function owner()
     {
         return $this->belongsTo('App\User', 'user_id', 'id', 'users');
@@ -32,4 +27,9 @@ class Project extends Model
     {
         return $this->hasMany('App\PrivateMessage')->orderBy('id', 'desc');
     }
+
+    /** JSONに含める属性 */
+    protected $visible = [
+        'id', 'title', 'owner', 'applicant', 'type', 'minimum_amount', 'max_amount', 'detail', 'status', 'created_at'
+    ];
 }

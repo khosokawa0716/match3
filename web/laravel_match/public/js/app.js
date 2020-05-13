@@ -1973,6 +1973,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Footer.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Footer.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    twitter: function twitter() {
+      return 'https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！%0a &hashtags=match%0a&url=' + location.origin;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Message.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Message.vue?vue&type=script&lang=js& ***!
@@ -2017,6 +2056,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -2141,6 +2184,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -2181,6 +2229,17 @@ __webpack_require__.r(__webpack_exports__);
         return '依頼のときに一定の金額を支払う';
       } else {
         return 'サービス公開後の収益を分け合う';
+      }
+    },
+    twitter: function twitter() {
+      var url = this.$router.resolve({
+        name: 'projectsList'
+      }).href;
+
+      if (this.item.type === 'one-off') {
+        return 'https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！%0a' + this.item.title + '%0a（' + this.item.minimum_amount + '円 〜 ' + this.item.max_amount + '円 ）' + '%0a&hashtags=match%0a&url=' + location.origin + url;
+      } else {
+        return 'https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！%0a' + this.item.title + '%0a&hashtags=match%0a&url=' + location.origin + url;
       }
     }
   }
@@ -2582,6 +2641,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2915,6 +2999,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
+/* harmony import */ var _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Project.vue */ "./resources/js/components/Project.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2952,8 +3037,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Project: _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       private_messages: [],
@@ -2975,10 +3069,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.dir(response);
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
@@ -2986,11 +3079,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 _this.private_messages = response.data.unread_private_messages;
                 _this.projects = response.data.exchaged_private_messages_projects;
 
-              case 9:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -3045,6 +3138,16 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3250,6 +3353,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4017,6 +4128,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
+/* harmony import */ var _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Project.vue */ "./resources/js/components/Project.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4046,8 +4158,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Project: _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       public_message: '',
@@ -4069,10 +4198,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.dir(response);
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
@@ -4080,11 +4208,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 _this.public_message = response.data.latest_public_message;
                 _this.projects = response.data.exchanged_messages_projects;
 
-              case 9:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -5547,20 +5675,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "l-footer" }, [
-      _c("p", [
-        _vm._v("Copyright © One-Stop Koshigoe LLC. All Rights Reserved")
-      ])
+  return _c("footer", { staticClass: "l-footer" }, [
+    _c("p", { staticClass: "l-footer__large" }, [
+      _vm._v(
+        "\n        Copyright © One-Stop Koshigoe LLC. All Rights Reserved\n        "
+      ),
+      _c(
+        "a",
+        {
+          staticClass: "u-twitter-icon",
+          attrs: { href: _vm.twitter, target: "_blank" }
+        },
+        [_c("i", { staticClass: "fab fa-twitter-square fa-2x" })]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", { staticClass: "l-footer__small" }, [
+      _vm._v("\n        Copyright © One-Stop Koshigoe\n        "),
+      _c(
+        "a",
+        {
+          staticClass: "u-twitter-icon",
+          attrs: { href: _vm.twitter, target: "_blank" }
+        },
+        [_c("i", { staticClass: "fab fa-twitter-square fa-2x" })]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -5704,7 +5847,7 @@ var render = function() {
                       staticClass: "c-menu__link",
                       attrs: { to: "/public_messages/list" }
                     },
-                    [_vm._v("掲示板")]
+                    [_vm._v("コメント")]
                   )
                 ],
                 1
@@ -5924,6 +6067,12 @@ var render = function() {
           ],
           1
         )
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "u-twitter-icon__project" }, [
+        _c("a", { attrs: { href: _vm.twitter, target: "_blank" } }, [
+          _c("i", { staticClass: "fab fa-twitter-square fa-2x" })
+        ])
       ])
     ])
   ])
@@ -6250,10 +6399,8 @@ var render = function() {
   return _c("section", { staticClass: "l-container" }, [
     _c("h1", { staticClass: "l-container__title" }, [_vm._v("マイページ")]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
     _c("div", { staticClass: "l-container__body" }, [
-      _c("h5", [_vm._v("登録した案件一覧")]),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "div",
@@ -6266,9 +6413,11 @@ var render = function() {
           })
         }),
         1
-      ),
-      _vm._v(" "),
-      _c("h5", [_vm._v("応募した案件一覧")]),
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "l-container__body" }, [
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "div",
@@ -6281,44 +6430,122 @@ var render = function() {
           })
         }),
         1
-      ),
-      _vm._v(" "),
-      _c("h5", [_vm._v("やりとりした公開メッセージ")]),
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "l-container__body" }, [
+      _vm._m(2),
       _vm._v(" "),
       _c(
         "ul",
         _vm._l(_vm.exchanged_public_messages, function(public_message) {
-          return _c("li", _vm._b({}, "li", public_message.id, false), [
-            _vm._v(
-              "\n            " +
-                _vm._s(public_message.author.name) +
-                "\n            " +
-                _vm._s(public_message.content) +
-                "\n            " +
-                _vm._s(public_message.created_at) +
-                "\n        "
-            )
-          ])
+          return _c(
+            "li",
+            _vm._b(
+              { staticClass: "p-message" },
+              "li",
+              public_message.id,
+              false
+            ),
+            [
+              _c("div", [
+                _vm._v(
+                  "\n                    案件名: " +
+                    _vm._s(public_message.project.title) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "RouterLink",
+                {
+                  attrs: {
+                    to: {
+                      name: "projectDetail",
+                      params: { id: public_message.project.id }
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "p-message__content" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(public_message.content) +
+                        "\n                    "
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-message__date" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(public_message.created_at) +
+                    "\n                "
+                )
+              ])
+            ],
+            1
+          )
         }),
         0
-      ),
-      _vm._v(" "),
-      _c("h5", [_vm._v("やりとりした非公開メッセージ")]),
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "l-container__body" }, [
+      _vm._m(3),
       _vm._v(" "),
       _c(
         "ul",
         _vm._l(_vm.exchanged_private_messages, function(private_message) {
-          return _c("li", _vm._b({}, "li", private_message.id, false), [
-            _vm._v(
-              "\n            " +
-                _vm._s(private_message.author.name) +
-                "\n            " +
-                _vm._s(private_message.content) +
-                "\n            " +
-                _vm._s(private_message.created_at) +
-                "\n        "
-            )
-          ])
+          return _c(
+            "li",
+            _vm._b(
+              { staticClass: "p-message" },
+              "li",
+              private_message.id,
+              false
+            ),
+            [
+              _c("div", [
+                _vm._v(
+                  "\n                    案件名: " +
+                    _vm._s(private_message.project.title) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "RouterLink",
+                {
+                  attrs: {
+                    to: {
+                      name: "privateMessagesDetail",
+                      params: { id: private_message.project_id }
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "p-message__content" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(private_message.content) +
+                        "\n                    "
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-message__date" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(private_message.created_at) +
+                    "\n                "
+                )
+              ])
+            ],
+            1
+          )
         }),
         0
       )
@@ -6330,18 +6557,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "twitter-icon",
-        attrs: {
-          href:
-            "https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！〜&hashtags=ウェブカツ&url=https://match3.xyz/",
-          target: "_blank"
-        }
-      },
-      [_c("i", { staticClass: "fab fa-twitter-square fa-2x" })]
-    )
+    return _c("h5", [_c("span", [_vm._v("登録した案件一覧")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("応募した案件一覧")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("やりとりしたコメント")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("やりとりしたメッセージ")])])
   }
 ]
 render._withStripped = true
@@ -6583,33 +6817,29 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "l-container" }, [
-    _c("h1", { staticClass: "l-container__title" }, [
-      _vm._v("非公開メッセージ一覧")
-    ]),
+    _c("h1", { staticClass: "l-container__title" }, [_vm._v("メッセージ一覧")]),
     _vm._v(" "),
-    _c("div", [
-      _c("h5", [_vm._v("未読の非公開メッセージ")]),
+    _c("div", { staticClass: "l-container__body" }, [
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "ul",
         _vm._l(_vm.private_messages, function(private_message) {
           return _c(
             "li",
-            { attrs: { id: _vm.private_messages } },
+            { staticClass: "p-message", attrs: { id: _vm.private_messages } },
             [
-              _vm._v(
-                "\n                " +
-                  _vm._s(private_message.content) +
-                  "\n                " +
-                  _vm._s(private_message.created_at) +
-                  "\n                " +
-                  _vm._s(private_message.project_id) +
-                  "\n                "
-              ),
+              _c("div", [
+                _vm._v(
+                  "\n                    案件名: " +
+                    _vm._s(private_message.project.title) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
               _c(
                 "RouterLink",
                 {
-                  staticClass: "button button--link",
                   attrs: {
                     to: {
                       name: "privateMessagesDetail",
@@ -6618,11 +6848,23 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v(
-                    "\n                    非公開メッセージ詳細を見る\n                "
-                  )
+                  _c("div", { staticClass: "p-message__content" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(private_message.content) +
+                        "\n                "
+                    )
+                  ])
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-message__date" }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(private_message.created_at) +
+                    "\n                "
+                )
+              ])
             ],
             1
           )
@@ -6631,52 +6873,38 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", [
-      _c("h5", [_vm._v("非公開メッセージを送った案件一覧")]),
+    _c("div", { staticClass: "l-container__body" }, [
+      _vm._m(1),
       _vm._v(" "),
       _c(
-        "ul",
+        "div",
+        { staticClass: "c-panel" },
         _vm._l(_vm.projects, function(project) {
-          return _c(
-            "li",
-            { attrs: { id: _vm.projects } },
-            [
-              _vm._v(
-                "\n                " +
-                  _vm._s(project.title) +
-                  "\n                " +
-                  _vm._s(project.detail) +
-                  "\n                " +
-                  _vm._s(project.id) +
-                  "\n                "
-              ),
-              _c(
-                "RouterLink",
-                {
-                  staticClass: "button button--link",
-                  attrs: {
-                    to: {
-                      name: "privateMessagesDetail",
-                      params: { id: project.id }
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    非公開メッセージ詳細を見る\n                "
-                  )
-                ]
-              )
-            ],
-            1
-          )
+          return _c("Project", {
+            key: project.id,
+            staticClass: "c-panel__item",
+            attrs: { item: project }
+          })
         }),
-        0
+        1
       )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("未読のメッセージ")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("メッセージをやりとり案件一覧")])])
+  }
+]
 render._withStripped = true
 
 
@@ -6698,108 +6926,139 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "l-container" }, [
-    _c("h1", { staticClass: "l-container__title" }, [
-      _vm._v("非公開メッセージ詳細画面")
-    ]),
+  return _c("section", { staticClass: "p-projectDetail" }, [
+    _c("h1", { staticClass: "l-container__title" }, [_vm._v("メッセージ詳細")]),
     _vm._v(" "),
-    _c("dl", [
-      _c("dt", [_vm._v("案件名")]),
-      _c("dd", [_vm._v(_vm._s(_vm.project.title))]),
-      _vm._v(" "),
-      _c("dt", [_vm._v("タイプ")]),
-      _c("dd", [_vm._v(_vm._s(_vm.type))]),
-      _vm._v(" "),
-      _vm.isOneOff
-        ? _c("div", [
-            _c("dt", [_vm._v("下限金額")]),
-            _c("dd", [_vm._v(_vm._s(_vm.project.minimum_amount))]),
-            _vm._v(" "),
-            _c("dt", [_vm._v("上限金額")]),
-            _c("dd", [_vm._v(_vm._s(_vm.project.max_amount))])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("dt", [_vm._v("詳細")]),
-      _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
-    ]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.private_messages, function(private_message) {
-        return _c("li", _vm._b({}, "li", private_message.id, false), [
-          _vm._v(
-            "\n            " +
-              _vm._s(private_message.author.name) +
-              "\n            " +
-              _vm._s(private_message.content) +
-              "\n            " +
-              _vm._s(private_message.created_at) +
-              "\n        "
-          )
-        ])
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "c-form",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.privateMessageRegister($event)
-          }
-        }
-      },
-      [
-        _vm.private_message_errors
-          ? _c("div", { staticClass: "errors" }, [
-              _vm.private_message_errors.content
-                ? _c(
-                    "ul",
-                    _vm._l(_vm.private_message_errors.content, function(msg) {
-                      return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
-                    }),
-                    0
-                  )
-                : _vm._e()
+    _c("div", { staticClass: "p-projectDetail__body" }, [
+      _c("dl", { staticClass: "c-dl" }, [
+        _c("dt", [_vm._v("案件名")]),
+        _c("dd", [_vm._v(_vm._s(_vm.project.title))]),
+        _vm._v(" "),
+        _c("dt", [_vm._v("タイプ")]),
+        _c("dd", [_vm._v(_vm._s(_vm.type))]),
+        _vm._v(" "),
+        _vm.isOneOff
+          ? _c("div", [
+              _c("dt", [_vm._v("下限金額")]),
+              _c("dd", [_vm._v(_vm._s(_vm.project.minimum_amount))]),
+              _vm._v(" "),
+              _c("dt", [_vm._v("上限金額")]),
+              _c("dd", [_vm._v(_vm._s(_vm.project.max_amount))])
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.private_message_content,
-              expression: "private_message_content"
-            }
-          ],
-          staticClass: "c-input c-input__textarea",
-          attrs: { type: "text", placeholder: "メッセージを入力" },
-          domProps: { value: _vm.private_message_content },
+        _c("dt", [_vm._v("詳細")]),
+        _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
+      ]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.private_messages, function(private_message) {
+          return _c(
+            "li",
+            _vm._b(
+              { staticClass: "p-message" },
+              "li",
+              private_message.id,
+              false
+            ),
+            [
+              _c("div", { staticClass: "p-message__author" }, [
+                _c("img", {
+                  staticClass: "imgIcon",
+                  attrs: {
+                    src: private_message.author.icon_path,
+                    alt: "アイコン画像",
+                    height: "30"
+                  }
+                }),
+                _vm._v(
+                  "\n                " +
+                    _vm._s(private_message.author.name) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-message__content" }, [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(private_message.content) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-message__date" }, [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(private_message.created_at) +
+                    "\n            "
+                )
+              ])
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "p-projectDetail__form",
           on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.private_message_content = $event.target.value
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.privateMessageRegister($event)
             }
           }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "c-btn c-btn__corp c-btn__l",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("送信する")]
-        )
-      ]
-    )
+        },
+        [
+          _vm.private_message_errors
+            ? _c("div", { staticClass: "c-error" }, [
+                _vm.private_message_errors.content
+                  ? _c(
+                      "ul",
+                      _vm._l(_vm.private_message_errors.content, function(msg) {
+                        return _c("li", { key: msg }, [_vm._v(_vm._s(msg))])
+                      }),
+                      0
+                    )
+                  : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.private_message_content,
+                expression: "private_message_content"
+              }
+            ],
+            staticClass: "c-input p-projectDetail__textarea",
+            attrs: { type: "text", placeholder: "メッセージを入力" },
+            domProps: { value: _vm.private_message_content },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.private_message_content = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "c-btn c-btn__corp c-btn__l",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("送信する")]
+          )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -6853,6 +7112,57 @@ var render = function() {
         _c("dt", [_vm._v("詳細")]),
         _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
       ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.public_messages, function(public_message) {
+          return _c(
+            "li",
+            _vm._b(
+              { staticClass: "p-message" },
+              "li",
+              public_message.id,
+              false
+            ),
+            [
+              _c("div", { staticClass: "p-message__author" }, [
+                _c("img", {
+                  staticClass: "imgIcon",
+                  attrs: {
+                    src: public_message.author.icon_path,
+                    alt: "アイコン画像",
+                    height: "30"
+                  }
+                }),
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(public_message.author.name) +
+                    "\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-message__content" }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(public_message.content) +
+                    "\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-message__date" }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(public_message.created_at) +
+                    "\n                    "
+                )
+              ])
+            ]
+          )
+        }),
+        0
+      ),
       _vm._v(" "),
       _vm.isRecruiting && _vm.notOwner
         ? _c(
@@ -6936,31 +7246,18 @@ var render = function() {
             [_vm._v("送信する")]
           )
         ]
-      ),
-      _vm._v(" "),
-      _c("h5", [_vm._v("この案件に関するやりとり")]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        _vm._l(_vm.public_messages, function(public_message) {
-          return _c("li", _vm._b({}, "li", public_message.id, false), [
-            _vm._v(
-              "\n                " +
-                _vm._s(public_message.author.name) +
-                "\n                " +
-                _vm._s(public_message.content) +
-                "\n                " +
-                _vm._s(public_message.created_at) +
-                "\n            "
-            )
-          ])
-        }),
-        0
       )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("コメント")])])
+  }
+]
 render._withStripped = true
 
 
@@ -7605,48 +7902,90 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "l-container" }, [
-    _c("h1", { staticClass: "l-container__title" }, [
-      _vm._v("公開メッセージ一覧")
-    ]),
+    _c("h1", { staticClass: "l-container__title" }, [_vm._v("コメント一覧")]),
     _vm._v(" "),
-    _c("div", [
-      _c("h5", [_vm._v("最新の公開メッセージ1件")]),
+    _c("div", { staticClass: "l-container__body" }, [
+      _vm._m(0),
       _vm._v(" "),
       _c("ul", [
-        _c("li", { attrs: { id: _vm.public_message } }, [
-          _vm._v(
-            "\n                " +
-              _vm._s(_vm.public_message.content) +
-              "\n                " +
-              _vm._s(_vm.public_message.created_at) +
-              "\n            "
-          )
-        ])
+        _c(
+          "li",
+          { staticClass: "p-message", attrs: { id: _vm.public_message } },
+          [
+            _c("div", [
+              _vm._v(
+                "\n                    案件名: " +
+                  _vm._s(_vm.public_message.project.title) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "RouterLink",
+              {
+                attrs: {
+                  to: {
+                    name: "projectDetail",
+                    params: { id: this.public_message.project.id }
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "p-message__content" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.public_message.content) +
+                      "\n                "
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "p-message__date" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.public_message.created_at) +
+                  "\n                "
+              )
+            ])
+          ],
+          1
+        )
       ])
     ]),
     _vm._v(" "),
-    _c("div", [
-      _c("h5", [_vm._v("公開メッセージを送った案件一覧")]),
+    _c("div", { staticClass: "l-container__body" }, [
+      _vm._m(1),
       _vm._v(" "),
       _c(
-        "ul",
+        "div",
+        { staticClass: "c-panel" },
         _vm._l(_vm.projects, function(project) {
-          return _c("li", { attrs: { id: _vm.projects } }, [
-            _vm._v(
-              "\n                " +
-                _vm._s(project.title) +
-                "\n                " +
-                _vm._s(project.detail) +
-                "\n            "
-            )
-          ])
+          return _c("Project", {
+            key: project.id,
+            staticClass: "c-panel__item",
+            attrs: { item: project }
+          })
         }),
-        0
+        1
       )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("最新のコメント")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("コメントを送った案件一覧")])])
+  }
+]
 render._withStripped = true
 
 
@@ -24332,15 +24671,17 @@ window.axios.interceptors.response.use(function (response) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue?vue&type=template&id=61a7c374& */ "./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.vue?vue&type=script&lang=js& */ "./resources/js/components/Footer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -24354,6 +24695,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Footer.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Footer.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Footer.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Footer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Footer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -25760,6 +26115,7 @@ var routes = [{
   }
 }, {
   path: '/projects/list',
+  name: 'projectsList',
   component: _pages_Projects_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/register',

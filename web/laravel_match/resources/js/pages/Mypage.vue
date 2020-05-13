@@ -1,42 +1,67 @@
 <template>
     <section class="l-container">
         <h1 class="l-container__title">マイページ</h1>
-        <a href="https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！〜&hashtags=ウェブカツ&url=https://match3.xyz/" class="twitter-icon" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
         <div class="l-container__body">
-        <h5>登録した案件一覧</h5>
-        <div class="c-panel">
-            <Project
-                class="c-panel__item"
-                v-for="project in registered_projects"
-                :key="project.id"
-                :item="project"
-            />
+            <h5><span>登録した案件一覧</span></h5>
+            <div class="c-panel">
+                <Project
+                    class="c-panel__item"
+                    v-for="project in registered_projects"
+                    :key="project.id"
+                    :item="project"
+                />
+            </div>
         </div>
-        <h5>応募した案件一覧</h5>
-        <div class="c-panel">
-            <Project
-                class="c-panel__item"
-                v-for="project in applied_projects"
-                :key="project.id"
-                :item="project"
-            />
+        <div class="l-container__body">
+            <h5><span>応募した案件一覧</span></h5>
+            <div class="c-panel">
+                <Project
+                    class="c-panel__item"
+                    v-for="project in applied_projects"
+                    :key="project.id"
+                    :item="project"
+                />
+            </div>
         </div>
-        <h5>やりとりした公開メッセージ</h5>
-        <ul>
-            <li v-for="public_message in exchanged_public_messages" v-bind="public_message.id">
-                {{ public_message.author.name }}
-                {{ public_message.content }}
-                {{ public_message.created_at }}
-            </li>
-        </ul>
-        <h5>やりとりした非公開メッセージ</h5>
-        <ul>
-            <li v-for="private_message in exchanged_private_messages" v-bind="private_message.id">
-                {{ private_message.author.name }}
-                {{ private_message.content }}
-                {{ private_message.created_at }}
-            </li>
-        </ul>
+        <div class="l-container__body">
+            <h5><span>やりとりしたコメント</span></h5>
+            <ul>
+                <li v-for="public_message in exchanged_public_messages" v-bind="public_message.id" class="p-message">
+                    <div>
+                        案件名: {{ public_message.project.title }}
+                    </div>
+                    <RouterLink
+                        :to="{name: 'projectDetail', params: { id: public_message.project.id }}"
+                    >
+                        <div class="p-message__content">
+                            {{ public_message.content }}
+                        </div>
+                    </RouterLink>
+                    <div class="p-message__date">
+                        {{ public_message.created_at }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="l-container__body">
+            <h5><span>やりとりしたメッセージ</span></h5>
+            <ul>
+                <li v-for="private_message in exchanged_private_messages" v-bind="private_message.id" class="p-message">
+                    <div>
+                        案件名: {{ private_message.project.title }}
+                    </div>
+                    <RouterLink
+                        :to="{name: 'privateMessagesDetail', params: { id: private_message.project_id }}"
+                    >
+                        <div class="p-message__content">
+                            {{ private_message.content }}
+                        </div>
+                    </RouterLink>
+                    <div class="p-message__date">
+                        {{ private_message.created_at }}
+                    </div>
+                </li>
+            </ul>
         </div>
     </section>
 </template>

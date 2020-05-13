@@ -11,10 +11,17 @@
         </dl>
             <h5><span>コメント</span></h5>
             <ul>
-                <li v-for="public_message in public_messages" v-bind="public_message.id">
-                    {{ public_message.author.name }}
-                    {{ public_message.content }}
-                    {{ public_message.created_at }}
+                <li v-for="public_message in public_messages" v-bind="public_message.id" class="p-message">
+                    <div class="p-message__author">
+                        <img :src="public_message.author.icon_path" alt="アイコン画像"  height="30" class="imgIcon">
+                        {{ public_message.author.name }}
+                    </div>
+                    <div class="p-message__content">
+                        {{ public_message.content }}
+                    </div>
+                    <div class="p-message__date">
+                        {{ public_message.created_at }}
+                    </div>
                 </li>
             </ul>
         <form class="c-form" @submit.prevent="apply" v-if="isRecruiting && notOwner">

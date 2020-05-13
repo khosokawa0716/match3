@@ -21,7 +21,8 @@ class PrivateMessagesController extends Controller
 //        Log::info('PrivateMessagesController.show起動');
         $user_id = Auth::id();
 
-        $unread_private_messages = PrivateMessage::latest()
+        $unread_private_messages = PrivateMessage::with(['project'])
+            ->latest()
             ->where('received_user_id', $user_id)
             ->where('unread', true)
             ->get();
@@ -34,7 +35,8 @@ class PrivateMessagesController extends Controller
 //        Log::debug(print_r($exchaged_private_messages_project_ids, true));
 
         // やりとりしたプロジェクトを取得する
-        $exchaged_private_messages_projects = Project::latest()
+        $exchaged_private_messages_projects = Project::with(['owner'])
+            ->latest()
             ->whereIn('id', $exchaged_private_messages_project_ids)
             ->get();
 //        Log::debug(print_r($exchaged_private_messages_projects, true));

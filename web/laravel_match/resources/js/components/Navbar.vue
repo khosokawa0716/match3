@@ -1,6 +1,8 @@
 <template>
     <header class="l-header">
-        <h1><RouterLink class="l-header__title" to="/">match</RouterLink></h1>
+        <h1>
+            <RouterLink class="l-header__title" to="/">match</RouterLink>
+        </h1>
         <div class="p-menuTrigger" @click="toggleActiveStatus" :class="{'active': activeStatus}">
             <span class="p-menuTrigger__barger"></span>
             <span class="p-menuTrigger__barger"></span>
@@ -20,7 +22,9 @@
                 </RouterLink>
             </li>
             <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" :to="{name: 'edit', params: { id: userid }}">本人情報</RouterLink></li>
-            <li class="c-menu__item"><button class="c-btn c-btn__corp c-btn__l" @click="logout">ログアウト</button></li>
+            <li class="c-menu__item">
+                <button class="c-btn c-btn__corp c-btn__l" @click="logout">ログアウト</button>
+            </li>
         </ul>
         </div>
         <div v-else>

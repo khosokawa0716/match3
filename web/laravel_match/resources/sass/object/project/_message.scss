@@ -1,0 +1,24 @@
+// ==================================
+// project/message
+// ==================================
+
+.p-message {
+    margin-top: $space_m;
+    @include mmd() {
+        font-size: $font-size_s;
+    }
+        &__author {
+            font-size: $font-size_m;
+        }
+
+        &__content {
+            padding: $space_l;
+            border-radius: $border-radius;
+            background: $color_message;
+        }
+
+        &__date {
+            text-align: right;
+            font-size: $font-size_m;
+        }
+}

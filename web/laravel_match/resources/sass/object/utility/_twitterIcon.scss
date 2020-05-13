@@ -1,0 +1,10 @@
+.u-twitter-icon {
+    background: $color_footer_background;
+    color: $font-color_footer;
+    &__project {
+        background: $color_project;
+        color: $font-color_default;
+        width: 30px;
+        margin-left: auto;
+    }
+}

@@ -12,8 +12,9 @@
     &__item {
         width: 373px;
         box-sizing: border-box;
+        border: $border_default;
         border-radius: $border_radius;
-        background: #fff3cd;
+        background: $color_project;
         padding: $space_l;
         margin-bottom: $space_l;
     }

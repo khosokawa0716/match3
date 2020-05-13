@@ -43,6 +43,7 @@ const routes = [
     },
     {
         path: '/projects/list',
+        name: 'projectsList',
         component: Projects
     },
     {
