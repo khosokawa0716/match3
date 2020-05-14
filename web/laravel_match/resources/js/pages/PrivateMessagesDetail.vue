@@ -31,7 +31,7 @@
                     <li v-for="msg in private_message_errors.content" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <input type="text" class="c-input p-projectDetail__textarea" v-model="private_message_content" placeholder="メッセージを入力">
+            <textarea cols="30" rows="10" type="text" class="c-input p-projectDetail__textarea" v-model="private_message_content" placeholder="メッセージを入力"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">送信する</button>
         </form>
 

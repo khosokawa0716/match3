@@ -2194,8 +2194,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -2673,6 +2671,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2732,6 +2740,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
+    }
+  },
+  computed: {
+    // 未読のメッセージがあるかどうか
+    isUnreadMessage: function isUnreadMessage() {
+      return this.unread_private_messages > 1;
     }
   },
   created: function created() {
@@ -3049,6 +3063,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3057,6 +3094,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      unread_private_messages: [],
       private_messages: [],
       projects: []
     };
@@ -3087,16 +3125,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
-                _this.private_messages = response.data.unread_private_messages;
-                _this.projects = response.data.exchaged_private_messages_projects;
+                _this.unread_private_messages = response.data.unread_private_messages;
+                _this.private_messages = response.data.exchanged_private_messages.data;
+                _this.projects = response.data.exchanged_private_messages_projects;
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    }
+  },
+  computed: {
+    // 未読のメッセージがあるかどうか
+    isUnreadMessage: function isUnreadMessage() {
+      return this.unread_private_messages > 1;
     }
   },
   watch: {
@@ -5732,21 +5777,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.message,
-          expression: "message"
-        }
-      ],
-      staticClass: "l-message"
-    },
-    [_c("span", [_vm._v("\n    " + _vm._s(_vm.message) + "\n    ")])]
-  )
+  return _c("section", { staticClass: "l-message" }, [
+    _vm._v(
+      "\n            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト\n        " +
+        _vm._s(_vm.message) +
+        "\n    "
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -5770,237 +5807,230 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "header",
-    { staticClass: "l-header", class: { "float-active": _vm.position > 0 } },
-    [
-      _c(
-        "h1",
-        [
-          _c(
-            "RouterLink",
-            { staticClass: "l-header__title", attrs: { to: "/" } },
-            [_vm._v("match")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "p-menuTrigger",
-          class: { active: _vm.activeStatus },
-          on: { click: _vm.toggleActiveStatus }
-        },
-        [
-          _c("span", { staticClass: "p-menuTrigger__barger" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "p-menuTrigger__barger" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "p-menuTrigger__barger" })
-        ]
-      ),
-      _vm._v(" "),
-      _c("nav", { staticClass: "l-nav", class: { active: _vm.activeStatus } }, [
-        _vm.isLogin
-          ? _c("div", [
-              _c("ul", { staticClass: "c-menu" }, [
-                _c(
-                  "li",
-                  {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
-                  },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-menu__link",
-                        attrs: { to: "/projects/list" }
-                      },
-                      [_vm._v("案件を探す")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
-                  },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-menu__link",
-                        attrs: { to: "/projects/register" }
-                      },
-                      [_vm._v("案件を登録する")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
-                  },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-menu__link",
-                        attrs: { to: "/public_messages/list" }
-                      },
-                      [_vm._v("コメント")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
-                  },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-menu__link",
-                        attrs: { to: "/private_messages/list" }
-                      },
-                      [_vm._v("メッセージ")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
-                  },
-                  [
-                    _c(
-                      "RouterLink",
-                      { staticClass: "c-menu__link", attrs: { to: "/mypage" } },
-                      [
-                        _c("img", {
-                          staticClass: "imgIcon",
-                          attrs: {
-                            src: _vm.icon_path,
-                            alt: "アイコン画像",
-                            height: "30"
-                          }
-                        }),
-                        _vm._v("\n                マイページ\n            ")
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
-                  },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-menu__link",
-                        attrs: {
-                          to: { name: "edit", params: { id: _vm.userid } }
-                        }
-                      },
-                      [_vm._v("本人情報")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("li", { staticClass: "c-menu__item" }, [
+  return _c("header", { staticClass: "l-header" }, [
+    _c(
+      "h1",
+      [
+        _c(
+          "RouterLink",
+          { staticClass: "l-header__title", attrs: { to: "/" } },
+          [_vm._v("match")]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "p-menuTrigger",
+        class: { active: _vm.activeStatus },
+        on: { click: _vm.toggleActiveStatus }
+      },
+      [
+        _c("span", { staticClass: "p-menuTrigger__barger" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "p-menuTrigger__barger" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "p-menuTrigger__barger" })
+      ]
+    ),
+    _vm._v(" "),
+    _c("nav", { staticClass: "l-nav", class: { active: _vm.activeStatus } }, [
+      _vm.isLogin
+        ? _c("div", [
+            _c("ul", { staticClass: "c-menu" }, [
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
                   _c(
-                    "button",
+                    "RouterLink",
                     {
-                      staticClass: "c-btn c-btn__corp c-btn__logout",
-                      on: { click: _vm.logout }
+                      staticClass: "c-menu__link",
+                      attrs: { to: "/projects/list" }
                     },
-                    [_vm._v("ログアウト")]
+                    [_vm._v("案件を探す")]
                   )
-                ])
-              ])
-            ])
-          : _c("div", [
-              _c("ul", { staticClass: "c-menu" }, [
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
+                  _c(
+                    "RouterLink",
+                    {
+                      staticClass: "c-menu__link",
+                      attrs: { to: "/projects/register" }
+                    },
+                    [_vm._v("案件を登録する")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
+                  _c(
+                    "RouterLink",
+                    {
+                      staticClass: "c-menu__link",
+                      attrs: { to: "/public_messages/list" }
+                    },
+                    [_vm._v("コメント")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
+                  _c(
+                    "RouterLink",
+                    {
+                      staticClass: "c-menu__link",
+                      attrs: { to: "/private_messages/list" }
+                    },
+                    [_vm._v("メッセージ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
+                  _c(
+                    "RouterLink",
+                    { staticClass: "c-menu__link", attrs: { to: "/mypage" } },
+                    [
+                      _c("img", {
+                        staticClass: "imgIcon",
+                        attrs: {
+                          src: _vm.icon_path,
+                          alt: "アイコン画像",
+                          height: "30"
+                        }
+                      }),
+                      _vm._v("\n                マイページ\n            ")
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
+                  _c(
+                    "RouterLink",
+                    {
+                      staticClass: "c-menu__link",
+                      attrs: {
+                        to: { name: "edit", params: { id: _vm.userid } }
+                      }
+                    },
+                    [_vm._v("本人情報")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "c-menu__item" }, [
                 _c(
-                  "li",
+                  "button",
                   {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
+                    staticClass: "c-btn c-btn__corp c-btn__logout",
+                    on: { click: _vm.logout }
                   },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-menu__link",
-                        attrs: { to: "/projects/list" }
-                      },
-                      [_vm._v("案件を見る")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
-                  },
-                  [
-                    _c(
-                      "RouterLink",
-                      { staticClass: "c-menu__link", attrs: { to: "/login" } },
-                      [_vm._v("ログイン")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "c-menu__item",
-                    on: { click: _vm.toggleActiveStatus }
-                  },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "c-menu__link",
-                        attrs: { to: "/register" }
-                      },
-                      [_vm._v("ユーザー登録")]
-                    )
-                  ],
-                  1
+                  [_vm._v("ログアウト")]
                 )
               ])
             ])
-      ])
-    ]
-  )
+          ])
+        : _c("div", [
+            _c("ul", { staticClass: "c-menu" }, [
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
+                  _c(
+                    "RouterLink",
+                    {
+                      staticClass: "c-menu__link",
+                      attrs: { to: "/projects/list" }
+                    },
+                    [_vm._v("案件を見る")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
+                  _c(
+                    "RouterLink",
+                    { staticClass: "c-menu__link", attrs: { to: "/login" } },
+                    [_vm._v("ログイン")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "c-menu__item",
+                  on: { click: _vm.toggleActiveStatus }
+                },
+                [
+                  _c(
+                    "RouterLink",
+                    { staticClass: "c-menu__link", attrs: { to: "/register" } },
+                    [_vm._v("ユーザー登録")]
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -6077,16 +6107,19 @@ var render = function() {
                   },
                   [_vm._v("\n                編集する\n            ")]
                 )
-              : _vm._e()
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "u-twitter-icon__project",
+                attrs: { href: _vm.twitter, target: "_blank" }
+              },
+              [_c("i", { staticClass: "fab fa-twitter-square fa-2x" })]
+            )
           ],
           1
         )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "u-twitter-icon__project" }, [
-        _c("a", { attrs: { href: _vm.twitter, target: "_blank" } }, [
-          _c("i", { staticClass: "fab fa-twitter-square fa-2x" })
-        ])
       ])
     ])
   ])
@@ -6413,8 +6446,33 @@ var render = function() {
   return _c("section", { staticClass: "l-container" }, [
     _c("h1", { staticClass: "l-container__title" }, [_vm._v("マイページ")]),
     _vm._v(" "),
+    _vm.isUnreadMessage
+      ? _c("div", { staticClass: "l-container__body" }, [
+          _c(
+            "div",
+            [
+              _c("RouterLink", { attrs: { to: "/private_messages/list" } }, [
+                _c("p", { staticClass: "p-info" }, [
+                  _c("i", { staticClass: "fas fa-bell fa-x" }),
+                  _vm._v(" \n                    "),
+                  _c("span", [
+                    _vm._v(
+                      _vm._s(_vm.unread_private_messages) +
+                        "件の未読メッセージがあります。"
+                    )
+                  ])
+                ])
+              ])
+            ],
+            1
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "l-container__body" }, [
-      _vm._m(0),
+      _c("h5", { staticClass: "l-container__subtitle" }, [
+        _vm._v("登録した案件一覧")
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -6431,7 +6489,9 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "l-container__body" }, [
-      _vm._m(1),
+      _c("h5", { staticClass: "l-container__subtitle" }, [
+        _vm._v("応募した案件一覧")
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -6448,7 +6508,9 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "l-container__body" }, [
-      _vm._m(2),
+      _c("h5", { staticClass: "l-container__subtitle" }, [
+        _vm._v("やりとりしたコメント")
+      ]),
       _vm._v(" "),
       _c(
         "ul",
@@ -6507,7 +6569,9 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "l-container__body" }, [
-      _vm._m(3),
+      _c("h5", { staticClass: "l-container__subtitle" }, [
+        _vm._v("やりとりしたメッセージ")
+      ]),
       _vm._v(" "),
       _c(
         "ul",
@@ -6566,32 +6630,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("登録した案件一覧")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("応募した案件一覧")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("やりとりしたコメント")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("やりとりしたメッセージ")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -6833,8 +6872,94 @@ var render = function() {
   return _c("section", { staticClass: "l-container" }, [
     _c("h1", { staticClass: "l-container__title" }, [_vm._v("メッセージ一覧")]),
     _vm._v(" "),
+    _vm.isUnreadMessage
+      ? _c("div", { staticClass: "l-container__body" }, [
+          _c("h5", { staticClass: "l-container__subtitle" }, [
+            _vm._v("未読のメッセージ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.unread_private_messages, function(private_message) {
+              return _c(
+                "li",
+                {
+                  staticClass: "p-message",
+                  attrs: { id: _vm.unread_private_messages }
+                },
+                [
+                  _c("div", [
+                    _vm._v(
+                      "\n                    案件名: " +
+                        _vm._s(private_message.project.title) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "RouterLink",
+                    {
+                      attrs: {
+                        to: {
+                          name: "privateMessagesDetail",
+                          params: { id: private_message.project_id }
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "p-message__content" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(private_message.content) +
+                            "\n                "
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "p-message__date" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(private_message.created_at) +
+                        "\n                "
+                    )
+                  ])
+                ],
+                1
+              )
+            }),
+            0
+          )
+        ])
+      : _c("div", { staticClass: "l-container__body" }, [
+          _c("h5", { staticClass: "l-container__subtitle" }, [
+            _vm._v("未読のメッセージはありません。")
+          ])
+        ]),
+    _vm._v(" "),
     _c("div", { staticClass: "l-container__body" }, [
-      _vm._m(0),
+      _c("h5", { staticClass: "l-container__subtitle" }, [
+        _vm._v("メッセージをやりとりした案件一覧")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "c-panel" },
+        _vm._l(_vm.projects, function(project) {
+          return _c("Project", {
+            key: project.id,
+            staticClass: "c-panel__item",
+            attrs: { item: project }
+          })
+        }),
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "l-container__body" }, [
+      _c("h5", { staticClass: "l-container__subtitle" }, [
+        _vm._v("やりとりしたメッセージ")
+      ]),
       _vm._v(" "),
       _c(
         "ul",
@@ -6864,9 +6989,9 @@ var render = function() {
                 [
                   _c("div", { staticClass: "p-message__content" }, [
                     _vm._v(
-                      "\n                " +
+                      "\n                        " +
                         _vm._s(private_message.content) +
-                        "\n                "
+                        "\n                    "
                     )
                   ])
                 ]
@@ -6874,7 +6999,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "p-message__date" }, [
                 _vm._v(
-                  "\n                " +
+                  "\n                    " +
                     _vm._s(private_message.created_at) +
                     "\n                "
                 )
@@ -6885,40 +7010,10 @@ var render = function() {
         }),
         0
       )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "l-container__body" }, [
-      _vm._m(1),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "c-panel" },
-        _vm._l(_vm.projects, function(project) {
-          return _c("Project", {
-            key: project.id,
-            staticClass: "c-panel__item",
-            attrs: { item: project }
-          })
-        }),
-        1
-      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("未読のメッセージ")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("メッセージをやりとり案件一覧")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -7040,7 +7135,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("input", {
+          _c("textarea", {
             directives: [
               {
                 name: "model",
@@ -7050,7 +7145,12 @@ var render = function() {
               }
             ],
             staticClass: "c-input p-projectDetail__textarea",
-            attrs: { type: "text", placeholder: "メッセージを入力" },
+            attrs: {
+              cols: "30",
+              rows: "10",
+              type: "text",
+              placeholder: "メッセージを入力"
+            },
             domProps: { value: _vm.private_message_content },
             on: {
               input: function($event) {
@@ -7127,7 +7227,7 @@ var render = function() {
         _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("h5", { staticClass: "l-container__subtitle" }, [_vm._v("コメント")]),
       _vm._v(" "),
       _c(
         "ul",
@@ -7239,7 +7339,12 @@ var render = function() {
               }
             ],
             staticClass: "c-input p-projectDetail__textarea",
-            attrs: { type: "text", placeholder: "メッセージを入力" },
+            attrs: {
+              cols: "30",
+              rows: "10",
+              type: "text",
+              placeholder: "メッセージを入力"
+            },
             domProps: { value: _vm.public_message_content },
             on: {
               input: function($event) {
@@ -7264,14 +7369,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("コメント")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -7300,7 +7398,9 @@ var render = function() {
       "div",
       { staticClass: "l-container__body" },
       [
-        _c("h5", [_vm._v("タイプを絞り込む")]),
+        _c("h5", { staticClass: "l-container__subtitle" }, [
+          _vm._v("タイプを絞り込む")
+        ]),
         _vm._v(" "),
         _vm._l(_vm.options, function(label) {
           return _c("label", { staticClass: "c-panel__radio" }, [
@@ -7919,7 +8019,9 @@ var render = function() {
     _c("h1", { staticClass: "l-container__title" }, [_vm._v("コメント一覧")]),
     _vm._v(" "),
     _c("div", { staticClass: "l-container__body" }, [
-      _vm._m(0),
+      _c("h5", { staticClass: "l-container__subtitle" }, [
+        _vm._v("最新のコメント")
+      ]),
       _vm._v(" "),
       _c("ul", [
         _c(
@@ -7969,7 +8071,9 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "l-container__body" }, [
-      _vm._m(1),
+      _c("h5", { staticClass: "l-container__subtitle" }, [
+        _vm._v("コメントを送った案件一覧")
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -7986,20 +8090,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("最新のコメント")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h5", [_c("span", [_vm._v("コメントを送った案件一覧")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -8285,7 +8376,9 @@ var staticRenderFns = [
     return _c("section", { staticClass: "l-container" }, [
       _c("h1", { staticClass: "l-container__title" }, [_vm._v("match")]),
       _vm._v(" "),
-      _c("img", { attrs: { src: "/storage/top-baner.png", alt: "" } }),
+      _c("img", {
+        attrs: { src: "/storage/top-baner.png", alt: "トップバナー" }
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "l-container__body" }, [
         _c("p", [

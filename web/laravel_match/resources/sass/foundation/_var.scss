@@ -4,17 +4,14 @@
 $font-family_default: sans-serif;
 
 $font-color_default: #000033;
-$font-color_transition: #3333ff;
+$font-color_transition: #3399cc;
 $font-color_footer: #ffffff;
-//$font-color_date: #e37b89;
-//$font-color_sub1: #b6a489;
-$font-color_error: #ea352d;
-$font-color_message: green;
-$color_corp: #ffffcc;
-$color_background: #ffffff;
-$color_footer_background: #000033;
-$color_project: #ffffcc;
-$color_message: #ccffcc;
+$font-color_error: #d9534f;
+$font-color_message: #155724;
+$color_background: #f7f7f7;
+$color_footer_background: #000033; // $font-color_defaultと同じだが、保守性を考えて別の変数にする
+$color_project: #fafa00;
+$color_message: #d4edda;
 
 
 $site-width_max: 1200px;
@@ -39,7 +36,7 @@ $space_xxl: 30px;
 $space_3l: 40px;
 
 $border_default: 1px solid #000033;
-$border_radius: 5px;
+$border_radius: 3px;
 
 $font-family_corp: 'Amatic SC', cursive;
 

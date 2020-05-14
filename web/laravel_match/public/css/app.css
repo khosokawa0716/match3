@@ -163,7 +163,7 @@ a {
 }
 
 a:hover {
-  color: #3333ff;
+  color: #3399cc;
   transition: 0.3s;
 }
 
@@ -214,8 +214,14 @@ span {
   }
 }
 
+.l-container__subtitle {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .l-container__body {
-  background: #ffffff;
+  background: #f7f7f7;
   padding: 20px;
   overflow: hidden;
 }
@@ -226,45 +232,21 @@ span {
   }
 }
 
-.l-container__ornament__span {
-  display: inline-block;
-  background: #fff;
-  padding: 0 10px;
-  position: relative;
-  z-index: 1;
-}
-
-.l-container__ornament:before,
-.l-container__ornament:after {
-  border-top: 1px solid #2e1f1a;
-  content: "";
-  display: block;
-  position: relative;
-  z-index: 0;
-}
-
-.l-container__ornament:before {
-  top: 28px;
-}
-
-.l-container__ornament:after {
-  top: -28px;
-}
-
 .l-message {
   width: 1200px;
   box-sizing: border-box;
-  border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
-  color: green;
-  background: #ccffcc;
+  color: #155724;
+  background: #d4edda;
 }
 
 @media screen and (max-width: 1200px) {
   .l-message {
     width: 100%;
+    position: absolute;
+    top: 120px;
   }
 }
 
@@ -357,7 +339,7 @@ span {
 .c-btn {
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 3px;
   box-sizing: border-box;
   transition: 0.3s;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -404,7 +386,7 @@ span {
   display: block;
   margin-bottom: 10px;
   border: 1px solid #000033;
-  border-radius: 5px;
+  border-radius: 3px;
   outline: none;
   height: 60px;
   font-size: 18px;
@@ -429,7 +411,7 @@ span {
 }
 
 .c-input:focus {
-  border: 3px solid #3333ff;
+  border: 3px solid #3399cc;
 }
 
 .c-input__textarea {
@@ -476,7 +458,7 @@ span {
 
 .c-error {
   margin: 15px 0;
-  color: #ea352d;
+  color: #d9534f;
 }
 
 @media screen and (max-width: 414px) {
@@ -544,8 +526,8 @@ span {
   width: 373px;
   box-sizing: border-box;
   border: 1px solid #000033;
-  border-radius: 5px;
-  background: #ffffcc;
+  border-radius: 3px;
+  background: #fafa00;
   padding: 15px;
   margin-bottom: 15px;
 }
@@ -591,6 +573,12 @@ span {
   content: "\2026\3000";
 }
 
+.p-info {
+  color: #d9534f;
+  text-align: center;
+  font-size: 18px;
+}
+
 .p-projectDetail {
   width: 700px;
   margin-left: auto;
@@ -606,7 +594,7 @@ span {
 }
 
 .p-projectDetail__body {
-  background: #ffffcc;
+  background: #f7f7f7;
   padding: 20px;
   overflow: hidden;
 }
@@ -697,8 +685,9 @@ span {
 
 .p-message__content {
   padding: 15px;
-  border-radius: 5px;
-  background: #ccffcc;
+  border: 1px solid #000033;
+  border-radius: 3px;
+  background: #fafa00;
 }
 
 .p-message__date {
@@ -732,7 +721,7 @@ span {
 }
 
 .u-twitter-icon__project {
-  background: #ffffcc;
+  background: #fafa00;
   color: #000033;
   width: 30px;
   margin-left: auto;

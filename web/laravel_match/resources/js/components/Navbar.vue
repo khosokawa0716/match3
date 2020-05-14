@@ -1,5 +1,5 @@
 <template>
-    <header class="l-header" :class="{'float-active': position > 0}">
+    <header class="l-header">
         <h1>
             <RouterLink class="l-header__title" to="/">match</RouterLink>
         </h1>

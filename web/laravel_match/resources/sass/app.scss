@@ -1,9 +1,3 @@
-// Fonts
-//@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-//@import 'variables';
-
 // ==========================================================================
 // Foundation
 // ==========================================================================
@@ -43,6 +37,7 @@
  //Project
  //-----------------------------------------------------------------
 
+@import "object/project/_info";
 @import "object/project/_project-detail";
 @import "object/project/_menu-trigger";
 @import "object/project/_message";

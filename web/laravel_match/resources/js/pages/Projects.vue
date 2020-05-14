@@ -2,7 +2,7 @@
     <section class="l-container">
         <h1 class="l-container__title">案件一覧</h1>
         <div class="l-container__body">
-        <h5>タイプを絞り込む</h5>
+        <h5 class="l-container__subtitle">タイプを絞り込む</h5>
         <label v-for="label in options" class="c-panel__radio">
             <input type="radio"
                    v-model="current"

@@ -2,7 +2,7 @@
     <section class="l-container">
         <h1 class="l-container__title">コメント一覧</h1>
         <div class="l-container__body">
-            <h5><span>最新のコメント</span></h5>
+            <h5 class="l-container__subtitle">最新のコメント</h5>
             <ul>
                 <li v-bind:id="public_message" class="p-message">
                     <div>
@@ -22,7 +22,7 @@
             </ul>
         </div>
         <div class="l-container__body">
-            <h5><span>コメントを送った案件一覧</span></h5>
+            <h5 class="l-container__subtitle">コメントを送った案件一覧</h5>
             <div class="c-panel">
                 <Project
                     class="c-panel__item"

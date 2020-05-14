@@ -59,10 +59,7 @@
         },
         methods: {
             async fetchProject () {
-                // await this.$store.dispatch('project/edit', this.projectsUpdateForm.id)
-
                 const response = await axios.get(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm.id)
-                // console.dir(response)
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)

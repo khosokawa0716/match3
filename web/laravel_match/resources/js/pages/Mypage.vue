@@ -1,8 +1,18 @@
 <template>
     <section class="l-container">
         <h1 class="l-container__title">マイページ</h1>
+        <div class="l-container__body" v-if="isUnreadMessage">
+            <div>
+                <RouterLink to="/private_messages/list">
+                    <p class="p-info">
+                        <i class="fas fa-bell fa-x"></i>&nbsp;
+                        <span>{{ unread_private_messages }}件の未読メッセージがあります。</span>
+                    </p>
+                </RouterLink>
+            </div>
+        </div>
         <div class="l-container__body">
-            <h5><span>登録した案件一覧</span></h5>
+            <h5 class="l-container__subtitle">登録した案件一覧</h5>
             <div class="c-panel">
                 <Project
                     class="c-panel__item"
@@ -13,7 +23,7 @@
             </div>
         </div>
         <div class="l-container__body">
-            <h5><span>応募した案件一覧</span></h5>
+            <h5 class="l-container__subtitle">応募した案件一覧</h5>
             <div class="c-panel">
                 <Project
                     class="c-panel__item"
@@ -24,7 +34,7 @@
             </div>
         </div>
         <div class="l-container__body">
-            <h5><span>やりとりしたコメント</span></h5>
+            <h5 class="l-container__subtitle">やりとりしたコメント</h5>
             <ul>
                 <li v-for="public_message in exchanged_public_messages" v-bind="public_message.id" class="p-message">
                     <div>
@@ -44,7 +54,7 @@
             </ul>
         </div>
         <div class="l-container__body">
-            <h5><span>やりとりしたメッセージ</span></h5>
+            <h5 class="l-container__subtitle">やりとりしたメッセージ</h5>
             <ul>
                 <li v-for="private_message in exchanged_private_messages" v-bind="private_message.id" class="p-message">
                     <div>
@@ -102,6 +112,12 @@
             // ストアerror.jsにあるコードをクリアする
             clearError () {
                 this.$store.commit('error/setCode', null)
+            }
+        },
+        computed: {
+            // 未読のメッセージがあるかどうか
+            isUnreadMessage () {
+                return this.unread_private_messages > 1
             }
         },
         created() {

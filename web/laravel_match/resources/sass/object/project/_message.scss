@@ -13,8 +13,9 @@
 
         &__content {
             padding: $space_l;
+            border: $border_default;
             border-radius: $border-radius;
-            background: $color_message;
+            background: $color_project;
         }
 
         &__date {

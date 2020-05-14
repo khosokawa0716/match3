@@ -1,8 +1,8 @@
 <template>
-    <section class="l-message" v-show="message">
-        <span>
+<!--    <section class="l-message" v-show="message">-->
+        <section class="l-message">
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
         {{ message }}
-        </span>
     </section>
 </template>
 

@@ -19,12 +19,10 @@
                 >
                     編集する
                 </RouterLink>
-                </span>
-            </li>
-            <li class="u-twitter-icon__project">
-                <a :href=twitter target="_blank">
+                <a class="u-twitter-icon__project" :href=twitter target="_blank">
                     <i class="fab fa-twitter-square fa-2x"></i>
                 </a>
+                </span>
             </li>
         </ul>
     </div>

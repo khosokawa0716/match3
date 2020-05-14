@@ -9,7 +9,7 @@
             <dt v-if="isOneOff">金額</dt><dd v-if="isOneOff">{{ project.minimum_amount }}円 〜 {{ project.max_amount }}円</dd>
             <dt>詳細</dt><dd>{{ project.detail }}</dd>
         </dl>
-            <h5><span>コメント</span></h5>
+            <h5 class="l-container__subtitle">コメント</h5>
             <ul>
                 <li v-for="public_message in public_messages" v-bind="public_message.id" class="p-message">
                     <div class="p-message__author">
@@ -35,7 +35,7 @@
                     <li v-for="msg in public_message_errors.content" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <textarea type="text" class="c-input p-projectDetail__textarea" v-model="public_message_content" placeholder="メッセージを入力"></textarea>
+            <textarea cols="30" rows="10" type="text" class="c-input p-projectDetail__textarea" v-model="public_message_content" placeholder="メッセージを入力"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">送信する</button>
         </form>
 

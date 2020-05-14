@@ -4,13 +4,15 @@
 .l-message {
     width: $site-width_max;
     box-sizing: border-box;
-    border-radius: $border_radius;
     margin-left: auto;
     margin-right: auto;
     padding: $space_xl;
     color: $font-color_message;
     background: $color_message;
+
     @include mxl() {
         width: 100%;
+        position: absolute;
+        top: 120px;
     }
 }
