@@ -163,7 +163,7 @@ a {
 }
 
 a:hover {
-  color: #ffffcc;
+  color: #3333ff;
   transition: 0.3s;
 }
 
@@ -198,6 +198,12 @@ span {
   text-align: center;
   font-size: 24px;
   margin-bottom: 40px;
+}
+
+@media screen and (max-width: 1200px) {
+  .l-container__title {
+    margin-top: 80px;
+  }
 }
 
 @media screen and (max-width: 414px) {
@@ -310,12 +316,9 @@ span {
 @media screen and (max-width: 1200px) {
   .l-header {
     width: 100%;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.9);
   }
-}
-
-.l-header.float-active {
-  transition: 0.3s;
-  background: rgba(255, 255, 255, 0.9);
 }
 
 @media screen and (max-width: 414px) {
@@ -331,7 +334,7 @@ span {
   font-weight: bold;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   .l-nav {
     display: block;
     position: absolute;
@@ -367,15 +370,21 @@ span {
 }
 
 .c-btn__corp {
-  color: #fff;
-  background: #007BFF;
+  color: #ffffff;
+  background: #000033;
 }
 
 .c-btn__l {
   margin: 30px 0;
-  padding: 15px 30px;
+  padding: 15px;
   width: 100%;
   font-size: 18px;
+}
+
+.c-btn__logout {
+  padding: 10px;
+  width: 120px;
+  font-size: 14px;
 }
 
 .c-form {
@@ -394,8 +403,8 @@ span {
 .c-input {
   display: block;
   margin-bottom: 10px;
-  border: 3px solid #f6f5f4;
-  border-radius: 4px;
+  border: 1px solid #000033;
+  border-radius: 5px;
   outline: none;
   height: 60px;
   font-size: 18px;
@@ -420,7 +429,7 @@ span {
 }
 
 .c-input:focus {
-  border: 3px solid #ffffcc;
+  border: 3px solid #3333ff;
 }
 
 .c-input__textarea {
@@ -481,28 +490,37 @@ span {
   align-items: center;
 }
 
+@media screen and (max-width: 1200px) {
+  .c-menu {
+    display: block;
+    font-size: 18px;
+  }
+}
+
 .c-menu__item:not(:last-child) {
   padding-right: 10px;
   margin-right: 10px;
   border-right: 1px solid #000033;
 }
 
+@media screen and (max-width: 1200px) {
+  .c-menu__item:not(:last-child) {
+    padding-right: initial;
+    margin-right: initial;
+    border-right: none;
+  }
+}
+
+.c-menu__item:last-child {
+  text-align: center;
+}
+
 .c-menu__link {
   -webkit-font-smoothing: initial;
 }
 
-@media screen and (max-width: 1000px) {
-  .c-menu {
-    display: block;
-    font-size: 18px;
-  }
-
-  .c-menu__item {
-    margin-right: initial;
-  }
-
+@media screen and (max-width: 1200px) {
   .c-menu__link {
-    -webkit-font-smoothing: initial;
     display: block;
     padding: 15px;
     text-align: center;
@@ -621,7 +639,7 @@ span {
   z-index: 3;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   .p-menuTrigger {
     display: inline-block;
   }

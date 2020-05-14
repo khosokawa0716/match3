@@ -5,29 +5,30 @@
 .c-menu {
     display: flex;
     align-items: center;
-    //font-size: $font-size_xl;
-    //font-family: $font-family_corp;
+    @include mxl() {
+        display: block;
+        font-size: $font-size_l;
+    }
     &__item:not(:last-child) {
         padding-right: $space_m;
         margin-right: $space_m;
         border-right: $border_default;
+        @include mxl() {
+            padding-right: initial;
+            margin-right: initial;
+            border-right: none;
+        }
     }
+    &__item:last-child {
+        text-align: center;
+    }
+
     &__link {
         -webkit-font-smoothing: initial;
-    }
-    @include ml() {
-        display: block;
-        font-size: $font-size_l;
-        &__item {
-            margin-right: initial;
-        }
-        &__link {
-            -webkit-font-smoothing: initial;
+        @include mxl() {
             display: block;
             padding: $space_l;
             text-align: center;
         }
     }
 }
-
-// https://www.nxworld.net/tips/12-css-hamburger-menu-active-effect.html

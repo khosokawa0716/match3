@@ -2,10 +2,12 @@
 // 変数
 // ==============================
 $font-family_default: sans-serif;
+
 $font-color_default: #000033;
+$font-color_transition: #3333ff;
 $font-color_footer: #ffffff;
-$font-color_date: #e37b89;
-$font-color_sub1: #b6a489;
+//$font-color_date: #e37b89;
+//$font-color_sub1: #b6a489;
 $font-color_error: #ea352d;
 $font-color_message: green;
 $color_corp: #ffffcc;
@@ -18,6 +20,8 @@ $color_message: #ccffcc;
 $site-width_max: 1200px;
 $site-width_project: 700px;
 $site-width_form: 410px;
+
+$header-height: 80px;
 
 $font-size_s: 12px;
 $font-size_m: 14px;

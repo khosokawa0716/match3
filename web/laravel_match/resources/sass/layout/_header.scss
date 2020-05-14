@@ -6,21 +6,18 @@
     width: $site-width_max;
     margin-left: auto;
     margin-right: auto;
-    height: 80px;
+    height: $header-height;
     color: $font-color_default;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: $space_xl;
     padding-right: $space_xl;
-    //position: fixed;
     transition: .3s;
     z-index: 2;
     @include mxl() {
         width: 100%;
-    }
-    &.float-active {
-        transition: .3s;
+        position: fixed;
         background: rgba(255, 255, 255, 0.9);
     }
     @include mq() {
@@ -30,7 +27,6 @@
     }
     &__title {
         font-size: $font-size_xxl;
-        //font-family: $font-family_default;
         font-weight: bold;
     }
 

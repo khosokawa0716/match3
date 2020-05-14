@@ -1,5 +1,5 @@
 <template>
-    <header class="l-header">
+    <header class="l-header" :class="{'float-active': position > 0}">
         <h1>
             <RouterLink class="l-header__title" to="/">match</RouterLink>
         </h1>
@@ -23,7 +23,7 @@
             </li>
             <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" :to="{name: 'edit', params: { id: userid }}">本人情報</RouterLink></li>
             <li class="c-menu__item">
-                <button class="c-btn c-btn__corp c-btn__l" @click="logout">ログアウト</button>
+                <button class="c-btn c-btn__corp c-btn__logout" @click="logout">ログアウト</button>
             </li>
         </ul>
         </div>
@@ -69,6 +69,11 @@
             },
             icon_path () {
                 return this.$store.getters['auth/icon_path']
+            }
+        },
+        mounted() {
+            document.onscroll = (e) => {
+                this.position = document.documentElement.scrollTop || document.body.scrollTop;
             }
         }
     }

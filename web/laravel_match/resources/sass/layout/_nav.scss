@@ -3,7 +3,7 @@
 // ==================================
 
 .l-nav {
-    @include ml() {
+    @include mxl() {
         display: block;
         position: absolute;
         top: 0;

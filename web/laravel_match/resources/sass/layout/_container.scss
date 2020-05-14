@@ -11,10 +11,12 @@
     padding-top: $space_3l;
     padding-bottom: $space_3l;
     &__title {
-        //font-family: $font-family_corp;
         text-align: center;
         font-size: $font-size_xl;
         margin-bottom: $space_3l;
+        @include mxl() {
+            margin-top: $header-height; // headerにposition: fixed;が付加されるため
+        }
         @include mq() {
             width: 70%;
             margin-left: auto;

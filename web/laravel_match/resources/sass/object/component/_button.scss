@@ -4,7 +4,7 @@
 .c-btn {
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: $border_radius;
     box-sizing: border-box;
     transition: .3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -14,16 +14,18 @@
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
     &__corp {
-        // グラーデーション参考 https://uigradients.com/
-        color: #fff;
-        background: #007BFF;
-        //background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7); /* Chrome 10-25, Safari 5.1-6 */
-        //background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color: $font-color_footer;
+        background: $color_footer_background;
     }
     &__l {
         margin: $space_xxl 0;
-        padding: $space_l $space_xxl;
+        padding: $space_l;
         width: 100%;
         font-size: $font-size_l;
+    }
+    &__logout {
+        padding: $space_m;
+        width: 120px;
+        font-size: $font-size_m;
     }
 }

@@ -2144,6 +2144,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     icon_path: function icon_path() {
       return this.$store.getters['auth/icon_path'];
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    document.onscroll = function (e) {
+      _this2.position = document.documentElement.scrollTop || document.body.scrollTop;
+    };
   }
 });
 
@@ -5763,230 +5770,237 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("header", { staticClass: "l-header" }, [
-    _c(
-      "h1",
-      [
-        _c(
-          "RouterLink",
-          { staticClass: "l-header__title", attrs: { to: "/" } },
-          [_vm._v("match")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "p-menuTrigger",
-        class: { active: _vm.activeStatus },
-        on: { click: _vm.toggleActiveStatus }
-      },
-      [
-        _c("span", { staticClass: "p-menuTrigger__barger" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "p-menuTrigger__barger" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "p-menuTrigger__barger" })
-      ]
-    ),
-    _vm._v(" "),
-    _c("nav", { staticClass: "l-nav", class: { active: _vm.activeStatus } }, [
-      _vm.isLogin
-        ? _c("div", [
-            _c("ul", { staticClass: "c-menu" }, [
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    {
-                      staticClass: "c-menu__link",
-                      attrs: { to: "/projects/list" }
-                    },
-                    [_vm._v("案件を探す")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    {
-                      staticClass: "c-menu__link",
-                      attrs: { to: "/projects/register" }
-                    },
-                    [_vm._v("案件を登録する")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    {
-                      staticClass: "c-menu__link",
-                      attrs: { to: "/public_messages/list" }
-                    },
-                    [_vm._v("コメント")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    {
-                      staticClass: "c-menu__link",
-                      attrs: { to: "/private_messages/list" }
-                    },
-                    [_vm._v("メッセージ")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    { staticClass: "c-menu__link", attrs: { to: "/mypage" } },
-                    [
-                      _c("img", {
-                        staticClass: "imgIcon",
-                        attrs: {
-                          src: _vm.icon_path,
-                          alt: "アイコン画像",
-                          height: "30"
-                        }
-                      }),
-                      _vm._v("\n                マイページ\n            ")
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    {
-                      staticClass: "c-menu__link",
-                      attrs: {
-                        to: { name: "edit", params: { id: _vm.userid } }
-                      }
-                    },
-                    [_vm._v("本人情報")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("li", { staticClass: "c-menu__item" }, [
+  return _c(
+    "header",
+    { staticClass: "l-header", class: { "float-active": _vm.position > 0 } },
+    [
+      _c(
+        "h1",
+        [
+          _c(
+            "RouterLink",
+            { staticClass: "l-header__title", attrs: { to: "/" } },
+            [_vm._v("match")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "p-menuTrigger",
+          class: { active: _vm.activeStatus },
+          on: { click: _vm.toggleActiveStatus }
+        },
+        [
+          _c("span", { staticClass: "p-menuTrigger__barger" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "p-menuTrigger__barger" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "p-menuTrigger__barger" })
+        ]
+      ),
+      _vm._v(" "),
+      _c("nav", { staticClass: "l-nav", class: { active: _vm.activeStatus } }, [
+        _vm.isLogin
+          ? _c("div", [
+              _c("ul", { staticClass: "c-menu" }, [
                 _c(
-                  "button",
+                  "li",
                   {
-                    staticClass: "c-btn c-btn__corp c-btn__l",
-                    on: { click: _vm.logout }
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
                   },
-                  [_vm._v("ログアウト")]
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-menu__link",
+                        attrs: { to: "/projects/list" }
+                      },
+                      [_vm._v("案件を探す")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
+                  },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-menu__link",
+                        attrs: { to: "/projects/register" }
+                      },
+                      [_vm._v("案件を登録する")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
+                  },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-menu__link",
+                        attrs: { to: "/public_messages/list" }
+                      },
+                      [_vm._v("コメント")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
+                  },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-menu__link",
+                        attrs: { to: "/private_messages/list" }
+                      },
+                      [_vm._v("メッセージ")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
+                  },
+                  [
+                    _c(
+                      "RouterLink",
+                      { staticClass: "c-menu__link", attrs: { to: "/mypage" } },
+                      [
+                        _c("img", {
+                          staticClass: "imgIcon",
+                          attrs: {
+                            src: _vm.icon_path,
+                            alt: "アイコン画像",
+                            height: "30"
+                          }
+                        }),
+                        _vm._v("\n                マイページ\n            ")
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
+                  },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-menu__link",
+                        attrs: {
+                          to: { name: "edit", params: { id: _vm.userid } }
+                        }
+                      },
+                      [_vm._v("本人情報")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("li", { staticClass: "c-menu__item" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "c-btn c-btn__corp c-btn__logout",
+                      on: { click: _vm.logout }
+                    },
+                    [_vm._v("ログアウト")]
+                  )
+                ])
+              ])
+            ])
+          : _c("div", [
+              _c("ul", { staticClass: "c-menu" }, [
+                _c(
+                  "li",
+                  {
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
+                  },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-menu__link",
+                        attrs: { to: "/projects/list" }
+                      },
+                      [_vm._v("案件を見る")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
+                  },
+                  [
+                    _c(
+                      "RouterLink",
+                      { staticClass: "c-menu__link", attrs: { to: "/login" } },
+                      [_vm._v("ログイン")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "c-menu__item",
+                    on: { click: _vm.toggleActiveStatus }
+                  },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "c-menu__link",
+                        attrs: { to: "/register" }
+                      },
+                      [_vm._v("ユーザー登録")]
+                    )
+                  ],
+                  1
                 )
               ])
             ])
-          ])
-        : _c("div", [
-            _c("ul", { staticClass: "c-menu" }, [
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    {
-                      staticClass: "c-menu__link",
-                      attrs: { to: "/projects/list" }
-                    },
-                    [_vm._v("案件を見る")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    { staticClass: "c-menu__link", attrs: { to: "/login" } },
-                    [_vm._v("ログイン")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "c-menu__item",
-                  on: { click: _vm.toggleActiveStatus }
-                },
-                [
-                  _c(
-                    "RouterLink",
-                    { staticClass: "c-menu__link", attrs: { to: "/register" } },
-                    [_vm._v("ユーザー登録")]
-                  )
-                ],
-                1
-              )
-            ])
-          ])
-    ])
-  ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
