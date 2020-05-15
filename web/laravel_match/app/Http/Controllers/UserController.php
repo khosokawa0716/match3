@@ -90,8 +90,9 @@ class UserController extends Controller
                 $user->email = $request['email'];
             }
 
-            if ( $request->filled('file') ) {
+            if ( $request['file'] ) {
                 // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
+                Log::info('画像更新ロジックの起動');
                 $file_name = time().'.'.$request['file']->getClientOriginalName();
                 $request['file']->storeAs('public', $file_name);
                 $user->icon_path = env('APP_URL').'/storage/'.$file_name;

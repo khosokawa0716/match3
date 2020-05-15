@@ -74,7 +74,8 @@ class RegisterController extends Controller
             $data['file']->storeAs('public', $file_name);
             $icon_path = env('APP_URL').'/storage/' . $file_name;
         } else {
-            $icon_path = null;
+            // 画像の選択がない場合には、ゲストのアイコン画像をあてる
+            $icon_path = env('APP_URL').'/storage/guest.png';
         }
 
         if ( $data['profile_fields'] ) {

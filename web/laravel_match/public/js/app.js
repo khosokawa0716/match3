@@ -2188,8 +2188,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -6094,7 +6092,7 @@ var render = function() {
                     to: { name: "projectDetail", params: { id: this.item.id } }
                   }
                 },
-                [_vm._v("\n                    詳細を見る\n                ")]
+                [_vm._v("\n            詳細を見る\n        ")]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -6106,7 +6104,7 @@ var render = function() {
                     to: { name: "projectsEdit", params: { id: this.item.id } }
                   }
                 },
-                [_vm._v("\n                    編集する\n                ")]
+                [_vm._v("\n            編集する\n        ")]
               )
             : _vm._e(),
           _vm._v(" "),
