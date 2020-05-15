@@ -1,9 +1,5 @@
 <template>
-<!--    <section class="l-message" v-show="message">-->
-        <section class="l-message">
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-        {{ message }}
-    </section>
+    <section class="l-message" v-show="message">{{ message }}</section>
 </template>
 
 <script>

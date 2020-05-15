@@ -9,10 +9,15 @@
     padding: $space_xl;
     color: $font-color_message;
     background: $color_message;
+    white-space: pre-wrap;
 
     @include mxl() {
         width: 100%;
         position: absolute;
         top: 120px;
+    }
+
+    @include mmd() {
+        font-size: $font-size_s;
     }
 }

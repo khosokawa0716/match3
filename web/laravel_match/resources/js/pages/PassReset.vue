@@ -47,6 +47,7 @@
                     return false
                 }
 
+                console.log('バリデーションOK')
                 // パスワードリセットが成功したら、authストアのloginアクションを呼び出す
                 await this.$store.dispatch('auth/login', this.passResetForm)
 

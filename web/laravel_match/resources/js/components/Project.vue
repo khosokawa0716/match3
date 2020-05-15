@@ -1,5 +1,4 @@
 <template>
-    <div class="">
         <ul>
             <li><span class="c-panel__title">{{ item.title }}</span></li>
             <li>{{ status }}</li>
@@ -25,7 +24,6 @@
                 </span>
             </li>
         </ul>
-    </div>
 </template>
 <script>
     export default {

@@ -240,6 +240,7 @@ span {
   padding: 20px;
   color: #155724;
   background: #d4edda;
+  white-space: pre-wrap;
 }
 
 @media screen and (max-width: 1200px) {
@@ -247,6 +248,12 @@ span {
     width: 100%;
     position: absolute;
     top: 120px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .l-message {
+    font-size: 12px;
   }
 }
 

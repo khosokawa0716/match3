@@ -2025,10 +2025,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     message: function message() {
@@ -2867,10 +2863,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 12:
-                _context.next = 14;
+                console.log('バリデーションOK'); // パスワードリセットが成功したら、authストアのloginアクションを呼び出す
+
+                _context.next = 15;
                 return _this.$store.dispatch('auth/login', _this.passResetForm);
 
-              case 14:
+              case 15:
                 if (_this.apiStatus) {
                   // loginアクションが成功だった場合、ストアにメッセージを格納する
                   _this.$store.commit('message/setContent', {
@@ -2882,7 +2880,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.$router.push('/mypage');
                 }
 
-              case 15:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -2955,16 +2953,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 // フォーム上のメッセージをクリアする
-                _this.passResetEmailErrors = null; // this.$store.commit('error/setCode', null)
-                // Auth\ForgotPasswordController@sendResetLinkEmailを起動
+                _this.passResetEmailErrors = null;
+
+                _this.$store.commit('error/setCode', null); // Auth\ForgotPasswordController@sendResetLinkEmailを起動
                 // 返却されたオブジェクトをresponseに代入
 
-                _context.next = 3;
+
+                _context.next = 4;
                 return axios.post('/api/password/email', _this.passResetEmailForm);
 
-              case 3:
+              case 4:
                 response = _context.sent;
-                console.dir(response); // バリデーションエラー
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
                   _context.next = 10;
@@ -2988,12 +2987,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 13:
                 // 成功の場合
                 // 画面上にメッセージを表示する
-                _this.passResetEmailErrors = 'メールをお送りしました。メールのボタンを押して、パスワードリセットの画面を開いてください。' + 'パスワードリセットの画面が開けましたら、この画面は閉じてください。' + 'しばらく経ってもメールが届かない場合には、メールアドレスが間違っている可能性があります。'; //     this.$store.commit('message/setContent', {
-                //     content: 'メールをお送りしました。メールのボタンを押して、パスワードリセットの画面を開いてください。' +
-                //         'パスワードリセットの画面が開けましたら、この画面は閉じてください。' +
-                //         'しばらく経ってもメールが届かない場合には、メールアドレスが間違っている可能性があります。',
-                //     timeout: 20000
-                // })
+                _this.$store.commit('message/setContent', {
+                  content: 'メールをお送りしました。メールのボタンを押して、パスワードリセットの画面を開いてください。\n' + 'パスワードリセットの画面が開けましたら、この画面は閉じてください。\n' + 'しばらく経ってもメールが届かない場合には、メールアドレスが間違っている可能性があります。',
+                  timeout: 30000
+                });
 
               case 14:
               case "end":
@@ -5777,13 +5774,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "l-message" }, [
-    _vm._v(
-      "\n            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト\n        " +
-        _vm._s(_vm.message) +
-        "\n    "
-    )
-  ])
+  return _c(
+    "section",
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.message,
+          expression: "message"
+        }
+      ],
+      staticClass: "l-message"
+    },
+    [_vm._v(_vm._s(_vm.message))]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -6054,73 +6059,68 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {}, [
-    _c("ul", [
-      _c("li", [
-        _c("span", { staticClass: "c-panel__title" }, [
-          _vm._v(_vm._s(_vm.item.title))
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [_vm._v(_vm._s(_vm.status))]),
-      _vm._v(" "),
-      _c("li", [_vm._v(_vm._s(_vm.type))]),
-      _vm._v(" "),
-      _vm.item.type === "one-off"
-        ? _c("li", [
-            _vm._v(
-              _vm._s(_vm.item.minimum_amount) +
-                "円 〜 " +
-                _vm._s(_vm.item.max_amount) +
-                "円"
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("li", [
-        _c(
-          "span",
-          { staticClass: "c-panel__link" },
-          [
-            _vm.isLogin
-              ? _c(
-                  "RouterLink",
-                  {
-                    attrs: {
-                      to: {
-                        name: "projectDetail",
-                        params: { id: this.item.id }
-                      }
-                    }
-                  },
-                  [_vm._v("\n                詳細を見る\n            ")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.isLogin && _vm.isOwner && _vm.isRecruiting
-              ? _c(
-                  "RouterLink",
-                  {
-                    attrs: {
-                      to: { name: "projectsEdit", params: { id: this.item.id } }
-                    }
-                  },
-                  [_vm._v("\n                編集する\n            ")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "u-twitter-icon__project",
-                attrs: { href: _vm.twitter, target: "_blank" }
-              },
-              [_c("i", { staticClass: "fab fa-twitter-square fa-2x" })]
-            )
-          ],
-          1
-        )
+  return _c("ul", [
+    _c("li", [
+      _c("span", { staticClass: "c-panel__title" }, [
+        _vm._v(_vm._s(_vm.item.title))
       ])
+    ]),
+    _vm._v(" "),
+    _c("li", [_vm._v(_vm._s(_vm.status))]),
+    _vm._v(" "),
+    _c("li", [_vm._v(_vm._s(_vm.type))]),
+    _vm._v(" "),
+    _vm.item.type === "one-off"
+      ? _c("li", [
+          _vm._v(
+            _vm._s(_vm.item.minimum_amount) +
+              "円 〜 " +
+              _vm._s(_vm.item.max_amount) +
+              "円"
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("li", [
+      _c(
+        "span",
+        { staticClass: "c-panel__link" },
+        [
+          _vm.isLogin
+            ? _c(
+                "RouterLink",
+                {
+                  attrs: {
+                    to: { name: "projectDetail", params: { id: this.item.id } }
+                  }
+                },
+                [_vm._v("\n                    詳細を見る\n                ")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.isLogin && _vm.isOwner && _vm.isRecruiting
+            ? _c(
+                "RouterLink",
+                {
+                  attrs: {
+                    to: { name: "projectsEdit", params: { id: this.item.id } }
+                  }
+                },
+                [_vm._v("\n                    編集する\n                ")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "u-twitter-icon__project",
+              attrs: { href: _vm.twitter, target: "_blank" }
+            },
+            [_c("i", { staticClass: "fab fa-twitter-square fa-2x" })]
+          )
+        ],
+        1
+      )
     ])
   ])
 }
