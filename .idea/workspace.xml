@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/app/Notifications/CustomResetPassword.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/views/vendor/notifications/email.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/database/ib_logfile0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/database/ibdata1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/password_resets.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/password_resets.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/users.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/users.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +82,7 @@
       <workItem from="1588598314900" duration="183000" />
       <workItem from="1588598632053" duration="18635000" />
       <workItem from="1588682702922" duration="101107000" />
-      <workItem from="1589455051372" duration="6944000" />
+      <workItem from="1589455051372" duration="12741000" />
     </task>
     <servers />
   </component>
@@ -106,10 +109,10 @@
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="188" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.950@0.23.1680.950" timestamp="1587617653545" />
-    <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1588140998002">
+    <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589590175165">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1680.950@0.23.1680.950" timestamp="1588140998002" />
+    <state x="358" y="262" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1680.950@0.23.1680.950" timestamp="1589590175165" />
     <state x="225" y="141" key="SettingsEditor" timestamp="1588643799065">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
@@ -118,9 +121,9 @@
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="363" y="291" width="761" height="472" key="find.popup/0.23.1680.950@0.23.1680.950" timestamp="1586936749588" />
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1588644993761">
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1589591876405">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1588644993761" />
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1589591876405" />
   </component>
 </project>
