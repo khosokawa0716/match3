@@ -21,6 +21,7 @@
             <label class="c-input__label">今のアイコン画像</label>
             <img :src="editForm.icon_path" alt="今のアイコン画像" height="100" class="imgIcon_l">
             <label class="c-input__label">新しいアイコン画像</label>
+            <label class="u-fontSizeSmall">&#8251;1MB以下の画像を選択してください。</label>
             <input class="form__item" type="file" id="icon-image" @change="onFileChange">
             <output class="form__output" v-if="preview">
                 <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">

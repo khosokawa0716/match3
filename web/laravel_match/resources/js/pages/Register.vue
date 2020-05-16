@@ -27,6 +27,7 @@
             <input type="password" class="c-input c-input__l" v-model="registerForm.password" placeholder="パスワード（半角英数8文字以上）">
             <input type="password" class="c-input c-input__l" v-model="registerForm.password_confirmation" placeholder="パスワード (再入力)">
             <label for="icon-image">アイコン画像</label>
+            <label class="u-fontSizeSmall">&#8251;1MB以下の画像を選択してください。</label>
             <output v-if="preview">
                 <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">
             </output>

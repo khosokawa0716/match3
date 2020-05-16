@@ -2297,6 +2297,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -6239,6 +6240,10 @@ var render = function() {
         _vm._v(" "),
         _c("label", { staticClass: "c-input__label" }, [
           _vm._v("新しいアイコン画像")
+        ]),
+        _vm._v(" "),
+        _c("label", { staticClass: "u-fontSizeSmall" }, [
+          _vm._v("※1MB以下の画像を選択してください。")
         ]),
         _vm._v(" "),
         _c("input", {
