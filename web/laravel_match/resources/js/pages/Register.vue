@@ -22,9 +22,9 @@
                     <li v-for="msg in registerErrors.profile_fields" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <input type="text" class="c-input c-input__l" v-model="registerForm.name" placeholder="お名前（20文字以内）">
+            <input type="text" class="c-input c-input__l" v-model="registerForm.name" placeholder="お名前（3〜10文字）">
             <input type="text" class="c-input c-input__l" v-model="registerForm.email" placeholder="メールアドレス">
-            <input type="password" class="c-input c-input__l" v-model="registerForm.password" placeholder="パスワード（半角英数8文字以上）">
+            <input type="password" class="c-input c-input__l" v-model="registerForm.password" placeholder="パスワード（半角英数8〜16文字）">
             <input type="password" class="c-input c-input__l" v-model="registerForm.password_confirmation" placeholder="パスワード (再入力)">
             <label for="icon-image">アイコン画像</label>
             <label class="u-fontSizeSmall">&#8251;1MB以下の画像を選択してください。</label>
@@ -32,7 +32,7 @@
                 <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">
             </output>
             <input class="c-input c-input__l" type="file" id="icon-image" @change="onFileChange">
-            <textarea cols="30" class="c-input c-input__textarea" rows="10" v-model="registerForm.profile_fields" placeholder="自己紹介（255文字以内）"></textarea>
+            <textarea cols="30" class="c-input c-input__textarea" rows="10" v-model="registerForm.profile_fields" placeholder="自己紹介（120文字以内）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">登録する</button>
         </form>
     </section>

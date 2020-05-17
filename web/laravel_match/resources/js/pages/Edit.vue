@@ -27,7 +27,7 @@
                 <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">
             </output>
             <label class="c-input__label">自己紹介</label>
-            <textarea type="text" class="c-input c-input__textarea" v-model="editForm.profile_fields" placeholder="自己紹介"></textarea>
+            <textarea type="text" class="c-input c-input__textarea" v-model="editForm.profile_fields" placeholder="自己紹介（120文字以内）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">更新する</button>
         </form>
     </section>

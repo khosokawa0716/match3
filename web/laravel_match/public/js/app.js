@@ -4352,6 +4352,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6273,7 +6274,7 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__textarea",
-          attrs: { type: "text", placeholder: "自己紹介" },
+          attrs: { type: "text", placeholder: "自己紹介（120文字以内）" },
           domProps: { value: _vm.editForm.profile_fields },
           on: {
             input: function($event) {
@@ -8207,7 +8208,7 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__l",
-          attrs: { type: "text", placeholder: "お名前（20文字以内）" },
+          attrs: { type: "text", placeholder: "お名前（3〜10文字）" },
           domProps: { value: _vm.registerForm.name },
           on: {
             input: function($event) {
@@ -8253,7 +8254,7 @@ var render = function() {
           staticClass: "c-input c-input__l",
           attrs: {
             type: "password",
-            placeholder: "パスワード（半角英数8文字以上）"
+            placeholder: "パスワード（半角英数8〜16文字）"
           },
           domProps: { value: _vm.registerForm.password },
           on: {
@@ -8294,6 +8295,10 @@ var render = function() {
         _vm._v(" "),
         _c("label", { attrs: { for: "icon-image" } }, [_vm._v("アイコン画像")]),
         _vm._v(" "),
+        _c("label", { staticClass: "u-fontSizeSmall" }, [
+          _vm._v("※1MB以下の画像を選択してください。")
+        ]),
+        _vm._v(" "),
         _vm.preview
           ? _c("output", [
               _c("img", {
@@ -8322,7 +8327,7 @@ var render = function() {
           attrs: {
             cols: "30",
             rows: "10",
-            placeholder: "自己紹介（255文字以内）"
+            placeholder: "自己紹介（120文字以内）"
           },
           domProps: { value: _vm.registerForm.profile_fields },
           on: {
@@ -8414,7 +8419,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("この操作をおこなうことができませんでした。")])
+  return _c("section", { staticClass: "l-container" }, [
+    _c("h1", { staticClass: "l-container__title" }, [
+      _vm._v("ページへのアクセス権がありません。")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "l-container__body" }, [
+      _c("p", [_vm._v("指定されたURLへのアクセス権限がありません。")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "案件に応募する操作をおこなった場合には、他のユーザーがすでに応募してしまった可能性があります。"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "その他の操作の場合には、ログインするアカウントが間違っている可能性があります。"
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "p",
+        [
+          _vm._v("お手数ですが、\n            "),
+          _c("RouterLink", { attrs: { to: "/" } }, [_vm._v("トップページ")]),
+          _vm._v("\n            から操作をやり直してください。")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "繰り返しこのページになってしまう場合には、画面右上のログアウトを押してください。"
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8438,7 +8479,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("お探しのページは見つかりませんでした。")])
+  return _c("section", { staticClass: "l-container" }, [
+    _c("h1", { staticClass: "l-container__title" }, [
+      _vm._v("ページが見つかりません。")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "l-container__body" }, [
+      _c("p", [_vm._v("お探しのページは見つかりませんでした。")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "URLに誤りがあるか、お探しのページは移動もしくは削除された可能性があります。"
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "p",
+        [
+          _vm._v("お手数ですが、\n            "),
+          _c("RouterLink", { attrs: { to: "/" } }, [_vm._v("トップページ")]),
+          _vm._v("\n            から操作をやり直してください。")
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8462,9 +8527,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("システムエラーが発生しました。")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "l-container" }, [
+      _c("h1", { staticClass: "l-container__title" }, [
+        _vm._v("サーバーエラー")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "l-container__body" }, [
+        _c("p", [_vm._v("サーバーエラーが発生しました。")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("サーバーの問題でお探しのページを表示できません。")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("再度時間をおいてアクセスしてください。")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "時間をおいても、アクセスできない場合には以下メールアドレスまでご連絡ください。"
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("x.xxxxxxx@gmail.com")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

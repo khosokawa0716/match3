@@ -149,7 +149,7 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'password_confirmation' => 'パスワード（確認）',
-        'name' => 'ユーザー名',
+        'name' => 'お名前',
         'profile_fields' => '自己紹介',
         'title' => 'タイトル',
         'detail' => '詳細',

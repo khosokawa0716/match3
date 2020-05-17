@@ -76,48 +76,33 @@ class UserController extends Controller
      */
     public function update(Request $request, $id) // 引数Users $userを削除
     {
-        Log::info('UserControllerのupdate起動');
         $user = User::find($id);
 
-        // 入力された項目だけ更新をおこなう
-        // 入力項目の有無に関わらずユーザー情報を返却する
-        if ( $request->filled('email') | $request->filled('file') | $request->filled('profile_fields')) {
-
-            if ( $request->filled('email') ) {
+            if ( $user->email !== $request['email'] ) {
                 $this->validate($request, [
-                    'email' => 'email|max:100'
+                    'email' => 'required|string|email|max:255|unique:users'
                 ]);
                 $user->email = $request['email'];
             }
 
             if ( $request['file'] ) {
                 // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
-                Log::info('画像更新ロジックの起動');
+//                Log::info('画像更新ロジックの起動');
                 $file_name = time().'.'.$request['file']->getClientOriginalName();
                 $request['file']->storeAs('public', $file_name);
                 $user->icon_path = env('APP_URL').'/storage/'.$file_name;
             }
 
-            if ( $request->filled('profile_fields') ) {
+            if ( $user->profile_fields !== $request['profile_fields'] ) {
                 $this->validate($request, [
-                    'profile_fields' => 'string|max:2550'
+                    'profile_fields' => 'nullable|string|max:120'
                 ]);
                 $user->profile_fields = $request['profile_fields'];
             }
-            $user->save();
-        }
-
+            
+        $user->save();
         return $user;
     }
-
-//    public function rules() {
-//        return [
-//            'email' => 'email|max:100',
-            // ユニーク。ただし、自分のメールアドレス自体はエラーにならない
-//            'email' => 'unique:users,email,'.$this->me->id,
-//            'profile_fields' => 'max:500',
-//        ];
-//    }
 
     /**
      * Remove the specified resource from storage.
