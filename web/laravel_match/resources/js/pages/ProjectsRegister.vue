@@ -19,7 +19,7 @@
                     <li v-for="msg in registerErrors.detail" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <input type="text" class="c-input c-input__l" v-model="projectsRegisterForm.title" placeholder="タイトル">
+            <input type="text" class="c-input c-input__l" v-model="projectsRegisterForm.title" placeholder="タイトル（3〜20文字）">
             <div class="c-input__radio__l">
             <label for="one-off" class="c-input__radio">
                 <input type="radio" id="one-off" value="one-off" v-model="projectsRegisterForm.type">
@@ -31,10 +31,10 @@
             </label>
             </div>
             <div v-if="isOneOff">
-                <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsRegisterForm.minimum_amount" placeholder="下限金額">
-                <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsRegisterForm.max_amount" placeholder="上限金額">
+                <input type="number" class="c-input c-input__l" v-model="projectsRegisterForm.minimum_amount" placeholder="下限金額（100〜10,000,000円）">
+                <input type="number" class="c-input c-input__l" v-model="projectsRegisterForm.max_amount" placeholder="上限金額（100〜10,000,000円）">
             </div>
-            <textarea cols="30" rows="10" type="text" class="c-input c-input__textarea" id="detail" v-model="projectsRegisterForm.detail" placeholder="詳細"></textarea>
+            <textarea cols="30" rows="10" type="text" class="c-input c-input__textarea" id="detail" v-model="projectsRegisterForm.detail" placeholder="詳細（3〜1000文字）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を登録する</button>
         </form>
     </section>

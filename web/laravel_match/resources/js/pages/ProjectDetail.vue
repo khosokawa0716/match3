@@ -35,8 +35,8 @@
                     <li v-for="msg in public_message_errors.content" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <textarea cols="30" rows="10" type="text" class="c-input p-projectDetail__textarea" v-model="public_message_content" placeholder="メッセージを入力"></textarea>
-            <button type="submit" class="c-btn c-btn__corp c-btn__l">送信する</button>
+            <textarea cols="30" rows="10" type="text" class="c-input p-projectDetail__textarea" v-model="public_message_content" placeholder="内容（200文字以内）"></textarea>
+            <button type="submit" class="c-btn c-btn__corp p-projectDetail__btn">送信する</button>
         </form>
 
         </div>

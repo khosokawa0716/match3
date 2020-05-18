@@ -148,12 +148,14 @@ return [
     'attributes' => [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
-        'password_confirmation' => 'パスワード（確認）',
+        'password_confirmation' => 'パスワード（再入力）',
         'name' => 'お名前',
         'profile_fields' => '自己紹介',
         'title' => 'タイトル',
         'detail' => '詳細',
         'content' => 'テキストエリアの内容',
+        'minimum_amount' => '下限金額',
+        'max_amount' => '上限金額',
 
     ],
 ];

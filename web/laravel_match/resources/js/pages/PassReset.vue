@@ -1,5 +1,7 @@
 <template>
     <section class="l-container">
+        <h1 class="l-container__title">パスワードの変更</h1>
+
         <form class="c-form" @submit.prevent="passReset">
             <div v-if="passResetErrors" class="c-error">
                 <ul v-if="passResetErrors.password">
@@ -9,9 +11,11 @@
                     <li v-for="msg in passResetErrors.password_confirmation" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <input type="password" class="c-input c-input__l" v-model="passResetForm.password" placeholder="新しいパスワード">
-            <input type="password" class="c-input c-input__l" v-model="passResetForm.password_confirmation" placeholder="新しいパスワード（確認用）">
-            <button type="submit" class="c-btn c-btn__corp c-btn__l">パスワードを変更する</button>
+            <label class="c-input__label">新しいパスワード</label>
+            <input type="password" class="c-input c-input__l" v-model="passResetForm.password" placeholder="パスワード（半角英数8〜16文字）">
+            <label class="c-input__label">新しいパスワード（再入力）</label>
+            <input type="password" class="c-input c-input__l" v-model="passResetForm.password_confirmation" placeholder="パスワード (再入力)">
+            <button type="submit" class="c-btn c-btn__corp c-btn__l">変更する</button>
         </form>
     </section>
 </template>

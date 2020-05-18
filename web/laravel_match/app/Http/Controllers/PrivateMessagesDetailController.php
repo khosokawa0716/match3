@@ -86,7 +86,7 @@ class PrivateMessagesDetailController extends Controller
         Log::info('$received_user_idの中身: '.print_r($received_user_id, true));
 
         $request->validate([
-            'content' => 'required|string|max:2550'
+            'content' => 'required|string|max:200'
         ]);
 
         $privateMessage->user_id = $user_id;

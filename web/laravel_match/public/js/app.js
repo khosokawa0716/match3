@@ -2810,6 +2810,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -6657,6 +6661,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "l-container" }, [
+    _c("h1", { staticClass: "l-container__title" }, [
+      _vm._v("パスワードの変更")
+    ]),
+    _vm._v(" "),
     _c(
       "form",
       {
@@ -6695,6 +6703,10 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
+        _c("label", { staticClass: "c-input__label" }, [
+          _vm._v("新しいパスワード")
+        ]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -6705,7 +6717,10 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__l",
-          attrs: { type: "password", placeholder: "新しいパスワード" },
+          attrs: {
+            type: "password",
+            placeholder: "パスワード（半角英数8〜16文字）"
+          },
           domProps: { value: _vm.passResetForm.password },
           on: {
             input: function($event) {
@@ -6717,6 +6732,10 @@ var render = function() {
           }
         }),
         _vm._v(" "),
+        _c("label", { staticClass: "c-input__label" }, [
+          _vm._v("新しいパスワード（再入力）")
+        ]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -6727,10 +6746,7 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__l",
-          attrs: {
-            type: "password",
-            placeholder: "新しいパスワード（確認用）"
-          },
+          attrs: { type: "password", placeholder: "パスワード (再入力)" },
           domProps: { value: _vm.passResetForm.password_confirmation },
           on: {
             input: function($event) {
@@ -6752,7 +6768,7 @@ var render = function() {
             staticClass: "c-btn c-btn__corp c-btn__l",
             attrs: { type: "submit" }
           },
-          [_vm._v("パスワードを変更する")]
+          [_vm._v("変更する")]
         )
       ]
     )
@@ -7153,7 +7169,7 @@ var render = function() {
               cols: "30",
               rows: "10",
               type: "text",
-              placeholder: "メッセージを入力"
+              placeholder: "内容（200文字以内）"
             },
             domProps: { value: _vm.private_message_content },
             on: {
@@ -7169,7 +7185,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "c-btn c-btn__corp c-btn__l",
+              staticClass: "c-btn c-btn__corp p-projectDetail__btn",
               attrs: { type: "submit" }
             },
             [_vm._v("送信する")]
@@ -7347,7 +7363,7 @@ var render = function() {
               cols: "30",
               rows: "10",
               type: "text",
-              placeholder: "メッセージを入力"
+              placeholder: "内容（200文字以内）"
             },
             domProps: { value: _vm.public_message_content },
             on: {
@@ -7363,7 +7379,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "c-btn c-btn__corp c-btn__l",
+              staticClass: "c-btn c-btn__corp p-projectDetail__btn",
               attrs: { type: "submit" }
             },
             [_vm._v("送信する")]
@@ -7554,7 +7570,7 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__l",
-          attrs: { type: "text", placeholder: "タイトル" },
+          attrs: { type: "text", placeholder: "タイトル（3〜20文字）" },
           domProps: { value: _vm.projectsUpdateForm.title },
           on: {
             input: function($event) {
@@ -7638,8 +7654,7 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  max: "10000000",
-                  placeholder: "下限金額"
+                  placeholder: "下限金額（100〜10,000,000円）"
                 },
                 domProps: { value: _vm.projectsUpdateForm.minimum_amount },
                 on: {
@@ -7668,8 +7683,7 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  max: "10000000",
-                  placeholder: "上限金額"
+                  placeholder: "上限金額（100〜10,000,000円）"
                 },
                 domProps: { value: _vm.projectsUpdateForm.max_amount },
                 on: {
@@ -7698,7 +7712,7 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__textarea",
-          attrs: { type: "text", placeholder: "詳細" },
+          attrs: { type: "text", placeholder: "詳細（3〜1000文字）" },
           domProps: { value: _vm.projectsUpdateForm.detail },
           on: {
             input: function($event) {
@@ -7823,7 +7837,7 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__l",
-          attrs: { type: "text", placeholder: "タイトル" },
+          attrs: { type: "text", placeholder: "タイトル（3〜20文字）" },
           domProps: { value: _vm.projectsRegisterForm.title },
           on: {
             input: function($event) {
@@ -7907,8 +7921,7 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  max: "10000000",
-                  placeholder: "下限金額"
+                  placeholder: "下限金額（100〜10,000,000円）"
                 },
                 domProps: { value: _vm.projectsRegisterForm.minimum_amount },
                 on: {
@@ -7937,8 +7950,7 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  max: "10000000",
-                  placeholder: "上限金額"
+                  placeholder: "上限金額（100〜10,000,000円）"
                 },
                 domProps: { value: _vm.projectsRegisterForm.max_amount },
                 on: {
@@ -7972,7 +7984,7 @@ var render = function() {
             rows: "10",
             type: "text",
             id: "detail",
-            placeholder: "詳細"
+            placeholder: "詳細（3〜1000文字）"
           },
           domProps: { value: _vm.projectsRegisterForm.detail },
           on: {

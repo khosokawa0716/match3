@@ -25,11 +25,11 @@ class ProjectController extends Controller
 
     public function create(Request $request, Project $project) {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|min:3|max:20',
             'type' => 'required',
-            'minimum_amount' => 'nullable|integer|max:10000000',
-            'max_amount' => 'nullable|integer|max:10000000',
-            'detail' => 'required|string|max:2550'
+            'minimum_amount' => 'nullable|integer|min:100|max:10000000',
+            'max_amount' => 'nullable|integer|min:100|max:10000000',
+            'detail' => 'required|string|min:3|max:1000'
         ]);
 
         $project->title = $request['title'];
@@ -55,7 +55,7 @@ class ProjectController extends Controller
             // 検索結果がない場合には、エラーコード404を返却する
             if ($project === null) { return abort(404); }
 
-            // vueファイルでボタンを非表示にしているので普通はあり得ないが、以下2つのケースでエラーコード403を返却する
+            // 以下2つのケースでエラーコード403を返却する
             // 1.応募が終了した案件を編集しようとした
             // 2.他人が登録した案件を編集しようとした
             if ($project->status === 0 || $project->user_id !== $user_id) { return abort(403); }
@@ -73,62 +73,39 @@ class ProjectController extends Controller
         $user_id = Auth::id();
         $project_id = $id;
 
-//        Log::info('ProjectControllerのupdate起動');
+        // 1.この操作をする権限があるかどうかを確認する
         if (ctype_digit($project_id)) {
             $project = Project::find($project_id);
             // 検索結果がない場合には、エラーコード404を返却する
             if ($project === null) { return abort(404); }
 
-            // vueファイルでボタンを非表示にしているので普通はあり得ないが、以下2つのケースでエラーコード403を返却する
-            // 1.応募が終了した案件を編集しようとした
-            // 2.他人が登録した案件を編集しようとした
+            // 以下2つのケースでエラーコード403を返却する
+            // ・応募が終了した案件を更新しようとした
+            // ・他人が登録した案件を更新しようとした
             if ($project->status === 0 || $project->user_id !== $user_id) { return abort(403); }
-
         } else {
             // URLのID部分に数値でない入力でリクエストがあった場合にも、エラーコード404を返却する
             return abort(404);
         }
 
-        // 入力された項目だけ更新をおこなう
-        // 入力項目の有無に関わらずプロジェクト情報を返却する
-        if ( $request->filled('title') | $request->filled('type') | $request->filled('minimum_amount') | $request->filled('max_amount') | $request->filled('detail') ) {
+        // 2.バリデーションチェック
+        $request->validate([
+            'title' => 'required|string|min:3|max:20',
+            'type' => 'required',
+            'minimum_amount' => 'nullable|integer|min:100|max:10000000',
+            'max_amount' => 'nullable|integer|min:100|max:10000000',
+            'detail' => 'required|string|min:3|max:1000'
+        ]);
 
-            if ( $request->filled('title')) {
-                $this->validate($request, [
-                    'title' => 'string|max:255'
-                ]);
-                $project->title = $request['title'];
-            }
+        // 3.変更がある項目のみセットする
+        if ( $project->title !== $request['title'] ) { $project->title = $request['title']; }
+        if ( $project->type !== $request['type']) { $project->type = $request['type']; }
+        if ( $project->minimum_amount !== $request['minimum_amount'] ) { $project->minimum_amount = $request['minimum_amount']; }
+        if ( $project->max_amount !== $request['max_amount'] ) { $project->max_amount = $request['max_amount']; }
+        if ( $project->detail !== $request['detail'] ) { $project->detail = $request['detail']; }
 
-            if ( $request->filled('type')) {
-                // ラジオボタンなので、バリデーションなし
-                $project->type = $request['type'];
-            }
-
-            if ( $request->filled('minimum_amount')) {
-                $this->validate($request, [
-                    'minimum_amount' => 'integer|max:10000000'
-                ]);
-                $project->minimum_amount = $request['minimum_amount'];
-            }
-
-            if ( $request->filled('max_amount')) {
-                $this->validate($request, [
-                    'max_amount' => 'integer|max:10000000'
-                ]);
-                $project->max_amount = $request['max_amount'];
-            }
-
-            if ( $request->filled('detail') ) {
-                $this->validate($request, [
-                    'detail' => 'string|max:2550'
-                ]);
-                $project->detail = $request['detail'];
-            }
-
-            $project->save();
-        }
-
+        // 4.DBに保存して、$projectを返却する
+        $project->save();
         return $project;
     }
 }

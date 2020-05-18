@@ -49,7 +49,7 @@ class ProjectDetailController extends Controller
         $project_id = $data;
 
         $request->validate([
-            'content' => 'required|string|max:2550'
+            'content' => 'required|string|max:200'
         ]);
 
         $publicMessage->user_id = $user_id;

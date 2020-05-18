@@ -3,7 +3,6 @@
 // ==================================
 
 .p-message {
-    margin-top: $space_m;
     @include mmd() {
         font-size: $font-size_s;
     }

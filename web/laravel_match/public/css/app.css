@@ -613,15 +613,24 @@ span {
 }
 
 .p-projectDetail__form {
+  margin-top: 40px;
   width: 90%;
   padding-left: 5%;
   padding-right: 5%;
 }
 
 .p-projectDetail__textarea {
+  margin-top: 15px;
   padding: 5px 10px;
   height: 100px;
   width: 100%;
+}
+
+.p-projectDetail__btn {
+  margin: 15px 0;
+  padding: 15px;
+  width: 100%;
+  font-size: 18px;
 }
 
 .p-menuTrigger {
@@ -674,10 +683,6 @@ span {
 
 .p-menuTrigger.active span:nth-of-type(3) {
   transform: translateY(-15px) rotate(45deg);
-}
-
-.p-message {
-  margin-top: 10px;
 }
 
 @media screen and (max-width: 768px) {

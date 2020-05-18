@@ -20,7 +20,7 @@
                 </ul>
             </div>
             <input type="hidden" name="_method" value="PUT">
-            <input type="text" class="c-input c-input__l" v-model="projectsUpdateForm.title" placeholder="タイトル">
+            <input type="text" class="c-input c-input__l" v-model="projectsUpdateForm.title" placeholder="タイトル（3〜20文字）">
             <div class="c-input__radio__l">
             <label for="one-off" class="c-input__radio">
                 <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type">
@@ -32,10 +32,10 @@
             </label>
             </div>
             <div v-if="isOneOff">
-                <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsUpdateForm.minimum_amount" placeholder="下限金額">
-                <input type="number" class="c-input c-input__l" max="10000000" v-model="projectsUpdateForm.max_amount" placeholder="上限金額">
+                <input type="number" class="c-input c-input__l" v-model="projectsUpdateForm.minimum_amount" placeholder="下限金額（100〜10,000,000円）">
+                <input type="number" class="c-input c-input__l" v-model="projectsUpdateForm.max_amount" placeholder="上限金額（100〜10,000,000円）">
             </div>
-            <textarea type="text" class="c-input c-input__textarea" v-model="projectsUpdateForm.detail" placeholder="詳細"></textarea>
+            <textarea type="text" class="c-input c-input__textarea" v-model="projectsUpdateForm.detail" placeholder="詳細（3〜1000文字）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を更新する</button>
         </form>
     </section>

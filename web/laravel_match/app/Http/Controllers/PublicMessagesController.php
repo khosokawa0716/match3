@@ -18,25 +18,21 @@ class PublicMessagesController extends Controller
 
     public function show()
     {
-//        Log::info('PublicMessagesController.show起動');
         $user_id = Auth::id();
 
         $latest_public_message = PublicMessage::with(['project'])
             ->latest()
             ->where('user_id', $user_id)
             ->first();
-//        Log::debug(print_r($latest_public_message,true));
 
         // 自分が投稿したパブリックメッセージのプロジェクトのidを取得する
         $exchaged_messages_project_ids = PublicMessage::where('user_id', $user_id)
             ->pluck('project_id');
-//        Log::debug(print_r($exchaged_messages_project_ids,true));
 
         $exchanged_messages_projects = Project::with(['owner'])
             ->latest()
             ->whereIn('id', $exchaged_messages_project_ids)
             ->get();
-//        Log::debug(print_r($exchanged_messages_projects,true));
 
         return [
             'latest_public_message' => $latest_public_message,

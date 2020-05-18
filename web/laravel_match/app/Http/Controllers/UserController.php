@@ -78,9 +78,17 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
+        // バリデーションチェック
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'profile_fields' => 'nullable|string|max:120'
+        ]);
+
             if ( $user->email !== $request['email'] ) {
                 $this->validate($request, [
-                    'email' => 'required|string|email|max:255|unique:users'
+                    // ユニークのチェックは、変更がある場合のみおこなう。
+                    // そうしないと、現在登録している自分のメールアドレスと更新するためのデータがぶつかりエラーになってしまうため
+                    'email' => 'unique:users'
                 ]);
                 $user->email = $request['email'];
             }
@@ -94,12 +102,9 @@ class UserController extends Controller
             }
 
             if ( $user->profile_fields !== $request['profile_fields'] ) {
-                $this->validate($request, [
-                    'profile_fields' => 'nullable|string|max:120'
-                ]);
                 $user->profile_fields = $request['profile_fields'];
             }
-            
+
         $user->save();
         return $user;
     }
