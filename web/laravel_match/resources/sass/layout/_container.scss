@@ -37,4 +37,27 @@
             padding: $space_l;
         }
     }
+    &__nav {
+        display: flex;
+        justify-content: space-around;
+        background: $color_background;
+        padding: $space_xl;
+        overflow: hidden;
+        border: $border_default;
+        border-radius: $border_radius;
+
+        @include mq() {
+            padding: $space_l;
+        }
+        @include mmd() {
+            flex-direction: column;
+            justify-content: center;
+        }
+        .item {
+            display: block;
+            text-align: center;
+            width: 200px;
+            margin: 0 auto;
+        }
+    }
 }

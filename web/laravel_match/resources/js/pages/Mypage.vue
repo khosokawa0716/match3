@@ -1,6 +1,21 @@
 <template>
     <section class="l-container">
         <h1 class="l-container__title">マイページ</h1>
+
+        <div class="l-container__nav">
+            <a href="#" @click="toRegistered_projects" class="item">
+                登録した案件一覧
+            </a>
+            <a href="#" @click="toApplied_projects" class="item">
+                応募した案件一覧
+            </a>
+            <a href="#" @click="toComment" class="item">
+                やりとりしたコメント
+            </a>
+            <a href="#" @click="toMessage" class="item">
+                やりとりしたメッセージ
+            </a>
+        </div>
         <div class="l-container__body" v-if="isUnreadMessage">
             <div>
                 <RouterLink to="/private_messages/list">
@@ -11,7 +26,7 @@
                 </RouterLink>
             </div>
         </div>
-        <div class="l-container__body">
+        <div class="l-container__body" id="registered_projects">
             <h5 class="l-container__subtitle">登録した案件一覧</h5>
             <div class="c-panel">
                 <Project
@@ -22,7 +37,7 @@
                 />
             </div>
         </div>
-        <div class="l-container__body">
+        <div class="l-container__body" id="applied_projects">
             <h5 class="l-container__subtitle">応募した案件一覧</h5>
             <div class="c-panel">
                 <Project
@@ -33,7 +48,7 @@
                 />
             </div>
         </div>
-        <div class="l-container__body">
+        <div class="l-container__body" id="comment">
             <h5 class="l-container__subtitle">やりとりしたコメント</h5>
             <ul>
                 <li v-for="public_message in exchanged_public_messages" v-bind="public_message.id" class="p-message">
@@ -53,7 +68,7 @@
                 </li>
             </ul>
         </div>
-        <div class="l-container__body">
+        <div class="l-container__body" id="message">
             <h5 class="l-container__subtitle">やりとりしたメッセージ</h5>
             <ul>
                 <li v-for="private_message in exchanged_private_messages" v-bind="private_message.id" class="p-message">
@@ -72,6 +87,9 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="u-page-button" @click="scrollTop">
+            <i class="fas fa-chevron-up Page-Btn-Icon"></i>
         </div>
     </section>
 </template>
@@ -112,6 +130,48 @@
             // ストアerror.jsにあるコードをクリアする
             clearError () {
                 this.$store.commit('error/setCode', null)
+            },
+            toRegistered_projects () {
+                this.$SmoothScroll(
+                    document.querySelector('#registered_projects'),
+                    400,
+                    null,
+                    null,
+                    'y'
+                )
+            },
+            toApplied_projects () {
+                this.$SmoothScroll(
+                    document.querySelector('#applied_projects'),
+                    400,
+                    null,
+                    null,
+                    'y'
+                )
+            },
+            toComment () {
+                this.$SmoothScroll(
+                    document.querySelector('#comment'),
+                    400,
+                    null,
+                    null,
+                    'y'
+                )
+            },
+            toMessage () {
+                this.$SmoothScroll(
+                    document.querySelector('#message'),
+                    400,
+                    null,
+                    null,
+                    'y'
+                )
+            },
+            scrollTop () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
             }
         },
         computed: {

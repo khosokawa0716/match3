@@ -1,0 +1,15 @@
+.u-page-button {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border: $border_default;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    @include mq() {
+        bottom: 60px;
+}
+}

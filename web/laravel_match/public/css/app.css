@@ -232,6 +232,36 @@ span {
   }
 }
 
+.l-container__nav {
+  display: flex;
+  justify-content: space-around;
+  background: #f7f7f7;
+  padding: 20px;
+  overflow: hidden;
+  border: 1px solid #000033;
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 414px) {
+  .l-container__nav {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .l-container__nav {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.l-container__nav .item {
+  display: block;
+  text-align: center;
+  width: 200px;
+  margin: 0 auto;
+}
+
 .l-message {
   width: 1200px;
   box-sizing: border-box;
@@ -761,5 +791,24 @@ span {
 
 .cursorHelp {
   cursor: help;
+}
+
+.u-page-button {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  border: 1px solid #000033;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media screen and (max-width: 414px) {
+  .u-page-button {
+    bottom: 60px;
+  }
 }
 
