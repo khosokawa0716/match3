@@ -54,7 +54,7 @@ class MypageController extends Controller
             ->orderBy(PrivateMessage::CREATED_AT, 'desc')->paginate();
 
         // 未読の受信した非公開メッセージの件数
-        $unread_private_messages = PrivateMessage::with(['author'])
+        $number_unread_private_messages = PrivateMessage::with(['author'])
             ->where('received_user_id', $id)
             ->where('unread',true)
             ->count();
@@ -65,7 +65,7 @@ class MypageController extends Controller
             'applied_projects' => $applied_projects,
             'exchanged_public_messages' => $exchanged_public_messages,
             'exchanged_private_messages' => $exchanged_private_messages,
-            'unread_private_messages' => $unread_private_messages
+            'number_unread_private_messages' => $number_unread_private_messages
             ];
     }
 }

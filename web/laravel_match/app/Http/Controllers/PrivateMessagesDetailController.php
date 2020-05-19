@@ -26,7 +26,10 @@ class PrivateMessagesDetailController extends Controller
 
         if (ctype_digit($project_id)) {
             // 1.対象の案件を取得する
-            $project = Project::where('id', $project_id)->with(['owner'])->first();
+            $project = Project::where('id', $project_id)
+                ->with(['owner'])
+                ->with(['applicant'])
+                ->first();
 
                 // 検索結果がない場合には、エラーコード404を返却する
             if ($project === null) {

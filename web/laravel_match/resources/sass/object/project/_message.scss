@@ -10,11 +10,23 @@
             font-size: $font-size_m;
         }
 
+        &__profile {
+            font-size: $font-size_s;
+        }
+
         &__content {
             padding: $space_l;
             border: $border_default;
             border-radius: $border-radius;
             background: $color_project;
+        }
+
+        &__my-content {
+            margin-top: $space_xl;
+            padding: $space_l;
+            border: $border_default;
+            border-radius: $border-radius;
+            background: $color_background;
         }
 
         &__date {

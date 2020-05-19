@@ -169,7 +169,7 @@ a:hover {
 
 img {
   width: 100%;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 input[type=radio] {
@@ -695,11 +695,23 @@ span {
   font-size: 14px;
 }
 
+.p-message__profile {
+  font-size: 12px;
+}
+
 .p-message__content {
   padding: 15px;
   border: 1px solid #000033;
   border-radius: 3px;
   background: #fafa00;
+}
+
+.p-message__my-content {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #000033;
+  border-radius: 3px;
+  background: #f7f7f7;
 }
 
 .p-message__date {
@@ -718,13 +730,17 @@ span {
 .imgIcon {
   width: auto;
   border-radius: 15px;
-  vertical-align: auto;
+}
+
+.imgIcon__detail {
+  width: auto;
+  border-radius: 15px;
+  margin-bottom: 3px;
 }
 
 .imgIcon_l {
   width: auto;
   border-radius: 50px;
-  vertical-align: auto;
 }
 
 .u-twitter-icon {
@@ -741,5 +757,9 @@ span {
 
 .u-fontSizeSmall {
   font-size: 12px;
+}
+
+.cursorHelp {
+  cursor: help;
 }
 

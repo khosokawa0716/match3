@@ -3,20 +3,39 @@
         <h1 class="l-container__title">案件詳細</h1>
         <div class="p-projectDetail__body">
         <dl class="c-dl">
-            <dt>依頼した人</dt><dd>{{ project.owner.name }}</dd>
+            <div v-if="notOwner"> <!-- 自分の案件には、名前と自己症紹介は表示しない -->
+                <dt>依頼した人</dt>
+                    <dd @click="toggleProfile" class="cursorHelp">
+                        <img :src="owner.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
+                        {{ owner.name }}
+                    </dd>
+                <dt v-if="isActiveProfile">自己紹介</dt>
+                    <dd v-if="isActiveProfile">
+                        {{ owner.profile_fields }}
+                    </dd>
+            </div>
             <dt>案件名</dt><dd>{{ project.title }}</dd>
+            <dt>状態</dt><dd>{{ status }}</dd>
             <dt>タイプ</dt><dd>{{ type }}</dd>
             <dt v-if="isOneOff">金額</dt><dd v-if="isOneOff">{{ project.minimum_amount }}円 〜 {{ project.max_amount }}円</dd>
             <dt>詳細</dt><dd>{{ project.detail }}</dd>
         </dl>
+            <form class="c-form" @submit.prevent="apply" v-if="isRecruiting && notOwner">
+                <button type="submit" class="c-btn c-btn__corp c-btn__l">この案件に応募する</button>
+            </form>
             <h5 class="l-container__subtitle">コメント</h5>
             <ul>
                 <li v-for="public_message in public_messages" v-bind="public_message.id" class="p-message">
-                    <div class="p-message__author">
-                        <img :src="public_message.author.icon_path" alt="アイコン画像"  height="30" class="imgIcon">
-                        {{ public_message.author.name }}
+                    <div v-if="userid !== public_message.author.id">
+                        <div class="p-message__author">
+                            <img :src="public_message.author.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
+                            {{ public_message.author.name }}
+                        </div>
+                        <div class="p-message__content">
+                            {{ public_message.content }}
+                        </div>
                     </div>
-                    <div class="p-message__content">
+                    <div v-else class="p-message__my-content">
                         {{ public_message.content }}
                     </div>
                     <div class="p-message__date">
@@ -24,11 +43,6 @@
                     </div>
                 </li>
             </ul>
-        <form class="c-form" @submit.prevent="apply" v-if="isRecruiting && notOwner">
-<!--        ProjectDetailController.phpの例外処理を確認するときは下の行を有効にする-->
-<!--        <form class="c-form" @submit.prevent="apply">-->
-            <button type="submit" class="c-btn c-btn__corp c-btn__l">この案件に応募する</button>
-        </form>
         <form class="p-projectDetail__form" @submit.prevent="publicMessageRegister">
             <div v-if="public_message_errors" class="c-error">
                 <ul v-if="public_message_errors.content">
@@ -47,18 +61,20 @@
     import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../util'
 
     export default {
-        props: {
-            id: {
-                type: String,
-                required: true
-            }
-        },
         data () {
             return {
-                project: null,
-                public_message_content: '',
+                id: this.$route.params.id,
+                project: [],
+                owner: {
+                    id: '',
+                    name: '',
+                    icon_path: '',
+                    profile_fields: ''
+                },
                 public_messages: [],
-                public_message_errors: null
+                public_message_content: '',
+                public_message_errors: null,
+                isActiveProfile: false
             }
         },
         methods: {
@@ -71,6 +87,12 @@
                 }
 
                 this.project = response.data.project
+
+                this.owner.id = response.data.project.owner.id
+                this.owner.name = response.data.project.owner.name
+                this.owner.icon_path = response.data.project.owner.icon_path
+                this.owner.profile_fields = response.data.project.owner.profile_fields
+
                 this.public_messages = response.data.public_messages
             },
             async publicMessageRegister () {
@@ -121,6 +143,9 @@
             },
             clearError () {
                 this.$store.commit('error/setCode', null)
+            },
+            toggleProfile () {
+                return this.isActiveProfile = !this.isActiveProfile
             }
         },
         created() {
@@ -128,10 +153,20 @@
         },
         computed: {
             notOwner () {
-                return this.$store.getters['auth/userid'] !== this.project.owner.id
+                return this.$store.getters['auth/userid'] !== this.owner.id
+            },
+            userid () {
+                return this.$store.getters['auth/userid']
             },
             isRecruiting () {
                 return this.project.status === 1
+            },
+            status () {
+                if (this.project.status === 1) {
+                    return '募集中'
+                } else {
+                    return '募集終了'
+                }
             },
             type () {
                 if (this.project.type === 'one-off') {

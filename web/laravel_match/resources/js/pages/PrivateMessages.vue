@@ -89,7 +89,7 @@
         computed: {
             // 未読のメッセージがあるかどうか
             isUnreadMessage () {
-                return this.unread_private_messages > 1
+                return this.unread_private_messages.length !== 0
             }
         },
         watch: {

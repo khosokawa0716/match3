@@ -6,7 +6,7 @@
                 <RouterLink to="/private_messages/list">
                     <p class="p-info">
                         <i class="fas fa-bell fa-x"></i>&nbsp;
-                        <span>{{ unread_private_messages }}件の未読メッセージがあります。</span>
+                        <span>{{ number_unread_private_messages }}件の未読メッセージがあります。</span>
                     </p>
                 </RouterLink>
             </div>
@@ -90,7 +90,7 @@
                 applied_projects: [],
                 exchanged_public_messages: [],
                 exchanged_private_messages: [],
-                unread_private_messages: null
+                number_unread_private_messages: null
             }
         },
         methods: {
@@ -107,7 +107,7 @@
                 this.applied_projects = response.data.applied_projects.data
                 this.exchanged_public_messages = response.data.exchanged_public_messages.data
                 this.exchanged_private_messages = response.data.exchanged_private_messages.data
-                this.unread_private_messages = response.data.unread_private_messages
+                this.number_unread_private_messages = response.data.number_unread_private_messages
             },
             // ストアerror.jsにあるコードをクリアする
             clearError () {
@@ -117,7 +117,7 @@
         computed: {
             // 未読のメッセージがあるかどうか
             isUnreadMessage () {
-                return this.unread_private_messages > 1
+                return this.number_unread_private_messages >= 1
             }
         },
         created() {

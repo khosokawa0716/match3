@@ -2689,7 +2689,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       applied_projects: [],
       exchanged_public_messages: [],
       exchanged_private_messages: [],
-      unread_private_messages: null
+      number_unread_private_messages: null
     };
   },
   methods: {
@@ -2722,7 +2722,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.applied_projects = response.data.applied_projects.data;
                 _this.exchanged_public_messages = response.data.exchanged_public_messages.data;
                 _this.exchanged_private_messages = response.data.exchanged_private_messages.data;
-                _this.unread_private_messages = response.data.unread_private_messages;
+                _this.number_unread_private_messages = response.data.number_unread_private_messages;
 
               case 11:
               case "end":
@@ -2740,7 +2740,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     // 未読のメッセージがあるかどうか
     isUnreadMessage: function isUnreadMessage() {
-      return this.unread_private_messages > 1;
+      return this.number_unread_private_messages >= 1;
     }
   },
   created: function created() {
@@ -3141,7 +3141,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     // 未読のメッセージがあるかどうか
     isUnreadMessage: function isUnreadMessage() {
-      return this.unread_private_messages > 1;
+      return this.unread_private_messages.length !== 0;
     }
   },
   watch: {
@@ -3230,15 +3230,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       id: this.$route.params.id,
       project: [],
-      private_message_content: '',
+      owner: {
+        id: '',
+        name: '',
+        icon_path: '',
+        profile_fields: ''
+      },
+      applicant: {
+        id: '',
+        name: '',
+        icon_path: '',
+        profile_fields: ''
+      },
       private_messages: [],
-      private_message_errors: null
+      private_message_content: '',
+      private_message_errors: null,
+      isActiveProfile: false
     };
   },
   methods: {
@@ -3268,9 +3305,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
                 _this.project = response.data.project;
+                _this.owner.id = response.data.project.owner.id;
+                _this.owner.name = response.data.project.owner.name;
+                _this.owner.icon_path = response.data.project.owner.icon_path;
+                _this.owner.profile_fields = response.data.project.owner.profile_fields;
+                _this.applicant.id = response.data.project.applicant.id;
+                _this.applicant.name = response.data.project.applicant.name;
+                _this.applicant.icon_path = response.data.project.applicant.icon_path;
+                _this.applicant.profile_fields = response.data.project.applicant.profile_fields;
                 _this.private_messages = response.data.private_messages;
 
-              case 8:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -3336,18 +3381,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
+    },
+    toggleProfile: function toggleProfile() {
+      return this.isActiveProfile = !this.isActiveProfile;
     }
   },
   created: function created() {
     this.clearError();
   },
   computed: {
-    // notOwner () {
-    //     return this.$store.getters['auth/userid'] !== this.project.owner.id
-    // },
-    // isRecruiting () {
-    //     return this.project.status === 1
-    // },
+    notOwner: function notOwner() {
+      return this.$store.getters['auth/userid'] !== this.owner.id;
+    },
+    notApplicant: function notApplicant() {
+      return this.$store.getters['auth/userid'] !== this.applicant.id;
+    },
+    userid: function userid() {
+      return this.$store.getters['auth/userid'];
+    },
     type: function type() {
       if (this.project.type === 'one-off') {
         return '依頼のときに一定の金額を支払う';
@@ -3450,20 +3501,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    id: {
-      type: String,
-      required: true
-    }
-  },
   data: function data() {
     return {
-      project: null,
-      public_message_content: '',
+      id: this.$route.params.id,
+      project: [],
+      owner: {
+        id: '',
+        name: '',
+        icon_path: '',
+        profile_fields: ''
+      },
       public_messages: [],
-      public_message_errors: null
+      public_message_content: '',
+      public_message_errors: null,
+      isActiveProfile: false
     };
   },
   methods: {
@@ -3493,9 +3560,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
                 _this.project = response.data.project;
+                _this.owner.id = response.data.project.owner.id;
+                _this.owner.name = response.data.project.owner.name;
+                _this.owner.icon_path = response.data.project.owner.icon_path;
+                _this.owner.profile_fields = response.data.project.owner.profile_fields;
                 _this.public_messages = response.data.public_messages;
 
-              case 8:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -3605,6 +3676,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
+    },
+    toggleProfile: function toggleProfile() {
+      return this.isActiveProfile = !this.isActiveProfile;
     }
   },
   created: function created() {
@@ -3612,10 +3686,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     notOwner: function notOwner() {
-      return this.$store.getters['auth/userid'] !== this.project.owner.id;
+      return this.$store.getters['auth/userid'] !== this.owner.id;
+    },
+    userid: function userid() {
+      return this.$store.getters['auth/userid'];
     },
     isRecruiting: function isRecruiting() {
       return this.project.status === 1;
+    },
+    status: function status() {
+      if (this.project.status === 1) {
+        return '募集中';
+      } else {
+        return '募集終了';
+      }
     },
     type: function type() {
       if (this.project.type === 'one-off') {
@@ -5941,7 +6025,7 @@ var render = function() {
                         attrs: {
                           src: _vm.icon_path,
                           alt: "アイコン画像",
-                          height: "30"
+                          height: "20"
                         }
                       }),
                       _vm._v("\n                マイページ\n            ")
@@ -6465,7 +6549,7 @@ var render = function() {
                   _vm._v(" \n                    "),
                   _c("span", [
                     _vm._v(
-                      _vm._s(_vm.unread_private_messages) +
+                      _vm._s(_vm.number_unread_private_messages) +
                         "件の未読メッセージがあります。"
                     )
                   ])
@@ -7060,19 +7144,97 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "p-projectDetail__body" }, [
       _c("dl", { staticClass: "c-dl" }, [
+        _vm.notOwner
+          ? _c("div", [
+              _c("dt", [_vm._v("依頼した人")]),
+              _vm._v(" "),
+              _c(
+                "dd",
+                { staticClass: "cursorHelp", on: { click: _vm.toggleProfile } },
+                [
+                  _c("img", {
+                    staticClass: "imgIcon__detail",
+                    attrs: {
+                      src: _vm.owner.icon_path,
+                      alt: "アイコン画像",
+                      height: "20"
+                    }
+                  }),
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.owner.name) +
+                      "\n            "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.isActiveProfile ? _c("dt", [_vm._v("自己紹介")]) : _vm._e(),
+              _vm._v(" "),
+              _vm.isActiveProfile
+                ? _c("dd", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.owner.profile_fields) +
+                        "\n            "
+                    )
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.notApplicant
+          ? _c("div", [
+              _c("dt", [_vm._v("応募した人")]),
+              _vm._v(" "),
+              _c(
+                "dd",
+                { staticClass: "cursorHelp", on: { click: _vm.toggleProfile } },
+                [
+                  _c("img", {
+                    staticClass: "imgIcon__detail",
+                    attrs: {
+                      src: _vm.applicant.icon_path,
+                      alt: "アイコン画像",
+                      height: "20"
+                    }
+                  }),
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.applicant.name) +
+                      "\n            "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.isActiveProfile ? _c("dt", [_vm._v("自己紹介")]) : _vm._e(),
+              _vm._v(" "),
+              _vm.isActiveProfile
+                ? _c("dd", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.applicant.profile_fields) +
+                        "\n            "
+                    )
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("dt", [_vm._v("案件名")]),
         _c("dd", [_vm._v(_vm._s(_vm.project.title))]),
         _vm._v(" "),
         _c("dt", [_vm._v("タイプ")]),
         _c("dd", [_vm._v(_vm._s(_vm.type))]),
         _vm._v(" "),
+        _vm.isOneOff ? _c("dt", [_vm._v("金額")]) : _vm._e(),
         _vm.isOneOff
-          ? _c("div", [
-              _c("dt", [_vm._v("下限金額")]),
-              _c("dd", [_vm._v(_vm._s(_vm.project.minimum_amount))]),
-              _vm._v(" "),
-              _c("dt", [_vm._v("上限金額")]),
-              _c("dd", [_vm._v(_vm._s(_vm.project.max_amount))])
+          ? _c("dd", [
+              _vm._v(
+                _vm._s(_vm.project.minimum_amount) +
+                  "円 〜 " +
+                  _vm._s(_vm.project.max_amount) +
+                  "円"
+              )
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -7092,29 +7254,39 @@ var render = function() {
               false
             ),
             [
-              _c("div", { staticClass: "p-message__author" }, [
-                _c("img", {
-                  staticClass: "imgIcon",
-                  attrs: {
-                    src: private_message.author.icon_path,
-                    alt: "アイコン画像",
-                    height: "30"
-                  }
-                }),
-                _vm._v(
-                  "\n                " +
-                    _vm._s(private_message.author.name) +
-                    "\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "p-message__content" }, [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(private_message.content) +
-                    "\n            "
-                )
-              ]),
+              _vm.userid !== private_message.author.id
+                ? _c("div", [
+                    _c("div", { staticClass: "p-message__author" }, [
+                      _c("img", {
+                        staticClass: "imgIcon",
+                        attrs: {
+                          src: private_message.author.icon_path,
+                          alt: "アイコン画像",
+                          height: "20"
+                        }
+                      }),
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(private_message.author.name) +
+                          "\n                "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "p-message__content" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(private_message.content) +
+                          "\n                "
+                      )
+                    ])
+                  ])
+                : _c("div", { staticClass: "p-message__my-content" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(private_message.content) +
+                        "\n            "
+                    )
+                  ]),
               _vm._v(" "),
               _c("div", { staticClass: "p-message__date" }, [
                 _vm._v(
@@ -7222,11 +7394,49 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "p-projectDetail__body" }, [
       _c("dl", { staticClass: "c-dl" }, [
-        _c("dt", [_vm._v("依頼した人")]),
-        _c("dd", [_vm._v(_vm._s(_vm.project.owner.name))]),
+        _vm.notOwner
+          ? _c("div", [
+              _c("dt", [_vm._v("依頼した人")]),
+              _vm._v(" "),
+              _c(
+                "dd",
+                { staticClass: "cursorHelp", on: { click: _vm.toggleProfile } },
+                [
+                  _c("img", {
+                    staticClass: "imgIcon__detail",
+                    attrs: {
+                      src: _vm.owner.icon_path,
+                      alt: "アイコン画像",
+                      height: "20"
+                    }
+                  }),
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.owner.name) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.isActiveProfile ? _c("dt", [_vm._v("自己紹介")]) : _vm._e(),
+              _vm._v(" "),
+              _vm.isActiveProfile
+                ? _c("dd", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.owner.profile_fields) +
+                        "\n                "
+                    )
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("dt", [_vm._v("案件名")]),
         _c("dd", [_vm._v(_vm._s(_vm.project.title))]),
+        _vm._v(" "),
+        _c("dt", [_vm._v("状態")]),
+        _c("dd", [_vm._v(_vm._s(_vm.status))]),
         _vm._v(" "),
         _c("dt", [_vm._v("タイプ")]),
         _c("dd", [_vm._v(_vm._s(_vm.type))]),
@@ -7246,57 +7456,6 @@ var render = function() {
         _c("dt", [_vm._v("詳細")]),
         _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
       ]),
-      _vm._v(" "),
-      _c("h5", { staticClass: "l-container__subtitle" }, [_vm._v("コメント")]),
-      _vm._v(" "),
-      _c(
-        "ul",
-        _vm._l(_vm.public_messages, function(public_message) {
-          return _c(
-            "li",
-            _vm._b(
-              { staticClass: "p-message" },
-              "li",
-              public_message.id,
-              false
-            ),
-            [
-              _c("div", { staticClass: "p-message__author" }, [
-                _c("img", {
-                  staticClass: "imgIcon",
-                  attrs: {
-                    src: public_message.author.icon_path,
-                    alt: "アイコン画像",
-                    height: "30"
-                  }
-                }),
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(public_message.author.name) +
-                    "\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "p-message__content" }, [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(public_message.content) +
-                    "\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "p-message__date" }, [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(public_message.created_at) +
-                    "\n                    "
-                )
-              ])
-            ]
-          )
-        }),
-        0
-      ),
       _vm._v(" "),
       _vm.isRecruiting && _vm.notOwner
         ? _c(
@@ -7322,6 +7481,67 @@ var render = function() {
             ]
           )
         : _vm._e(),
+      _vm._v(" "),
+      _c("h5", { staticClass: "l-container__subtitle" }, [_vm._v("コメント")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.public_messages, function(public_message) {
+          return _c(
+            "li",
+            _vm._b(
+              { staticClass: "p-message" },
+              "li",
+              public_message.id,
+              false
+            ),
+            [
+              _vm.userid !== public_message.author.id
+                ? _c("div", [
+                    _c("div", { staticClass: "p-message__author" }, [
+                      _c("img", {
+                        staticClass: "imgIcon__detail",
+                        attrs: {
+                          src: public_message.author.icon_path,
+                          alt: "アイコン画像",
+                          height: "20"
+                        }
+                      }),
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(public_message.author.name) +
+                          "\n                    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "p-message__content" }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(public_message.content) +
+                          "\n                    "
+                      )
+                    ])
+                  ])
+                : _c("div", { staticClass: "p-message__my-content" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(public_message.content) +
+                        "\n                "
+                    )
+                  ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-message__date" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(public_message.created_at) +
+                    "\n                "
+                )
+              ])
+            ]
+          )
+        }),
+        0
+      ),
       _vm._v(" "),
       _c(
         "form",

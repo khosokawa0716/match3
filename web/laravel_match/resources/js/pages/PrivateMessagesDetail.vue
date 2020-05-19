@@ -3,22 +3,46 @@
         <h1 class="l-container__title">メッセージ詳細</h1>
         <div class="p-projectDetail__body">
         <dl class="c-dl">
+            <div v-if="notOwner"> <!-- 自分の案件には、名前と自己症紹介は表示しない -->
+                <dt>依頼した人</dt>
+                <dd @click="toggleProfile" class="cursorHelp">
+                    <img :src="owner.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
+                    {{ owner.name }}
+                </dd>
+                <dt v-if="isActiveProfile">自己紹介</dt>
+                <dd v-if="isActiveProfile">
+                    {{ owner.profile_fields }}
+                </dd>
+            </div>
+            <div v-if="notApplicant"> <!-- 自分の案件には、名前と自己症紹介は表示しない -->
+                <dt>応募した人</dt>
+                <dd @click="toggleProfile" class="cursorHelp">
+                    <img :src="applicant.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
+                    {{ applicant.name }}
+                </dd>
+                <dt v-if="isActiveProfile">自己紹介</dt>
+                <dd v-if="isActiveProfile">
+                    {{ applicant.profile_fields }}
+                </dd>
+            </div>
             <dt>案件名</dt><dd>{{ project.title }}</dd>
             <dt>タイプ</dt><dd>{{ type }}</dd>
-            <div v-if="isOneOff">
-                <dt>下限金額</dt><dd>{{ project.minimum_amount }}</dd>
-                <dt>上限金額</dt><dd>{{ project.max_amount }}</dd>
-            </div>
+            <dt v-if="isOneOff">金額</dt><dd v-if="isOneOff">{{ project.minimum_amount }}円 〜 {{ project.max_amount }}円</dd>
             <dt>詳細</dt><dd>{{ project.detail }}</dd>
         </dl>
         <ul>
             <li v-for="private_message in private_messages" v-bind="private_message.id" class="p-message">
-                <div class="p-message__author">
-                    <img :src="private_message.author.icon_path" alt="アイコン画像"  height="30" class="imgIcon">
-                    {{ private_message.author.name }}
+                <div v-if="userid !== private_message.author.id">
+                    <div class="p-message__author">
+                        <img :src="private_message.author.icon_path" alt="アイコン画像"  height="20" class="imgIcon">
+                        {{ private_message.author.name }}
+                    </div>
+                    <div class="p-message__content">
+                        {{ private_message.content }}
+                    </div>
                 </div>
-                <div class="p-message__content">
-                {{ private_message.content }}
+                <div v-else class="p-message__my-content">
+                    {{ private_message.content }}
                 </div>
                 <div class="p-message__date">
                 {{ private_message.created_at }}
@@ -46,9 +70,22 @@
             return {
                 id: this.$route.params.id,
                 project: [],
-                private_message_content: '',
+                owner: {
+                    id: '',
+                    name: '',
+                    icon_path: '',
+                    profile_fields: ''
+                },
+                applicant: {
+                    id: '',
+                    name: '',
+                    icon_path: '',
+                    profile_fields: ''
+                },
                 private_messages: [],
-                private_message_errors: null
+                private_message_content: '',
+                private_message_errors: null,
+                isActiveProfile: false
             }
         },
         methods: {
@@ -61,6 +98,17 @@
                 }
 
                 this.project = response.data.project
+
+                this.owner.id = response.data.project.owner.id
+                this.owner.name = response.data.project.owner.name
+                this.owner.icon_path = response.data.project.owner.icon_path
+                this.owner.profile_fields = response.data.project.owner.profile_fields
+
+                this.applicant.id = response.data.project.applicant.id
+                this.applicant.name = response.data.project.applicant.name
+                this.applicant.icon_path = response.data.project.applicant.icon_path
+                this.applicant.profile_fields = response.data.project.applicant.profile_fields
+
                 this.private_messages = response.data.private_messages
             },
             async privateMessageRegister () {
@@ -91,18 +139,24 @@
             },
             clearError () {
                 this.$store.commit('error/setCode', null)
+            },
+            toggleProfile () {
+                return this.isActiveProfile = !this.isActiveProfile
             }
         },
         created() {
             this.clearError()
         },
         computed: {
-            // notOwner () {
-            //     return this.$store.getters['auth/userid'] !== this.project.owner.id
-            // },
-            // isRecruiting () {
-            //     return this.project.status === 1
-            // },
+            notOwner () {
+                return this.$store.getters['auth/userid'] !== this.owner.id
+            },
+            notApplicant () {
+                return this.$store.getters['auth/userid'] !== this.applicant.id
+            },
+            userid () {
+                return this.$store.getters['auth/userid']
+            },
             type () {
                 if (this.project.type === 'one-off') {
                     return '依頼のときに一定の金額を支払う'
