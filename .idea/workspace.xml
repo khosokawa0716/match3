@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_top.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_form.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_top.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/project/_top.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,10 +116,10 @@
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="225" y="141" key="SettingsEditor/0.23.1680.950@0.23.1680.950" timestamp="1588643799065" />
-    <state x="363" y="291" width="761" height="472" key="find.popup" timestamp="1586936749588">
+    <state x="363" y="291" width="761" height="548" key="find.popup" timestamp="1589949930272">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="363" y="291" width="761" height="472" key="find.popup/0.23.1680.950@0.23.1680.950" timestamp="1586936749588" />
+    <state x="363" y="291" width="761" height="548" key="find.popup/0.23.1680.950@0.23.1680.950" timestamp="1589949930272" />
     <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1589673919130">
       <screen x="0" y="23" width="1680" height="950" />
     </state>

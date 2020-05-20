@@ -4661,6 +4661,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     toRegister: function toRegister() {
@@ -8782,46 +8788,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "l-container" }, [
-    _c("h1", { staticClass: "l-container__title" }, [
-      _vm._v("エンジニア案件専用アプリ！　match")
-    ]),
-    _vm._v(" "),
-    _c("img", {
-      attrs: { src: "/storage/top-baner.png", alt: "トップバナー" }
-    }),
-    _vm._v(" "),
+  return _c("section", { staticClass: "l-container p-top" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "c-form",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.toRegister($event)
-          }
-        }
-      },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "c-btn c-btn__corp c-btn__l",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("まずは無料でユーザー登録")]
-        )
-      ]
-    ),
+    _c("img", {
+      attrs: { src: "/storage/pixta_48826839_M.jpg", alt: "トップバナー" }
+    }),
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
     _c(
       "form",
       {
-        staticClass: "c-form",
+        staticClass: "p-top__form",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -8829,24 +8808,15 @@ var render = function() {
           }
         }
       },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "c-btn c-btn__corp c-btn__l",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("まずは無料でユーザー登録")]
-        )
-      ]
+      [_vm._m(2)]
     ),
     _vm._v(" "),
-    _vm._m(2),
+    _vm._m(3),
     _vm._v(" "),
     _c(
       "form",
       {
-        staticClass: "c-form",
+        staticClass: "p-top__form",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -8854,22 +8824,29 @@ var render = function() {
           }
         }
       },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "c-btn c-btn__corp c-btn__l",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("まずは無料でユーザー登録")]
-        )
-      ]
+      [_vm._m(4)]
+    ),
+    _vm._v(" "),
+    _vm._m(5),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "p-top__form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.toRegister($event)
+          }
+        }
+      },
+      [_vm._m(6)]
     ),
     _vm._v(" "),
     _c(
       "form",
       {
-        staticClass: "c-form",
+        staticClass: "p-top__form",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -8877,16 +8854,7 @@ var render = function() {
           }
         }
       },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "c-btn c-btn__corp c-btn__l",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("まずは案件を見る")]
-        )
-      ]
+      [_vm._m(7)]
     )
   ])
 }
@@ -8895,16 +8863,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h1", { staticClass: "p-top__title__l" }, [
+      _vm._v("エンジニア案件専用アプリ。"),
+      _c("br"),
+      _vm._v("match")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "l-container__body" }, [
-      _c("h3", [_vm._v("matchの特徴")]),
-      _vm._v(" "),
-      _c("div", [
+      _c("div", { staticClass: "p-top__list" }, [
+        _c("h3", { staticClass: "p-top__title" }, [_vm._v("matchの特徴")]),
+        _vm._v(" "),
         _c("ul", [
           _c("li", [_vm._v("エンジニア案件専用だから、発注が簡単")]),
           _vm._v(" "),
-          _c("li", [_vm._v("お仕事の依頼に手数料無料")]),
+          _c("li", [_vm._v("お仕事の依頼は、手数料がかかりません")]),
           _vm._v(" "),
-          _c("li", [_vm._v("会話のできるエンジニアが多数在籍")])
+          _c("li", [_vm._v("さまざまな強みをもったエンジニアが在籍")])
         ])
       ])
     ])
@@ -8913,35 +8891,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "l-container__body" }, [
-      _c("h3", [_vm._v("システム案件、WEB案件に限定!だから簡単")]),
-      _vm._v(" "),
-      _c("h5", [_vm._v("ご利用の流れ")]),
-      _vm._v(" "),
-      _c("ol", [
-        _c("li", [_vm._v("会員登録")]),
-        _vm._v(" "),
-        _c("li", [
-          _vm._v("たった3つの項目で、案件登録\n            "),
-          _c("ol", [
-            _c("li", [_vm._v("タイトル")]),
-            _vm._v(" "),
-            _c("li", [_vm._v("金額")]),
-            _vm._v(" "),
-            _c("li", [_vm._v("詳細")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [_vm._v("エンジニアから応募がきたら、直接やりとり")])
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("※お仕事の依頼は、無料です。")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "※Twitterで、自分が発注した案件をフォロワーに宣伝することができます。"
-        )
-      ])
+    return _c("div", { staticClass: "p-top__btn-wrapper" }, [
+      _c(
+        "button",
+        {
+          staticClass: "c-btn c-btn__corp p-top__btn",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("まずは無料でユーザー登録")]
+      )
     ])
   },
   function() {
@@ -8949,35 +8907,118 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "l-container__body" }, [
-      _c("h3", [_vm._v("エンジニアの方へ。こんなお悩みありませんか")]),
-      _vm._v(" "),
-      _c("ul", [
-        _c("li", [
-          _vm._v("大手のサイトではいろいろな種類の案件があり探しづらい")
+      _c("div", { staticClass: "p-top__list" }, [
+        _c("h3", { staticClass: "p-top__title" }, [
+          _vm._v("エンジニア案件に特化!"),
+          _c("br"),
+          _vm._v("だから簡単")
         ]),
         _vm._v(" "),
-        _c("li", [_vm._v("会員登録に必要な項目が多く面倒")]),
+        _c("ol", [
+          _c("li", [_vm._v("ユーザー登録")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("タイトル、金額、詳細、を入力して案件登録")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("エンジニアから応募がきたら、直接やりとり")])
+        ]),
         _vm._v(" "),
-        _c("li", [
+        _c("p", [_vm._v("※お仕事の依頼は、手数料がかかりません。")]),
+        _vm._v(" "),
+        _c("p", [
           _vm._v(
-            "コンペのシステムで、苦労して提案したのに依頼者と全くやりとりできない"
+            "※Twitterで、自分が発注した案件をフォロワーに宣伝することができます。"
           )
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-top__btn-wrapper" }, [
+      _c(
+        "button",
+        {
+          staticClass: "c-btn c-btn__corp p-top__btn",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("まずは無料でユーザー登録")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "l-container__body" }, [
+      _c("div", { staticClass: "p-top__list" }, [
+        _c("h3", { staticClass: "p-top__title" }, [
+          _vm._v("エンジニアの方へ。"),
+          _c("br"),
+          _vm._v("こんなお悩みありませんか")
+        ]),
+        _vm._v(" "),
+        _c("ul", [
+          _c("li", [
+            _vm._v("大手のサイトでは、いろいろな種類の案件があり探しづらい")
+          ]),
+          _vm._v(" "),
+          _c("li", [_vm._v("ユーザー登録に必要な項目が多く面倒")]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              "コンペのシステムで、苦労して提案したのに依頼者と全くやりとりできない"
+            )
+          ])
+        ])
       ]),
       _vm._v(" "),
-      _c("h3", [_vm._v("簡単に依頼者とやりとりできます。")]),
-      _vm._v(" "),
-      _c("h5", [_vm._v("ご利用の流れ")]),
-      _vm._v(" "),
-      _c("ol", [
-        _c("li", [_vm._v("会員登録")]),
+      _c("div", { staticClass: "p-top__list" }, [
+        _c("h3", { staticClass: "p-top__title" }, [
+          _vm._v("簡単に依頼者とやりとりできます。")
+        ]),
         _vm._v(" "),
-        _c("li", [_vm._v("案件を探して応募")]),
+        _c("ol", [
+          _c("li", [_vm._v("ユーザー登録")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("案件を探して応募")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("依頼者の方と直接やりとり")])
+        ]),
         _vm._v(" "),
-        _c("li", [_vm._v("依頼者の方と直接やりとり")])
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("※応募は、期間限定で無料です。")])
+        _c("p", [_vm._v("※応募は、期間限定で無料です。")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-top__btn-wrapper" }, [
+      _c(
+        "button",
+        {
+          staticClass: "c-btn c-btn__corp p-top__btn",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("まずは無料でユーザー登録")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-top__btn-wrapper" }, [
+      _c(
+        "button",
+        {
+          staticClass: "c-btn c-btn__corp p-top__btn",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("まずは案件を見る")]
+      )
     ])
   }
 ]

@@ -4,7 +4,6 @@
 .c-form {
     width: $site-width_form;
     margin: 0 auto;
-    //margin-right: auto;
     @include mq() {
         width: 90%;
         padding-left: 5%;
