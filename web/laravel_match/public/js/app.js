@@ -4591,6 +4591,89 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Top.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Top.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    toRegister: function toRegister() {
+      this.$router.push('/register');
+    },
+    toProjects: function toProjects() {
+      this.$router.push('/projects/list');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -8699,27 +8782,202 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("section", { staticClass: "l-container" }, [
+    _c("h1", { staticClass: "l-container__title" }, [
+      _vm._v("エンジニア案件専用アプリ！　match")
+    ]),
+    _vm._v(" "),
+    _c("img", {
+      attrs: { src: "/storage/top-baner.png", alt: "トップバナー" }
+    }),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "c-form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.toRegister($event)
+          }
+        }
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "c-btn c-btn__corp c-btn__l",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("まずは無料でユーザー登録")]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "c-form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.toRegister($event)
+          }
+        }
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "c-btn c-btn__corp c-btn__l",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("まずは無料でユーザー登録")]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "c-form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.toRegister($event)
+          }
+        }
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "c-btn c-btn__corp c-btn__l",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("まずは無料でユーザー登録")]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "c-form",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.toProjects($event)
+          }
+        }
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "c-btn c-btn__corp c-btn__l",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("まずは案件を見る")]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "l-container" }, [
-      _c("h1", { staticClass: "l-container__title" }, [_vm._v("match")]),
+    return _c("div", { staticClass: "l-container__body" }, [
+      _c("h3", [_vm._v("matchの特徴")]),
       _vm._v(" "),
-      _c("img", {
-        attrs: { src: "/storage/top-baner.png", alt: "トップバナー" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "l-container__body" }, [
-        _c("p", [
-          _vm._v(
-            "会員内でエンジニア向けの単発案件やサービス立ち上げ案を投稿、その案件に応募できる。\n        今のランサーズなどサービスはオプションや入力項目が色々ありすぎてわかりにくすぎるため、簡単に案件を投稿し、簡単に応募、やり取りが出来るようにする。\n        イメージは「エンジニア案件マッチング版のメルカリ」という感じ。\n        主婦でも投稿できるくらいの手軽さを提供する。私の願い"
-          )
+      _c("div", [
+        _c("ul", [
+          _c("li", [_vm._v("エンジニア案件専用だから、発注が簡単")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("お仕事の依頼に手数料無料")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("会話のできるエンジニアが多数在籍")])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "l-container__body" }, [
+      _c("h3", [_vm._v("システム案件、WEB案件に限定!だから簡単")]),
+      _vm._v(" "),
+      _c("h5", [_vm._v("ご利用の流れ")]),
+      _vm._v(" "),
+      _c("ol", [
+        _c("li", [_vm._v("会員登録")]),
+        _vm._v(" "),
+        _c("li", [
+          _vm._v("たった3つの項目で、案件登録\n            "),
+          _c("ol", [
+            _c("li", [_vm._v("タイトル")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("金額")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("詳細")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", [_vm._v("エンジニアから応募がきたら、直接やりとり")])
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v("※お仕事の依頼は、無料です。")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "※Twitterで、自分が発注した案件をフォロワーに宣伝することができます。"
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "l-container__body" }, [
+      _c("h3", [_vm._v("エンジニアの方へ。こんなお悩みありませんか")]),
+      _vm._v(" "),
+      _c("ul", [
+        _c("li", [
+          _vm._v("大手のサイトではいろいろな種類の案件があり探しづらい")
+        ]),
+        _vm._v(" "),
+        _c("li", [_vm._v("会員登録に必要な項目が多く面倒")]),
+        _vm._v(" "),
+        _c("li", [
+          _vm._v(
+            "コンペのシステムで、苦労して提案したのに依頼者と全くやりとりできない"
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("h3", [_vm._v("簡単に依頼者とやりとりできます。")]),
+      _vm._v(" "),
+      _c("h5", [_vm._v("ご利用の流れ")]),
+      _vm._v(" "),
+      _c("ol", [
+        _c("li", [_vm._v("会員登録")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("案件を探して応募")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("依頼者の方と直接やりとり")])
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v("※応募は、期間限定で無料です。")])
     ])
   }
 ]
@@ -26585,15 +26843,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Top_vue_vue_type_template_id_6ae91248___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Top.vue?vue&type=template&id=6ae91248& */ "./resources/js/pages/Top.vue?vue&type=template&id=6ae91248&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Top_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Top.vue?vue&type=script&lang=js& */ "./resources/js/pages/Top.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Top_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Top_vue_vue_type_template_id_6ae91248___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Top_vue_vue_type_template_id_6ae91248___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -26607,6 +26867,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/pages/Top.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Top.vue?vue&type=script&lang=js&":
+/*!*************************************************************!*\
+  !*** ./resources/js/pages/Top.vue?vue&type=script&lang=js& ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Top_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Top.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Top.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Top_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
