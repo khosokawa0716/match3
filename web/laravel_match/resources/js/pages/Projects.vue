@@ -2,6 +2,7 @@
     <section class="l-container">
         <h1 class="l-container__title">案件一覧</h1>
         <div class="l-container__body">
+            <p class="c-error" v-if="notLogin">ログイン、またはユーザー登録をおこなうと案件の詳細を確認できます。</p>
         <h5 class="l-container__subtitle">タイプを絞り込む</h5>
         <label v-for="label in options" class="c-panel__radio">
             <input type="radio"
@@ -24,6 +25,7 @@
     import Project from '../components/Project.vue'
 
     export default {
+        title: '案件詳細 - ',
         components: {
             Project
         },
@@ -75,6 +77,9 @@
             //         return this.current2 < 0 ? true : this.current2 === el.status
             //     }, this)
             // }
+            notLogin () {
+                return this.$store.getters["auth/check"] === false
+            }
         },
         watch: {
             $route: {

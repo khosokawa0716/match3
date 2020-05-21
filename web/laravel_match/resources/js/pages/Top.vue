@@ -67,6 +67,7 @@
 </template>
 <script>
     export default {
+        title: '',
         methods: {
             toRegister () {
                 this.$router.push('/register')

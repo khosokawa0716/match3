@@ -12,3 +12,8 @@
         </div>
     </section>
 </template>
+<script>
+    export default {
+        title: 'ページへのアクセス権がありません。 - ',
+    }
+</script>

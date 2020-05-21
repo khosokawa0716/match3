@@ -10,3 +10,8 @@
         </div>
     </section>
 </template>
+<script>
+    export default {
+        title: 'ページが見つかりません。 - ',
+    }
+</script>

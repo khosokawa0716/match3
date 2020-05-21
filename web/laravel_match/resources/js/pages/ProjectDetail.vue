@@ -61,6 +61,7 @@
     import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../util'
 
     export default {
+        title: '案件詳細 - ',
         data () {
             return {
                 id: this.$route.params.id,

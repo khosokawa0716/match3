@@ -1,6 +1,6 @@
 <template>
     <section class="l-container">
-        <h1 class="l-container__title">登録情報の編集</h1>
+        <h1 class="l-container__title">本人情報の編集</h1>
 
         <form class="c-form" @submit.prevent="update" enctype="multipart/form-data" method="POST">
             <div v-if="updateErrors" class="c-error">
@@ -36,6 +36,7 @@
     import {OK} from "../util";
 
     export default {
+        title: '本人情報の編集 - ',
         data () {
             return {
                 editForm: {

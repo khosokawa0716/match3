@@ -62,6 +62,7 @@
     import Project from '../components/Project.vue'
 
     export default {
+        title: 'メッセージ一覧 - ',
         components: {
             Project
         },

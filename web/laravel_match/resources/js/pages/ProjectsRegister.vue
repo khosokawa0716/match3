@@ -43,6 +43,7 @@
     import {CREATED, UNPROCESSABLE_ENTITY} from "../util";
 
     export default {
+        title: '案件登録 - ',
         data () {
             return {
                 projectsRegisterForm: {
