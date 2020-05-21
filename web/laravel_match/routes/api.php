@@ -38,6 +38,13 @@ Route::get('/private_messages/list', 'PrivateMessagesController@show')->name('pr
 Route::get('/private_messages/detail/{id}', 'PrivateMessagesDetailController@show')->name('privateMessagesDetail.show'); // プライベートメッセージ詳細の表示
 Route::post('/private_messages/detail/{id}', 'PrivateMessagesDetailController@create')->name('privateMessagesDetail.create'); // プライベートメッセージの投稿
 
+// トークンリフレッシュ
+Route::get('/reflesh-token', function (Illuminate\Http\Request $request) {
+    $request->session()->regenerateToken();
+
+    return response()->json();
+});
+
 // ***** 削除候補 *****
 
 // :userId は間違いっぽい。一度は動作していたが、405 Method not allowed になってしまった。ProjectContoroller@update作成をきっかけに{id}に修正

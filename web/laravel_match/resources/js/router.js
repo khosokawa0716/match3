@@ -19,10 +19,13 @@ import PublicMessages from './pages/PublicMessages.vue'
 import PrivateMessages from './pages/PrivateMessages.vue'
 import PrivateMessagesDetail from './pages/PrivateMessagesDetail.vue'
 
+// エラーページコンポーネントをインポートする
 import NotFound from './pages/errors/NotFound.vue'
 import Forbidden from './pages/errors/Forbidden.vue'
+import Unauthorized from './pages/errors/Unauthorized.vue'
+import UnauthorizedCSRF from './pages/errors/UnauthorizedCSRF.vue'
 import System from './pages/errors/System.vue'
-
+import Unexpected from './pages/errors/Unexpected.vue'
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
@@ -191,6 +194,18 @@ const routes = [
     {
         path: '/403',
         component: Forbidden
+    },
+    {
+        path: '/401',
+        component: Unauthorized
+    },
+    {
+        path: '/419',
+        component: UnauthorizedCSRF
+    },
+    {
+        path: '/unexpected-error',
+        component: Unexpected
     },
     {
         path: '*',

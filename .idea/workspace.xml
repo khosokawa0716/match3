@@ -2,28 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/Unauthorized.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/UnauthorizedCSRF.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/Unexpected.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/database/ib_logfile0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/database/ibdata1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/projects.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/projects.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/matchdb/public_messages.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/database/matchdb/public_messages.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Mypage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassReset.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassReset.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassResetEmail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassResetEmail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PrivateMessages.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PrivateMessages.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PrivateMessagesDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PrivateMessagesDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Projects.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Projects.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsRegister.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/ProjectsRegister.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PublicMessages.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PublicMessages.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Top.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/Forbidden.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/Forbidden.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/NotFound.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/NotFound.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/System.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/errors/System.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/title.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/title.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_var.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_var.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,9 +130,9 @@
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="363" y="291" width="761" height="548" key="find.popup/0.23.1680.950@0.23.1680.950" timestamp="1589949930272" />
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1589673919130">
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1590038664763">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1589673919130" />
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1590038664763" />
   </component>
 </project>
