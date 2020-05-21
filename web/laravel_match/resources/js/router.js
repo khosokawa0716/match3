@@ -47,7 +47,11 @@ const routes = [
     {
         path: '/projects/list',
         name: 'projectsList',
-        component: Projects
+        component: Projects,
+        props: route => {
+            const page = route.query.page
+            return { page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1 }
+        }
     },
     {
         path: '/register',

@@ -32,4 +32,7 @@ class Project extends Model
     protected $visible = [
         'id', 'title', 'owner', 'applicant', 'type', 'minimum_amount', 'max_amount', 'detail', 'status', 'created_at'
     ];
+
+    /** 1ページあたりの項目数 */
+    protected $perPage = 9;
 }

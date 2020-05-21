@@ -564,7 +564,7 @@ span {
   box-sizing: border-box;
   border: 1px solid #000033;
   border-radius: 3px;
-  background: #f8e58c;
+  background: #fef263;
   padding: 15px;
   margin-bottom: 15px;
 }
@@ -733,7 +733,7 @@ span {
   padding: 15px;
   border: 1px solid #000033;
   border-radius: 3px;
-  background: #f8e58c;
+  background: #fef263;
 }
 
 .p-message__my-content {
@@ -815,7 +815,7 @@ span {
 .p-top__form {
   width: 1200px;
   margin: 0 auto;
-  background: #f8e58c;
+  background: #fef263;
 }
 
 @media screen and (max-width: 1200px) {
@@ -915,7 +915,7 @@ span {
 }
 
 .u-twitter-icon__project {
-  background: #f8e58c;
+  background: #fef263;
   color: #000033;
   width: 30px;
   margin-left: auto;

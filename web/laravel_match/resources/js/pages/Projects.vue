@@ -17,21 +17,33 @@
                 :item="project"
                 />
             </div>
+            <Pagination :current-page="currentPage" :last-page="lastPage" />
         </div>
     </section>
 </template>
 <script>
     import { OK } from '../util'
     import Project from '../components/Project.vue'
+    import Pagination from '../components/Pagination.vue'
 
     export default {
-        title: '案件詳細',
+        title: '案件一覧',
+        props: {
+            page: {
+                type: Number,
+                required: false,
+                default: 1
+            }
+        },
         components: {
-            Project
+            Project,
+            Pagination
         },
         data () {
             return {
                 projects: [],
+                currentPage: 0,
+                lastPage: 0,
                 options: [
                     { value: -1, label: 'すべて' },
                     { value: 'one-off', label: '依頼のときに一定の金額を支払う' },
@@ -56,6 +68,8 @@
                 }
 
                 this.projects = response.data.data
+                this.currentPage = response.data.current_page
+                this.lastPage = response.data.last_page
             }
         },
         // filters: { // currentの値が未定義となりエラー
