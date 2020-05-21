@@ -36,7 +36,7 @@
     import {OK} from "../util";
 
     export default {
-        title: '本人情報の編集 - ',
+        title: '本人情報の編集',
         data () {
             return {
                 editForm: {

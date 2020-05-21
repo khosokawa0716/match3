@@ -3,7 +3,7 @@ export default {
         let { title } = this.$options
         if (title) {
             title = typeof title === 'function' ? title.call(this) : title
-            document.title = `${title}match`
+            document.title = `${ title } - match`
         }
     }
 }

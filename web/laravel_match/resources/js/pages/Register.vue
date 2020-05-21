@@ -39,7 +39,7 @@
 </template>
 <script>
     export default {
-        title: 'ユーザー登録 - ',
+        title: 'ユーザー登録',
         data () {
             return {
                 registerForm: {

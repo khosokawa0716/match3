@@ -98,7 +98,7 @@
     import Project from '../components/Project.vue'
 
     export default {
-        title: 'マイページ - ',
+        title: 'マイページ',
         components: {
             Project
         },

@@ -23,7 +23,7 @@
     import {OK, UNPROCESSABLE_ENTITY} from "../util";
 
     export default {
-        title: 'パスワードの変更 - ',
+        title: 'パスワードの変更',
         data() {
             return {
                 passResetForm: { // emailとtokenは、GETパラメータから取得する

@@ -21,7 +21,7 @@
 </template>
 <script>
     export default {
-        title: 'ログイン - ',
+        title: 'ログイン',
         data () {
             return {
                 loginForm: {

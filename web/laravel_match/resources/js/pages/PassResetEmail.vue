@@ -17,7 +17,7 @@
     import {OK, UNPROCESSABLE_ENTITY} from "../util";
 
     export default {
-        title: 'パスワードを忘れてしまった場合 - ',
+        title: 'パスワードを忘れてしまった場合',
         data() {
             return {
                 passResetEmailForm: {

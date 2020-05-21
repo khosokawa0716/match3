@@ -25,7 +25,7 @@
     import Project from '../components/Project.vue'
 
     export default {
-        title: '案件詳細 - ',
+        title: '案件詳細',
         components: {
             Project
         },

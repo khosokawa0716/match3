@@ -67,7 +67,7 @@
 </template>
 <script>
     export default {
-        title: '',
+        title: 'エンジニア案件専用アプリ',
         methods: {
             toRegister () {
                 this.$router.push('/register')

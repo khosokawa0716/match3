@@ -39,7 +39,7 @@
     import Project from '../components/Project.vue'
 
     export default {
-        title: 'コメント一覧 - ',
+        title: 'コメント一覧',
         components: {
             Project
         },

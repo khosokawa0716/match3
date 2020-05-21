@@ -1,6 +1,6 @@
 <template>
     <section class="l-container">
-        <h1 class="l-container__title">ページへのアクセス権がありません。</h1>
+        <h1 class="l-container__title">ページへのアクセス権がありません</h1>
         <div class="l-container__body">
             <p>指定されたURLへのアクセス権限がありません。</p>
             <p>案件に応募する操作をおこなった場合には、他のユーザーがすでに応募してしまった可能性があります。</p>
@@ -14,6 +14,6 @@
 </template>
 <script>
     export default {
-        title: 'ページへのアクセス権がありません。 - ',
+        title: 'ページへのアクセス権がありません',
     }
 </script>

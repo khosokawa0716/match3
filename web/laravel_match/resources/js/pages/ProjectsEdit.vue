@@ -44,7 +44,7 @@
     import {OK, UNPROCESSABLE_ENTITY} from "../util";
 
     export default {
-        title: '案件の編集 - ',
+        title: '案件の編集',
         data () {
             return {
                 projectsUpdateForm: {
