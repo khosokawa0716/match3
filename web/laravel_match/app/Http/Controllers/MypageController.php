@@ -25,12 +25,16 @@ class MypageController extends Controller
         // 登録した案件
         $registered_projects = Project::with(['owner'])
             ->where('user_id', $id)
-            ->orderBy(Project::CREATED_AT, 'desc')->paginate();
+            ->orderBy(Project::CREATED_AT, 'desc')
+            ->get();
+        Log::debug('$registered_projectsの中身: '.print_r($registered_projects, true));
 
         // 応募した案件
         $applied_projects = Project::with(['owner'])
             ->where('applicant_id', $id)
-            ->orderBy(Project::CREATED_AT, 'desc')->paginate();
+            ->orderBy(Project::CREATED_AT, 'desc')
+            ->get();
+        Log::debug('$applied_projectsの中身: '.print_r($applied_projects, true));
 
         // 受信したメッセージを探すために、自分が登録した案件のidを取得する
         // メッセージのidには必ず1つの案件のidが紐づいているため

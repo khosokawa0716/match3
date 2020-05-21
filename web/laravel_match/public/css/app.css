@@ -610,6 +610,17 @@ span {
   content: "\2026\3000";
 }
 
+.c-pagination {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.c-pagination a {
+  border: 1px solid #000033;
+  border-radius: 3px;
+  padding: 15px;
+}
+
 .p-info {
   color: #d9534f;
   text-align: center;

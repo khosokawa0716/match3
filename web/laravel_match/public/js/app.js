@@ -2720,6 +2720,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
 /* harmony import */ var _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Project.vue */ "./resources/js/components/Project.vue");
+/* harmony import */ var _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Pagination.vue */ "./resources/js/components/Pagination.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2821,18 +2822,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: 'マイページ',
+  // props: {
+  //     page_registered_projects: {
+  //         type: Number,
+  //         required: false,
+  //         default: 1
+  //     },
+  //     page_applied_projects: {
+  //         type: Number,
+  //         required: false,
+  //         default: 1
+  //     }
+  // },
   components: {
-    Project: _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Project: _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__["default"] // Pagination
+
   },
   data: function data() {
     return {
       id: this.$store.getters['auth/userid'],
       registered_projects: [],
+      // currentPageRegisteredProjects: 0,
+      // lastPageRegisteredProjects: 0,
       applied_projects: [],
+      // currentPageAppliedProjects: 0,
+      // lastPageAppliedProjects: 0,
       exchanged_public_messages: [],
       exchanged_private_messages: [],
       number_unread_private_messages: null
@@ -2849,13 +2870,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/api/mypage');
+                return axios.get('/api/mypage/');
 
               case 2:
                 response = _context.sent;
+                console.dir(response);
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 6;
+                  _context.next = 7;
                   break;
                 }
 
@@ -2863,14 +2885,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 6:
-                _this.registered_projects = response.data.registered_projects.data;
-                _this.applied_projects = response.data.applied_projects.data;
+              case 7:
+                _this.registered_projects = response.data.registered_projects; // this.currentPageRegisteredProjects = response.data.registered_projects.data.current_page
+                // this.lastPageRegisteredProjects = response.data.registered_projects.data.last_page
+
+                _this.applied_projects = response.data.applied_projects; // this.currentPageAppliedProjects = response.data.applied_projects.data.current_page
+                // this.lastPageAppliedProjects = response.data.applied_projects.data.last_page
+
                 _this.exchanged_public_messages = response.data.exchanged_public_messages.data;
                 _this.exchanged_private_messages = response.data.exchanged_private_messages.data;
                 _this.number_unread_private_messages = response.data.number_unread_private_messages;
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -6611,22 +6637,16 @@ var render = function() {
       !_vm.isFirstPage
         ? _c(
             "RouterLink",
-            {
-              staticClass: "c-btn",
-              attrs: { to: "/projects/list/?page=" + (_vm.currentPage - 1) }
-            },
-            [_vm._v("« 前へ")]
+            { attrs: { to: "/projects/list/?page=" + (_vm.currentPage - 1) } },
+            [_vm._v("« 前のページ")]
           )
         : _vm._e(),
       _vm._v(" "),
       !_vm.isLastPage
         ? _c(
             "RouterLink",
-            {
-              staticClass: "c-btn",
-              attrs: { to: "/projects/list/?page=" + (_vm.currentPage + 1) }
-            },
-            [_vm._v("次へ »")]
+            { attrs: { to: "/projects/list/?page=" + (_vm.currentPage + 1) } },
+            [_vm._v("次のページ »")]
           )
         : _vm._e()
     ],
@@ -7054,7 +7074,7 @@ var render = function() {
           attrs: { href: "#" },
           on: { click: _vm.toRegistered_projects }
         },
-        [_vm._v("\n            登録した案件一覧\n        ")]
+        [_vm._v("\n                登録した案件一覧\n            ")]
       ),
       _vm._v(" "),
       _c(
@@ -7064,7 +7084,7 @@ var render = function() {
           attrs: { href: "#" },
           on: { click: _vm.toApplied_projects }
         },
-        [_vm._v("\n            応募した案件一覧\n        ")]
+        [_vm._v("\n                応募した案件一覧\n            ")]
       ),
       _vm._v(" "),
       _c(
@@ -7074,7 +7094,7 @@ var render = function() {
           attrs: { href: "#" },
           on: { click: _vm.toComment }
         },
-        [_vm._v("\n            やりとりしたコメント\n        ")]
+        [_vm._v("\n                やりとりしたコメント\n            ")]
       ),
       _vm._v(" "),
       _c(
@@ -7084,7 +7104,7 @@ var render = function() {
           attrs: { href: "#" },
           on: { click: _vm.toMessage }
         },
-        [_vm._v("\n            やりとりしたメッセージ\n        ")]
+        [_vm._v("\n                やりとりしたメッセージ\n            ")]
       )
     ]),
     _vm._v(" "),
@@ -7096,7 +7116,7 @@ var render = function() {
               _c("RouterLink", { attrs: { to: "/private_messages/list" } }, [
                 _c("p", { staticClass: "p-info" }, [
                   _c("i", { staticClass: "fas fa-bell fa-x" }),
-                  _vm._v(" \n                    "),
+                  _vm._v(" \n                        "),
                   _c("span", [
                     _vm._v(
                       _vm._s(_vm.number_unread_private_messages) +
@@ -7179,9 +7199,9 @@ var render = function() {
             [
               _c("div", [
                 _vm._v(
-                  "\n                    案件名: " +
+                  "\n                        案件名: " +
                     _vm._s(public_message.project.title) +
-                    "\n                "
+                    "\n                    "
                 )
               ]),
               _vm._v(" "),
@@ -7198,9 +7218,9 @@ var render = function() {
                 [
                   _c("div", { staticClass: "p-message__content" }, [
                     _vm._v(
-                      "\n                        " +
+                      "\n                            " +
                         _vm._s(public_message.content) +
-                        "\n                    "
+                        "\n                        "
                     )
                   ])
                 ]
@@ -7208,9 +7228,9 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "p-message__date" }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n                        " +
                     _vm._s(public_message.created_at) +
-                    "\n                "
+                    "\n                    "
                 )
               ])
             ],
@@ -7240,9 +7260,9 @@ var render = function() {
             [
               _c("div", [
                 _vm._v(
-                  "\n                    案件名: " +
+                  "\n                        案件名: " +
                     _vm._s(private_message.project.title) +
-                    "\n                "
+                    "\n                    "
                 )
               ]),
               _vm._v(" "),
@@ -7259,9 +7279,9 @@ var render = function() {
                 [
                   _c("div", { staticClass: "p-message__content" }, [
                     _vm._v(
-                      "\n                        " +
+                      "\n                            " +
                         _vm._s(private_message.content) +
-                        "\n                    "
+                        "\n                        "
                     )
                   ])
                 ]
@@ -7269,9 +7289,9 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "p-message__date" }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n                        " +
                     _vm._s(private_message.created_at) +
-                    "\n                "
+                    "\n                    "
                 )
               ])
             ],
@@ -28136,6 +28156,14 @@ var routes = [{
   path: '/mypage',
   name: 'mypage',
   component: _pages_Mypage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+  // props: route => {
+  //     const page_registered_projects = route.query.page_registered_projects
+  //     const page_applied_projects = route.query.page_applied_projects
+  //     return {
+  //         page_registered_projects: /^[1-9][0-9]*$/.test(page_registered_projects) ? page_registered_projects * 1 : 1,
+  //         page_applied_projects: /^[1-9][0-9]*$/.test(page_applied_projects) ? page_applied_projects * 1 : 1
+  //     }
+  // },
   beforeEnter: function beforeEnter(to, from, next) {
     // 未ログイン状態でアクセスがあったらログインページへ遷移する
     if (_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
@@ -28236,6 +28264,10 @@ var routes = [{
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
+  // ページング切り替え時に画面トップに遷移する　ない方がいいかもしれない
+  // scrollBehavior () {
+  //     return { x: 0, y: 0 }
+  // },
   routes: routes
 }); // VueRouterインスタンスをエクスポートする
 // app.jsでインポートするため

@@ -1,0 +1,13 @@
+// ==================================
+// pagination
+// ==================================
+
+.c-pagination {
+    margin-top: $space_xxl;
+    margin-bottom: $space_xxl;
+    a {
+        border: $border_default;
+        border-radius: $border_radius;
+        padding: $space_l;
+    }
+}

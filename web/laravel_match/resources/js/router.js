@@ -113,6 +113,14 @@ const routes = [
         path: '/mypage',
         name: 'mypage',
         component: Mypage,
+        // props: route => {
+        //     const page_registered_projects = route.query.page_registered_projects
+        //     const page_applied_projects = route.query.page_applied_projects
+        //     return {
+        //         page_registered_projects: /^[1-9][0-9]*$/.test(page_registered_projects) ? page_registered_projects * 1 : 1,
+        //         page_applied_projects: /^[1-9][0-9]*$/.test(page_applied_projects) ? page_applied_projects * 1 : 1
+        //     }
+        // },
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {
                 next()
@@ -220,9 +228,10 @@ const routes = [
 // VueRouterインスタンスを作成する
 const router = new VueRouter({
     mode: 'history',
-    scrollBehavior () {
-        return { x: 0, y: 0 }
-    },
+    // ページング切り替え時に画面トップに遷移する　ない方がいいかもしれない
+    // scrollBehavior () {
+    //     return { x: 0, y: 0 }
+    // },
     routes
 })
 
