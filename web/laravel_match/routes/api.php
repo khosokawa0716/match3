@@ -26,6 +26,7 @@ Route::post('/projects/register', 'ProjectController@create')->name('project.cre
 Route::put('/projects/{id}/edit', 'ProjectController@update')->name('projects.update'); // 案件更新 20200430/editを追加
 Route::get('/project/info', function (Project $project) { return $project; })->name('project'); // プロジェクト情報の返却
 Route::get('/projects/list', 'ProjectController@index')->name('projects.index'); // 案件一覧表示
+//Route::get('/projects/list/{type}', 'ProjectController@index')->name('projects.index'); // 案件一覧表示
 
 // ***** 案件詳細 *****
 Route::get('/project/detail/{id}', 'ProjectDetailController@show')->name('projectDetail.show'); // 案件詳細画面の表示

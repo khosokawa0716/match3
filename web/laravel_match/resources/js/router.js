@@ -46,11 +46,16 @@ const routes = [
     },
     {
         path: '/projects/list',
+        // path: '/projects/list/:type',
         name: 'projectsList',
         component: Projects,
         props: route => {
             const page = route.query.page
-            return { page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1 }
+            const type = route.query.type
+            return {
+                page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1,
+                type: type
+            }
         }
     },
     {

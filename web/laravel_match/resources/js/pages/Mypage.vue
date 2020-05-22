@@ -36,7 +36,6 @@
                     :item="project"
                 />
             </div>
-<!--            <Pagination :current-page="currentPageRegisteredProjects" :last-page="lastPageRegisteredProjects" />-->
         </div>
         <div class="l-container__body" id="applied_projects">
             <h5 class="l-container__subtitle">応募した案件一覧</h5>
@@ -48,7 +47,6 @@
                     :item="project"
                 />
             </div>
-<!--            <Pagination :current-page="currentPageAppliedProjects" :last-page="lastPageAppliedProjects" />-->
         </div>
         <div class="l-container__body" id="comment">
             <h5 class="l-container__subtitle">やりとりしたコメント</h5>
@@ -98,35 +96,17 @@
 <script>
     import { OK } from '../util'
     import Project from '../components/Project.vue'
-    import Pagination from '../components/Pagination.vue'
 
     export default {
         title: 'マイページ',
-        // props: {
-        //     page_registered_projects: {
-        //         type: Number,
-        //         required: false,
-        //         default: 1
-        //     },
-        //     page_applied_projects: {
-        //         type: Number,
-        //         required: false,
-        //         default: 1
-        //     }
-        // },
         components: {
-            Project,
-            // Pagination
+            Project
         },
         data () {
             return {
                 id: this.$store.getters['auth/userid'],
                 registered_projects: [],
-                // currentPageRegisteredProjects: 0,
-                // lastPageRegisteredProjects: 0,
                 applied_projects: [],
-                // currentPageAppliedProjects: 0,
-                // lastPageAppliedProjects: 0,
                 exchanged_public_messages: [],
                 exchanged_private_messages: [],
                 number_unread_private_messages: null
@@ -135,7 +115,6 @@
         methods: {
             async fetchProjects () {
                 const response = await axios.get('/api/mypage/')
-                console.dir(response);
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
@@ -143,15 +122,9 @@
                 }
 
                 this.registered_projects = response.data.registered_projects
-                // this.currentPageRegisteredProjects = response.data.registered_projects.data.current_page
-                // this.lastPageRegisteredProjects = response.data.registered_projects.data.last_page
-
                 this.applied_projects = response.data.applied_projects
-                // this.currentPageAppliedProjects = response.data.applied_projects.data.current_page
-                // this.lastPageAppliedProjects = response.data.applied_projects.data.last_page
-
-                this.exchanged_public_messages = response.data.exchanged_public_messages.data
-                this.exchanged_private_messages = response.data.exchanged_private_messages.data
+                this.exchanged_public_messages = response.data.exchanged_public_messages
+                this.exchanged_private_messages = response.data.exchanged_private_messages
                 this.number_unread_private_messages = response.data.number_unread_private_messages
             },
             // ストアerror.jsにあるコードをクリアする

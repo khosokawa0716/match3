@@ -2263,6 +2263,10 @@ __webpack_require__.r(__webpack_exports__);
     lastPage: {
       type: Number,
       required: true
+    },
+    selectType: {
+      type: String,
+      required: true
     }
   },
   computed: {
@@ -2720,7 +2724,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util */ "./resources/js/util.js");
 /* harmony import */ var _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Project.vue */ "./resources/js/components/Project.vue");
-/* harmony import */ var _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Pagination.vue */ "./resources/js/components/Pagination.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2822,38 +2825,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: 'マイページ',
-  // props: {
-  //     page_registered_projects: {
-  //         type: Number,
-  //         required: false,
-  //         default: 1
-  //     },
-  //     page_applied_projects: {
-  //         type: Number,
-  //         required: false,
-  //         default: 1
-  //     }
-  // },
   components: {
-    Project: _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__["default"] // Pagination
-
+    Project: _components_Project_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
       id: this.$store.getters['auth/userid'],
       registered_projects: [],
-      // currentPageRegisteredProjects: 0,
-      // lastPageRegisteredProjects: 0,
       applied_projects: [],
-      // currentPageAppliedProjects: 0,
-      // lastPageAppliedProjects: 0,
       exchanged_public_messages: [],
       exchanged_private_messages: [],
       number_unread_private_messages: null
@@ -2874,10 +2857,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.dir(response);
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
@@ -2885,18 +2867,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 7:
-                _this.registered_projects = response.data.registered_projects; // this.currentPageRegisteredProjects = response.data.registered_projects.data.current_page
-                // this.lastPageRegisteredProjects = response.data.registered_projects.data.last_page
-
-                _this.applied_projects = response.data.applied_projects; // this.currentPageAppliedProjects = response.data.applied_projects.data.current_page
-                // this.lastPageAppliedProjects = response.data.applied_projects.data.last_page
-
-                _this.exchanged_public_messages = response.data.exchanged_public_messages.data;
-                _this.exchanged_private_messages = response.data.exchanged_private_messages.data;
+              case 6:
+                _this.registered_projects = response.data.registered_projects;
+                _this.applied_projects = response.data.applied_projects;
+                _this.exchanged_public_messages = response.data.exchanged_public_messages;
+                _this.exchanged_private_messages = response.data.exchanged_private_messages;
                 _this.number_unread_private_messages = response.data.number_unread_private_messages;
 
-              case 12:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -3978,6 +3956,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3988,6 +3974,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       type: Number,
       required: false,
       "default": 1
+    },
+    type: {
+      type: String,
+      required: false,
+      "default": 'all'
     }
   },
   components: {
@@ -3997,24 +3988,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       projects: [],
+      selectType: this.$route.query.type,
+      // selectType: 'all',
       currentPage: 0,
-      lastPage: 0,
-      options: [{
-        value: -1,
-        label: 'すべて'
-      }, {
-        value: 'one-off',
-        label: '依頼のときに一定の金額を支払う'
-      }, {
-        value: 'service',
-        label: 'サービス公開後の収益を分け合う'
-      }],
-      current: -1 // options2: [
+      lastPage: 0 // options: [
       //     { value: -1, label: 'すべて' },
-      //     { value: 1,  label: '募集中' },
-      //     { value: 0,  label: '募集終了' }
+      //     { value: 'one-off', label: '依頼のときに一定の金額を支払う' },
+      //     { value: 'service', label: 'サービス公開後の収益を分け合う' }
       // ],
-      // current2: -1
+      // current: -1,
 
     };
   },
@@ -4028,14 +4010,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get("/api/projects/list/?page=".concat(_this.page));
+                console.log(_this.page);
+                console.log(_this.type); // const response = await axios.get('/api/projects/list')
 
-              case 2:
+                _context.next = 4;
+                return axios.get("/api/projects/list?type=".concat(_this.type, "&page=").concat(_this.page));
+
+              case 4:
                 response = _context.sent;
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 6;
+                  _context.next = 8;
                   break;
                 }
 
@@ -4043,39 +4028,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 6:
+              case 8:
                 _this.projects = response.data.data;
                 _this.currentPage = response.data.current_page;
                 _this.lastPage = response.data.last_page;
 
-              case 9:
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    fetchFilterProjects: function fetchFilterProjects() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("/api/projects/list?type=".concat(_this2.selectType, "&page=1"));
+
+              case 2:
+                response = _context2.sent;
+
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _this2.$store.commit('error/setCode', response.status);
+
+                return _context2.abrupt("return", false);
+
+              case 6:
+                _this2.projects = response.data.data;
+                _this2.currentPage = response.data.current_page;
+                _this2.lastPage = response.data.last_page; // this.$route.params.type = this.selectType
+
+                _this2.$router.push("/projects/list?type=".concat(_this2.selectType, "&page=1"));
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
-  // filters: { // currentの値が未定義となりエラー
-  //     filterType: function (el) {
-  //         return this.current < 0 ? true : this.current === el.type
-  //     },
-  //     filterStatus: function(el) {
-  //         return this.current2 < 0 ? true : this.current2 === el.status
-  //     }
-  // },
   computed: {
     filterType: function filterType() {
       return this.projects.filter(function (el) {
         return this.current < 0 ? true : this.current === el.type;
       }, this);
     },
-    // filterStatus () {
-    //     return this.projects.filter(function(el) {
-    //         return this.current2 < 0 ? true : this.current2 === el.status
-    //     }, this)
-    // }
     notLogin: function notLogin() {
       return this.$store.getters["auth/check"] === false;
     }
@@ -4083,25 +4094,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       handler: function handler() {
-        var _this2 = this;
+        var _this3 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context3.prev = _context3.next) {
                 case 0:
-                  _context2.next = 2;
-                  return _this2.fetchProjects();
+                  _context3.next = 2;
+                  return _this3.fetchProjects();
 
                 case 2:
                 case "end":
-                  return _context2.stop();
+                  return _context3.stop();
               }
             }
-          }, _callee2);
+          }, _callee3);
         }))();
       },
       immediate: true
+    },
+    selectType: {
+      handler: function handler() {
+        var _this4 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  console.log('fetchFilterProjectsメソッド起動');
+                  _context4.next = 3;
+                  return _this4.fetchFilterProjects();
+
+                case 3:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4);
+        }))();
+      }
     }
   }
 });
@@ -6427,7 +6460,7 @@ var render = function() {
                     "RouterLink",
                     {
                       staticClass: "c-menu__link",
-                      attrs: { to: "/projects/list" }
+                      attrs: { to: "/projects/list/all" }
                     },
                     [_vm._v("案件を探す")]
                   )
@@ -6637,7 +6670,15 @@ var render = function() {
       !_vm.isFirstPage
         ? _c(
             "RouterLink",
-            { attrs: { to: "/projects/list/?page=" + (_vm.currentPage - 1) } },
+            {
+              attrs: {
+                to:
+                  "/projects/list?type=" +
+                  _vm.selectType +
+                  "&page=" +
+                  (_vm.currentPage - 1)
+              }
+            },
             [_vm._v("« 前のページ")]
           )
         : _vm._e(),
@@ -6645,7 +6686,15 @@ var render = function() {
       !_vm.isLastPage
         ? _c(
             "RouterLink",
-            { attrs: { to: "/projects/list/?page=" + (_vm.currentPage + 1) } },
+            {
+              attrs: {
+                to:
+                  "/projects/list?type=" +
+                  _vm.selectType +
+                  "&page=" +
+                  (_vm.currentPage + 1)
+              }
+            },
             [_vm._v("次のページ »")]
           )
         : _vm._e()
@@ -7074,7 +7123,7 @@ var render = function() {
           attrs: { href: "#" },
           on: { click: _vm.toRegistered_projects }
         },
-        [_vm._v("\n                登録した案件一覧\n            ")]
+        [_vm._v("\n            登録した案件一覧\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -7084,7 +7133,7 @@ var render = function() {
           attrs: { href: "#" },
           on: { click: _vm.toApplied_projects }
         },
-        [_vm._v("\n                応募した案件一覧\n            ")]
+        [_vm._v("\n            応募した案件一覧\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -7094,7 +7143,7 @@ var render = function() {
           attrs: { href: "#" },
           on: { click: _vm.toComment }
         },
-        [_vm._v("\n                やりとりしたコメント\n            ")]
+        [_vm._v("\n            やりとりしたコメント\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -7104,7 +7153,7 @@ var render = function() {
           attrs: { href: "#" },
           on: { click: _vm.toMessage }
         },
-        [_vm._v("\n                やりとりしたメッセージ\n            ")]
+        [_vm._v("\n            やりとりしたメッセージ\n        ")]
       )
     ]),
     _vm._v(" "),
@@ -7116,7 +7165,7 @@ var render = function() {
               _c("RouterLink", { attrs: { to: "/private_messages/list" } }, [
                 _c("p", { staticClass: "p-info" }, [
                   _c("i", { staticClass: "fas fa-bell fa-x" }),
-                  _vm._v(" \n                        "),
+                  _vm._v(" \n                    "),
                   _c("span", [
                     _vm._v(
                       _vm._s(_vm.number_unread_private_messages) +
@@ -7199,9 +7248,9 @@ var render = function() {
             [
               _c("div", [
                 _vm._v(
-                  "\n                        案件名: " +
+                  "\n                    案件名: " +
                     _vm._s(public_message.project.title) +
-                    "\n                    "
+                    "\n                "
                 )
               ]),
               _vm._v(" "),
@@ -7218,9 +7267,9 @@ var render = function() {
                 [
                   _c("div", { staticClass: "p-message__content" }, [
                     _vm._v(
-                      "\n                            " +
+                      "\n                        " +
                         _vm._s(public_message.content) +
-                        "\n                        "
+                        "\n                    "
                     )
                   ])
                 ]
@@ -7228,9 +7277,9 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "p-message__date" }, [
                 _vm._v(
-                  "\n                        " +
+                  "\n                    " +
                     _vm._s(public_message.created_at) +
-                    "\n                    "
+                    "\n                "
                 )
               ])
             ],
@@ -7260,9 +7309,9 @@ var render = function() {
             [
               _c("div", [
                 _vm._v(
-                  "\n                        案件名: " +
+                  "\n                    案件名: " +
                     _vm._s(private_message.project.title) +
-                    "\n                    "
+                    "\n                "
                 )
               ]),
               _vm._v(" "),
@@ -7279,9 +7328,9 @@ var render = function() {
                 [
                   _c("div", { staticClass: "p-message__content" }, [
                     _vm._v(
-                      "\n                            " +
+                      "\n                        " +
                         _vm._s(private_message.content) +
-                        "\n                        "
+                        "\n                    "
                     )
                   ])
                 ]
@@ -7289,9 +7338,9 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "p-message__date" }, [
                 _vm._v(
-                  "\n                        " +
+                  "\n                    " +
                     _vm._s(private_message.created_at) +
-                    "\n                    "
+                    "\n                "
                 )
               ])
             ],
@@ -8235,36 +8284,78 @@ var render = function() {
           _vm._v("タイプを絞り込む")
         ]),
         _vm._v(" "),
-        _vm._l(_vm.options, function(label) {
-          return _c("label", { staticClass: "c-panel__radio" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.current,
-                  expression: "current"
-                }
-              ],
-              attrs: { type: "radio" },
-              domProps: {
-                value: label.value,
-                checked: _vm._q(_vm.current, label.value)
-              },
-              on: {
-                change: function($event) {
-                  _vm.current = label.value
-                }
-              }
-            }),
-            _vm._v(_vm._s(label.label) + "\n    ")
-          ])
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectType,
+              expression: "selectType"
+            }
+          ],
+          attrs: { type: "radio", id: "all", value: "all" },
+          domProps: { checked: _vm._q(_vm.selectType, "all") },
+          on: {
+            change: function($event) {
+              _vm.selectType = "all"
+            }
+          }
         }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "all" } }, [_vm._v("すべて")]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectType,
+              expression: "selectType"
+            }
+          ],
+          attrs: { type: "radio", id: "one-off", value: "one-off" },
+          domProps: { checked: _vm._q(_vm.selectType, "one-off") },
+          on: {
+            change: function($event) {
+              _vm.selectType = "one-off"
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "one-off" } }, [
+          _vm._v("依頼のときに一定の金額を支払う")
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectType,
+              expression: "selectType"
+            }
+          ],
+          attrs: { type: "radio", id: "service", value: "service" },
+          domProps: { checked: _vm._q(_vm.selectType, "service") },
+          on: {
+            change: function($event) {
+              _vm.selectType = "service"
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "service" } }, [
+          _vm._v("サービス公開後の収益を分け合う")
+        ]),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "c-panel" },
-          _vm._l(_vm.filterType, function(project) {
+          _vm._l(_vm.projects, function(project) {
             return _c("Project", {
               key: project.id,
               staticClass: "c-panel__item",
@@ -8275,10 +8366,14 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("Pagination", {
-          attrs: { "current-page": _vm.currentPage, "last-page": _vm.lastPage }
+          attrs: {
+            "select-type": _vm.selectType,
+            "current-page": _vm.currentPage,
+            "last-page": _vm.lastPage
+          }
         })
       ],
-      2
+      1
     )
   ])
 }
@@ -28088,12 +28183,15 @@ var routes = [{
   }
 }, {
   path: '/projects/list',
+  // path: '/projects/list/:type',
   name: 'projectsList',
   component: _pages_Projects_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
   props: function props(route) {
     var page = route.query.page;
+    var type = route.query.type;
     return {
-      page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
+      page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1,
+      type: type
     };
   }
 }, {
