@@ -3,7 +3,16 @@
         <h1 class="l-container__title">案件一覧</h1>
         <div class="l-container__body">
             <p class="c-error" v-if="notLogin">ログイン、またはユーザー登録をおこなうと案件の詳細を確認できます。</p>
-        <h5 class="l-container__subtitle">タイプを絞り込む</h5>
+        <h5 class="l-container__subtitle">状態</h5>
+            <input type="radio" id="2" v-model="selectStatus" value="2">
+            <label for="2">すべて</label>
+            <br>
+            <input type="radio" id="1" v-model="selectStatus" value="1">
+            <label for="1">募集中</label>
+            <br>
+            <input type="radio" id="0" v-model="selectStatus" value="0">
+            <label for="0">募集終了</label>
+        <h5 class="l-container__subtitle">タイプ</h5>
             <input type="radio" id="all" v-model="selectType" value="all">
             <label for="all">すべて</label>
             <br>
@@ -12,11 +21,6 @@
             <br>
             <input type="radio" id="service" v-model="selectType" value="service">
             <label for="service">サービス公開後の収益を分け合う</label>
-<!--        <label v-for="label in options" class="c-panel__radio">-->
-<!--            <input type="radio"-->
-<!--                   v-model="current"-->
-<!--                   v-bind:value="label.value">{{ label.label }}-->
-<!--        </label>-->
             <div class="c-panel">
             <Project
                 class="c-panel__item"
@@ -25,7 +29,7 @@
                 :item="project"
                 />
             </div>
-            <Pagination :select-type="selectType" :current-page="currentPage" :last-page="lastPage" />
+            <Pagination :select-status="selectStatus" :select-type="selectType" :current-page="currentPage" :last-page="lastPage" />
         </div>
     </section>
 </template>
@@ -37,15 +41,20 @@
     export default {
         title: '案件一覧',
         props: {
-            page: {
-                type: Number,
+            status: {
+                type: String,
                 required: false,
-                default: 1
+                default: "1"
             },
             type: {
                 type: String,
                 required: false,
                 default: 'all'
+            },
+            page: {
+                type: Number,
+                required: false,
+                default: 1
             }
         },
         components: {
@@ -55,25 +64,19 @@
         data () {
             return {
                 projects: [],
-                selectType: this.$route.query.type,
-                // selectType: 'all',
+                // selectStatus: this.$route.query.status,
+                selectStatus: this.status,
+                // selectType: this.$route.query.type,
+                selectType: this.type,
                 currentPage: 0,
                 lastPage: 0,
-                // options: [
-                //     { value: -1, label: 'すべて' },
-                //     { value: 'one-off', label: '依頼のときに一定の金額を支払う' },
-                //     { value: 'service', label: 'サービス公開後の収益を分け合う' }
-                // ],
-                // current: -1,
             }
         },
         methods: {
             async fetchProjects () {
-                console.log(this.page)
+                console.log(this.status)
                 console.log(this.type)
-                // const response = await axios.get('/api/projects/list')
-                const response = await axios.get(`/api/projects/list?type=${this.type}&page=${this.page}`)
-                // const response = await axios.get(`/api/projects/list/?page=${this.page}`, this.type)
+                const response = await axios.get(`/api/projects/list?status=${this.status}&type=${this.type}&page=${this.page}`)
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
@@ -85,7 +88,7 @@
                 this.lastPage = response.data.last_page
             },
             async fetchFilterProjects () {
-                const response = await axios.get(`/api/projects/list?type=${this.selectType}&page=1`)
+                const response = await axios.get(`/api/projects/list?status=${this.selectStatus}&type=${this.selectType}&page=1`)
 
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
@@ -96,8 +99,7 @@
                 this.currentPage = response.data.current_page
                 this.lastPage = response.data.last_page
 
-                // this.$route.params.type = this.selectType
-                this.$router.push(`/projects/list?type=${this.selectType}&page=1`)
+                this.$router.push(`/projects/list?status=${this.selectStatus}&type=${this.selectType}&page=1`)
             }
         },
         computed: {
@@ -117,9 +119,13 @@
                 },
                 immediate: true
             },
+            selectStatus: {
+                async handler () {
+                    await this.fetchFilterProjects()
+                }
+            },
             selectType: {
                 async handler () {
-                    console.log('fetchFilterProjectsメソッド起動')
                     await this.fetchFilterProjects()
                 }
             }

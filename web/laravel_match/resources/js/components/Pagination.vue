@@ -2,12 +2,12 @@
     <div class="c-pagination">
         <RouterLink
             v-if="! isFirstPage"
-            :to="`/projects/list?type=${selectType}&page=${currentPage - 1}`"
+            :to="`/projects/list?status=${this.selectStatus}&type=${selectType}&page=${currentPage - 1}`"
             class=""
             >&laquo; 前のページ</RouterLink>
         <RouterLink
             v-if="! isLastPage"
-            :to="`/projects/list?type=${selectType}&page=${currentPage + 1}`"
+            :to="`/projects/list?status=${this.selectStatus}&type=${selectType}&page=${currentPage + 1}`"
             class=""
         >次のページ &raquo;</RouterLink>
     </div>
@@ -15,16 +15,20 @@
 <script>
     export default {
         props: {
+            selectStatus: {
+                type: String,
+                required: true
+            },
+            selectType: {
+                type: String,
+                required: true
+            },
             currentPage: {
                 type: Number,
                 required: true
             },
             lastPage: {
                 type: Number,
-                required: true
-            },
-            selectType: {
-                type: String,
                 required: true
             }
         },

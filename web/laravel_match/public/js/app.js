@@ -2256,16 +2256,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    selectStatus: {
+      type: String,
+      required: true
+    },
+    selectType: {
+      type: String,
+      required: true
+    },
     currentPage: {
       type: Number,
       required: true
     },
     lastPage: {
       type: Number,
-      required: true
-    },
-    selectType: {
-      type: String,
       required: true
     }
   },
@@ -3964,21 +3968,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: '案件一覧',
   props: {
-    page: {
-      type: Number,
+    status: {
+      type: String,
       required: false,
-      "default": 1
+      "default": "1"
     },
     type: {
       type: String,
       required: false,
       "default": 'all'
+    },
+    page: {
+      type: Number,
+      required: false,
+      "default": 1
     }
   },
   components: {
@@ -3988,16 +4001,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       projects: [],
-      selectType: this.$route.query.type,
-      // selectType: 'all',
+      // selectStatus: this.$route.query.status,
+      selectStatus: this.status,
+      // selectType: this.$route.query.type,
+      selectType: this.type,
       currentPage: 0,
-      lastPage: 0 // options: [
-      //     { value: -1, label: 'すべて' },
-      //     { value: 'one-off', label: '依頼のときに一定の金額を支払う' },
-      //     { value: 'service', label: 'サービス公開後の収益を分け合う' }
-      // ],
-      // current: -1,
-
+      lastPage: 0
     };
   },
   methods: {
@@ -4010,11 +4019,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(_this.page);
-                console.log(_this.type); // const response = await axios.get('/api/projects/list')
-
+                console.log(_this.status);
+                console.log(_this.type);
                 _context.next = 4;
-                return axios.get("/api/projects/list?type=".concat(_this.type, "&page=").concat(_this.page));
+                return axios.get("/api/projects/list?status=".concat(_this.status, "&type=").concat(_this.type, "&page=").concat(_this.page));
 
               case 4:
                 response = _context.sent;
@@ -4051,7 +4059,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.get("/api/projects/list?type=".concat(_this2.selectType, "&page=1"));
+                return axios.get("/api/projects/list?status=".concat(_this2.selectStatus, "&type=").concat(_this2.selectType, "&page=1"));
 
               case 2:
                 response = _context2.sent;
@@ -4068,9 +4076,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 6:
                 _this2.projects = response.data.data;
                 _this2.currentPage = response.data.current_page;
-                _this2.lastPage = response.data.last_page; // this.$route.params.type = this.selectType
+                _this2.lastPage = response.data.last_page;
 
-                _this2.$router.push("/projects/list?type=".concat(_this2.selectType, "&page=1"));
+                _this2.$router.push("/projects/list?status=".concat(_this2.selectStatus, "&type=").concat(_this2.selectType, "&page=1"));
 
               case 10:
               case "end":
@@ -4114,7 +4122,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       immediate: true
     },
-    selectType: {
+    selectStatus: {
       handler: function handler() {
         var _this4 = this;
 
@@ -4123,16 +4131,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             while (1) {
               switch (_context4.prev = _context4.next) {
                 case 0:
-                  console.log('fetchFilterProjectsメソッド起動');
-                  _context4.next = 3;
+                  _context4.next = 2;
                   return _this4.fetchFilterProjects();
 
-                case 3:
+                case 2:
                 case "end":
                   return _context4.stop();
               }
             }
           }, _callee4);
+        }))();
+      }
+    },
+    selectType: {
+      handler: function handler() {
+        var _this5 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+            while (1) {
+              switch (_context5.prev = _context5.next) {
+                case 0:
+                  _context5.next = 2;
+                  return _this5.fetchFilterProjects();
+
+                case 2:
+                case "end":
+                  return _context5.stop();
+              }
+            }
+          }, _callee5);
         }))();
       }
     }
@@ -6673,7 +6701,9 @@ var render = function() {
             {
               attrs: {
                 to:
-                  "/projects/list?type=" +
+                  "/projects/list?status=" +
+                  this.selectStatus +
+                  "&type=" +
                   _vm.selectType +
                   "&page=" +
                   (_vm.currentPage - 1)
@@ -6689,7 +6719,9 @@ var render = function() {
             {
               attrs: {
                 to:
-                  "/projects/list?type=" +
+                  "/projects/list?status=" +
+                  this.selectStatus +
+                  "&type=" +
                   _vm.selectType +
                   "&page=" +
                   (_vm.currentPage + 1)
@@ -8280,9 +8312,73 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("h5", { staticClass: "l-container__subtitle" }, [
-          _vm._v("タイプを絞り込む")
-        ]),
+        _c("h5", { staticClass: "l-container__subtitle" }, [_vm._v("状態")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectStatus,
+              expression: "selectStatus"
+            }
+          ],
+          attrs: { type: "radio", id: "2", value: "2" },
+          domProps: { checked: _vm._q(_vm.selectStatus, "2") },
+          on: {
+            change: function($event) {
+              _vm.selectStatus = "2"
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "2" } }, [_vm._v("すべて")]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectStatus,
+              expression: "selectStatus"
+            }
+          ],
+          attrs: { type: "radio", id: "1", value: "1" },
+          domProps: { checked: _vm._q(_vm.selectStatus, "1") },
+          on: {
+            change: function($event) {
+              _vm.selectStatus = "1"
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "1" } }, [_vm._v("募集中")]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectStatus,
+              expression: "selectStatus"
+            }
+          ],
+          attrs: { type: "radio", id: "0", value: "0" },
+          domProps: { checked: _vm._q(_vm.selectStatus, "0") },
+          on: {
+            change: function($event) {
+              _vm.selectStatus = "0"
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "0" } }, [_vm._v("募集終了")]),
+        _vm._v(" "),
+        _c("h5", { staticClass: "l-container__subtitle" }, [_vm._v("タイプ")]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -8367,6 +8463,7 @@ var render = function() {
         _vm._v(" "),
         _c("Pagination", {
           attrs: {
+            "select-status": _vm.selectStatus,
             "select-type": _vm.selectType,
             "current-page": _vm.currentPage,
             "last-page": _vm.lastPage
@@ -28187,11 +28284,15 @@ var routes = [{
   name: 'projectsList',
   component: _pages_Projects_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
   props: function props(route) {
-    var page = route.query.page;
+    var status = route.query.status;
     var type = route.query.type;
+    var page = route.query.page;
     return {
-      page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1,
-      type: type
+      // status: "1" | "0" | "2" ? status : "1",
+      status: status,
+      // type: 'all' | 'one-off' | 'service' ? type : 'all',
+      type: type,
+      page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
     };
   }
 }, {
@@ -28363,9 +28464,12 @@ var routes = [{
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   // ページング切り替え時に画面トップに遷移する　ない方がいいかもしれない
-  // scrollBehavior () {
-  //     return { x: 0, y: 0 }
-  // },
+  scrollBehavior: function scrollBehavior() {
+    return {
+      x: 0,
+      y: 0
+    };
+  },
   routes: routes
 }); // VueRouterインスタンスをエクスポートする
 // app.jsでインポートするため

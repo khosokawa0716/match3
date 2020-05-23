@@ -50,11 +50,15 @@ const routes = [
         name: 'projectsList',
         component: Projects,
         props: route => {
-            const page = route.query.page
+            const status = route.query.status
             const type = route.query.type
+            const page = route.query.page
             return {
-                page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1,
-                type: type
+                // status: "1" | "0" | "2" ? status : "1",
+                status: status,
+                // type: 'all' | 'one-off' | 'service' ? type : 'all',
+                type: type,
+                page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
             }
         }
     },
@@ -234,9 +238,9 @@ const routes = [
 const router = new VueRouter({
     mode: 'history',
     // ページング切り替え時に画面トップに遷移する　ない方がいいかもしれない
-    // scrollBehavior () {
-    //     return { x: 0, y: 0 }
-    // },
+    scrollBehavior () {
+        return { x: 0, y: 0 }
+    },
     routes
 })
 
