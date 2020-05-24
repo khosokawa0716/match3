@@ -3980,7 +3980,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -4010,9 +4009,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       projects: [],
-      // selectStatus: this.$route.query.status,
       selectStatus: this.status,
-      // selectType: this.$route.query.type,
       selectType: this.type,
       currentPage: 0,
       lastPage: 0
@@ -4049,8 +4046,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.projects = response.data.data;
                 _this.currentPage = response.data.current_page;
                 _this.lastPage = response.data.last_page;
+                _this.selectStatus = _this.status;
+                _this.selectType = _this.type;
 
-              case 11:
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -4059,57 +4058,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     fetchFilterProjects: function fetchFilterProjects() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return axios.get("/api/projects/list?status=".concat(_this2.selectStatus, "&type=").concat(_this2.selectType, "&page=1"));
-
-              case 2:
-                response = _context2.sent;
-
-                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context2.next = 6;
-                  break;
-                }
-
-                _this2.$store.commit('error/setCode', response.status);
-
-                return _context2.abrupt("return", false);
-
-              case 6:
-                _this2.projects = response.data.data;
-                _this2.currentPage = response.data.current_page;
-                _this2.lastPage = response.data.last_page;
-
-                _this2.$router.push("/projects/list?status=".concat(_this2.selectStatus, "&type=").concat(_this2.selectType, "&page=1"));
-
-              case 10:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
+      this.$router.push("/projects/list?status=".concat(this.selectStatus, "&type=").concat(this.selectType, "&page=1"));
     }
   },
   computed: {
-    filterType: function filterType() {
-      return this.projects.filter(function (el) {
-        return this.current < 0 ? true : this.current === el.type;
-      }, this);
-    },
-    notLogin: function notLogin() {
-      return this.$store.getters["auth/check"] === false;
+    isLogin: function isLogin() {
+      return this.$store.getters["auth/check"];
     }
   },
   watch: {
     $route: {
+      handler: function handler() {
+        var _this2 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.next = 2;
+                  return _this2.fetchProjects();
+
+                case 2:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }))();
+      },
+      immediate: true
+    },
+    selectStatus: {
       handler: function handler() {
         var _this3 = this;
 
@@ -4119,7 +4099,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               switch (_context3.prev = _context3.next) {
                 case 0:
                   _context3.next = 2;
-                  return _this3.fetchProjects();
+                  return _this3.fetchFilterProjects();
 
                 case 2:
                 case "end":
@@ -4128,10 +4108,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }, _callee3);
         }))();
-      },
-      immediate: true
+      }
     },
-    selectStatus: {
+    selectType: {
       handler: function handler() {
         var _this4 = this;
 
@@ -4149,27 +4128,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
             }
           }, _callee4);
-        }))();
-      }
-    },
-    selectType: {
-      handler: function handler() {
-        var _this5 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-            while (1) {
-              switch (_context5.prev = _context5.next) {
-                case 0:
-                  _context5.next = 2;
-                  return _this5.fetchFilterProjects();
-
-                case 2:
-                case "end":
-                  return _context5.stop();
-              }
-            }
-          }, _callee5);
         }))();
       }
     }
@@ -8322,15 +8280,15 @@ var render = function() {
   return _c("section", { staticClass: "l-container" }, [
     _c("h1", { staticClass: "l-container__title" }, [_vm._v("案件一覧")]),
     _vm._v(" "),
-    _c("div", { staticClass: "p-filter" }, [
-      _vm.notLogin
-        ? _c("p", { staticClass: "c-error" }, [
-            _vm._v(
-              "ログイン、またはユーザー登録をおこなうと案件の詳細を確認できます。"
-            )
+    _c("div", { staticClass: "l-container__body" }, [
+      !_vm.isLogin
+        ? _c("p", { staticClass: "p-info" }, [
+            _vm._v("ログイン、ユーザー登録をすると案件の詳細を確認できます。")
           ])
-        : _vm._e(),
-      _vm._v(" "),
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "p-filter" }, [
       _c("div", { staticClass: "p-filter__item" }, [
         _vm._m(0),
         _vm._v(" "),

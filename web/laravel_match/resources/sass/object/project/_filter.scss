@@ -5,8 +5,8 @@
     display: flex;
     flex-wrap: wrap;
     background: $color_background;
-    padding-top: $space_xxl;
-    padding-bottom: $space_xxl;
+    padding-top: $space_xl;
+    padding-bottom: $space_xl;
     @include mmd() {
         justify-content: center;
         padding-left: $space_xl;

@@ -1,8 +1,10 @@
 <template>
     <section class="l-container">
         <h1 class="l-container__title">案件一覧</h1>
+        <div class="l-container__body">
+            <p class="p-info" v-if="! isLogin">ログイン、ユーザー登録をすると案件の詳細を確認できます。</p>
+        </div>
         <div class="p-filter">
-            <p class="c-error" v-if="notLogin">ログイン、またはユーザー登録をおこなうと案件の詳細を確認できます。</p>
             <div class="p-filter__item">
                 <h5><span>状態で絞り込む</span></h5>
                     <input type="radio" id="1" v-model="selectStatus" value="1">
@@ -70,9 +72,7 @@
         data () {
             return {
                 projects: [],
-                // selectStatus: this.$route.query.status,
                 selectStatus: this.status,
-                // selectType: this.$route.query.type,
                 selectType: this.type,
                 currentPage: 0,
                 lastPage: 0,
@@ -92,30 +92,16 @@
                 this.projects = response.data.data
                 this.currentPage = response.data.current_page
                 this.lastPage = response.data.last_page
+                this.selectStatus = this.status
+                this.selectType = this.type
             },
-            async fetchFilterProjects () {
-                const response = await axios.get(`/api/projects/list?status=${this.selectStatus}&type=${this.selectType}&page=1`)
-
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
-
-                this.projects = response.data.data
-                this.currentPage = response.data.current_page
-                this.lastPage = response.data.last_page
-
+            fetchFilterProjects () {
                 this.$router.push(`/projects/list?status=${this.selectStatus}&type=${this.selectType}&page=1`)
             }
         },
         computed: {
-            filterType () {
-                return this.projects.filter(function(el) {
-                    return this.current < 0 ? true : this.current === el.type
-                }, this)
-            },
-            notLogin () {
-                return this.$store.getters["auth/check"] === false
+            isLogin () {
+                return this.$store.getters["auth/check"]
             }
         },
         watch: {

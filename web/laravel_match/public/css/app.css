@@ -635,6 +635,12 @@ span {
   font-size: 18px;
 }
 
+@media screen and (max-width: 414px) {
+  .p-info {
+    font-size: 12px;
+  }
+}
+
 .p-projectDetail {
   width: 700px;
   margin-left: auto;
@@ -908,8 +914,8 @@ span {
   display: flex;
   flex-wrap: wrap;
   background: #f7f7f7;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {
