@@ -11,7 +11,7 @@
     <nav class="l-nav" :class="{'active': activeStatus}">
         <div v-if="isLogin">
         <ul class="c-menu">
-            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/projects/list/all">案件を探す</RouterLink></li>
+            <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/projects/list">案件を探す</RouterLink></li>
             <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/projects/register">案件を登録する</RouterLink></li>
             <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/public_messages/list">コメント</RouterLink></li>
             <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/private_messages/list">メッセージ</RouterLink></li>

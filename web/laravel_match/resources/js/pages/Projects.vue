@@ -1,34 +1,40 @@
 <template>
     <section class="l-container">
         <h1 class="l-container__title">案件一覧</h1>
-        <div class="l-container__body">
+        <div class="p-filter">
             <p class="c-error" v-if="notLogin">ログイン、またはユーザー登録をおこなうと案件の詳細を確認できます。</p>
-        <h5 class="l-container__subtitle">状態</h5>
-            <input type="radio" id="2" v-model="selectStatus" value="2">
-            <label for="2">すべて</label>
-            <br>
-            <input type="radio" id="1" v-model="selectStatus" value="1">
-            <label for="1">募集中</label>
-            <br>
-            <input type="radio" id="0" v-model="selectStatus" value="0">
-            <label for="0">募集終了</label>
-        <h5 class="l-container__subtitle">タイプ</h5>
-            <input type="radio" id="all" v-model="selectType" value="all">
-            <label for="all">すべて</label>
-            <br>
-            <input type="radio" id="one-off" v-model="selectType" value="one-off">
-            <label for="one-off">依頼のときに一定の金額を支払う</label>
-            <br>
-            <input type="radio" id="service" v-model="selectType" value="service">
-            <label for="service">サービス公開後の収益を分け合う</label>
-            <div class="c-panel">
+            <div class="p-filter__item">
+                <h5><span>状態で絞り込む</span></h5>
+                    <input type="radio" id="1" v-model="selectStatus" value="1">
+                    <label for="1">募集中</label>
+                    <br>
+                    <input type="radio" id="0" v-model="selectStatus" value="0">
+                    <label for="0">募集終了</label>
+                    <br>
+                    <input type="radio" id="2" v-model="selectStatus" value="2">
+                    <label for="2">すべて</label>
+            </div>
+            <div class="p-filter__item">
+                <h5><span>支払い方法のタイプで絞り込む</span></h5>
+                <input type="radio" id="all" v-model="selectType" value="all">
+                <label for="all">すべて</label>
+                <br>
+                <input type="radio" id="one-off" v-model="selectType" value="one-off">
+                <label for="one-off">依頼のときに一定の金額を支払う</label>
+                <br>
+                <input type="radio" id="service" v-model="selectType" value="service">
+                <label for="service">サービス公開後の収益を分け合う</label>
+            </div>
+        </div>
+        <div class="c-panel">
             <Project
                 class="c-panel__item"
                 v-for="project in projects"
                 :key="project.id"
                 :item="project"
                 />
-            </div>
+        </div>
+        <div class="l-container__body">
             <Pagination :select-status="selectStatus" :select-type="selectType" :current-page="currentPage" :last-page="lastPage" />
         </div>
     </section>

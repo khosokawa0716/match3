@@ -2,12 +2,15 @@
 // panel
 // ==================================
 .c-panel {
-    margin-top: $space_xl;
+    //margin-top: $space_xl;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    background: $color_background;
+    //justify-content: space-evenly;
     @include mmd () {
         justify-content: center;
+        padding-left: $space_xl;
+        padding-right: $space_xl;
     }
     &__item {
         width: 373px;
@@ -16,7 +19,11 @@
         border-radius: $border_radius;
         background: $color_project;
         padding: $space_l;
-        margin-bottom: $space_l;
+        margin-left: $space_xl;
+        margin-bottom: $space_xl;
+        @include mmd () {
+            margin-left: 0;
+        }
     }
     &__title {
         display: block;

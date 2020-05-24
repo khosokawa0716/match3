@@ -28,25 +28,25 @@
         </div>
         <div class="l-container__body" id="registered_projects">
             <h5 class="l-container__subtitle">登録した案件一覧</h5>
-            <div class="c-panel">
-                <Project
-                    class="c-panel__item"
-                    v-for="project in registered_projects"
-                    :key="project.id"
-                    :item="project"
-                />
-            </div>
+        </div>
+        <div class="c-panel">
+            <Project
+                class="c-panel__item"
+                v-for="project in registered_projects"
+                :key="project.id"
+                :item="project"
+            />
         </div>
         <div class="l-container__body" id="applied_projects">
             <h5 class="l-container__subtitle">応募した案件一覧</h5>
-            <div class="c-panel">
-                <Project
-                    class="c-panel__item"
-                    v-for="project in applied_projects"
-                    :key="project.id"
-                    :item="project"
-                />
-            </div>
+        </div>
+        <div class="c-panel">
+            <Project
+                class="c-panel__item"
+                v-for="project in applied_projects"
+                :key="project.id"
+                :item="project"
+            />
         </div>
         <div class="l-container__body" id="comment">
             <h5 class="l-container__subtitle">やりとりしたコメント</h5>

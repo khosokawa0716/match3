@@ -547,15 +547,16 @@ span {
 }
 
 .c-panel {
-  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  background: #f7f7f7;
 }
 
 @media screen and (max-width: 768px) {
   .c-panel {
     justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -566,7 +567,14 @@ span {
   border-radius: 3px;
   background: #fef263;
   padding: 15px;
-  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .c-panel__item {
+    margin-left: 0;
+  }
 }
 
 .c-panel__title {
@@ -893,6 +901,38 @@ span {
 @media screen and (max-width: 414px) {
   .p-top p {
     font-size: 12px;
+  }
+}
+
+.p-filter {
+  display: flex;
+  flex-wrap: wrap;
+  background: #f7f7f7;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .p-filter {
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.p-filter__item {
+  width: 373px;
+  box-sizing: border-box;
+  border: 1px solid #000033;
+  padding: 15px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .p-filter__item {
+    margin-left: 0;
   }
 }
 

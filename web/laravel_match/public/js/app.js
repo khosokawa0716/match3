@@ -3972,6 +3972,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6488,7 +6497,7 @@ var render = function() {
                     "RouterLink",
                     {
                       staticClass: "c-menu__link",
-                      attrs: { to: "/projects/list/all" }
+                      attrs: { to: "/projects/list" }
                     },
                     [_vm._v("案件を探す")]
                   )
@@ -7212,53 +7221,34 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "l-container__body",
-        attrs: { id: "registered_projects" }
-      },
-      [
-        _c("h5", { staticClass: "l-container__subtitle" }, [
-          _vm._v("登録した案件一覧")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "c-panel" },
-          _vm._l(_vm.registered_projects, function(project) {
-            return _c("Project", {
-              key: project.id,
-              staticClass: "c-panel__item",
-              attrs: { item: project }
-            })
-          }),
-          1
-        )
-      ]
-    ),
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "l-container__body", attrs: { id: "applied_projects" } },
-      [
-        _c("h5", { staticClass: "l-container__subtitle" }, [
-          _vm._v("応募した案件一覧")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "c-panel" },
-          _vm._l(_vm.applied_projects, function(project) {
-            return _c("Project", {
-              key: project.id,
-              staticClass: "c-panel__item",
-              attrs: { item: project }
-            })
-          }),
-          1
-        )
-      ]
+      { staticClass: "c-panel" },
+      _vm._l(_vm.registered_projects, function(project) {
+        return _c("Project", {
+          key: project.id,
+          staticClass: "c-panel__item",
+          attrs: { item: project }
+        })
+      }),
+      1
+    ),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "c-panel" },
+      _vm._l(_vm.applied_projects, function(project) {
+        return _c("Project", {
+          key: project.id,
+          staticClass: "c-panel__item",
+          attrs: { item: project }
+        })
+      }),
+      1
     ),
     _vm._v(" "),
     _c("div", { staticClass: "l-container__body", attrs: { id: "comment" } }, [
@@ -7388,7 +7378,39 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "l-container__body",
+        attrs: { id: "registered_projects" }
+      },
+      [
+        _c("h5", { staticClass: "l-container__subtitle" }, [
+          _vm._v("登録した案件一覧")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "l-container__body", attrs: { id: "applied_projects" } },
+      [
+        _c("h5", { staticClass: "l-container__subtitle" }, [
+          _vm._v("応募した案件一覧")
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -8300,41 +8322,17 @@ var render = function() {
   return _c("section", { staticClass: "l-container" }, [
     _c("h1", { staticClass: "l-container__title" }, [_vm._v("案件一覧")]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "l-container__body" },
-      [
-        _vm.notLogin
-          ? _c("p", { staticClass: "c-error" }, [
-              _vm._v(
-                "ログイン、またはユーザー登録をおこなうと案件の詳細を確認できます。"
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("h5", { staticClass: "l-container__subtitle" }, [_vm._v("状態")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.selectStatus,
-              expression: "selectStatus"
-            }
-          ],
-          attrs: { type: "radio", id: "2", value: "2" },
-          domProps: { checked: _vm._q(_vm.selectStatus, "2") },
-          on: {
-            change: function($event) {
-              _vm.selectStatus = "2"
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "2" } }, [_vm._v("すべて")]),
-        _vm._v(" "),
-        _c("br"),
+    _c("div", { staticClass: "p-filter" }, [
+      _vm.notLogin
+        ? _c("p", { staticClass: "c-error" }, [
+            _vm._v(
+              "ログイン、またはユーザー登録をおこなうと案件の詳細を確認できます。"
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-filter__item" }, [
+        _vm._m(0),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -8378,7 +8376,31 @@ var render = function() {
         _vm._v(" "),
         _c("label", { attrs: { for: "0" } }, [_vm._v("募集終了")]),
         _vm._v(" "),
-        _c("h5", { staticClass: "l-container__subtitle" }, [_vm._v("タイプ")]),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectStatus,
+              expression: "selectStatus"
+            }
+          ],
+          attrs: { type: "radio", id: "2", value: "2" },
+          domProps: { checked: _vm._q(_vm.selectStatus, "2") },
+          on: {
+            change: function($event) {
+              _vm.selectStatus = "2"
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "2" } }, [_vm._v("すべて")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-filter__item" }, [
+        _vm._m(1),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -8446,21 +8468,27 @@ var render = function() {
         _vm._v(" "),
         _c("label", { attrs: { for: "service" } }, [
           _vm._v("サービス公開後の収益を分け合う")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "c-panel" },
-          _vm._l(_vm.projects, function(project) {
-            return _c("Project", {
-              key: project.id,
-              staticClass: "c-panel__item",
-              attrs: { item: project }
-            })
-          }),
-          1
-        ),
-        _vm._v(" "),
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "c-panel" },
+      _vm._l(_vm.projects, function(project) {
+        return _c("Project", {
+          key: project.id,
+          staticClass: "c-panel__item",
+          attrs: { item: project }
+        })
+      }),
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "l-container__body" },
+      [
         _c("Pagination", {
           attrs: {
             "select-status": _vm.selectStatus,
@@ -8474,7 +8502,20 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("状態で絞り込む")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [_c("span", [_vm._v("支払い方法のタイプで絞り込む")])])
+  }
+]
 render._withStripped = true
 
 

@@ -1,0 +1,29 @@
+// ==================================
+// filter
+// ==================================
+.p-filter {
+    display: flex;
+    flex-wrap: wrap;
+    background: $color_background;
+    padding-top: $space_xxl;
+    padding-bottom: $space_xxl;
+    @include mmd() {
+        justify-content: center;
+        padding-left: $space_xl;
+        padding-right: $space_xl;
+    }
+
+    &__item {
+        width: 373px;
+        box-sizing: border-box;
+        border: $border_default;
+        //border-radius: $border_radius;
+        padding: $space_l;
+        margin-left: $space_xl;
+        margin-top: $space_xl;
+        margin-bottom: $space_xl;
+        @include mmd() {
+            margin-left: 0;
+        }
+    }
+}

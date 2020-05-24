@@ -18,8 +18,10 @@ class ProjectController extends Controller
     public function index(Request $request){
 //        Log::info('ProjectControllerのindex起動');
 //        Log::info('$dataの中身: '.$data);
-        Log::info('$request typeの中身: '.print_r($request['type'], true));
-        Log::info('$request statusの中身: '.print_r($request['status'], true));
+
+//        Log::info('$request typeの中身: '.print_r($request['type'], true));
+//        Log::info('$request statusの中身: '.print_r($request['status'], true));
+
 //        if ( $request['type'] === 'all' ) {
 //            $projects = Project::with(['owner'])
 //                ->orderBy(Project::CREATED_AT, 'desc')
@@ -45,7 +47,7 @@ class ProjectController extends Controller
                 }
             })
 //            ->orderBy(Project::CREATED_AT, 'desc')
-                ->latest()
+            ->latest()
             ->paginate();
 
         return $projects;
