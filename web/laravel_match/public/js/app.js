@@ -2081,6 +2081,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     twitter: function twitter() {
@@ -3517,37 +3520,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context2.sent;
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
-                  _context2.next = 6;
+                  _context2.next = 8;
                   break;
                 }
 
+                // バリデーションエラー
                 _this2.private_message_errors = response.data.errors;
                 return _context2.abrupt("return", false);
 
-              case 6:
-                // POST成功
-                // テキスト入力部分を空にする
-                _this2.private_message_content = ''; // エラーメッセージをクリア
-
-                _this2.private_message_errors = null; // メッセージを全件取得して、再表示
-
-                _context2.next = 10;
-                return axios.get("/api/private_messages/detail/".concat(_this2.id));
-
-              case 10:
-                response2 = _context2.sent;
-                _this2.private_messages = response2.data.private_messages; // その他のエラー
-
-                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context2.next = 15;
+              case 8:
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context2.next = 11;
                   break;
                 }
 
+                // その他のエラー
                 _this2.$store.commit('error/setCode', response.status);
 
                 return _context2.abrupt("return", false);
 
+              case 11:
+                // POST成功
+                _this2.private_message_content = ''; // テキスト入力部分を空にする
+
+                _this2.private_message_errors = null; // エラーメッセージをクリア
+
+                _context2.next = 15;
+                return axios.get("/api/private_messages/detail/".concat(_this2.id));
+
               case 15:
+                response2 = _context2.sent;
+                // メッセージを全件取得
+                _this2.private_messages = response2.data.private_messages; // レスポンスをプロパティに代入
+
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -3736,6 +3742,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
+                // GETが成功したら、レスポンスをプロパティに代入する
                 _this.project = response.data.project;
                 _this.owner.id = response.data.project.owner.id;
                 _this.owner.name = response.data.project.owner.name;
@@ -3769,37 +3776,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context2.sent;
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
-                  _context2.next = 6;
+                  _context2.next = 8;
                   break;
                 }
 
+                // バリデーションエラー
                 _this2.public_message_errors = response.data.errors;
                 return _context2.abrupt("return", false);
 
-              case 6:
-                // POST成功
-                // テキスト入力部分を空にする
-                _this2.public_message_content = ''; // エラーメッセージをクリア
-
-                _this2.public_message_errors = null; // メッセージを全件取得して、再表示
-
-                _context2.next = 10;
-                return axios.get("/api/project/detail/".concat(_this2.id));
-
-              case 10:
-                response2 = _context2.sent;
-                _this2.public_messages = response2.data.public_messages; // その他のエラー
-
-                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
-                  _context2.next = 15;
+              case 8:
+                if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context2.next = 11;
                   break;
                 }
 
+                // その他のエラー
                 _this2.$store.commit('error/setCode', response.status);
 
                 return _context2.abrupt("return", false);
 
+              case 11:
+                // POST成功
+                _this2.public_message_content = ''; // テキスト入力部分を空にする
+
+                _this2.public_message_errors = null; // エラーメッセージをクリア
+
+                _context2.next = 15;
+                return axios.get("/api/project/detail/".concat(_this2.id));
+
               case 15:
+                response2 = _context2.sent;
+                // メッセージを全件取得
+                _this2.public_messages = response2.data.public_messages; // レスポンスをプロパティに代入
+
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -3822,20 +3832,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 response = _context3.sent;
 
-                if (response.status === _util__WEBPACK_IMPORTED_MODULE_1__["OK"]) {
-                  // updateアクションが成功だった場合、ストアにメッセージを格納する
-                  _this3.$store.commit('message/setContent', {
-                    content: '案件に応募しました！',
-                    timeout: 5000
-                  }); // マイページに移動する
-
-
-                  _this3.$router.push('/mypage');
-                } // エラー
-
-
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context3.next = 7;
+                  _context3.next = 6;
                   break;
                 }
 
@@ -3843,7 +3841,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context3.abrupt("return", false);
 
-              case 7:
+              case 6:
+                // updateアクションが成功だった場合
+                _this3.$store.commit('message/setContent', {
+                  content: '案件に応募しました！',
+                  // ストアにメッセージを格納する
+                  timeout: 5000
+                }); // マイページに移動する
+
+
+                _this3.$router.push('/mypage');
+
+              case 8:
               case "end":
                 return _context3.stop();
             }
@@ -6326,7 +6335,7 @@ var render = function() {
   return _c("footer", { staticClass: "l-footer" }, [
     _c("p", { staticClass: "l-footer__large" }, [
       _vm._v(
-        "\n        Copyright © One-Stop Koshigoe LLC. All Rights Reserved\n        "
+        "\n            Copyright © One-Stop Koshigoe LLC. All Rights Reserved\n            "
       ),
       _c(
         "a",
@@ -6339,7 +6348,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("p", { staticClass: "l-footer__small" }, [
-      _vm._v("\n        Copyright © One-Stop Koshigoe\n        "),
+      _vm._v("\n            Copyright © One-Stop Koshigoe\n            "),
       _c(
         "a",
         {

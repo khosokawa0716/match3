@@ -58,7 +58,7 @@
 
 </template>
 <script>
-    import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../util'
+    import { OK, UNPROCESSABLE_ENTITY } from '../util'
 
     export default {
         title: '案件詳細',
@@ -82,18 +82,18 @@
             async fetchProjectDetail () {
                 const response = await axios.get(`/api/project/detail/${this.id}`)
 
+                // エラーの処理
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
                     return false
                 }
 
+                // GETが成功したら、レスポンスをプロパティに代入する
                 this.project = response.data.project
-
                 this.owner.id = response.data.project.owner.id
                 this.owner.name = response.data.project.owner.name
                 this.owner.icon_path = response.data.project.owner.icon_path
                 this.owner.profile_fields = response.data.project.owner.profile_fields
-
                 this.public_messages = response.data.public_messages
             },
             async publicMessageRegister () {
@@ -101,46 +101,38 @@
                     content: this.public_message_content
                 })
 
-                // バリデーションエラー
-                if (response.status === UNPROCESSABLE_ENTITY) {
+                // エラーの処理
+                if (response.status === UNPROCESSABLE_ENTITY) { // バリデーションエラー
                     this.public_message_errors = response.data.errors
+                    return false
+                } else if (response.status !== OK) { // その他のエラー
+                    this.$store.commit('error/setCode', response.status)
                     return false
                 }
 
                 // POST成功
-                // テキスト入力部分を空にする
-                this.public_message_content = ''
-                // エラーメッセージをクリア
-                this.public_message_errors = null
-                // メッセージを全件取得して、再表示
-                const response2 = await axios.get(`/api/project/detail/${this.id}`)
-                this.public_messages = response2.data.public_messages
-
-                // その他のエラー
-                if (response.status !== CREATED) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
-                }
+                this.public_message_content = '' // テキスト入力部分を空にする
+                this.public_message_errors = null // エラーメッセージをクリア
+                const response2 = await axios.get(`/api/project/detail/${this.id}`) // メッセージを全件取得
+                this.public_messages = response2.data.public_messages // レスポンスをプロパティに代入
             },
             async apply () {
                 const response = await axios.put(`/api/project/detail/${this.id}`, this.id)
 
-                if (response.status === OK) {
-                    // updateアクションが成功だった場合、ストアにメッセージを格納する
-                    this.$store.commit('message/setContent', {
-                        content: '案件に応募しました！',
-                        timeout: 5000
-                    })
-
-                    // マイページに移動する
-                    this.$router.push('/mypage')
-                }
-
-                // エラー
+                // エラーの処理
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
                     return false
                 }
+
+                // updateアクションが成功だった場合
+                this.$store.commit('message/setContent', {
+                    content: '案件に応募しました！', // ストアにメッセージを格納する
+                    timeout: 5000
+                })
+
+                // マイページに移動する
+                this.$router.push('/mypage')
             },
             clearError () {
                 this.$store.commit('error/setCode', null)

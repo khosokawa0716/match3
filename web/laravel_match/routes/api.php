@@ -20,7 +20,7 @@ Route::get('/mypage', 'MypageController@index')->name('mypage'); // 案件一覧
 // ***** 案件 *****
 Route::get('/projects/{id}/edit', 'ProjectController@edit')->name('projects.edit'); // 案件編集画面の表示
 Route::post('/projects/register', 'ProjectController@create')->name('project.create'); // 案件登録
-Route::put('/projects/{id}/edit', 'ProjectController@update')->name('projects.update'); // 案件更新 20200430/editを追加
+Route::put('/projects/{id}/edit', 'ProjectController@update')->name('projects.update'); // 案件更新
 Route::get('/project/info', function (Project $project) { return $project; })->name('project'); // プロジェクト情報の返却
 Route::get('/projects/list', 'ProjectController@index')->name('projects.index'); // 案件一覧表示
 
