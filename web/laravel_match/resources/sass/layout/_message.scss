@@ -17,7 +17,8 @@
         top: 120px;
     }
 
-    @include mmd() {
-        font-size: $font-size_s;
-    }
+    // スマホでみた時のズームを防ぎたいのでコメント化
+    //@include mmd() {
+    //    font-size: $font-size_s;
+    //}
 }

@@ -281,12 +281,6 @@ span {
   }
 }
 
-@media screen and (max-width: 768px) {
-  .l-message {
-    font-size: 12px;
-  }
-}
-
 .l-footer {
   background: #000033;
   color: #ffffff;
@@ -429,12 +423,6 @@ span {
   font-size: 18px;
   color: #000033;
   box-sizing: border-box;
-}
-
-@media screen and (max-width: 768px) {
-  .c-input {
-    font-size: 12px;
-  }
 }
 
 .c-input__label {
