@@ -3016,11 +3016,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/public/api/password/reset/', _this.passResetForm);
+                return axios.post('/api/password/reset', _this.passResetForm);
 
               case 2:
                 response = _context.sent;
-                console.log('publicに変更'); // バリデーションエラー
+                console.log('/を削除'); // バリデーションエラー
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
                   _context.next = 9;
@@ -3042,7 +3042,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 12:
-                console.log('バリデーションOKから変更'); // パスワードリセットが成功したら、authストアのloginアクションを呼び出す
+                console.log('レスポンスOK'); // パスワードリセットが成功したら、authストアのloginアクションを呼び出す
 
                 _context.next = 15;
                 return _this.$store.dispatch('auth/login', _this.passResetForm);

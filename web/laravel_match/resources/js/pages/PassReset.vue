@@ -40,8 +40,8 @@
             async passReset () {
                 // Auth\ResetPasswordController@resetを起動
                 // 返却されたオブジェクトをresponseに代入
-                const response = await axios.post('/public/api/password/reset/', this.passResetForm)
-                console.log('publicに変更')
+                const response = await axios.post('/api/password/reset', this.passResetForm)
+                console.log('/を削除')
 
                 // バリデーションエラー
                 if (response.status === UNPROCESSABLE_ENTITY) {
@@ -52,7 +52,7 @@
                     return false
                 }
 
-                console.log('バリデーションOKから変更')
+                console.log('レスポンスOK')
                 // パスワードリセットが成功したら、authストアのloginアクションを呼び出す
                 await this.$store.dispatch('auth/login', this.passResetForm)
 
