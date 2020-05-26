@@ -40,7 +40,7 @@
             async passReset () {
                 // Auth\ResetPasswordController@resetを起動
                 // 返却されたオブジェクトをresponseに代入
-                const response = await axios.post('/pubulic/api/password/reset/', this.passResetForm)
+                const response = await axios.post('/public/api/password/reset/', this.passResetForm)
                 console.log('publicに変更')
 
                 // バリデーションエラー
