@@ -41,7 +41,7 @@
                 // Auth\ResetPasswordController@resetを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.post('/pubulic/api/password/reset/', this.passResetForm)
-                console.dir(response)
+                console.log('publicに変更')
 
                 // バリデーションエラー
                 if (response.status === UNPROCESSABLE_ENTITY) {
@@ -52,7 +52,7 @@
                     return false
                 }
 
-                console.log('バリデーションOK')
+                console.log('バリデーションOKから変更')
                 // パスワードリセットが成功したら、authストアのloginアクションを呼び出す
                 await this.$store.dispatch('auth/login', this.passResetForm)
 
