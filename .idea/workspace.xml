@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/app/Rules/Hankaku.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassReset.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/PassReset.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/lang/ja/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/lang/ja/validation.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,9 +115,9 @@
       <screen x="0" y="23" width="1680" height="950" />
     </state>
     <state x="363" y="291" width="761" height="548" key="find.popup/0.23.1680.950@0.23.1680.950" timestamp="1589949930272" />
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1590497197414">
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup" timestamp="1590626806945">
       <screen x="0" y="23" width="1680" height="950" />
     </state>
-    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1590497197414" />
+    <state x="89" y="227" width="670" height="676" key="search.everywhere.popup/0.23.1680.950@0.23.1680.950" timestamp="1590626806945" />
   </component>
 </project>
