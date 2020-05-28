@@ -80,8 +80,6 @@
         },
         methods: {
             async fetchProjects () {
-                console.log(this.status)
-                console.log(this.type)
                 const response = await axios.get(`/api/projects/list?status=${this.status}&type=${this.type}&page=${this.page}`)
 
                 if (response.status !== OK) {

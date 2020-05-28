@@ -4034,16 +4034,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(_this.status);
-                console.log(_this.type);
-                _context.next = 4;
+                _context.next = 2;
                 return axios.get("/api/projects/list?status=".concat(_this.status, "&type=").concat(_this.type, "&page=").concat(_this.page));
 
-              case 4:
+              case 2:
                 response = _context.sent;
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 8;
+                  _context.next = 6;
                   break;
                 }
 
@@ -4051,14 +4049,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 8:
+              case 6:
                 _this.projects = response.data.data;
                 _this.currentPage = response.data.current_page;
                 _this.lastPage = response.data.last_page;
                 _this.selectStatus = _this.status;
                 _this.selectType = _this.type;
 
-              case 13:
+              case 11:
               case "end":
                 return _context.stop();
             }

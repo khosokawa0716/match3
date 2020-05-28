@@ -8,6 +8,13 @@ class Project extends Model
 {
     protected $guarded = ['id', 'user_id'];
 
+    protected $casts = [
+        'minimum_amount' => 'int',
+        'max_amount' => 'int',
+        'status' => 'int',
+        'delete_flg' => 'int'
+    ];
+
     public function owner()
     {
         return $this->belongsTo('App\User', 'user_id', 'id', 'users');
