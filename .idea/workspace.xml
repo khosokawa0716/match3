@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/laravel_match/public/img/match.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Projects.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/js/pages/Projects.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +30,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/laravel_match/storage/app/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/laravel_match/public/img" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -43,6 +44,7 @@
       <recent name="$PROJECT_DIR$/web/laravel_match/resources/js/components" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/laravel_match/public/img" />
       <recent name="$PROJECT_DIR$/web/laravel_match/storage/app/public" />
       <recent name="$PROJECT_DIR$/web/laravel_match/resources/lang/ja" />
     </key>

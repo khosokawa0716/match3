@@ -8,6 +8,7 @@ class Project extends Model
 {
     protected $guarded = ['id', 'user_id'];
 
+    // DBが整数型であるが、本番環境ではstring型でとってきしまうため追記
     protected $casts = [
         'minimum_amount' => 'int',
         'max_amount' => 'int',
