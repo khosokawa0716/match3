@@ -12,10 +12,9 @@
     outline: none;
     height: 60px;
     font-size: $font-size_l;
-    // スマホでみた時のズームを防ぎたいのでコメント化
-    //@include mmd() {
-    //    font-size: $font-size_s;
-    //}
+    @include mmd() {
+        font-size: $font-size_default;
+    }
     color: $font-color_default;
     box-sizing: border-box;
     &__label {

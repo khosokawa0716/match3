@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62359b20-3744-4cac-85ec-6932a7b3fc08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/laravel_match/public/img/match.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/app/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/app/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_base.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/foundation/_base.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_input.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_input.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_panel.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/laravel_match/resources/sass/object/component/_panel.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -180,6 +180,12 @@ span {
   font-weight: bold;
 }
 
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
 .l-container {
   width: 1200px;
   margin-left: auto;
@@ -423,6 +429,12 @@ span {
   font-size: 18px;
   color: #000033;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .c-input {
+    font-size: 16px;
+  }
 }
 
 .c-input__label {
