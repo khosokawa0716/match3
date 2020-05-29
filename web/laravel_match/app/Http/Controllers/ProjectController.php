@@ -57,8 +57,8 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|min:3|max:20',
             'type' => 'required',
-            'minimum_amount' => 'nullable|integer|min:100|max:10000000',
-            'max_amount' => 'nullable|integer|min:100|max:10000000',
+            'minimum_amount' => 'nullable|integer|min:1000|max:10000000',
+            'max_amount' => 'nullable|integer|min:1000|max:10000000',
             'detail' => 'required|string|min:3|max:1000'
         ]);
 
@@ -122,8 +122,8 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|min:3|max:20',
             'type' => 'required',
-            'minimum_amount' => 'nullable|integer|min:100|max:10000000',
-            'max_amount' => 'nullable|integer|min:100|max:10000000',
+            'minimum_amount' => 'nullable|integer|min:1000|max:10000000',
+            'max_amount' => 'nullable|integer|min:1000|max:10000000',
             'detail' => 'required|string|min:3|max:1000'
         ]);
 

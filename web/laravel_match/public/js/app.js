@@ -8669,7 +8669,8 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  placeholder: "下限金額（100〜10,000,000円）"
+                  placeholder: "下限金額（1,000〜10,000,000円）",
+                  step: "1000"
                 },
                 domProps: { value: _vm.projectsUpdateForm.minimum_amount },
                 on: {
@@ -8698,7 +8699,8 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  placeholder: "上限金額（100〜10,000,000円）"
+                  placeholder: "上限金額（1,000〜10,000,000円）",
+                  step: "1000"
                 },
                 domProps: { value: _vm.projectsUpdateForm.max_amount },
                 on: {
@@ -8936,7 +8938,8 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  placeholder: "下限金額（100〜10,000,000円）"
+                  placeholder: "下限金額（1,000〜10,000,000円）",
+                  step: "1000"
                 },
                 domProps: { value: _vm.projectsRegisterForm.minimum_amount },
                 on: {
@@ -8965,7 +8968,8 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  placeholder: "上限金額（100〜10,000,000円）"
+                  placeholder: "上限金額（1,000〜10,000,000円）",
+                  step: "1000"
                 },
                 domProps: { value: _vm.projectsRegisterForm.max_amount },
                 on: {
