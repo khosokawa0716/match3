@@ -88,7 +88,14 @@ class ProjectController extends Controller
             // 以下2つのケースでエラーコード403を返却する
             // 1.応募が終了した案件を編集しようとした
             // 2.他人が登録した案件を編集しようとした
-            if ($project->status === 0 || $project->user_id !== $user_id) { return abort(403); }
+            if ($project->status === 0 || $project->user_id !== $user_id) {
+                Log::info('projectのstatus： '.$project->status);
+                Log::info('projectのstatusの型： '.gettype($project->status));
+                Log::info('projectのuser_id： '.$project->user_id);
+                Log::info('projectのuser_idの型： '.gettype($project->user_id));
+                Log::info('ログインしている人のuser_id： '.$user_id);
+                Log::info('ログインしている人のuser_idの型： '.gettype($user_id));
+                return abort(403); }
 
             return $project;
         } else {
