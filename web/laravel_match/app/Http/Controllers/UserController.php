@@ -59,9 +59,7 @@ class UserController extends Controller
 
     public function edit($id) // 引数Users $userを削除
     {
-        Log::info('UserControllerのedit起動');
         $user = User::find($id);
-//        Log::info('$idの中身: '.$id);
         return $user;
     }
 
@@ -95,7 +93,6 @@ class UserController extends Controller
 
             if ( $request['file'] ) {
                 // アイコン画像のファイル名は、重複を避けるために「登録日時+元のファイル名」
-//                Log::info('画像更新ロジックの起動');
                 $file_name = time().'.'.$request['file']->getClientOriginalName();
                 $request['file']->storeAs('public', $file_name);
                 $user->icon_path = env('APP_URL').'/storage/'.$file_name;

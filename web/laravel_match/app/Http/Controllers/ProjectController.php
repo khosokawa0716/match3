@@ -16,22 +16,6 @@ class ProjectController extends Controller
     }
 
     public function index(Request $request){
-//        Log::info('ProjectControllerのindex起動');
-//        Log::info('$dataの中身: '.$data);
-
-//        Log::info('$request typeの中身: '.print_r($request['type'], true));
-//        Log::info('$request statusの中身: '.print_r($request['status'], true));
-
-//        if ( $request['type'] === 'all' ) {
-//            $projects = Project::with(['owner'])
-//                ->orderBy(Project::CREATED_AT, 'desc')
-//                ->paginate();
-//        } else {
-//            $projects = Project::with(['owner'])
-//                ->where('type', $request['type'])
-//                ->orderBy(Project::CREATED_AT, 'desc')
-//                ->paginate();
-//        }
         $status = $request['status'];
         $type = $request['type'];
 
@@ -46,7 +30,6 @@ class ProjectController extends Controller
                     $query->where('status', $status);
                 }
             })
-//            ->orderBy(Project::CREATED_AT, 'desc')
             ->latest()
             ->paginate();
 
@@ -79,7 +62,6 @@ class ProjectController extends Controller
     {
         $user_id = Auth::id();
         $project_id = $data;
-//        Log::info('ProjectControllerのedit起動');
         if (ctype_digit($project_id)) {
             $project = Project::find($project_id);
             // 検索結果がない場合には、エラーコード404を返却する
@@ -88,14 +70,7 @@ class ProjectController extends Controller
             // 以下2つのケースでエラーコード403を返却する
             // 1.応募が終了した案件を編集しようとした
             // 2.他人が登録した案件を編集しようとした
-            if ($project->status === 0 || $project->user_id !== $user_id) {
-                Log::info('projectのstatus： '.$project->status);
-                Log::info('projectのstatusの型： '.gettype($project->status));
-                Log::info('projectのuser_id： '.$project->user_id);
-                Log::info('projectのuser_idの型： '.gettype($project->user_id));
-                Log::info('ログインしている人のuser_id： '.$user_id);
-                Log::info('ログインしている人のuser_idの型： '.gettype($user_id));
-                return abort(403); }
+            if ($project->status === 0 || $project->user_id !== $user_id) { return abort(403); }
 
             return $project;
         } else {
