@@ -31,8 +31,8 @@
             </label>
             </div>
             <div v-if="isOneOff">
-                <input type="number" class="c-input c-input__l" v-model="projectsRegisterForm.minimum_amount" placeholder="下限金額（1,000〜10,000,000円）" step="1000">
-                <input type="number" class="c-input c-input__l" v-model="projectsRegisterForm.max_amount" placeholder="上限金額（1,000〜10,000,000円）" step="1000">
+                <input type="number" class="c-input c-input__l" v-model="projectsRegisterForm.minimum_amount" placeholder="下限金額（1,000〜10,000,000円）">
+                <input type="number" class="c-input c-input__l" v-model="projectsRegisterForm.max_amount" placeholder="上限金額（1,000〜10,000,000円）">
             </div>
             <textarea cols="30" rows="10" type="text" class="c-input c-input__textarea" id="detail" v-model="projectsRegisterForm.detail" placeholder="詳細（3〜1000文字）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を登録する</button>
