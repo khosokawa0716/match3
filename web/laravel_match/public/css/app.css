@@ -759,6 +759,7 @@ textarea {
   border: 1px solid #000033;
   border-radius: 3px;
   background: #fef263;
+  word-wrap: break-word;
 }
 
 .p-message__my-content {
@@ -767,6 +768,7 @@ textarea {
   border: 1px solid #000033;
   border-radius: 3px;
   background: #f7f7f7;
+  word-wrap: break-word;
 }
 
 .p-message__date {

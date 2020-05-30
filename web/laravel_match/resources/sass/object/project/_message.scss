@@ -19,6 +19,7 @@
             border: $border_default;
             border-radius: $border-radius;
             background: $color_project;
+            word-wrap: break-word;
         }
 
         &__my-content {
@@ -27,6 +28,7 @@
             border: $border_default;
             border-radius: $border-radius;
             background: $color_background;
+            word-wrap: break-word;
         }
 
         &__date {
