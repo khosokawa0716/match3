@@ -45,33 +45,44 @@
             }
         },
         methods: {
+            // スマホのハンバーガーメニューの開閉を切り替える
             toggleActiveStatus () {
                 this.activeStatus = !this.activeStatus
             },
+
+            // ログアウト
             async logout () {
-                this.activeStatus = !this.activeStatus
+                this.activeStatus = !this.activeStatus // メニューを閉じる
                 await this.$store.dispatch('auth/logout')
 
                 if (this.apiStatus) {
-                    this.$router.push('/login')
+                    this.$router.push('/login') // 処理が成功したら、ログイン画面に遷移する
                 }
             }
         },
         computed: {
+            // ストアでの処理が成功したかどうか
             apiStatus () {
                 return this.$store.state.auth.apiStatus
             },
+
+            // ログインしているかどうか
             isLogin () {
                 return this.$store.getters['auth/check']
             },
+
+            // ログイン中のユーザーidを返す
             userid () {
                 return this.$store.getters['auth/userid']
             },
+
+            // ユーザーのアイコン画像のパスを返す
             icon_path () {
                 return this.$store.getters['auth/icon_path']
             }
         },
         mounted() {
+            // 画面トップへスクロールする
             document.onscroll = (e) => {
                 this.position = document.documentElement.scrollTop || document.body.scrollTop;
             }

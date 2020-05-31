@@ -58,6 +58,7 @@ class User extends Authenticatable
      * @param  string  $token
      * @return void
      */
+    // 日本語のメールを送るために、標準のメソッドを上書きする
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new CustomResetPassword($token));

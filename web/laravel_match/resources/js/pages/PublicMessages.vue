@@ -50,19 +50,26 @@
             }
         },
         methods: {
+            // コメント一覧画面に表示する情報をとってくる
             async fetchPublicMessages () {
+                // PublicMessagesController@showを起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/public_messages/list`)
+
+                // エラーの場合
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
                     return false
                 }
 
+                // 表示する2つの情報をプロパティに代入する
                 this.public_message = response.data.latest_public_message
                 this.projects = response.data.exchanged_messages_projects
             }
         },
         watch: {
             $route: {
+                // 画面の表示のさいにfetchPublicMessagesメソッドを実行する
                 async handler () {
                     await this.fetchPublicMessages()
                 },

@@ -34,26 +34,37 @@
             }
         },
         methods: {
+            // ストアのエラーをクリアする
             clearError () {
                 this.$store.commit('error/setCode', null)
             }
         },
         created() {
+            // 表示のさいにストアのエラーをクリアする
             this.clearError()
         },
         computed: {
+            // ストアでの処理が成功したかどうか
             apiStatus () {
                 return this.$store.state.auth.apiStatus
             },
+
+            // ログインしているかどうか
             isLogin () {
                 return this.$store.getters['auth/check']
             },
+
+            // その案件を登録したユーザーかどうか
             isOwner () {
                 return this.$store.getters['auth/userid'] === this.item.owner.id
             },
+
+            // その案件が募集中かどうか
             isRecruiting () {
                 return this.item.status === 1
             },
+
+            // 画面上での表示
             status () {
                 if (this.item.status === 1) {
                     return '募集中'
@@ -61,6 +72,8 @@
                     return '募集終了'
                 }
             },
+
+            // 画面上での表示
             type () {
                 if (this.item.type === 'one-off') {
                     return '依頼のときに一定の金額を支払う'
@@ -68,11 +81,14 @@
                     return 'サービス公開後の収益を分け合う'
                 }
             },
+
+            // Twitterアイコンを押したさいの動的なURLの生成
             twitter () {
                 const url = this.$router.resolve({
                     name: 'projectsList'
                 }).href
 
+                // タイプによって金額を表示するかどうか
                 if (this.item.type === 'one-off') {
                     return 'https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！%0a' + this.item.title +
                         '%0a（' + this.item.minimum_amount + '円 〜 ' + this.item.max_amount + '円 ）' +

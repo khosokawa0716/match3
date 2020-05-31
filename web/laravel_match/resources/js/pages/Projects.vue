@@ -79,41 +79,54 @@
             }
         },
         methods: {
+            // 案件をとってくる
             async fetchProjects () {
+                // ProjectController@indexの起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/projects/list?status=${this.status}&type=${this.type}&page=${this.page}`)
 
+                // エラーの処理
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
                     return false
                 }
 
+                // 成功の場合
                 this.projects = response.data.data
                 this.currentPage = response.data.current_page
                 this.lastPage = response.data.last_page
                 this.selectStatus = this.status
                 this.selectType = this.type
             },
+
+            // 絞り込みの条件が変更したときに、条件にあった案件を取ってくる
             fetchFilterProjects () {
                 this.$router.push(`/projects/list?status=${this.selectStatus}&type=${this.selectType}&page=1`)
             }
         },
         computed: {
+            // ログインしているかどうか
             isLogin () {
                 return this.$store.getters["auth/check"]
             }
         },
         watch: {
             $route: {
+                // 画面の表示のさいにfetchProjectsメソッドを実行する
                 async handler () {
                     await this.fetchProjects()
                 },
                 immediate: true
             },
+
+            // 募集しているかどうかの条件が変更になったさいにfetchFilterProjectsメソッドを実行する
             selectStatus: {
                 async handler () {
                     await this.fetchFilterProjects()
                 }
             },
+
+            // 支払い方法タイプの条件が変更になったさいにfetchFilterProjectsメソッドを実行する
             selectType: {
                 async handler () {
                     await this.fetchFilterProjects()

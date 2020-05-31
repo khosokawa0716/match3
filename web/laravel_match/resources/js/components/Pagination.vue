@@ -14,28 +14,34 @@
 </template>
 <script>
     export default {
-        props: {
+        props: { // Projects.vue から以下4つのパラメータを受け取る
+            // 1.絞り込み条件_案件が募集中かどうか
             selectStatus: {
                 type: String,
                 required: true
             },
+            // 2.絞り込み条件_案件のタイプ
             selectType: {
                 type: String,
                 required: true
             },
+            // 3.現在のページ
             currentPage: {
                 type: Number,
                 required: true
             },
+            // 4.最後のページ
             lastPage: {
                 type: Number,
                 required: true
             }
         },
         computed: {
+            // 始めのページかどうか
             isFirstPage () {
                 return this.currentPage === 1
             },
+            // 最後のページかどうか
             isLastPage () {
                 return this.currentPage === this.lastPage
             }

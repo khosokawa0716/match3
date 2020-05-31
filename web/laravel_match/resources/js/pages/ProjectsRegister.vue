@@ -91,7 +91,7 @@
             this.clearError ()
         },
         computed: {
-            // 案件のタイプで'one-off'が選択されていればtrue、'service'ならfalseを返却
+            // 支払い方法のタイプが「依頼のときに一定の金額を支払う」かどうか
             isOneOff () {
                 return this.projectsRegisterForm.type === 'one-off';
             }

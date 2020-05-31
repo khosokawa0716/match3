@@ -1,8 +1,5 @@
 <template>
     <footer class="l-footer">
-<!--        <p class="l-footer__large">-->
-<!--            <RouterLink to="/agreement">ご利用規約</RouterLink>-->
-<!--        </p>-->
         <p class="l-footer__large">
             Copyright &copy; One-Stop Koshigoe LLC. All Rights Reserved
             <a

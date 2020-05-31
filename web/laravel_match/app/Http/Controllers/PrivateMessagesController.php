@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PrivateMessage;
 use App\Project;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class PrivateMessagesController extends Controller
 {
@@ -16,9 +14,9 @@ class PrivateMessagesController extends Controller
         $this->middleware('auth');
     }
 
+    // メッセージ一覧画面に表示する情報をとってくる
     public function show()
     {
-//        Log::info('PrivateMessagesController.show起動');
         $user_id = Auth::id();
 
         $unread_private_messages = PrivateMessage::with(['project'])
@@ -26,20 +24,17 @@ class PrivateMessagesController extends Controller
             ->where('received_user_id', $user_id)
             ->where('unread', true)
             ->get();
-//        Log::debug(print_r($unread_private_messages, true));
 
         // やりとりしたプライベートメッセージのプロジェクトのidを取得する
         $exchanged_private_messages_project_ids = PrivateMessage::where('user_id', $user_id)
             ->orWhere('received_user_id', $user_id)
             ->pluck('project_id');
-//        Log::debug(print_r($exchaged_private_messages_project_ids, true));
 
         // やりとりしたプロジェクトを取得する
         $exchanged_private_messages_projects = Project::with(['owner'])
             ->latest()
             ->whereIn('id', $exchanged_private_messages_project_ids)
             ->get();
-//        Log::debug(print_r($exchaged_private_messages_projects, true));
 
         // 送受信したプライベートメッセージ
         $exchanged_private_messages = PrivateMessage::with(['author'])

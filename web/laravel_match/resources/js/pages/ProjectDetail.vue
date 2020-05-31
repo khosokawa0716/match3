@@ -3,7 +3,7 @@
         <h1 class="l-container__title">案件詳細</h1>
         <div class="p-projectDetail__body">
         <dl class="c-dl">
-            <div v-if="notOwner"> <!-- 自分の案件には、名前と自己症紹介は表示しない -->
+            <div v-if="notOwner"> <!-- 自分が登録した案件には、名前と自己症紹介は表示しない -->
                 <dt>依頼した人</dt>
                     <dd @click="toggleProfile" class="cursorHelp">
                         <img :src="owner.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
@@ -79,7 +79,10 @@
             }
         },
         methods: {
+            // 案件詳細画面に表示する案件やコメントをとってくる
             async fetchProjectDetail () {
+                // ProjectDetailController@showを起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/project/detail/${this.id}`)
 
                 // エラーの処理
@@ -88,15 +91,24 @@
                     return false
                 }
 
-                // GETが成功したら、レスポンスをプロパティに代入する
+                // 表示する情報をプロパティに代入する
+                  // 案件
                 this.project = response.data.project
+
+                  // 案件を登録したユーザーの情報
                 this.owner.id = response.data.project.owner.id
                 this.owner.name = response.data.project.owner.name
                 this.owner.icon_path = response.data.project.owner.icon_path
                 this.owner.profile_fields = response.data.project.owner.profile_fields
+
+                  // コメント
                 this.public_messages = response.data.public_messages
             },
+
+            // コメントを投稿する
             async publicMessageRegister () {
+                // ProjectDetailController@createの起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.post(`/api/project/detail/${this.id}`, {
                     content: this.public_message_content
                 })
@@ -116,7 +128,11 @@
                 const response2 = await axios.get(`/api/project/detail/${this.id}`) // メッセージを全件取得
                 this.public_messages = response2.data.public_messages // レスポンスをプロパティに代入
             },
+
+            // 案件に応募する
             async apply () {
+                // ProjectDetailController@updateの起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.put(`/api/project/detail/${this.id}`, this.id)
 
                 // エラーの処理
@@ -134,26 +150,38 @@
                 // マイページに移動する
                 this.$router.push('/mypage')
             },
+
+            // ストアerror.jsにあるコードをクリアする
             clearError () {
                 this.$store.commit('error/setCode', null)
             },
+
+            // 自己紹介の表示、非表示を切り替える
             toggleProfile () {
                 return this.isActiveProfile = !this.isActiveProfile
             }
         },
         created() {
+            // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError()
         },
         computed: {
+            // 案件を登録したユーザーでないときにtrueを返却
             notOwner () {
                 return this.$store.getters['auth/userid'] !== this.owner.id
             },
+
+            // ユーザーIDをストアからとってくる
             userid () {
                 return this.$store.getters['auth/userid']
             },
+
+            // 案件が募集中かどうか
             isRecruiting () {
                 return this.project.status === 1
             },
+
+            // 画面上での表示
             status () {
                 if (this.project.status === 1) {
                     return '募集中'
@@ -161,6 +189,8 @@
                     return '募集終了'
                 }
             },
+
+            // 画面上での表示
             type () {
                 if (this.project.type === 'one-off') {
                     return '依頼のときに一定の金額を支払う'
@@ -168,12 +198,15 @@
                     return 'サービス公開後の収益を分け合う'
                 }
             },
+
+            // 案件のタイプが「依頼のときに一定の金額を支払う」かどうか
             isOneOff () {
                 return this.project.type === 'one-off';
             }
         },
         watch: {
             $route: {
+                // 画面の表示のさいにfetchProjectDetailメソッドを実行する
                 async handler () {
                     await this.fetchProjectDetail()
                 },

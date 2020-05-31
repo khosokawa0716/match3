@@ -2,11 +2,9 @@
 // panel
 // ==================================
 .c-panel {
-    //margin-top: $space_xl;
     display: flex;
     flex-wrap: wrap;
     background: $color_background;
-    //justify-content: space-evenly;
     @include mmd () {
         justify-content: center;
         padding-left: $space_xl;

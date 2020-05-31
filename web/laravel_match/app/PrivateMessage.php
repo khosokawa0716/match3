@@ -11,7 +11,7 @@ class PrivateMessage extends Model
         'author', 'project', 'content', 'project_id', 'created_at'
     ];
 
-    public function author()
+    public function author() // メッセージを投稿する人
     {
         return $this->belongsTo('App\User', 'user_id', 'id', 'users');
     }

@@ -6,7 +6,6 @@ use App\Project;
 use App\PrivateMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class PrivateMessagesDetailController extends Controller
 {
@@ -16,13 +15,11 @@ class PrivateMessagesDetailController extends Controller
         $this->middleware('auth');
     }
 
-    // 案件と非公開メッセージを取得する
-    // 引数はprojectsのid
+    // 案件と非公開メッセージをとってくる
+    // 引数は$dataは、projectsのid
     public function show($data)
     {
-//        Log::info('PrivateMessagesDetailController.showの起動');
         $project_id = $data;
-//        Log::info('$project_idの中身: '.$project_id);
 
         if (ctype_digit($project_id)) {
             // 1.対象の案件を取得する
@@ -33,14 +30,12 @@ class PrivateMessagesDetailController extends Controller
 
                 // 検索結果がない場合には、エラーコード404を返却する
             if ($project === null) {
-//                Log::info('projectの検索結果がnullだった');
                 return abort(404);
             }
 
             // 2.案件に紐づいている非公開メッセージを取得する
             $private_messages = PrivateMessage::where('project_id', $project_id)
                 ->with(['author'])
-//                ->update(['unread' => false])
                 ->orderBy(PrivateMessage::CREATED_AT, 'asc')
                 ->get();
 
@@ -49,7 +44,6 @@ class PrivateMessagesDetailController extends Controller
                 ->where('received_user_id', Auth::id())
                 ->update(['unread' => false]);
 
-//            Log::info('$private_messagesの中身: '.print_r($private_messages, true));
             // 4.案件と紐づく非公開メッセージを返却
             return [ 'project' => $project, 'private_messages' => $private_messages ];
         } else {
@@ -61,7 +55,6 @@ class PrivateMessagesDetailController extends Controller
     // 非公開メッセージを投稿する
     public function create(Request $request, PrivateMessage $privateMessage, $data)
     {
-        Log::info('PrivateMessagesDetailController.createの起動');
         $user_id = Auth::id(); // メッセージを投稿する人
         $project_id = $data;
 
@@ -86,7 +79,6 @@ class PrivateMessagesDetailController extends Controller
             $received_user_id = $project->user_id;
         }
         // **************************************************************
-        Log::info('$received_user_idの中身: '.print_r($received_user_id, true));
 
         $request->validate([
             'content' => 'required|string|max:200'

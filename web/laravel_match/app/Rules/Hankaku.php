@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
+// パスワードに全角文字が使われたさいに、エラーを出力する
 class Hankaku implements Rule
 {
     /**
@@ -23,6 +24,7 @@ class Hankaku implements Rule
      * @param  mixed  $value
      * @return bool
      */
+    // 半角英数のみOK
     public function passes($attribute, $value)
     {
         return preg_match('/^[a-zA-Z0-9]+$/', $value);

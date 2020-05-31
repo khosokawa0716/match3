@@ -16,9 +16,4 @@
         position: absolute;
         top: 120px;
     }
-
-    // スマホでみた時のズームを防ぎたいのでコメント化
-    //@include mmd() {
-    //    font-size: $font-size_s;
-    //}
 }

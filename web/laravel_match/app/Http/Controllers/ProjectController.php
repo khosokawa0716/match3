@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class ProjectController extends Controller
 {
@@ -15,17 +14,19 @@ class ProjectController extends Controller
         $this->middleware('auth')->except(['index']);
     }
 
+    // 表示する案件をとってくる
+    // 絞り込み条件を引数$requestに含む
     public function index(Request $request){
         $status = $request['status'];
         $type = $request['type'];
 
         $projects = Project::with(['owner'])
-            ->where( function($query) use($type) {
+            ->where( function($query) use($type) { // typeがallでないときに、このwhere句を有効にする
                 if ($type !== 'all') {
                     $query->where('type', $type);
                 }
             })
-            ->where( function($query) use($status) {
+            ->where( function($query) use($status) { // statusが2（すべて）でないときに、このwhere句を有効にする
                 if ($status !== "2") {
                     $query->where('status', $status);
                 }
@@ -36,6 +37,7 @@ class ProjectController extends Controller
         return $projects;
     }
 
+    // 案件の登録
     public function create(Request $request, Project $project) {
         $request->validate([
             'title' => 'required|string|min:3|max:20',
@@ -79,7 +81,7 @@ class ProjectController extends Controller
         }
     }
 
-    // 案件の更新。引数は、Request $request:編集フォームに入力された値と $id:projectsのid
+    // 案件の更新。引数は、$request編集:フォームに入力された値と $id:案件のid
     public function update (Request $request, $id)
     {
         $user_id = Auth::id();

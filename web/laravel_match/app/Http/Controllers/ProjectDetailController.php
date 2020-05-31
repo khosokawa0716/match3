@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\PrivateMessage;
 use App\Project;
 use App\PublicMessage;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class ProjectDetailController extends Controller
 {
@@ -19,7 +17,7 @@ class ProjectDetailController extends Controller
     }
 
     // 案件とパブリックメッセージを取得する
-    // 引数はprojectsのid
+    // 引数は$dataは、projectsのid
     public function show($data)
     {
         $id = $data;
@@ -32,7 +30,6 @@ class ProjectDetailController extends Controller
             $public_messages = PublicMessage::where('project_id', $id)
                 ->with(['author'])
                 ->oldest()
-//                ->orderBy(PublicMessage::CREATED_AT, 'desc')
                 ->get();
 
             return [ 'project' => $project, 'public_messages' => $public_messages ];
@@ -65,14 +62,11 @@ class ProjectDetailController extends Controller
     // 案件に応募する。同時に応募した旨を案件登録者にプライベートメッセージで伝える
     public function update(PrivateMessage $privateMessage, $data)
     {
-//        Log::info('ProjectDetailControllerのupdate起動');
         $id = $data;
-        Log::info('projectのid'.$id);
 
         // 応募した人 = ログインして応募の操作をした人
         $applicant = Auth::user();
         $applicant_id = Auth::id();
-//        $applicant_name = $applicant->name;
 
         if (ctype_digit($id)) {
             $project = Project::where('id', $id)->with(['owner'])->first();
@@ -87,12 +81,6 @@ class ProjectDetailController extends Controller
             $project->status = 0;
             $project->applicant_id = $applicant_id;
             $project->save();
-
-            // number_unread_messagesは削除したためusersテーブルの処理はなし。削除予定
-//            $user = User::where('id', $project->user_id)->first();
-//            Log::debug(print_r($user,true));
-//            $user->number_unread_messages += 1;
-//            $user->save();
 
             $privateMessage->user_id = $applicant_id;
             $privateMessage->received_user_id = $project->user_id; // 相手はプロジェクトのオーナー 2020/04/29に追加

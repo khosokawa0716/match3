@@ -54,7 +54,9 @@
             }
         },
         methods: {
+            // ユーザー登録
             async register () {
+                // 画像データを扱うためnew FormData()を定義、入力項目を代入する
                 const data = new FormData()
                 data.append('name',this.registerForm.name)
                 data.append('email',this.registerForm.email)
@@ -62,9 +64,6 @@
                 data.append('password_confirmation',this.registerForm.password_confirmation)
                 data.append('file',this.registerForm.icon_file)
                 data.append('profile_fields',this.registerForm.profile_fields)
-                console.log(data)
-
-                console.log(this.registerForm)
 
                 // authストアのregisterアクションを呼び出す
                 await this.$store.dispatch('auth/register', data)
@@ -74,9 +73,8 @@
                     this.$router.push('/mypage')
                 }
             },
-            clearError () {
-                this.$store.commit('auth/setRegisterErrorMessages', null)
-            },
+
+            // アイコン画像のプレビューを表示する
             onFileChange (event) {
                 // アイコン画像のプレビューを表示するメソッド
                 // 何も選択されていなかったら処理中断
@@ -114,20 +112,30 @@
                 reader.readAsDataURL(event.target.files[0])
                 this.registerForm.icon_file = event.target.files[0]
             },
-            // 入力欄の値とプレビュー表示をクリアするメソッド
+
+            // 入力欄の値とプレビュー表示をクリアする
             reset () {
                 this.preview = ''
                 this.registerForm.icon_file = null
                 this.$el.querySelector('input[type="file"]').value = null
             },
+
+            // ストアerror.jsにあるコードをクリアする
+            clearError () {
+                this.$store.commit('auth/setRegisterErrorMessages', null)
+            },
         },
         created() {
+            // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError()
         },
         computed: {
+            // ストアでの処理が成功したかどうか
             apiStatus () {
                 return this.$store.state.auth.apiStatus
             },
+
+            // 入力時にエラーがあった場合、メッセージを格納する
             registerErrors () {
                 return this.$store.state.auth.registerErrorMessages
             }

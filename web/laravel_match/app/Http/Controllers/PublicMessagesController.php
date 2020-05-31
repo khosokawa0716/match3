@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\PublicMessage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class PublicMessagesController extends Controller
 {
@@ -16,6 +14,7 @@ class PublicMessagesController extends Controller
         $this->middleware('auth');
     }
 
+    // メッセージ一覧画面に表示する情報をとってくる
     public function show()
     {
         $user_id = Auth::id();

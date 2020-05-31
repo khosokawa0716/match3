@@ -6,9 +6,7 @@ use App\Rules\Hankaku;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -50,12 +48,14 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+    // ユーザー登録時のバリデーション
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'min:3', 'max:10', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', new Hankaku, 'min:8', 'max:16', 'confirmed'],
+            'password' => ['required', new Hankaku, 'min:8', 'max:16', 'confirmed'], // Hankakuは全角文字をはじくために定義したルール app/Rules/Hankaku.php
             'profile_fields' => ['nullable','string', 'max:120']
         ]);
     }
@@ -66,6 +66,8 @@ class RegisterController extends Controller
      * @param  array $data
      * @return \App\User
      */
+
+    // ユーザー登録
     protected function create(array $data)
     {
         // 入力が任意の項目は、未入力時にはnullをDBに書き込む

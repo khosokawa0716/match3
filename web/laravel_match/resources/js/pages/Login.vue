@@ -47,12 +47,16 @@
             }
         },
         created() {
+            // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError()
         },
         computed: {
+            // ストアでの処理が成功したかどうか
             apiStatus () {
                 return this.$store.state.auth.apiStatus
             },
+
+            // 入力時にエラーがあった場合、メッセージを格納する
             loginErrors () {
                 return this.$store.state.auth.loginErrorMessages
             }

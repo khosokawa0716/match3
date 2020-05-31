@@ -3,7 +3,7 @@
         <h1 class="l-container__title">メッセージ詳細</h1>
         <div class="p-projectDetail__body">
         <dl class="c-dl">
-            <div v-if="notOwner"> <!-- 自分の案件には、名前と自己症紹介は表示しない -->
+            <div v-if="notOwner"> <!-- 自分が登録した案件には、名前と自己症紹介は表示しない -->
                 <dt>依頼した人</dt>
                 <dd @click="toggleProfile" class="cursorHelp">
                     <img :src="owner.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
@@ -14,7 +14,7 @@
                     {{ owner.profile_fields }}
                 </dd>
             </div>
-            <div v-if="notApplicant"> <!-- 自分の案件には、名前と自己症紹介は表示しない -->
+            <div v-if="notApplicant"> <!-- 自分が応募した案件には、名前と自己症紹介は表示しない -->
                 <dt>応募した人</dt>
                 <dd @click="toggleProfile" class="cursorHelp">
                     <img :src="applicant.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
@@ -90,29 +90,42 @@
             }
         },
         methods: {
+            // メッセージ詳細画面に表示する案件やメッセージをとってくる
             async fetchPrivateMessages () {
+                // PrivateMessagesDetailController@showを起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/private_messages/detail/${this.id}`)
 
+                // エラーの場合
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
                     return false
                 }
 
+                // 表示する情報をプロパティに代入する
+                  // メッセージに紐づく案件
                 this.project = response.data.project
 
+                  // 案件を登録したユーザーの情報
                 this.owner.id = response.data.project.owner.id
                 this.owner.name = response.data.project.owner.name
                 this.owner.icon_path = response.data.project.owner.icon_path
                 this.owner.profile_fields = response.data.project.owner.profile_fields
 
+                  // 案件に応募したユーザーの情報
                 this.applicant.id = response.data.project.applicant.id
                 this.applicant.name = response.data.project.applicant.name
                 this.applicant.icon_path = response.data.project.applicant.icon_path
                 this.applicant.profile_fields = response.data.project.applicant.profile_fields
 
+                  // やりとしたメッセージ
                 this.private_messages = response.data.private_messages
             },
+
+            // メッセージを投稿する
             async privateMessageRegister () {
+                // PrivateMessagesDetailController@createの起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.post(`/api/private_messages/detail/${this.id}`, {
                     content: this.private_message_content
                 })
@@ -126,32 +139,44 @@
                     return false
                 }
 
-                // POST成功
+                // POST成功の場合
                 this.private_message_content = '' // テキスト入力部分を空にする
                 this.private_message_errors = null // エラーメッセージをクリア
                 const response2 = await axios.get(`/api/private_messages/detail/${this.id}`) // メッセージを全件取得
                 this.private_messages = response2.data.private_messages // レスポンスをプロパティに代入
             },
+
+            // ストアerror.jsにあるコードをクリアする
             clearError () {
                 this.$store.commit('error/setCode', null)
             },
+
+            // 自己紹介の表示、非表示を切り替える
             toggleProfile () {
                 return this.isActiveProfile = !this.isActiveProfile
             }
         },
         created() {
+            // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError()
         },
         computed: {
+            // 案件を登録したユーザーでないときにtrueを返却
             notOwner () {
                 return this.$store.getters['auth/userid'] !== this.owner.id
             },
+
+            // 案件に応募したユーザーでないときにtrueを返却
             notApplicant () {
                 return this.$store.getters['auth/userid'] !== this.applicant.id
             },
+
+            // ユーザーIDをストアからとってくる
             userid () {
                 return this.$store.getters['auth/userid']
             },
+
+            // 画面上での表示
             type () {
                 if (this.project.type === 'one-off') {
                     return '依頼のときに一定の金額を支払う'
@@ -159,12 +184,15 @@
                     return 'サービス公開後の収益を分け合う'
                 }
             },
+
+            // 案件のタイプが「依頼のときに一定の金額を支払う」かどうか
             isOneOff () {
                 return this.project.type === 'one-off';
             }
         },
         watch: {
             $route: {
+                // 画面の表示のさいにfetchPrivateMessagesメソッドを実行する
                 async handler () {
                     await this.fetchPrivateMessages()
                 },

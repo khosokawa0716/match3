@@ -59,14 +59,19 @@
             }
         },
         methods: {
+            // 編集しようとする案件をとってくる
             async fetchProject () {
+                // ProjectController@editの起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm.id)
 
+                // エラーの処理
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
                     return false
                 }
 
+                // 成功の場合、案件の情報をプロパティに代入
                 this.project = response.data
 
                 this.projectsUpdateForm.title = this.project.title
@@ -109,10 +114,13 @@
             this.clearError ()
         },
         computed: {
+            // 支払い方法のタイプが「依頼のときに一定の金額を支払う」かどうか
             isOneOff () {
                 return this.projectsUpdateForm.type === 'one-off';
             }
         },
+
+        // 初期値を反映させるために、画面遷移直後にfetchProjectメソッドを呼ぶ
         watch: {
             $route: {
                 async handler () {

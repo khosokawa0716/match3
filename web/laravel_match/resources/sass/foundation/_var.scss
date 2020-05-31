@@ -10,8 +10,6 @@ $font-color_error: #d9534f;
 $font-color_message: #155724;
 $color_background: #f7f7f7;
 $color_footer_background: #000033; // $font-color_defaultと同じだが、保守性を考えて別の変数にする
-//$color_project: #fafa00;
-//$color_project: #f8e58c;
 $color_project: #fef263;
 $color_message: #d4edda;
 
@@ -43,7 +41,6 @@ $border_radius: 3px;
 $font-family_corp: 'Amatic SC', cursive;
 
 // メディアクエリのブレークポイント設定
-// マップ型変数を使うと便利
 $breakpoints: (
     'sm': 'screen and (max-width: 414px)',
     'md': 'screen and (max-width: 768px)',

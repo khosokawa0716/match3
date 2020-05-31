@@ -55,7 +55,6 @@
                 // UserController@editを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/users/${this.editForm.id}/edit`)
-                // console.dir(response)
 
                 // エラーの場合
                 if (response.status !== OK) {
@@ -93,8 +92,9 @@
                     this.$router.push('/mypage')
                 }
             },
+
+            // アイコン画像のプレビューを表示する
             onFileChange (event) {
-                // アイコン画像のプレビューを表示するメソッド
                 // 何も選択されていなかったら処理中断
                 if (event.target.files.length === 0) {
                     this.reset()
@@ -130,12 +130,14 @@
                 reader.readAsDataURL(event.target.files[0])
                 this.editForm.icon_file = event.target.files[0]
             },
-            // 入力欄の値とプレビュー表示をクリアするメソッド
+
+            // 入力欄の値とプレビュー表示をクリアする
             reset () {
                 this.preview = ''
                 this.editForm.icon_file = null
                 this.$el.querySelector('input[type="file"]').value = null
             },
+
             // ストアerror.jsにあるコードをクリアする
             clearError () {
                 this.$store.commit('auth/setUpdateErrorMessages', null)
@@ -146,18 +148,23 @@
             this.clearError ()
         },
         computed: {
+            // ストアでの処理が成功したかどうか
             apiStatus () {
                 return this.$store.state.auth.apiStatus
             },
+
+            // 入力時にエラーがあった場合、メッセージを格納する
             updateErrors () {
                 return this.$store.state.auth.updateErrorMessages
             },
+
+            // ログインしているかどうか
             isLogin () {
                 return this.$store.getters['auth/check']
             },
         },
 
-        // 画面遷移直後にfetchUserメソッドを呼ぶ
+        // 初期値を反映させるために、画面遷移直後にfetchUserメソッドを呼ぶ
         watch: {
             $route: {
                 async handler () {

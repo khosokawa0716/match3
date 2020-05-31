@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -63,8 +62,6 @@ class UserController extends Controller
         return $user;
     }
 
-    // 実際の更新処理
-    // 終わったら、そのユーザのページへ移動
     /**
      * Update the specified resource in storage.
      *
@@ -72,6 +69,8 @@ class UserController extends Controller
      * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
+
+    // ユーザー情報の更新
     public function update(Request $request, $id) // 引数Users $userを削除
     {
         $user = User::find($id);

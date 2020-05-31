@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\PrivateMessage;
 use App\Project;
 use App\PublicMessage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class MypageController extends Controller
 {
@@ -18,8 +16,8 @@ class MypageController extends Controller
         $this->middleware('auth');
     }
 
+    // マイページに表示する情報をとってくる
     public function index(){
-//        Log::info('MypageControllerのindex起動');
         $id = Auth::id();
 
         // 登録した案件

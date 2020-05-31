@@ -113,24 +113,32 @@
             }
         },
         methods: {
+            // マイページに表示する案件やメッセージをとってくる
             async fetchProjects () {
+                // MypageController@indexを起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get('/api/mypage/')
 
+                // エラーの場合
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
                     return false
                 }
 
-                this.registered_projects = response.data.registered_projects
-                this.applied_projects = response.data.applied_projects
-                this.exchanged_public_messages = response.data.exchanged_public_messages
-                this.exchanged_private_messages = response.data.exchanged_private_messages
-                this.number_unread_private_messages = response.data.number_unread_private_messages
+                // 表示する5つの情報をプロパティに代入する
+                this.registered_projects = response.data.registered_projects // 登録した案件
+                this.applied_projects = response.data.applied_projects // 応募した案件
+                this.exchanged_public_messages = response.data.exchanged_public_messages // やりとしたコメント
+                this.exchanged_private_messages = response.data.exchanged_private_messages // やりとしたメッセージ
+                this.number_unread_private_messages = response.data.number_unread_private_messages // 未読メッセージの数
             },
+
             // ストアerror.jsにあるコードをクリアする
             clearError () {
                 this.$store.commit('error/setCode', null)
             },
+
+            // 登録した案件へスクロールする
             toRegistered_projects () {
                 this.$SmoothScroll(
                     document.querySelector('#registered_projects'),
@@ -140,6 +148,8 @@
                     'y'
                 )
             },
+
+            // 応募した案件へスクロールする
             toApplied_projects () {
                 this.$SmoothScroll(
                     document.querySelector('#applied_projects'),
@@ -149,6 +159,8 @@
                     'y'
                 )
             },
+
+            // やりとしたコメントへスクロールする
             toComment () {
                 this.$SmoothScroll(
                     document.querySelector('#comment'),
@@ -158,6 +170,8 @@
                     'y'
                 )
             },
+
+            // やりとしたメッセージへスクロールする
             toMessage () {
                 this.$SmoothScroll(
                     document.querySelector('#message'),
@@ -167,6 +181,8 @@
                     'y'
                 )
             },
+
+            // トップへスクロールする
             scrollTop () {
                 window.scrollTo({
                     top: 0,
@@ -175,7 +191,7 @@
             }
         },
         computed: {
-            // 未読のメッセージがあるかどうか
+            // 未読のメッセージが（1件以上）あるかどうか
             isUnreadMessage () {
                 return this.number_unread_private_messages >= 1
             }
@@ -186,6 +202,7 @@
         },
         watch: {
             $route: {
+                // 画面の表示のさいにfetchProjectsメソッドを実行する
                 async handler () {
                     await this.fetchProjects()
                 },

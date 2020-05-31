@@ -2081,9 +2081,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     twitter: function twitter() {
@@ -2180,9 +2177,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // スマホのハンバーガーメニューの開閉を切り替える
     toggleActiveStatus: function toggleActiveStatus() {
       this.activeStatus = !this.activeStatus;
     },
+    // ログアウト
     logout: function logout() {
       var _this = this;
 
@@ -2191,13 +2190,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.activeStatus = !_this.activeStatus;
+                _this.activeStatus = !_this.activeStatus; // メニューを閉じる
+
                 _context.next = 3;
                 return _this.$store.dispatch('auth/logout');
 
               case 3:
                 if (_this.apiStatus) {
-                  _this.$router.push('/login');
+                  _this.$router.push('/login'); // 処理が成功したら、ログイン画面に遷移する
+
                 }
 
               case 4:
@@ -2210,15 +2211,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: {
+    // ストアでの処理が成功したかどうか
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
     },
+    // ログインしているかどうか
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
     },
+    // ログイン中のユーザーidを返す
     userid: function userid() {
       return this.$store.getters['auth/userid'];
     },
+    // ユーザーのアイコン画像のパスを返す
     icon_path: function icon_path() {
       return this.$store.getters['auth/icon_path'];
     }
@@ -2226,6 +2231,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this2 = this;
 
+    // 画面トップへスクロールする
     document.onscroll = function (e) {
       _this2.position = document.documentElement.scrollTop || document.body.scrollTop;
     };
@@ -2259,27 +2265,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    // Projects.vue から以下4つのパラメータを受け取る
+    // 1.絞り込み条件_案件が募集中かどうか
     selectStatus: {
       type: String,
       required: true
     },
+    // 2.絞り込み条件_案件のタイプ
     selectType: {
       type: String,
       required: true
     },
+    // 3.現在のページ
     currentPage: {
       type: Number,
       required: true
     },
+    // 4.最後のページ
     lastPage: {
       type: Number,
       required: true
     }
   },
   computed: {
+    // 始めのページかどうか
     isFirstPage: function isFirstPage() {
       return this.currentPage === 1;
     },
+    // 最後のページかどうか
     isLastPage: function isLastPage() {
       return this.currentPage === this.lastPage;
     }
@@ -2332,26 +2345,33 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    // ストアのエラーをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
     }
   },
   created: function created() {
+    // 表示のさいにストアのエラーをクリアする
     this.clearError();
   },
   computed: {
+    // ストアでの処理が成功したかどうか
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
     },
+    // ログインしているかどうか
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
     },
+    // その案件を登録したユーザーかどうか
     isOwner: function isOwner() {
       return this.$store.getters['auth/userid'] === this.item.owner.id;
     },
+    // その案件が募集中かどうか
     isRecruiting: function isRecruiting() {
       return this.item.status === 1;
     },
+    // 画面上での表示
     status: function status() {
       if (this.item.status === 1) {
         return '募集中';
@@ -2359,6 +2379,7 @@ __webpack_require__.r(__webpack_exports__);
         return '募集終了';
       }
     },
+    // 画面上での表示
     type: function type() {
       if (this.item.type === 'one-off') {
         return '依頼のときに一定の金額を支払う';
@@ -2366,10 +2387,11 @@ __webpack_require__.r(__webpack_exports__);
         return 'サービス公開後の収益を分け合う';
       }
     },
+    // Twitterアイコンを押したさいの動的なURLの生成
     twitter: function twitter() {
       var url = this.$router.resolve({
         name: 'projectsList'
-      }).href;
+      }).href; // タイプによって金額を表示するかどうか
 
       if (this.item.type === 'one-off') {
         return 'https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！%0a' + this.item.title + '%0a（' + this.item.minimum_amount + '円 〜 ' + this.item.max_amount + '円 ）' + '%0a&hashtags=match%0a&url=' + location.origin + url;
@@ -2530,10 +2552,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    // アイコン画像のプレビューを表示する
     onFileChange: function onFileChange(event) {
       var _this3 = this;
 
-      // アイコン画像のプレビューを表示するメソッド
       // 何も選択されていなかったら処理中断
       if (event.target.files.length === 0) {
         this.reset();
@@ -2568,7 +2590,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       reader.readAsDataURL(event.target.files[0]);
       this.editForm.icon_file = event.target.files[0];
     },
-    // 入力欄の値とプレビュー表示をクリアするメソッド
+    // 入力欄の値とプレビュー表示をクリアする
     reset: function reset() {
       this.preview = '';
       this.editForm.icon_file = null;
@@ -2584,17 +2606,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.clearError();
   },
   computed: {
+    // ストアでの処理が成功したかどうか
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
     },
+    // 入力時にエラーがあった場合、メッセージを格納する
     updateErrors: function updateErrors() {
       return this.$store.state.auth.updateErrorMessages;
     },
+    // ログインしているかどうか
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
     }
   },
-  // 画面遷移直後にfetchUserメソッドを呼ぶ
+  // 初期値を反映させるために、画面遷移直後にfetchUserメソッドを呼ぶ
   watch: {
     $route: {
       handler: function handler() {
@@ -2704,12 +2729,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
+    // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
     this.clearError();
   },
   computed: {
+    // ストアでの処理が成功したかどうか
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
     },
+    // 入力時にエラーがあった場合、メッセージを格納する
     loginErrors: function loginErrors() {
       return this.$store.state.auth.loginErrorMessages;
     }
@@ -2850,6 +2878,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // マイページに表示する案件やメッセージをとってくる
     fetchProjects: function fetchProjects() {
       var _this = this;
 
@@ -2875,11 +2904,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
-                _this.registered_projects = response.data.registered_projects;
-                _this.applied_projects = response.data.applied_projects;
-                _this.exchanged_public_messages = response.data.exchanged_public_messages;
-                _this.exchanged_private_messages = response.data.exchanged_private_messages;
-                _this.number_unread_private_messages = response.data.number_unread_private_messages;
+                // 表示する5つの情報をプロパティに代入する
+                _this.registered_projects = response.data.registered_projects; // 登録した案件
+
+                _this.applied_projects = response.data.applied_projects; // 応募した案件
+
+                _this.exchanged_public_messages = response.data.exchanged_public_messages; // やりとしたコメント
+
+                _this.exchanged_private_messages = response.data.exchanged_private_messages; // やりとしたメッセージ
+
+                _this.number_unread_private_messages = response.data.number_unread_private_messages; // 未読メッセージの数
 
               case 11:
               case "end":
@@ -2893,18 +2927,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
     },
+    // 登録した案件へスクロールする
     toRegistered_projects: function toRegistered_projects() {
       this.$SmoothScroll(document.querySelector('#registered_projects'), 400, null, null, 'y');
     },
+    // 応募した案件へスクロールする
     toApplied_projects: function toApplied_projects() {
       this.$SmoothScroll(document.querySelector('#applied_projects'), 400, null, null, 'y');
     },
+    // やりとしたコメントへスクロールする
     toComment: function toComment() {
       this.$SmoothScroll(document.querySelector('#comment'), 400, null, null, 'y');
     },
+    // やりとしたメッセージへスクロールする
     toMessage: function toMessage() {
       this.$SmoothScroll(document.querySelector('#message'), 400, null, null, 'y');
     },
+    // トップへスクロールする
     scrollTop: function scrollTop() {
       window.scrollTo({
         top: 0,
@@ -2913,7 +2952,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: {
-    // 未読のメッセージがあるかどうか
+    // 未読のメッセージが（1件以上）あるかどうか
     isUnreadMessage: function isUnreadMessage() {
       return this.number_unread_private_messages >= 1;
     }
@@ -2924,6 +2963,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   watch: {
     $route: {
+      // 画面の表示のさいにfetchProjectsメソッドを実行する
       handler: function handler() {
         var _this2 = this;
 
@@ -3020,19 +3060,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.log('/を削除'); // バリデーションエラー
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"])) {
-                  _context.next = 9;
+                  _context.next = 8;
                   break;
                 }
 
                 _this.passResetErrors = response.data.errors;
                 return _context.abrupt("return", false);
 
-              case 9:
+              case 8:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
-                  _context.next = 12;
+                  _context.next = 11;
                   break;
                 }
 
@@ -3041,13 +3080,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 return _context.abrupt("return", false);
 
-              case 12:
-                console.log('レスポンスOK'); // パスワードリセットが成功したら、authストアのloginアクションを呼び出す
-
-                _context.next = 15;
+              case 11:
+                _context.next = 13;
                 return _this.$store.dispatch('auth/login', _this.passResetForm);
 
-              case 15:
+              case 13:
                 if (_this.apiStatus) {
                   // loginアクションが成功だった場合、ストアにメッセージを格納する
                   _this.$store.commit('message/setContent', {
@@ -3059,7 +3096,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.$router.push('/mypage');
                 }
 
-              case 16:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -3069,6 +3106,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: {
+    // ストアでの処理が成功したかどうか
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
     }
@@ -3278,6 +3316,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // メッセージ一覧画面に表示する情報をとってくる
     fetchPrivateMessages: function fetchPrivateMessages() {
       var _this = this;
 
@@ -3303,9 +3342,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
-                _this.unread_private_messages = response.data.unread_private_messages;
-                _this.private_messages = response.data.exchanged_private_messages.data;
-                _this.projects = response.data.exchanged_private_messages_projects;
+                // 表示する3つの情報をプロパティに代入する
+                _this.unread_private_messages = response.data.unread_private_messages; // 未読のメッセージ
+
+                _this.private_messages = response.data.exchanged_private_messages.data; // やりとりしたメッセージ
+
+                _this.projects = response.data.exchanged_private_messages_projects; // メッセージをやりとした案件
 
               case 9:
               case "end":
@@ -3324,6 +3366,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   watch: {
     $route: {
+      // 画面の表示のさいにfetchPrivateMessagesメソッドを実行する
       handler: function handler() {
         var _this2 = this;
 
@@ -3458,6 +3501,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // メッセージ詳細画面に表示する案件やメッセージをとってくる
     fetchPrivateMessages: function fetchPrivateMessages() {
       var _this = this;
 
@@ -3483,15 +3527,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
-                _this.project = response.data.project;
+                // 表示する情報をプロパティに代入する
+                // メッセージに紐づく案件
+                _this.project = response.data.project; // 案件を登録したユーザーの情報
+
                 _this.owner.id = response.data.project.owner.id;
                 _this.owner.name = response.data.project.owner.name;
                 _this.owner.icon_path = response.data.project.owner.icon_path;
-                _this.owner.profile_fields = response.data.project.owner.profile_fields;
+                _this.owner.profile_fields = response.data.project.owner.profile_fields; // 案件に応募したユーザーの情報
+
                 _this.applicant.id = response.data.project.applicant.id;
                 _this.applicant.name = response.data.project.applicant.name;
                 _this.applicant.icon_path = response.data.project.applicant.icon_path;
-                _this.applicant.profile_fields = response.data.project.applicant.profile_fields;
+                _this.applicant.profile_fields = response.data.project.applicant.profile_fields; // やりとしたメッセージ
+
                 _this.private_messages = response.data.private_messages;
 
               case 16:
@@ -3502,6 +3551,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // メッセージを投稿する
     privateMessageRegister: function privateMessageRegister() {
       var _this2 = this;
 
@@ -3540,7 +3590,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return", false);
 
               case 11:
-                // POST成功
+                // POST成功の場合
                 _this2.private_message_content = ''; // テキスト入力部分を空にする
 
                 _this2.private_message_errors = null; // エラーメッセージをクリア
@@ -3561,26 +3611,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
     },
+    // 自己紹介の表示、非表示を切り替える
     toggleProfile: function toggleProfile() {
       return this.isActiveProfile = !this.isActiveProfile;
     }
   },
   created: function created() {
+    // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
     this.clearError();
   },
   computed: {
+    // 案件を登録したユーザーでないときにtrueを返却
     notOwner: function notOwner() {
       return this.$store.getters['auth/userid'] !== this.owner.id;
     },
+    // 案件に応募したユーザーでないときにtrueを返却
     notApplicant: function notApplicant() {
       return this.$store.getters['auth/userid'] !== this.applicant.id;
     },
+    // ユーザーIDをストアからとってくる
     userid: function userid() {
       return this.$store.getters['auth/userid'];
     },
+    // 画面上での表示
     type: function type() {
       if (this.project.type === 'one-off') {
         return '依頼のときに一定の金額を支払う';
@@ -3588,12 +3645,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return 'サービス公開後の収益を分け合う';
       }
     },
+    // 案件のタイプが「依頼のときに一定の金額を支払う」かどうか
     isOneOff: function isOneOff() {
       return this.project.type === 'one-off';
     }
   },
   watch: {
     $route: {
+      // 画面の表示のさいにfetchPrivateMessagesメソッドを実行する
       handler: function handler() {
         var _this3 = this;
 
@@ -3717,6 +3776,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // 案件詳細画面に表示する案件やコメントをとってくる
     fetchProjectDetail: function fetchProjectDetail() {
       var _this = this;
 
@@ -3742,12 +3802,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
-                // GETが成功したら、レスポンスをプロパティに代入する
-                _this.project = response.data.project;
+                // 表示する情報をプロパティに代入する
+                // 案件
+                _this.project = response.data.project; // 案件を登録したユーザーの情報
+
                 _this.owner.id = response.data.project.owner.id;
                 _this.owner.name = response.data.project.owner.name;
                 _this.owner.icon_path = response.data.project.owner.icon_path;
-                _this.owner.profile_fields = response.data.project.owner.profile_fields;
+                _this.owner.profile_fields = response.data.project.owner.profile_fields; // コメント
+
                 _this.public_messages = response.data.public_messages;
 
               case 12:
@@ -3758,6 +3821,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // コメントを投稿する
     publicMessageRegister: function publicMessageRegister() {
       var _this2 = this;
 
@@ -3817,6 +3881,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    // 案件に応募する
     apply: function apply() {
       var _this3 = this;
 
@@ -3860,26 +3925,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
+    // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
     },
+    // 自己紹介の表示、非表示を切り替える
     toggleProfile: function toggleProfile() {
       return this.isActiveProfile = !this.isActiveProfile;
     }
   },
   created: function created() {
+    // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
     this.clearError();
   },
   computed: {
+    // 案件を登録したユーザーでないときにtrueを返却
     notOwner: function notOwner() {
       return this.$store.getters['auth/userid'] !== this.owner.id;
     },
+    // ユーザーIDをストアからとってくる
     userid: function userid() {
       return this.$store.getters['auth/userid'];
     },
+    // 案件が募集中かどうか
     isRecruiting: function isRecruiting() {
       return this.project.status === 1;
     },
+    // 画面上での表示
     status: function status() {
       if (this.project.status === 1) {
         return '募集中';
@@ -3887,6 +3959,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return '募集終了';
       }
     },
+    // 画面上での表示
     type: function type() {
       if (this.project.type === 'one-off') {
         return '依頼のときに一定の金額を支払う';
@@ -3894,12 +3967,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return 'サービス公開後の収益を分け合う';
       }
     },
+    // 案件のタイプが「依頼のときに一定の金額を支払う」かどうか
     isOneOff: function isOneOff() {
       return this.project.type === 'one-off';
     }
   },
   watch: {
     $route: {
+      // 画面の表示のさいにfetchProjectDetailメソッドを実行する
       handler: function handler() {
         var _this4 = this;
 
@@ -4025,6 +4100,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // 案件をとってくる
     fetchProjects: function fetchProjects() {
       var _this = this;
 
@@ -4050,6 +4126,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
+                // 成功の場合
                 _this.projects = response.data.data;
                 _this.currentPage = response.data.current_page;
                 _this.lastPage = response.data.last_page;
@@ -4064,17 +4141,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    // 絞り込みの条件が変更したときに、条件にあった案件を取ってくる
     fetchFilterProjects: function fetchFilterProjects() {
       this.$router.push("/projects/list?status=".concat(this.selectStatus, "&type=").concat(this.selectType, "&page=1"));
     }
   },
   computed: {
+    // ログインしているかどうか
     isLogin: function isLogin() {
       return this.$store.getters["auth/check"];
     }
   },
   watch: {
     $route: {
+      // 画面の表示のさいにfetchProjectsメソッドを実行する
       handler: function handler() {
         var _this2 = this;
 
@@ -4096,6 +4176,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       immediate: true
     },
+    // 募集しているかどうかの条件が変更になったさいにfetchFilterProjectsメソッドを実行する
     selectStatus: {
       handler: function handler() {
         var _this3 = this;
@@ -4117,6 +4198,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }))();
       }
     },
+    // 支払い方法タイプの条件が変更になったさいにfetchFilterProjectsメソッドを実行する
     selectType: {
       handler: function handler() {
         var _this4 = this;
@@ -4220,6 +4302,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // 編集しようとする案件をとってくる
     fetchProject: function fetchProject() {
       var _this = this;
 
@@ -4245,6 +4328,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
+                // 成功の場合、案件の情報をプロパティに代入
                 _this.project = response.data;
                 _this.projectsUpdateForm.title = _this.project.title;
                 _this.projectsUpdateForm.type = _this.project.type;
@@ -4324,10 +4408,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.clearError();
   },
   computed: {
+    // 支払い方法のタイプが「依頼のときに一定の金額を支払う」かどうか
     isOneOff: function isOneOff() {
       return this.projectsUpdateForm.type === 'one-off';
     }
   },
+  // 初期値を反映させるために、画面遷移直後にfetchProjectメソッドを呼ぶ
   watch: {
     $route: {
       handler: function handler() {
@@ -4495,7 +4581,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.clearError();
   },
   computed: {
-    // 案件のタイプで'one-off'が選択されていればtrue、'service'ならfalseを返却
+    // 支払い方法のタイプが「依頼のときに一定の金額を支払う」かどうか
     isOneOff: function isOneOff() {
       return this.projectsRegisterForm.type === 'one-off';
     }
@@ -4573,6 +4659,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // コメント一覧画面に表示する情報をとってくる
     fetchPublicMessages: function fetchPublicMessages() {
       var _this = this;
 
@@ -4598,6 +4685,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 6:
+                // 表示する2つの情報をプロパティに代入する
                 _this.public_message = response.data.latest_public_message;
                 _this.projects = response.data.exchanged_messages_projects;
 
@@ -4612,6 +4700,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   watch: {
     $route: {
+      // 画面の表示のさいにfetchPublicMessagesメソッドを実行する
       handler: function handler() {
         var _this2 = this;
 
@@ -4710,6 +4799,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    // ユーザー登録
     register: function register() {
       var _this = this;
 
@@ -4719,26 +4809,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                // 画像データを扱うためnew FormData()を定義、入力項目を代入する
                 data = new FormData();
                 data.append('name', _this.registerForm.name);
                 data.append('email', _this.registerForm.email);
                 data.append('password', _this.registerForm.password);
                 data.append('password_confirmation', _this.registerForm.password_confirmation);
                 data.append('file', _this.registerForm.icon_file);
-                data.append('profile_fields', _this.registerForm.profile_fields);
-                console.log(data);
-                console.log(_this.registerForm); // authストアのregisterアクションを呼び出す
+                data.append('profile_fields', _this.registerForm.profile_fields); // authストアのregisterアクションを呼び出す
 
-                _context.next = 11;
+                _context.next = 9;
                 return _this.$store.dispatch('auth/register', data);
 
-              case 11:
+              case 9:
                 if (_this.apiStatus) {
                   // registerアクションが成功だった場合、マイページに移動する
                   _this.$router.push('/mypage');
                 }
 
-              case 12:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -4746,9 +4835,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    clearError: function clearError() {
-      this.$store.commit('auth/setRegisterErrorMessages', null);
-    },
+    // アイコン画像のプレビューを表示する
     onFileChange: function onFileChange(event) {
       var _this2 = this;
 
@@ -4787,20 +4874,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       reader.readAsDataURL(event.target.files[0]);
       this.registerForm.icon_file = event.target.files[0];
     },
-    // 入力欄の値とプレビュー表示をクリアするメソッド
+    // 入力欄の値とプレビュー表示をクリアする
     reset: function reset() {
       this.preview = '';
       this.registerForm.icon_file = null;
       this.$el.querySelector('input[type="file"]').value = null;
+    },
+    // ストアerror.jsにあるコードをクリアする
+    clearError: function clearError() {
+      this.$store.commit('auth/setRegisterErrorMessages', null);
     }
   },
   created: function created() {
+    // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
     this.clearError();
   },
   computed: {
+    // ストアでの処理が成功したかどうか
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
     },
+    // 入力時にエラーがあった場合、メッセージを格納する
     registerErrors: function registerErrors() {
       return this.$store.state.auth.registerErrorMessages;
     }
@@ -4888,9 +4982,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: 'エンジニア案件専用アプリ',
   methods: {
+    // ユーザー登録の画面に遷移する
     toRegister: function toRegister() {
       this.$router.push('/register');
     },
+    // 案件一覧の画面に遷移する
     toProjects: function toProjects() {
       this.$router.push('/projects/list');
     }
@@ -6333,7 +6429,7 @@ var render = function() {
   return _c("footer", { staticClass: "l-footer" }, [
     _c("p", { staticClass: "l-footer__large" }, [
       _vm._v(
-        "\n            Copyright © One-Stop Koshigoe LLC. All Rights Reserved\n            "
+        "\n        Copyright © One-Stop Koshigoe LLC. All Rights Reserved\n        "
       ),
       _c(
         "a",
@@ -6346,7 +6442,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("p", { staticClass: "l-footer__small" }, [
-      _vm._v("\n            Copyright © One-Stop Koshigoe\n            "),
+      _vm._v("\n        Copyright © One-Stop Koshigoe\n        "),
       _c(
         "a",
         {

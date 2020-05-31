@@ -74,17 +74,22 @@
             }
         },
         methods: {
+            // メッセージ一覧画面に表示する情報をとってくる
             async fetchPrivateMessages () {
+                // PrivateMessagesController@showを起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/private_messages/list`)
 
+                // エラーの場合
                 if (response.status !== OK) {
                     this.$store.commit('error/setCode', response.status)
                     return false
                 }
 
-                this.unread_private_messages = response.data.unread_private_messages
-                this.private_messages = response.data.exchanged_private_messages.data
-                this.projects = response.data.exchanged_private_messages_projects
+                // 表示する3つの情報をプロパティに代入する
+                this.unread_private_messages = response.data.unread_private_messages // 未読のメッセージ
+                this.private_messages = response.data.exchanged_private_messages.data // やりとりしたメッセージ
+                this.projects = response.data.exchanged_private_messages_projects // メッセージをやりとした案件
             }
         },
         computed: {
@@ -95,6 +100,7 @@
         },
         watch: {
             $route: {
+                // 画面の表示のさいにfetchPrivateMessagesメソッドを実行する
                 async handler () {
                     await this.fetchPrivateMessages()
                 },

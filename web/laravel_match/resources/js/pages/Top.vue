@@ -69,9 +69,12 @@
     export default {
         title: 'エンジニア案件専用アプリ',
         methods: {
+            // ユーザー登録の画面に遷移する
             toRegister () {
                 this.$router.push('/register')
             },
+
+            // 案件一覧の画面に遷移する
             toProjects () {
                 this.$router.push('/projects/list')
             },
