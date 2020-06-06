@@ -20,7 +20,7 @@ mix.js('resources/js/app.js', 'public/js')
     .polyfill({
     enabled: true,
     useBuiltIns: "usage",
-    targets: {"firefox": "50", "ie": 11}
+    targets: {"firefox": "50", "ie": "11"}
     });
 mix.browserSync({
     proxy: {
