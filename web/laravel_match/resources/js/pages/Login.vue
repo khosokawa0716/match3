@@ -42,7 +42,7 @@
                 }
             },
             // ストアerror.jsにあるコードをクリアする
-            clearError () {
+            clearError: function() {
                 this.$store.commit('auth/setLoginErrorMessages', null)
             }
         },

@@ -94,7 +94,7 @@
             },
 
             // アイコン画像のプレビューを表示する
-            onFileChange (event) {
+            onFileChange: function(event) {
                 // 何も選択されていなかったら処理中断
                 if (event.target.files.length === 0) {
                     this.reset()
@@ -132,14 +132,14 @@
             },
 
             // 入力欄の値とプレビュー表示をクリアする
-            reset () {
+            reset: function() {
                 this.preview = ''
                 this.editForm.icon_file = null
                 this.$el.querySelector('input[type="file"]').value = null
             },
 
             // ストアerror.jsにあるコードをクリアする
-            clearError () {
+            clearError: function() {
                 this.$store.commit('auth/setUpdateErrorMessages', null)
             },
         },

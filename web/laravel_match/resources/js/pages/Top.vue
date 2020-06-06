@@ -70,12 +70,12 @@
         title: 'エンジニア案件専用アプリ',
         methods: {
             // ユーザー登録の画面に遷移する
-            toRegister () {
+            toRegister: function() {
                 this.$router.push('/register')
             },
 
             // 案件一覧の画面に遷移する
-            toProjects () {
+            toProjects: function() {
                 this.$router.push('/projects/list')
             },
         }

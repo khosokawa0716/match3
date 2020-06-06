@@ -152,12 +152,12 @@
             },
 
             // ストアerror.jsにあるコードをクリアする
-            clearError () {
+            clearError: function() {
                 this.$store.commit('error/setCode', null)
             },
 
             // 自己紹介の表示、非表示を切り替える
-            toggleProfile () {
+            toggleProfile: function() {
                 return this.isActiveProfile = !this.isActiveProfile
             }
         },

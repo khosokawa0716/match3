@@ -100,7 +100,7 @@
             },
 
             // 絞り込みの条件が変更したときに、条件にあった案件を取ってくる
-            fetchFilterProjects () {
+            fetchFilterProjects: function() {
                 this.$router.push(`/projects/list?status=${this.selectStatus}&type=${this.selectType}&page=1`)
             }
         },

@@ -134,12 +134,12 @@
             },
 
             // ストアerror.jsにあるコードをクリアする
-            clearError () {
+            clearError: function() {
                 this.$store.commit('error/setCode', null)
             },
 
             // 登録した案件へスクロールする
-            toRegistered_projects () {
+            toRegistered_projects: function() {
                 this.$SmoothScroll(
                     document.querySelector('#registered_projects'),
                     400,
@@ -150,7 +150,7 @@
             },
 
             // 応募した案件へスクロールする
-            toApplied_projects () {
+            toApplied_projects: function() {
                 this.$SmoothScroll(
                     document.querySelector('#applied_projects'),
                     400,
@@ -161,7 +161,7 @@
             },
 
             // やりとしたコメントへスクロールする
-            toComment () {
+            toComment: function() {
                 this.$SmoothScroll(
                     document.querySelector('#comment'),
                     400,
@@ -172,7 +172,7 @@
             },
 
             // やりとしたメッセージへスクロールする
-            toMessage () {
+            toMessage: function() {
                 this.$SmoothScroll(
                     document.querySelector('#message'),
                     400,
@@ -183,7 +183,7 @@
             },
 
             // トップへスクロールする
-            scrollTop () {
+            scrollTop: function() {
                 window.scrollTo({
                     top: 0,
                     behavior: "smooth"

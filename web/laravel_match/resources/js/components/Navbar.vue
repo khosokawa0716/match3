@@ -46,7 +46,7 @@
         },
         methods: {
             // スマホのハンバーガーメニューの開閉を切り替える
-            toggleActiveStatus () {
+            toggleActiveStatus: function() {
                 this.activeStatus = !this.activeStatus
             },
 

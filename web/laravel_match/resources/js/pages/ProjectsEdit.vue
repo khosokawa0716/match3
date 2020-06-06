@@ -109,7 +109,7 @@
                 this.$store.commit('error/setCode', null)
             }
         },
-        created() {
+        created: function() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError ()
         },

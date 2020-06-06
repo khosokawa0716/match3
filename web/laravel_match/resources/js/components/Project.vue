@@ -35,7 +35,7 @@
         },
         methods: {
             // ストアのエラーをクリアする
-            clearError () {
+            clearError: function() {
                 this.$store.commit('error/setCode', null)
             }
         },

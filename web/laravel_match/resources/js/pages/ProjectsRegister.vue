@@ -82,7 +82,7 @@
                 this.$router.push('/mypage')
             },
             // ストアerror.jsにあるコードをクリアする
-            clearError () {
+            clearError: function() {
                 this.$store.commit('error/setCode', null)
             }
         },
