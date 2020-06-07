@@ -75,7 +75,7 @@
         },
         methods: {
             // メッセージ一覧画面に表示する情報をとってくる
-            async fetchPrivateMessages () {
+            fetchPrivateMessages: async function () {
                 // PrivateMessagesController@showを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/private_messages/list`)
@@ -94,14 +94,14 @@
         },
         computed: {
             // 未読のメッセージがあるかどうか
-            isUnreadMessage () {
+            isUnreadMessage: function() {
                 return this.unread_private_messages.length !== 0
             }
         },
         watch: {
             $route: {
                 // 画面の表示のさいにfetchPrivateMessagesメソッドを実行する
-                async handler () {
+                handler: async function() {
                     await this.fetchPrivateMessages()
                 },
                 immediate: true

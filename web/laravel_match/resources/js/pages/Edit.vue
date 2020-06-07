@@ -51,7 +51,7 @@
         },
         methods: {
             // 編集しようとするユーザーの情報をとってくる
-            async fetchUser () {
+            fetchUser: async function () {
                 // UserController@editを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/users/${this.editForm.id}/edit`)
@@ -70,7 +70,7 @@
             },
 
             // ユーザー情報の更新
-            async update () {
+            update: async function () {
                 // 画像データを扱うためnew FormData()を定義、入力項目を代入する
                 const data = new FormData()
                 data.append('id',this.editForm.id)
@@ -143,23 +143,23 @@
                 this.$store.commit('auth/setUpdateErrorMessages', null)
             },
         },
-        created() {
+        created: function() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError ()
         },
         computed: {
             // ストアでの処理が成功したかどうか
-            apiStatus () {
+            apiStatus: function() {
                 return this.$store.state.auth.apiStatus
             },
 
             // 入力時にエラーがあった場合、メッセージを格納する
-            updateErrors () {
+            updateErrors: function() {
                 return this.$store.state.auth.updateErrorMessages
             },
 
             // ログインしているかどうか
-            isLogin () {
+            isLogin: function() {
                 return this.$store.getters['auth/check']
             },
         },
@@ -167,7 +167,7 @@
         // 初期値を反映させるために、画面遷移直後にfetchUserメソッドを呼ぶ
         watch: {
             $route: {
-                async handler () {
+                handler: async function () {
                     await this.fetchUser()
                 },
                 immediate: true

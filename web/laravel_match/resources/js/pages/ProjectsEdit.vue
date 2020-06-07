@@ -60,7 +60,7 @@
         },
         methods: {
             // 編集しようとする案件をとってくる
-            async fetchProject () {
+            fetchProject: async function () {
                 // ProjectController@editの起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm.id)
@@ -82,8 +82,9 @@
             },
 
             // 案件更新の処理
-            async projectsUpdate () {
-                //
+            projectsUpdate: async function () {
+                // ProjectController@updateの起動
+                // 返却されたオブジェクトをresponseに代入
                 const response = await axios.put(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm)
 
                 // バリデーションエラー
@@ -105,7 +106,7 @@
                 this.$router.push('/mypage')
             },
             // ストアerror.jsにあるコードをクリアする
-            clearError () {
+            clearError: function() {
                 this.$store.commit('error/setCode', null)
             }
         },
@@ -115,7 +116,7 @@
         },
         computed: {
             // 支払い方法のタイプが「依頼のときに一定の金額を支払う」かどうか
-            isOneOff () {
+            isOneOff: function() {
                 return this.projectsUpdateForm.type === 'one-off';
             }
         },
@@ -123,7 +124,7 @@
         // 初期値を反映させるために、画面遷移直後にfetchProjectメソッドを呼ぶ
         watch: {
             $route: {
-                async handler () {
+                handler: async function () {
                     await this.fetchProject()
                 },
                 immediate: true

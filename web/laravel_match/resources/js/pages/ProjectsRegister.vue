@@ -58,7 +58,7 @@
         },
         methods: {
             // 案件を登録する
-            async projectsRegister () {
+            projectsRegister: async function () {
                 // projectsRegisterFormの入力内容で、ProjectController@createを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.post('/api/projects/register', this.projectsRegisterForm)
@@ -86,13 +86,13 @@
                 this.$store.commit('error/setCode', null)
             }
         },
-        created() {
+        created: function() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError ()
         },
         computed: {
             // 支払い方法のタイプが「依頼のときに一定の金額を支払う」かどうか
-            isOneOff () {
+            isOneOff: function() {
                 return this.projectsRegisterForm.type === 'one-off';
             }
         }

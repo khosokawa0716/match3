@@ -22,13 +22,13 @@
             Footer
         },
         computed: { // ストアのステートを参照する
-            errorCode () {
+            errorCode: function() {
                 return this.$store.state.error.code
             }
         },
         watch: { // サーバーエラーが発生したら、System.vueに遷移する
             errorCode: {
-                async handler (val) {
+                handler: async function (val) {
                     if (val === INTERNAL_SERVER_ERROR) {
                         this.$router.push('/500')
                     } else if (val === FORBIDDEN) {
@@ -54,7 +54,7 @@
             },
             immediate: true
         },
-        $route () {
+        $route: function () {
             this.$store.commit('error/setCode', null)
         }
     }

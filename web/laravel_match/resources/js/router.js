@@ -238,7 +238,7 @@ const routes = [
 const router = new VueRouter({
     mode: 'history',
     // ページング切り替え時に画面トップに遷移する　ない方がいいかもしれない
-    scrollBehavior () {
+    scrollBehavior: function () {
         return { x: 0, y: 0 }
     },
     routes

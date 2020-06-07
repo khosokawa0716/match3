@@ -51,7 +51,7 @@
         },
         methods: {
             // コメント一覧画面に表示する情報をとってくる
-            async fetchPublicMessages () {
+            fetchPublicMessages: async function () {
                 // PublicMessagesController@showを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/public_messages/list`)
@@ -70,7 +70,7 @@
         watch: {
             $route: {
                 // 画面の表示のさいにfetchPublicMessagesメソッドを実行する
-                async handler () {
+                handler: async function () {
                     await this.fetchPublicMessages()
                 },
                 immediate: true

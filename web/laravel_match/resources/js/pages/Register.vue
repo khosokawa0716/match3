@@ -55,7 +55,7 @@
         },
         methods: {
             // ユーザー登録
-            async register () {
+            register: async function () {
                 // 画像データを扱うためnew FormData()を定義、入力項目を代入する
                 const data = new FormData()
                 data.append('name',this.registerForm.name)
@@ -125,18 +125,18 @@
                 this.$store.commit('auth/setRegisterErrorMessages', null)
             },
         },
-        created() {
+        created: function() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError()
         },
         computed: {
             // ストアでの処理が成功したかどうか
-            apiStatus () {
+            apiStatus: function() {
                 return this.$store.state.auth.apiStatus
             },
 
             // 入力時にエラーがあった場合、メッセージを格納する
-            registerErrors () {
+            registerErrors: function() {
                 return this.$store.state.auth.registerErrorMessages
             }
         }

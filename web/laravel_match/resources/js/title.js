@@ -1,5 +1,5 @@
 export default {
-    mounted() {
+    mounted: function () {
         let { title } = this.$options
         if (title) {
             title = typeof title === 'function' ? title.call(this) : title

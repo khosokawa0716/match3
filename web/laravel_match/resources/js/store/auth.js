@@ -20,26 +20,26 @@ const getters = {
 }
 
 const mutations = {
-    setUser (state, user) {
+    setUser: function (state, user) {
         state.user = user
     },
-    setApiStatus (state, status) {
+    setApiStatus: function (state, status) {
         state.apiStatus = status
     },
-    setLoginErrorMessages (state, messages) {
+    setLoginErrorMessages: function (state, messages) {
         state.loginErrorMessages = messages
     },
-    setRegisterErrorMessages (state, messages) {
+    setRegisterErrorMessages: function (state, messages) {
         state.registerErrorMessages = messages
     },
-    setUpdateErrorMessages (state, messages) {
+    setUpdateErrorMessages: function (state, messages) {
         state.updateErrorMessages = messages
     }
 }
 
 const actions = { // それぞれのアクションは、非同期処理の結果によって後続の処理を分岐させる
     // ログイン
-    async login (context, data) {
+    login: async function (context, data) {
         context.commit('setApiStatus', null) // apiStatus始めはnull
         const response = await axios.post('/api/login', data)
 
@@ -58,7 +58,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         }
     },
     // ユーザー登録
-    async register (context, data) {
+    register: async function (context, data) {
         context.commit('setApiStatus', null)
         const response = await axios.post('/api/register', data, {
             headers: {
@@ -80,7 +80,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         }
     },
     // ログアウト userのstateをnullにする
-    async logout (context) {
+    logout: async function (context) {
         context.commit('setApiStatus', null)
         const response = await axios.post('/api/logout')
 
@@ -94,7 +94,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         context.commit('error/setCode', response.status, { root: true })
     },
     // ユーザー更新
-    async update (context, data) {
+    update: async function (context, data) {
         context.commit('setApiStatus', null)
         const response = await axios.post('/api/users/' + data.get('id'), data, {
             headers: {
@@ -117,7 +117,7 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         }
     },
     // 起動時にログインチェックをおこなう
-    async currentUser (context) {
+    currentUser: async function (context) {
         context.commit('setApiStatus', null)
         const response = await axios.get('/api/user/info')
         const user = response.data || null

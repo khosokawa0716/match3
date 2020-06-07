@@ -192,18 +192,18 @@
         },
         computed: {
             // 未読のメッセージが（1件以上）あるかどうか
-            isUnreadMessage () {
+            isUnreadMessage: function() {
                 return this.number_unread_private_messages >= 1
             }
         },
-        created() {
+        created: function() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError ()
         },
         watch: {
             $route: {
                 // 画面の表示のさいにfetchProjectsメソッドを実行する
-                async handler () {
+                handler: async function () {
                     await this.fetchProjects()
                 },
                 immediate: true

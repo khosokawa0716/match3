@@ -5,7 +5,7 @@
 <script>
     export default {
         computed: {
-            message () {
+            message: function() {
                 return this.$store.state.message.content
             }
         }

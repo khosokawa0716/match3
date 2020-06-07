@@ -38,11 +38,11 @@
         },
         computed: {
             // 始めのページかどうか
-            isFirstPage () {
+            isFirstPage: function() {
                 return this.currentPage === 1
             },
             // 最後のページかどうか
-            isLastPage () {
+            isLastPage: function() {
                 return this.currentPage === this.lastPage
             }
         }

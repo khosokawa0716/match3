@@ -51,7 +51,7 @@
             },
 
             // ログアウト
-            async logout () {
+            logout: async function() {
                 this.activeStatus = !this.activeStatus // メニューを閉じる
                 await this.$store.dispatch('auth/logout')
 
@@ -62,26 +62,26 @@
         },
         computed: {
             // ストアでの処理が成功したかどうか
-            apiStatus () {
+            apiStatus: function() {
                 return this.$store.state.auth.apiStatus
             },
 
             // ログインしているかどうか
-            isLogin () {
+            isLogin: function() {
                 return this.$store.getters['auth/check']
             },
 
             // ログイン中のユーザーidを返す
-            userid () {
+            userid: function() {
                 return this.$store.getters['auth/userid']
             },
 
             // ユーザーのアイコン画像のパスを返す
-            icon_path () {
+            icon_path: function() {
                 return this.$store.getters['auth/icon_path']
             }
         },
-        mounted() {
+        mounted: function() {
             // 画面トップへスクロールする
             document.onscroll = (e) => {
                 this.position = document.documentElement.scrollTop || document.body.scrollTop;

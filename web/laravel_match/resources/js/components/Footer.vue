@@ -21,7 +21,7 @@
 <script>
     export default {
         computed: {
-            twitter () {
+            twitter: function() {
                 return 'https://twitter.com/intent/tweet?text=【match】〜誰でもかんたんにWEBのお仕事を依頼、受注！！%0a &hashtags=match%0a&url=' + location.origin
             }
         }

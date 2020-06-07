@@ -29,7 +29,7 @@
 
         // パスワードリセットのためのメールを送信する
         methods: {
-            async sendEmail () {
+            sendEmail: async function () {
                 // フォーム上のメッセージをクリアする
                 this.passResetEmailErrors = null
                 this.$store.commit('error/setCode', null)

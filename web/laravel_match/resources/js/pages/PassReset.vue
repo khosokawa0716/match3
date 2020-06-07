@@ -37,7 +37,7 @@
         },
         methods: {
             // パスワードリセット、その後自動でログインをおこないマイページに遷移する
-            async passReset () {
+            passReset: async function () {
                 // Auth\ResetPasswordController@resetを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.post('/api/password/reset', this.passResetForm)
@@ -67,7 +67,7 @@
         },
         computed: {
             // ストアでの処理が成功したかどうか
-            apiStatus () {
+            apiStatus: function() {
                 return this.$store.state.auth.apiStatus
             }
         }

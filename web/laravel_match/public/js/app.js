@@ -1962,10 +1962,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     // サーバーエラーが発生したら、System.vueに遷移する
     errorCode: {
-      handler: function handler(val) {
-        var _this = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(val) {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
@@ -1975,8 +1973,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     break;
                   }
 
-                  _this.$router.push('/500');
-
+                  this.$router.push('/500');
                   _context.next = 23;
                   break;
 
@@ -1986,8 +1983,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     break;
                   }
 
-                  _this.$router.push('/403');
-
+                  this.$router.push('/403');
                   _context.next = 23;
                   break;
 
@@ -2002,10 +1998,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 case 11:
                   // ストアのuserをクリア
-                  _this.$store.commit('auth/setUser', null);
-
-                  _this.$router.push('/401');
-
+                  this.$store.commit('auth/setUser', null);
+                  this.$router.push('/401');
                   _context.next = 23;
                   break;
 
@@ -2020,18 +2014,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 case 18:
                   // ストアのuserをクリア
-                  _this.$store.commit('auth/setUser', null);
-
-                  _this.$router.push('/419');
-
+                  this.$store.commit('auth/setUser', null);
+                  this.$router.push('/419');
                   _context.next = 23;
                   break;
 
                 case 22:
                   if (val === _util__WEBPACK_IMPORTED_MODULE_4__["NOT_FOUND"]) {
-                    _this.$router.push('/not-found');
+                    this.$router.push('/not-found');
                   } else {
-                    _this.$router.push('/unexpected-error');
+                    this.$router.push('/unexpected-error');
                   }
 
                 case 23:
@@ -2039,9 +2031,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return _context.stop();
               }
             }
-          }, _callee);
-        }))();
-      }
+          }, _callee, this);
+        }));
+
+        function handler(_x) {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }()
     },
     immediate: true
   },
@@ -2182,23 +2180,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.activeStatus = !this.activeStatus;
     },
     // ログアウト
-    logout: function logout() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    logout: function () {
+      var _logout = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.activeStatus = !_this.activeStatus; // メニューを閉じる
+                this.activeStatus = !this.activeStatus; // メニューを閉じる
 
                 _context.next = 3;
-                return _this.$store.dispatch('auth/logout');
+                return this.$store.dispatch('auth/logout');
 
               case 3:
-                if (_this.apiStatus) {
-                  _this.$router.push('/login'); // 処理が成功したら、ログイン画面に遷移する
-
+                if (this.apiStatus) {
+                  this.$router.push('/login'); // 処理が成功したら、ログイン画面に遷移する
                 }
 
               case 4:
@@ -2206,9 +2201,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    }
+        }, _callee, this);
+      }));
+
+      function logout() {
+        return _logout.apply(this, arguments);
+      }
+
+      return logout;
+    }()
   },
   computed: {
     // ストアでの処理が成功したかどうか
@@ -2229,11 +2230,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     // 画面トップへスクロールする
     document.onscroll = function (e) {
-      _this2.position = document.documentElement.scrollTop || document.body.scrollTop;
+      _this.position = document.documentElement.scrollTop || document.body.scrollTop;
     };
   }
 });
@@ -2473,17 +2474,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // 編集しようとするユーザーの情報をとってくる
-    fetchUser: function fetchUser() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    fetchUser: function () {
+      var _fetchUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/users/".concat(_this.editForm.id, "/edit"));
+                return axios.get("/api/users/".concat(this.editForm.id, "/edit"));
 
               case 2:
                 response = _context.sent;
@@ -2493,30 +2492,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 6:
                 // 返却されたユーザー情報を初期値としてinputに代入
-                _this.user = response.data;
-                _this.editForm.email = _this.user.email;
-                _this.editForm.icon_path = _this.user.icon_path;
-                _this.editForm.profile_fields = _this.user.profile_fields;
+                this.user = response.data;
+                this.editForm.email = this.user.email;
+                this.editForm.icon_path = this.user.icon_path;
+                this.editForm.profile_fields = this.user.profile_fields;
 
               case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
-    // ユーザー情報の更新
-    update: function update() {
-      var _this2 = this;
+        }, _callee, this);
+      }));
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      function fetchUser() {
+        return _fetchUser.apply(this, arguments);
+      }
+
+      return fetchUser;
+    }(),
+    // ユーザー情報の更新
+    update: function () {
+      var _update = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -2524,24 +2526,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 // 画像データを扱うためnew FormData()を定義、入力項目を代入する
                 data = new FormData();
-                data.append('id', _this2.editForm.id);
-                data.append('email', _this2.editForm.email);
-                data.append('file', _this2.editForm.icon_file);
-                data.append('profile_fields', _this2.editForm.profile_fields); // authストアのupdateアクションを呼び出す
+                data.append('id', this.editForm.id);
+                data.append('email', this.editForm.email);
+                data.append('file', this.editForm.icon_file);
+                data.append('profile_fields', this.editForm.profile_fields); // authストアのupdateアクションを呼び出す
 
                 _context2.next = 7;
-                return _this2.$store.dispatch('auth/update', data);
+                return this.$store.dispatch('auth/update', data);
 
               case 7:
-                if (_this2.apiStatus) {
+                if (this.apiStatus) {
                   // updateアクションが成功だった場合、ストアにメッセージを格納する
-                  _this2.$store.commit('message/setContent', {
+                  this.$store.commit('message/setContent', {
                     content: 'お客様の情報を更新しました！',
                     timeout: 5000
                   }); // マイページに移動する
 
-
-                  _this2.$router.push('/mypage');
+                  this.$router.push('/mypage');
                 }
 
               case 8:
@@ -2549,12 +2550,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.stop();
             }
           }
-        }, _callee2);
-      }))();
-    },
+        }, _callee2, this);
+      }));
+
+      function update() {
+        return _update.apply(this, arguments);
+      }
+
+      return update;
+    }(),
     // アイコン画像のプレビューを表示する
     onFileChange: function onFileChange(event) {
-      var _this3 = this;
+      var _this = this;
 
       // 何も選択されていなかったら処理中断
       if (event.target.files.length === 0) {
@@ -2582,7 +2589,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // previewに値が入ると<output>につけたv-ifがtrueと判定される
         // また<output>内部の<img>のsrc属性はpreviewの値を参照しているので
         // 結果として画像が表示される
-        _this3.preview = e.target.result;
+        _this.preview = e.target.result;
       }; // ファイルを読み込む
       // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
 
@@ -2622,25 +2629,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // 初期値を反映させるために、画面遷移直後にfetchUserメソッドを呼ぶ
   watch: {
     $route: {
-      handler: function handler() {
-        var _this4 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
                   _context3.next = 2;
-                  return _this4.fetchUser();
+                  return this.fetchUser();
 
                 case 2:
                 case "end":
                   return _context3.stop();
               }
             }
-          }, _callee3);
-        }))();
-      },
+          }, _callee3, this);
+        }));
+
+        function handler() {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }(),
       immediate: true
     }
   }
@@ -2698,21 +2709,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // ログイン
-    login: function login() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    login: function () {
+      var _login = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$store.dispatch('auth/login', _this.loginForm);
+                return this.$store.dispatch('auth/login', this.loginForm);
 
               case 2:
-                if (_this.apiStatus) {
+                if (this.apiStatus) {
                   // loginアクションが成功だった場合、マイページに移動する
-                  _this.$router.push('/mypage');
+                  this.$router.push('/mypage');
                 }
 
               case 3:
@@ -2720,9 +2729,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
+        }, _callee, this);
+      }));
+
+      function login() {
+        return _login.apply(this, arguments);
+      }
+
+      return login;
+    }(),
     // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('auth/setLoginErrorMessages', null);
@@ -2964,25 +2979,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       // 画面の表示のさいにfetchProjectsメソッドを実行する
-      handler: function handler() {
-        var _this2 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
                   _context2.next = 2;
-                  return _this2.fetchProjects();
+                  return this.fetchProjects();
 
                 case 2:
                 case "end":
                   return _context2.stop();
               }
             }
-          }, _callee2);
-        }))();
-      },
+          }, _callee2, this);
+        }));
+
+        function handler() {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }(),
       immediate: true
     }
   }
@@ -3046,17 +3065,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // パスワードリセット、その後自動でログインをおこないマイページに遷移する
-    passReset: function passReset() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    passReset: function () {
+      var _passReset = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/api/password/reset', _this.passResetForm);
+                return axios.post('/api/password/reset', this.passResetForm);
 
               case 2:
                 response = _context.sent;
@@ -3066,7 +3083,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.passResetErrors = response.data.errors;
+                this.passResetErrors = response.data.errors;
                 return _context.abrupt("return", false);
 
               case 8:
@@ -3076,24 +3093,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // その他のエラー
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 11:
                 _context.next = 13;
-                return _this.$store.dispatch('auth/login', _this.passResetForm);
+                return this.$store.dispatch('auth/login', this.passResetForm);
 
               case 13:
-                if (_this.apiStatus) {
+                if (this.apiStatus) {
                   // loginアクションが成功だった場合、ストアにメッセージを格納する
-                  _this.$store.commit('message/setContent', {
+                  this.$store.commit('message/setContent', {
                     content: 'お客様のパスワードを更新しました！',
                     timeout: 5000
                   }); // マイページに遷移する
 
-
-                  _this.$router.push('/mypage');
+                  this.$router.push('/mypage');
                 }
 
               case 14:
@@ -3101,9 +3116,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    }
+        }, _callee, this);
+      }));
+
+      function passReset() {
+        return _passReset.apply(this, arguments);
+      }
+
+      return passReset;
+    }()
   },
   computed: {
     // ストアでの処理が成功したかどうか
@@ -3161,24 +3182,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   // パスワードリセットのためのメールを送信する
   methods: {
-    sendEmail: function sendEmail() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    sendEmail: function () {
+      var _sendEmail = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 // フォーム上のメッセージをクリアする
-                _this.passResetEmailErrors = null;
-
-                _this.$store.commit('error/setCode', null); // Auth\ForgotPasswordController@sendResetLinkEmailを起動
+                this.passResetEmailErrors = null;
+                this.$store.commit('error/setCode', null); // Auth\ForgotPasswordController@sendResetLinkEmailを起動
                 // 返却されたオブジェクトをresponseに代入
 
-
                 _context.next = 4;
-                return axios.post('/api/password/email', _this.passResetEmailForm);
+                return axios.post('/api/password/email', this.passResetEmailForm);
 
               case 4:
                 response = _context.sent;
@@ -3188,7 +3205,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.passResetEmailErrors = response.data.errors;
+                this.passResetEmailErrors = response.data.errors;
                 return _context.abrupt("return", false);
 
               case 10:
@@ -3198,14 +3215,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // その他のエラー
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 13:
                 // 成功の場合
                 // 画面上にメッセージを表示する
-                _this.$store.commit('message/setContent', {
+                this.$store.commit('message/setContent', {
                   content: 'メールをお送りしました。メールのボタンを押して、パスワードリセットの画面を開いてください。\n' + 'パスワードリセットの画面が開けましたら、この画面は閉じてください。\n' + 'しばらく経ってもメールが届かない場合には、メールアドレスが間違っている可能性があります。',
                   timeout: 30000
                 });
@@ -3215,9 +3231,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    }
+        }, _callee, this);
+      }));
+
+      function sendEmail() {
+        return _sendEmail.apply(this, arguments);
+      }
+
+      return sendEmail;
+    }()
   }
 });
 
@@ -3317,10 +3339,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // メッセージ一覧画面に表示する情報をとってくる
-    fetchPrivateMessages: function fetchPrivateMessages() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    fetchPrivateMessages: function () {
+      var _fetchPrivateMessages = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -3337,26 +3357,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 6:
                 // 表示する3つの情報をプロパティに代入する
-                _this.unread_private_messages = response.data.unread_private_messages; // 未読のメッセージ
+                this.unread_private_messages = response.data.unread_private_messages; // 未読のメッセージ
 
-                _this.private_messages = response.data.exchanged_private_messages.data; // やりとりしたメッセージ
+                this.private_messages = response.data.exchanged_private_messages.data; // やりとりしたメッセージ
 
-                _this.projects = response.data.exchanged_private_messages_projects; // メッセージをやりとした案件
+                this.projects = response.data.exchanged_private_messages_projects; // メッセージをやりとした案件
 
               case 9:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    }
+        }, _callee, this);
+      }));
+
+      function fetchPrivateMessages() {
+        return _fetchPrivateMessages.apply(this, arguments);
+      }
+
+      return fetchPrivateMessages;
+    }()
   },
   computed: {
     // 未読のメッセージがあるかどうか
@@ -3367,25 +3392,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       // 画面の表示のさいにfetchPrivateMessagesメソッドを実行する
-      handler: function handler() {
-        var _this2 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
                   _context2.next = 2;
-                  return _this2.fetchPrivateMessages();
+                  return this.fetchPrivateMessages();
 
                 case 2:
                 case "end":
                   return _context2.stop();
               }
             }
-          }, _callee2);
-        }))();
-      },
+          }, _callee2, this);
+        }));
+
+        function handler() {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }(),
       immediate: true
     }
   }
@@ -3502,17 +3531,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // メッセージ詳細画面に表示する案件やメッセージをとってくる
-    fetchPrivateMessages: function fetchPrivateMessages() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    fetchPrivateMessages: function () {
+      var _fetchPrivateMessages = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/private_messages/detail/".concat(_this.id));
+                return axios.get("/api/private_messages/detail/".concat(this.id));
 
               case 2:
                 response = _context.sent;
@@ -3522,48 +3549,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 6:
                 // 表示する情報をプロパティに代入する
                 // メッセージに紐づく案件
-                _this.project = response.data.project; // 案件を登録したユーザーの情報
+                this.project = response.data.project; // 案件を登録したユーザーの情報
 
-                _this.owner.id = response.data.project.owner.id;
-                _this.owner.name = response.data.project.owner.name;
-                _this.owner.icon_path = response.data.project.owner.icon_path;
-                _this.owner.profile_fields = response.data.project.owner.profile_fields; // 案件に応募したユーザーの情報
+                this.owner.id = response.data.project.owner.id;
+                this.owner.name = response.data.project.owner.name;
+                this.owner.icon_path = response.data.project.owner.icon_path;
+                this.owner.profile_fields = response.data.project.owner.profile_fields; // 案件に応募したユーザーの情報
 
-                _this.applicant.id = response.data.project.applicant.id;
-                _this.applicant.name = response.data.project.applicant.name;
-                _this.applicant.icon_path = response.data.project.applicant.icon_path;
-                _this.applicant.profile_fields = response.data.project.applicant.profile_fields; // やりとしたメッセージ
+                this.applicant.id = response.data.project.applicant.id;
+                this.applicant.name = response.data.project.applicant.name;
+                this.applicant.icon_path = response.data.project.applicant.icon_path;
+                this.applicant.profile_fields = response.data.project.applicant.profile_fields; // やりとしたメッセージ
 
-                _this.private_messages = response.data.private_messages;
+                this.private_messages = response.data.private_messages;
 
               case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
-    // メッセージを投稿する
-    privateMessageRegister: function privateMessageRegister() {
-      var _this2 = this;
+        }, _callee, this);
+      }));
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      function fetchPrivateMessages() {
+        return _fetchPrivateMessages.apply(this, arguments);
+      }
+
+      return fetchPrivateMessages;
+    }(),
+    // メッセージを投稿する
+    privateMessageRegister: function () {
+      var _privateMessageRegister = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response, response2;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.post("/api/private_messages/detail/".concat(_this2.id), {
-                  content: _this2.private_message_content
+                return axios.post("/api/private_messages/detail/".concat(this.id), {
+                  content: this.private_message_content
                 });
 
               case 2:
@@ -3575,7 +3605,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // バリデーションエラー
-                _this2.private_message_errors = response.data.errors;
+                this.private_message_errors = response.data.errors;
                 return _context2.abrupt("return", false);
 
               case 8:
@@ -3585,32 +3615,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // その他のエラー
-                _this2.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context2.abrupt("return", false);
 
               case 11:
                 // POST成功の場合
-                _this2.private_message_content = ''; // テキスト入力部分を空にする
+                this.private_message_content = ''; // テキスト入力部分を空にする
 
-                _this2.private_message_errors = null; // エラーメッセージをクリア
+                this.private_message_errors = null; // エラーメッセージをクリア
 
                 _context2.next = 15;
-                return axios.get("/api/private_messages/detail/".concat(_this2.id));
+                return axios.get("/api/private_messages/detail/".concat(this.id));
 
               case 15:
                 response2 = _context2.sent;
                 // メッセージを全件取得
-                _this2.private_messages = response2.data.private_messages; // レスポンスをプロパティに代入
+                this.private_messages = response2.data.private_messages; // レスポンスをプロパティに代入
 
               case 17:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
-      }))();
-    },
+        }, _callee2, this);
+      }));
+
+      function privateMessageRegister() {
+        return _privateMessageRegister.apply(this, arguments);
+      }
+
+      return privateMessageRegister;
+    }(),
     // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
@@ -3653,25 +3688,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       // 画面の表示のさいにfetchPrivateMessagesメソッドを実行する
-      handler: function handler() {
-        var _this3 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
                   _context3.next = 2;
-                  return _this3.fetchPrivateMessages();
+                  return this.fetchPrivateMessages();
 
                 case 2:
                 case "end":
                   return _context3.stop();
               }
             }
-          }, _callee3);
-        }))();
-      },
+          }, _callee3, this);
+        }));
+
+        function handler() {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }(),
       immediate: true
     }
   }
@@ -3777,17 +3816,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // 案件詳細画面に表示する案件やコメントをとってくる
-    fetchProjectDetail: function fetchProjectDetail() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    fetchProjectDetail: function () {
+      var _fetchProjectDetail = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/project/detail/".concat(_this.id));
+                return axios.get("/api/project/detail/".concat(this.id));
 
               case 2:
                 response = _context.sent;
@@ -3797,43 +3834,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 6:
                 // 表示する情報をプロパティに代入する
                 // 案件
-                _this.project = response.data.project; // 案件を登録したユーザーの情報
+                this.project = response.data.project; // 案件を登録したユーザーの情報
 
-                _this.owner.id = response.data.project.owner.id;
-                _this.owner.name = response.data.project.owner.name;
-                _this.owner.icon_path = response.data.project.owner.icon_path;
-                _this.owner.profile_fields = response.data.project.owner.profile_fields; // コメント
+                this.owner.id = response.data.project.owner.id;
+                this.owner.name = response.data.project.owner.name;
+                this.owner.icon_path = response.data.project.owner.icon_path;
+                this.owner.profile_fields = response.data.project.owner.profile_fields; // コメント
 
-                _this.public_messages = response.data.public_messages;
+                this.public_messages = response.data.public_messages;
 
               case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
-    // コメントを投稿する
-    publicMessageRegister: function publicMessageRegister() {
-      var _this2 = this;
+        }, _callee, this);
+      }));
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      function fetchProjectDetail() {
+        return _fetchProjectDetail.apply(this, arguments);
+      }
+
+      return fetchProjectDetail;
+    }(),
+    // コメントを投稿する
+    publicMessageRegister: function () {
+      var _publicMessageRegister = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response, response2;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.post("/api/project/detail/".concat(_this2.id), {
-                  content: _this2.public_message_content
+                return axios.post("/api/project/detail/".concat(this.id), {
+                  content: this.public_message_content
                 });
 
               case 2:
@@ -3845,7 +3885,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // バリデーションエラー
-                _this2.public_message_errors = response.data.errors;
+                this.public_message_errors = response.data.errors;
                 return _context2.abrupt("return", false);
 
               case 8:
@@ -3855,44 +3895,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // その他のエラー
-                _this2.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context2.abrupt("return", false);
 
               case 11:
                 // POST成功
-                _this2.public_message_content = ''; // テキスト入力部分を空にする
+                this.public_message_content = ''; // テキスト入力部分を空にする
 
-                _this2.public_message_errors = null; // エラーメッセージをクリア
+                this.public_message_errors = null; // エラーメッセージをクリア
 
                 _context2.next = 15;
-                return axios.get("/api/project/detail/".concat(_this2.id));
+                return axios.get("/api/project/detail/".concat(this.id));
 
               case 15:
                 response2 = _context2.sent;
                 // メッセージを全件取得
-                _this2.public_messages = response2.data.public_messages; // レスポンスをプロパティに代入
+                this.public_messages = response2.data.public_messages; // レスポンスをプロパティに代入
 
               case 17:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
-      }))();
-    },
-    // 案件に応募する
-    apply: function apply() {
-      var _this3 = this;
+        }, _callee2, this);
+      }));
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      function publicMessageRegister() {
+        return _publicMessageRegister.apply(this, arguments);
+      }
+
+      return publicMessageRegister;
+    }(),
+    // 案件に応募する
+    apply: function () {
+      var _apply = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return axios.put("/api/project/detail/".concat(_this3.id), _this3.id);
+                return axios.put("/api/project/detail/".concat(this.id), this.id);
 
               case 2:
                 response = _context3.sent;
@@ -3902,29 +3945,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this3.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context3.abrupt("return", false);
 
               case 6:
                 // updateアクションが成功だった場合
-                _this3.$store.commit('message/setContent', {
+                this.$store.commit('message/setContent', {
                   content: '案件に応募しました！',
                   // ストアにメッセージを格納する
                   timeout: 5000
                 }); // マイページに移動する
 
-
-                _this3.$router.push('/mypage');
+                this.$router.push('/mypage');
 
               case 8:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3);
-      }))();
-    },
+        }, _callee3, this);
+      }));
+
+      function apply() {
+        return _apply.apply(this, arguments);
+      }
+
+      return apply;
+    }(),
     // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
@@ -3975,25 +4022,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       // 画面の表示のさいにfetchProjectDetailメソッドを実行する
-      handler: function handler() {
-        var _this4 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
             while (1) {
               switch (_context4.prev = _context4.next) {
                 case 0:
                   _context4.next = 2;
-                  return _this4.fetchProjectDetail();
+                  return this.fetchProjectDetail();
 
                 case 2:
                 case "end":
                   return _context4.stop();
               }
             }
-          }, _callee4);
-        }))();
-      },
+          }, _callee4, this);
+        }));
+
+        function handler() {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }(),
       immediate: true
     }
   }
@@ -4101,17 +4152,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // 案件をとってくる
-    fetchProjects: function fetchProjects() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    fetchProjects: function () {
+      var _fetchProjects = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/projects/list?status=".concat(_this.status, "&type=").concat(_this.type, "&page=").concat(_this.page));
+                return axios.get("/api/projects/list?status=".concat(this.status, "&type=").concat(this.type, "&page=").concat(this.page));
 
               case 2:
                 response = _context.sent;
@@ -4121,26 +4170,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 6:
                 // 成功の場合
-                _this.projects = response.data.data;
-                _this.currentPage = response.data.current_page;
-                _this.lastPage = response.data.last_page;
-                _this.selectStatus = _this.status;
-                _this.selectType = _this.type;
+                this.projects = response.data.data;
+                this.currentPage = response.data.current_page;
+                this.lastPage = response.data.last_page;
+                this.selectStatus = this.status;
+                this.selectType = this.type;
 
               case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
+        }, _callee, this);
+      }));
+
+      function fetchProjects() {
+        return _fetchProjects.apply(this, arguments);
+      }
+
+      return fetchProjects;
+    }(),
     // 絞り込みの条件が変更したときに、条件にあった案件を取ってくる
     fetchFilterProjects: function fetchFilterProjects() {
       this.$router.push("/projects/list?status=".concat(this.selectStatus, "&type=").concat(this.selectType, "&page=1"));
@@ -4155,70 +4209,82 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     $route: {
       // 画面の表示のさいにfetchProjectsメソッドを実行する
-      handler: function handler() {
-        var _this2 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
                   _context2.next = 2;
-                  return _this2.fetchProjects();
+                  return this.fetchProjects();
 
                 case 2:
                 case "end":
                   return _context2.stop();
               }
             }
-          }, _callee2);
-        }))();
-      },
+          }, _callee2, this);
+        }));
+
+        function handler() {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }(),
       immediate: true
     },
     // 募集しているかどうかの条件が変更になったさいにfetchFilterProjectsメソッドを実行する
     selectStatus: {
-      handler: function handler() {
-        var _this3 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      handler: function () {
+        var _handler2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
                   _context3.next = 2;
-                  return _this3.fetchFilterProjects();
+                  return this.fetchFilterProjects();
 
                 case 2:
                 case "end":
                   return _context3.stop();
               }
             }
-          }, _callee3);
-        }))();
-      }
+          }, _callee3, this);
+        }));
+
+        function handler() {
+          return _handler2.apply(this, arguments);
+        }
+
+        return handler;
+      }()
     },
     // 支払い方法タイプの条件が変更になったさいにfetchFilterProjectsメソッドを実行する
     selectType: {
-      handler: function handler() {
-        var _this4 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      handler: function () {
+        var _handler3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
             while (1) {
               switch (_context4.prev = _context4.next) {
                 case 0:
                   _context4.next = 2;
-                  return _this4.fetchFilterProjects();
+                  return this.fetchFilterProjects();
 
                 case 2:
                 case "end":
                   return _context4.stop();
               }
             }
-          }, _callee4);
-        }))();
-      }
+          }, _callee4, this);
+        }));
+
+        function handler() {
+          return _handler3.apply(this, arguments);
+        }
+
+        return handler;
+      }()
     }
   }
 });
@@ -4303,17 +4369,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // 編集しようとする案件をとってくる
-    fetchProject: function fetchProject() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    fetchProject: function () {
+      var _fetchProject = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/projects/".concat(_this.projectsUpdateForm.id, "/edit"), _this.projectsUpdateForm.id);
+                return axios.get("/api/projects/".concat(this.projectsUpdateForm.id, "/edit"), this.projectsUpdateForm.id);
 
               case 2:
                 response = _context.sent;
@@ -4323,39 +4387,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 6:
                 // 成功の場合、案件の情報をプロパティに代入
-                _this.project = response.data;
-                _this.projectsUpdateForm.title = _this.project.title;
-                _this.projectsUpdateForm.type = _this.project.type;
-                _this.projectsUpdateForm.minimum_amount = _this.project.minimum_amount;
-                _this.projectsUpdateForm.max_amount = _this.project.max_amount;
-                _this.projectsUpdateForm.detail = _this.project.detail;
+                this.project = response.data;
+                this.projectsUpdateForm.title = this.project.title;
+                this.projectsUpdateForm.type = this.project.type;
+                this.projectsUpdateForm.minimum_amount = this.project.minimum_amount;
+                this.projectsUpdateForm.max_amount = this.project.max_amount;
+                this.projectsUpdateForm.detail = this.project.detail;
 
               case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
-    // 案件更新の処理
-    projectsUpdate: function projectsUpdate() {
-      var _this2 = this;
+        }, _callee, this);
+      }));
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      function fetchProject() {
+        return _fetchProject.apply(this, arguments);
+      }
+
+      return fetchProject;
+    }(),
+    // 案件更新の処理
+    projectsUpdate: function () {
+      var _projectsUpdate = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.put("/api/projects/".concat(_this2.projectsUpdateForm.id, "/edit"), _this2.projectsUpdateForm);
+                return axios.put("/api/projects/".concat(this.projectsUpdateForm.id, "/edit"), this.projectsUpdateForm);
 
               case 2:
                 response = _context2.sent;
@@ -4365,7 +4432,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this2.updateErrors = response.data.errors;
+                this.updateErrors = response.data.errors;
                 return _context2.abrupt("return", false);
 
               case 8:
@@ -4375,29 +4442,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // その他のエラー
-                _this2.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context2.abrupt("return", false);
 
               case 11:
                 // 成功だった場合
                 // 1.ストアにメッセージを格納する
-                _this2.$store.commit('message/setContent', {
+                this.$store.commit('message/setContent', {
                   content: '案件を更新しました！',
                   timeout: 5000
                 }); // 2.マイページに移動する
 
-
-                _this2.$router.push('/mypage');
+                this.$router.push('/mypage');
 
               case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
-      }))();
-    },
+        }, _callee2, this);
+      }));
+
+      function projectsUpdate() {
+        return _projectsUpdate.apply(this, arguments);
+      }
+
+      return projectsUpdate;
+    }(),
     // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
@@ -4416,25 +4487,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // 初期値を反映させるために、画面遷移直後にfetchProjectメソッドを呼ぶ
   watch: {
     $route: {
-      handler: function handler() {
-        var _this3 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
                   _context3.next = 2;
-                  return _this3.fetchProject();
+                  return this.fetchProject();
 
                 case 2:
                 case "end":
                   return _context3.stop();
               }
             }
-          }, _callee3);
-        }))();
-      },
+          }, _callee3, this);
+        }));
+
+        function handler() {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }(),
       immediate: true
     }
   }
@@ -4518,17 +4593,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // 案件を登録する
-    projectsRegister: function projectsRegister() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    projectsRegister: function () {
+      var _projectsRegister = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/api/projects/register', _this.projectsRegisterForm);
+                return axios.post('/api/projects/register', this.projectsRegisterForm);
 
               case 2:
                 response = _context.sent;
@@ -4538,7 +4611,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.registerErrors = response.data.errors;
+                this.registerErrors = response.data.errors;
                 return _context.abrupt("return", false);
 
               case 8:
@@ -4548,29 +4621,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 // その他のエラー
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 11:
                 // 成功だった場合
                 // 1.ストアにメッセージを格納する
-                _this.$store.commit('message/setContent', {
+                this.$store.commit('message/setContent', {
                   content: '案件を登録しました！',
                   timeout: 5000
                 }); // 2.マイページに移動する
 
-
-                _this.$router.push('/mypage');
+                this.$router.push('/mypage');
 
               case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
+        }, _callee, this);
+      }));
+
+      function projectsRegister() {
+        return _projectsRegister.apply(this, arguments);
+      }
+
+      return projectsRegister;
+    }(),
     // ストアerror.jsにあるコードをクリアする
     clearError: function clearError() {
       this.$store.commit('error/setCode', null);
@@ -4660,10 +4737,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // コメント一覧画面に表示する情報をとってくる
-    fetchPublicMessages: function fetchPublicMessages() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    fetchPublicMessages: function () {
+      var _fetchPublicMessages = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -4680,46 +4755,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   break;
                 }
 
-                _this.$store.commit('error/setCode', response.status);
-
+                this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
               case 6:
                 // 表示する2つの情報をプロパティに代入する
-                _this.public_message = response.data.latest_public_message;
-                _this.projects = response.data.exchanged_messages_projects;
+                this.public_message = response.data.latest_public_message;
+                this.projects = response.data.exchanged_messages_projects;
 
               case 8:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    }
+        }, _callee, this);
+      }));
+
+      function fetchPublicMessages() {
+        return _fetchPublicMessages.apply(this, arguments);
+      }
+
+      return fetchPublicMessages;
+    }()
   },
   watch: {
     $route: {
       // 画面の表示のさいにfetchPublicMessagesメソッドを実行する
-      handler: function handler() {
-        var _this2 = this;
-
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      handler: function () {
+        var _handler = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
                   _context2.next = 2;
-                  return _this2.fetchPublicMessages();
+                  return this.fetchPublicMessages();
 
                 case 2:
                 case "end":
                   return _context2.stop();
               }
             }
-          }, _callee2);
-        }))();
-      },
+          }, _callee2, this);
+        }));
+
+        function handler() {
+          return _handler.apply(this, arguments);
+        }
+
+        return handler;
+      }(),
       immediate: true
     }
   }
@@ -4800,10 +4884,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     // ユーザー登録
-    register: function register() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    register: function () {
+      var _register = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -4811,20 +4893,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 // 画像データを扱うためnew FormData()を定義、入力項目を代入する
                 data = new FormData();
-                data.append('name', _this.registerForm.name);
-                data.append('email', _this.registerForm.email);
-                data.append('password', _this.registerForm.password);
-                data.append('password_confirmation', _this.registerForm.password_confirmation);
-                data.append('file', _this.registerForm.icon_file);
-                data.append('profile_fields', _this.registerForm.profile_fields); // authストアのregisterアクションを呼び出す
+                data.append('name', this.registerForm.name);
+                data.append('email', this.registerForm.email);
+                data.append('password', this.registerForm.password);
+                data.append('password_confirmation', this.registerForm.password_confirmation);
+                data.append('file', this.registerForm.icon_file);
+                data.append('profile_fields', this.registerForm.profile_fields); // authストアのregisterアクションを呼び出す
 
                 _context.next = 9;
-                return _this.$store.dispatch('auth/register', data);
+                return this.$store.dispatch('auth/register', data);
 
               case 9:
-                if (_this.apiStatus) {
+                if (this.apiStatus) {
                   // registerアクションが成功だった場合、マイページに移動する
-                  _this.$router.push('/mypage');
+                  this.$router.push('/mypage');
                 }
 
               case 10:
@@ -4832,12 +4914,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.stop();
             }
           }
-        }, _callee);
-      }))();
-    },
+        }, _callee, this);
+      }));
+
+      function register() {
+        return _register.apply(this, arguments);
+      }
+
+      return register;
+    }(),
     // アイコン画像のプレビューを表示する
     onFileChange: function onFileChange(event) {
-      var _this2 = this;
+      var _this = this;
 
       // アイコン画像のプレビューを表示するメソッド
       // 何も選択されていなかったら処理中断
@@ -4866,7 +4954,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // previewに値が入ると<output>につけたv-ifがtrueと判定される
         // また<output>内部の<img>のsrc属性はpreviewの値を参照しているので
         // 結果として画像が表示される
-        _this2.preview = e.target.result;
+        _this.preview = e.target.result;
       }; // ファイルを読み込む
       // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
 
@@ -43213,8 +43301,8 @@ var mutations = {
 var actions = {
   // それぞれのアクションは、非同期処理の結果によって後続の処理を分岐させる
   // ログイン
-  login: function login(context, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+  login: function () {
+    var _login = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(context, data) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -43256,11 +43344,17 @@ var actions = {
           }
         }
       }, _callee);
-    }))();
-  },
+    }));
+
+    function login(_x, _x2) {
+      return _login.apply(this, arguments);
+    }
+
+    return login;
+  }(),
   // ユーザー登録
-  register: function register(context, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+  register: function () {
+    var _register = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(context, data) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
@@ -43304,11 +43398,17 @@ var actions = {
           }
         }
       }, _callee2);
-    }))();
-  },
+    }));
+
+    function register(_x3, _x4) {
+      return _register.apply(this, arguments);
+    }
+
+    return register;
+  }(),
   // ログアウト userのstateをnullにする
-  logout: function logout(context) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+  logout: function () {
+    var _logout = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(context) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
@@ -43342,11 +43442,17 @@ var actions = {
           }
         }
       }, _callee3);
-    }))();
-  },
+    }));
+
+    function logout(_x5) {
+      return _logout.apply(this, arguments);
+    }
+
+    return logout;
+  }(),
   // ユーザー更新
-  update: function update(context, data) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+  update: function () {
+    var _update = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(context, data) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
@@ -43392,11 +43498,17 @@ var actions = {
           }
         }
       }, _callee4);
-    }))();
-  },
+    }));
+
+    function update(_x6, _x7) {
+      return _update.apply(this, arguments);
+    }
+
+    return update;
+  }(),
   // 起動時にログインチェックをおこなう
-  currentUser: function currentUser(context) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+  currentUser: function () {
+    var _currentUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(context) {
       var response, user;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
@@ -43431,8 +43543,14 @@ var actions = {
           }
         }
       }, _callee5);
-    }))();
-  }
+    }));
+
+    function currentUser(_x8) {
+      return _currentUser.apply(this, arguments);
+    }
+
+    return currentUser;
+  }()
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,

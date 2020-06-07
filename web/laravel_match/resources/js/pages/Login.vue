@@ -32,7 +32,7 @@
         },
         methods: {
             // ログイン
-            async login () {
+            login: async function () {
                 // authストアのloginアクションを呼び出す
                 await this.$store.dispatch('auth/login', this.loginForm)
 
@@ -46,18 +46,18 @@
                 this.$store.commit('auth/setLoginErrorMessages', null)
             }
         },
-        created() {
+        created: function() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError()
         },
         computed: {
             // ストアでの処理が成功したかどうか
-            apiStatus () {
+            apiStatus: function() {
                 return this.$store.state.auth.apiStatus
             },
 
             // 入力時にエラーがあった場合、メッセージを格納する
-            loginErrors () {
+            loginErrors: function() {
                 return this.$store.state.auth.loginErrorMessages
             }
         }

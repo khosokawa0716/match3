@@ -91,7 +91,7 @@
         },
         methods: {
             // メッセージ詳細画面に表示する案件やメッセージをとってくる
-            async fetchPrivateMessages () {
+            fetchPrivateMessages: async function () {
                 // PrivateMessagesDetailController@showを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/private_messages/detail/${this.id}`)
@@ -123,7 +123,7 @@
             },
 
             // メッセージを投稿する
-            async privateMessageRegister () {
+            privateMessageRegister: async function () {
                 // PrivateMessagesDetailController@createの起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.post(`/api/private_messages/detail/${this.id}`, {
@@ -156,28 +156,28 @@
                 return this.isActiveProfile = !this.isActiveProfile
             }
         },
-        created() {
+        created: function() {
             // 一度エラーが出た後、ブラウザバックなどで戻ってきたときにクリアする
             this.clearError()
         },
         computed: {
             // 案件を登録したユーザーでないときにtrueを返却
-            notOwner () {
+            notOwner: function() {
                 return this.$store.getters['auth/userid'] !== this.owner.id
             },
 
             // 案件に応募したユーザーでないときにtrueを返却
-            notApplicant () {
+            notApplicant: function() {
                 return this.$store.getters['auth/userid'] !== this.applicant.id
             },
 
             // ユーザーIDをストアからとってくる
-            userid () {
+            userid: function() {
                 return this.$store.getters['auth/userid']
             },
 
             // 画面上での表示
-            type () {
+            type: function() {
                 if (this.project.type === 'one-off') {
                     return '依頼のときに一定の金額を支払う'
                 } else {
@@ -186,14 +186,14 @@
             },
 
             // 案件のタイプが「依頼のときに一定の金額を支払う」かどうか
-            isOneOff () {
+            isOneOff: function() {
                 return this.project.type === 'one-off';
             }
         },
         watch: {
             $route: {
                 // 画面の表示のさいにfetchPrivateMessagesメソッドを実行する
-                async handler () {
+                handler: async function () {
                     await this.fetchPrivateMessages()
                 },
                 immediate: true

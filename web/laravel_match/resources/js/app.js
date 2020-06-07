@@ -7,7 +7,7 @@ import App from './App.vue' // ルートコンポーネントをインポート�
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
-const createApp = async () => {
+const createApp = async function () {
     await store.dispatch('auth/currentUser')
 
     Vue.mixin(titleMixin)

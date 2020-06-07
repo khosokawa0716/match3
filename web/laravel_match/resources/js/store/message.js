@@ -3,7 +3,7 @@ const state = {
 }
 
 const mutations = {
-    setContent (state, { content, timeout }) {
+    setContent: function (state, { content, timeout }) {
         state.content = content
 
         if (typeof timeout === 'undefined') {

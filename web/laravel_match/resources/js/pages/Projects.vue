@@ -80,7 +80,7 @@
         },
         methods: {
             // 案件をとってくる
-            async fetchProjects () {
+            fetchProjects: async function () {
                 // ProjectController@indexの起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/projects/list?status=${this.status}&type=${this.type}&page=${this.page}`)
@@ -106,14 +106,14 @@
         },
         computed: {
             // ログインしているかどうか
-            isLogin () {
+            isLogin: function() {
                 return this.$store.getters["auth/check"]
             }
         },
         watch: {
             $route: {
                 // 画面の表示のさいにfetchProjectsメソッドを実行する
-                async handler () {
+                handler: async function () {
                     await this.fetchProjects()
                 },
                 immediate: true
@@ -121,14 +121,14 @@
 
             // 募集しているかどうかの条件が変更になったさいにfetchFilterProjectsメソッドを実行する
             selectStatus: {
-                async handler () {
+                handler: async function () {
                     await this.fetchFilterProjects()
                 }
             },
 
             // 支払い方法タイプの条件が変更になったさいにfetchFilterProjectsメソッドを実行する
             selectType: {
-                async handler () {
+                handler: async function () {
                     await this.fetchFilterProjects()
                 }
             }

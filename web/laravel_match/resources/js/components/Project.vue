@@ -39,33 +39,33 @@
                 this.$store.commit('error/setCode', null)
             }
         },
-        created() {
+        created: function() {
             // 表示のさいにストアのエラーをクリアする
             this.clearError()
         },
         computed: {
             // ストアでの処理が成功したかどうか
-            apiStatus () {
+            apiStatus: function() {
                 return this.$store.state.auth.apiStatus
             },
 
             // ログインしているかどうか
-            isLogin () {
+            isLogin: function() {
                 return this.$store.getters['auth/check']
             },
 
             // その案件を登録したユーザーかどうか
-            isOwner () {
+            isOwner: function() {
                 return this.$store.getters['auth/userid'] === this.item.owner.id
             },
 
             // その案件が募集中かどうか
-            isRecruiting () {
+            isRecruiting: function() {
                 return this.item.status === 1
             },
 
             // 画面上での表示
-            status () {
+            status: function() {
                 if (this.item.status === 1) {
                     return '募集中'
                 } else {
@@ -74,7 +74,7 @@
             },
 
             // 画面上での表示
-            type () {
+            type: function() {
                 if (this.item.type === 'one-off') {
                     return '依頼のときに一定の金額を支払う'
                 } else {
@@ -83,7 +83,7 @@
             },
 
             // Twitterアイコンを押したさいの動的なURLの生成
-            twitter () {
+            twitter: function() {
                 const url = this.$router.resolve({
                     name: 'projectsList'
                 }).href
