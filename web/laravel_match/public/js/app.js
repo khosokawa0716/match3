@@ -2248,11 +2248,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
     // 画面トップへスクロールする
     document.onscroll = function (e) {
-      _this.position = document.documentElement.scrollTop || document.body.scrollTop;
+      this.position = document.documentElement.scrollTop || document.body.scrollTop;
     };
   }
 });

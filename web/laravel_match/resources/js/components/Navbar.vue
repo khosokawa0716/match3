@@ -83,7 +83,7 @@
         },
         mounted: function() {
             // 画面トップへスクロールする
-            document.onscroll = (e) => {
+            document.onscroll = function (e){
                 this.position = document.documentElement.scrollTop || document.body.scrollTop;
             }
         }
