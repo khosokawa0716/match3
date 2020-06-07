@@ -4,8 +4,8 @@ import router from './router' // ルーティングの定義をインポート�
 import titleMixin from './title' // タイトルをインポートする
 import store from './store' // Vuexストアをインポートする
 import App from './App.vue' // ルートコンポーネントをインポートする
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
+// import 'core-js/stable'
+// import 'regenerator-runtime/runtime'
 
 const createApp = async function () {
     await store.dispatch('auth/currentUser')
@@ -16,8 +16,8 @@ const createApp = async function () {
     // インスタンス生成前にログインチェックをおこなっている
     new Vue({
         el: '#app',
-        router, // ルーティングの定義を読み込む
-        store, // ストアの使用を宣言する
+        router: router, // ルーティングの定義を読み込む
+        store: store, // ストアの使用を宣言する
         components: { App }, // ルートコンポーネントの使用を宣言する
         template: '<App />' // ルートコンポーネントを描画する
     })
