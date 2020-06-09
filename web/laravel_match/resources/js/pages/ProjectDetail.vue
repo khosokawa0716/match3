@@ -64,7 +64,7 @@
         title: '案件詳細',
         data () {
             return {
-                id: this.$route.params.id,
+                id: this.$route.params.id, // プロジェクトのid
                 project: [],
                 owner: {
                     id: '',

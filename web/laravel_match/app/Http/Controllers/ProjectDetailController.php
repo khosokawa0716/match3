@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use App\PrivateMessage;
 use App\Project;
 use App\PublicMessage;
@@ -60,31 +61,41 @@ class ProjectDetailController extends Controller
     }
 
     // 案件に応募する。同時に応募した旨を案件登録者にプライベートメッセージで伝える
-    public function update(PrivateMessage $privateMessage, $data)
+    public function update(PrivateMessage $privateMessage, Application $application, $data)
     {
-        $id = $data;
+        $project_id = $data; // フロントから渡される$dataは、案件のID
 
         // 応募した人 = ログインして応募の操作をした人
-        $applicant = Auth::user();
+//        $applicant = Auth::user();
         $applicant_id = Auth::id();
 
-        if (ctype_digit($id)) {
-            $project = Project::where('id', $id)->with(['owner'])->first();
+        if (ctype_digit($project_id)) {
+            $project = Project::where('id', $project_id)->with(['owner'])->first();
             // 検索結果がない場合には、エラーコード404を返却する
             if ($project === null) { return abort(404); }
+
+            // 一度応募した案件に2度以上応募しないチェック nullが返ってくれば応募できる
+            $application_check = Application::where('project_id', $project_id)
+                ->where('applicant_id', $applicant_id)
+                ->first();
 
             // vueファイルでボタンを非表示にしているので普通はあり得ないが、以下2つのケースでエラーコード403を返却する
             // 1.応募が終了した案件に応募しようとした
             // 2.自分が登録した案件に応募しようとした
-            if ($project->status === 0 || $project->user_id === $applicant_id) { return abort(403); }
+            // 3.同じ案件に2度以上応募しようとした
+            if ($project->status === 0 || $project->user_id === $applicant_id || $application_check !== null) { return abort(403); }
 
-            $project->status = 0;
-            $project->applicant_id = $applicant_id;
-            $project->save();
+//            $project->status = 0; 応募による募集ステータスの変更はやめる
+            // projectsテーブルの更新はなしで、applicationsテーブルのデータを更新
+            $application->project_id = $project_id;
+            $application->owner_id = $project->user_id;
+            $application->applicant_id = $applicant_id;
+            $application->save();
 
+            $privateMessage->application_id = $application->id;
+            $privateMessage->project_id = $project_id;
             $privateMessage->user_id = $applicant_id;
             $privateMessage->received_user_id = $project->user_id; // 相手はプロジェクトのオーナー 2020/04/29に追加
-            $privateMessage->project_id = $id;
             $privateMessage->content = $project->title.'の案件に応募がありました!';
             $privateMessage->save();
 

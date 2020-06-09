@@ -76,7 +76,7 @@
                         案件名: {{ private_message.project.title }}
                     </div>
                     <RouterLink
-                        :to="{name: 'privateMessagesDetail', params: { id: private_message.project_id }}"
+                        :to="{name: 'privateMessagesDetail', params: { id: private_message.application.id }}"
                     >
                         <div class="p-message__content">
                             {{ private_message.content }}

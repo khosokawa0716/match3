@@ -20,6 +20,7 @@ class PrivateMessagesController extends Controller
         $user_id = Auth::id();
 
         $unread_private_messages = PrivateMessage::with(['project'])
+            ->with(['application'])
             ->latest()
             ->where('received_user_id', $user_id)
             ->where('unread', true)
@@ -39,6 +40,7 @@ class PrivateMessagesController extends Controller
         // 送受信したプライベートメッセージ
         $exchanged_private_messages = PrivateMessage::with(['author'])
             ->with(['project'])
+            ->with(['application'])
             ->where('received_user_id', $user_id) // 受信したメッセージ
             ->orWhere('user_id', $user_id) // または送信したメッセージ
             ->orderBy(PrivateMessage::CREATED_AT, 'desc')->paginate();

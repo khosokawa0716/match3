@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use App\PrivateMessage;
 use App\Project;
 use App\PublicMessage;
@@ -27,8 +28,11 @@ class MypageController extends Controller
             ->get();
 
         // 応募した案件
+        // 応募した案件を探すために、自分が応募した案件のidを探す
+        $applied_project_ids = Application::where('applicant_id', $id)
+            ->pluck('project_id');
         $applied_projects = Project::with(['owner'])
-            ->where('applicant_id', $id)
+            ->whereIn('id', $applied_project_ids)
             ->orderBy(Project::CREATED_AT, 'desc')
             ->get();
 
@@ -48,6 +52,7 @@ class MypageController extends Controller
 
         // 送受信したプライベートメッセージ
         $exchanged_private_messages = PrivateMessage::with(['author'])
+            ->with(['application'])
             ->with(['project'])
             ->where('received_user_id', $id) // 受信したメッセージ
             ->orWhere('user_id', $id) // または送信したメッセージ

@@ -95,6 +95,7 @@
                 // PrivateMessagesDetailController@showを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/private_messages/detail/${this.id}`)
+                console.dir(response)
 
                 // エラーの場合
                 if (response.status !== OK) {
@@ -113,10 +114,10 @@
                 this.owner.profile_fields = response.data.project.owner.profile_fields
 
                   // 案件に応募したユーザーの情報
-                this.applicant.id = response.data.project.applicant.id
-                this.applicant.name = response.data.project.applicant.name
-                this.applicant.icon_path = response.data.project.applicant.icon_path
-                this.applicant.profile_fields = response.data.project.applicant.profile_fields
+                this.applicant.id = response.data.applicant.id
+                this.applicant.name = response.data.applicant.name
+                this.applicant.icon_path = response.data.applicant.icon_path
+                this.applicant.profile_fields = response.data.applicant.profile_fields
 
                   // やりとしたメッセージ
                 this.private_messages = response.data.private_messages
@@ -129,6 +130,8 @@
                 const response = await axios.post(`/api/private_messages/detail/${this.id}`, {
                     content: this.private_message_content
                 })
+
+                console.log(this.id)
 
                 // エラーの処理
                 if (response.status === UNPROCESSABLE_ENTITY) { // バリデーションエラー

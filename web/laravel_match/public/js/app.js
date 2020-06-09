@@ -3634,16 +3634,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
+                console.dir(response); // エラーの場合
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_5__["OK"])) {
-                  _context.next = 6;
+                  _context.next = 7;
                   break;
                 }
 
                 this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
-              case 6:
+              case 7:
                 // 表示する情報をプロパティに代入する
                 // メッセージに紐づく案件
                 this.project = response.data.project; // 案件を登録したユーザーの情報
@@ -3653,14 +3654,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.owner.icon_path = response.data.project.owner.icon_path;
                 this.owner.profile_fields = response.data.project.owner.profile_fields; // 案件に応募したユーザーの情報
 
-                this.applicant.id = response.data.project.applicant.id;
-                this.applicant.name = response.data.project.applicant.name;
-                this.applicant.icon_path = response.data.project.applicant.icon_path;
-                this.applicant.profile_fields = response.data.project.applicant.profile_fields; // やりとしたメッセージ
+                this.applicant.id = response.data.applicant.id;
+                this.applicant.name = response.data.applicant.name;
+                this.applicant.icon_path = response.data.applicant.icon_path;
+                this.applicant.profile_fields = response.data.applicant.profile_fields; // やりとしたメッセージ
 
                 this.private_messages = response.data.private_messages;
 
-              case 16:
+              case 17:
               case "end":
                 return _context.stop();
             }
@@ -3689,9 +3690,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context2.sent;
+                console.log(this.id); // エラーの処理
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_5__["UNPROCESSABLE_ENTITY"])) {
-                  _context2.next = 8;
+                  _context2.next = 9;
                   break;
                 }
 
@@ -3699,9 +3701,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.private_message_errors = response.data.errors;
                 return _context2.abrupt("return", false);
 
-              case 8:
+              case 9:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_5__["OK"])) {
-                  _context2.next = 11;
+                  _context2.next = 12;
                   break;
                 }
 
@@ -3709,21 +3711,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.$store.commit('error/setCode', response.status);
                 return _context2.abrupt("return", false);
 
-              case 11:
+              case 12:
                 // POST成功の場合
                 this.private_message_content = ''; // テキスト入力部分を空にする
 
                 this.private_message_errors = null; // エラーメッセージをクリア
 
-                _context2.next = 15;
+                _context2.next = 16;
                 return axios.get("/api/private_messages/detail/".concat(this.id));
 
-              case 15:
+              case 16:
                 response2 = _context2.sent;
                 // メッセージを全件取得
                 this.private_messages = response2.data.private_messages; // レスポンスをプロパティに代入
 
-              case 17:
+              case 18:
               case "end":
                 return _context2.stop();
             }
@@ -3904,6 +3906,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       id: this.$route.params.id,
+      // プロジェクトのid
       project: [],
       owner: {
         id: '',
@@ -12477,7 +12480,7 @@ var render = function() {
                   attrs: {
                     to: {
                       name: "privateMessagesDetail",
-                      params: { id: private_message.project_id }
+                      params: { id: private_message.application.id }
                     }
                   }
                 },
@@ -12828,7 +12831,7 @@ var render = function() {
                       attrs: {
                         to: {
                           name: "privateMessagesDetail",
-                          params: { id: private_message.project_id }
+                          params: { id: private_message.application.id }
                         }
                       }
                     },
@@ -12908,7 +12911,7 @@ var render = function() {
                   attrs: {
                     to: {
                       name: "privateMessagesDetail",
-                      params: { id: private_message.project_id }
+                      params: { id: private_message.application.id }
                     }
                   }
                 },
