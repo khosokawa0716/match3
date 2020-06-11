@@ -20,7 +20,8 @@
             <dt v-if="isOneOff">金額</dt><dd v-if="isOneOff">{{ project.minimum_amount }}円 〜 {{ project.max_amount }}円</dd>
             <dt>詳細</dt><dd>{{ project.detail }}</dd>
         </dl>
-            <form class="c-form" @submit.prevent="apply" v-if="isRecruiting && notOwner">
+            <form class="c-form" @submit.prevent="apply" v-if="isRecruiting && notOwner && !isUserApplied">
+<!--                応募のボタンが押せる条件は、1.募集中、2.案件登録者でない、3.すでに応募しているユーザーでない-->
                 <button type="submit" class="c-btn c-btn__corp c-btn__l">この案件に応募する</button>
             </form>
             <h5 class="l-container__subtitle">コメント</h5>
@@ -65,6 +66,7 @@
         data () {
             return {
                 id: this.$route.params.id, // プロジェクトのid
+                isUserApplied: false,
                 project: [],
                 owner: {
                     id: '',
@@ -103,6 +105,9 @@
 
                   // コメント
                 this.public_messages = response.data.public_messages
+
+                  // ログインユーザーがすでに応募した案件かどうか
+                this.isUserApplied = response.data.is_user_applied
             },
 
             // コメントを投稿する
@@ -131,24 +136,26 @@
 
             // 案件に応募する
             apply: async function () {
-                // ProjectDetailController@updateの起動
-                // 返却されたオブジェクトをresponseに代入
-                const response = await axios.put(`/api/project/detail/${this.id}`, this.id)
+                if (confirm('この案件に応募します。よろしいですか？')) {
+                    // ProjectDetailController@updateの起動
+                    // 返却されたオブジェクトをresponseに代入
+                    const response = await axios.put(`/api/project/detail/${this.id}`, this.id)
 
-                // エラーの処理
-                if (response.status !== OK) {
-                    this.$store.commit('error/setCode', response.status)
-                    return false
+                    // エラーの処理
+                    if (response.status !== OK) {
+                        this.$store.commit('error/setCode', response.status)
+                        return false
+                    }
+
+                    // updateアクションが成功だった場合
+                    this.$store.commit('message/setContent', {
+                        content: '案件に応募しました！', // ストアにメッセージを格納する
+                        timeout: 5000
+                    })
+
+                    // マイページに移動する
+                    this.$router.push('/mypage')
                 }
-
-                // updateアクションが成功だった場合
-                this.$store.commit('message/setContent', {
-                    content: '案件に応募しました！', // ストアにメッセージを格納する
-                    timeout: 5000
-                })
-
-                // マイページに移動する
-                this.$router.push('/mypage')
             },
 
             // ストアerror.jsにあるコードをクリアする

@@ -20,22 +20,32 @@
                 </ul>
             </div>
             <input type="hidden" name="_method" value="PUT">
-            <input type="text" class="c-input c-input__l" v-model="projectsUpdateForm.title" placeholder="タイトル（3〜20文字）">
+            <input type="text" class="c-input c-input__l" v-model="projectsUpdateForm.title" placeholder="タイトル（3〜60文字）" v-bind:readonly="isApplied">
             <div class="c-input__radio__l">
-            <label for="one-off" class="c-input__radio">
-                <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type">
-                決まった金額を支払う
-            </label>
-            <label for="service" class="c-input__radio">
-                <input type="radio" id="service" value="service" v-model="projectsUpdateForm.type">
-                サービス開始後の売り上げを分け合う
-            </label>
+                <label for="recruiting" class="c-input__radio">
+                    <input type="radio" id="recruiting" value="1" v-model="projectsUpdateForm.status">
+                    募集中
+                </label>
+                <label for="end_of_recruitment" class="c-input__radio">
+                    <input type="radio" id="end_of_recruitment" value="0" v-model="projectsUpdateForm.status">
+                    募集終了
+                </label>
+            </div>
+            <div class="c-input__radio__l">
+                <label for="one-off" class="c-input__radio">
+                    <input type="radio" id="one-off" value="one-off" v-model="projectsUpdateForm.type" v-bind:disabled="isApplied">
+                    決まった金額を支払う
+                </label>
+                <label for="service" class="c-input__radio">
+                    <input type="radio" id="service" value="service" v-model="projectsUpdateForm.type" v-bind:disabled="isApplied">
+                    サービス開始後の売り上げを分け合う
+                </label>
             </div>
             <div v-if="isOneOff">
-                <input type="number" class="c-input c-input__l" v-model="projectsUpdateForm.minimum_amount" placeholder="下限金額（1,000〜10,000,000円）">
-                <input type="number" class="c-input c-input__l" v-model="projectsUpdateForm.max_amount" placeholder="上限金額（1,000〜10,000,000円）">
+                <input type="number" class="c-input c-input__l" v-model="projectsUpdateForm.minimum_amount" placeholder="下限金額（1,000〜10,000,000円）" v-bind:readonly="isApplied">
+                <input type="number" class="c-input c-input__l" v-model="projectsUpdateForm.max_amount" placeholder="上限金額（1,000〜10,000,000円）" v-bind:readonly="isApplied">
             </div>
-            <textarea type="text" class="c-input c-input__textarea" v-model="projectsUpdateForm.detail" placeholder="詳細（3〜1000文字）"></textarea>
+            <textarea type="text" class="c-input c-input__textarea" v-model="projectsUpdateForm.detail" placeholder="詳細（3〜1000文字）" v-bind:readonly="isApplied"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を更新する</button>
         </form>
     </section>
@@ -47,9 +57,11 @@
         title: '案件の編集',
         data () {
             return {
+                isApplied: false,
                 projectsUpdateForm: {
                     id: this.$route.params.id,
                     title: '',
+                    status: '',
                     type: '',
                     minimum_amount: '',
                     max_amount: '',
@@ -64,6 +76,7 @@
                 // ProjectController@editの起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm.id)
+                console.dir(response)
 
                 // エラーの処理
                 if (response.status !== OK) {
@@ -72,13 +85,15 @@
                 }
 
                 // 成功の場合、案件の情報をプロパティに代入
-                this.project = response.data
+                // this.project = response.data.project
+                this.isApplied = response.data.is_applied
 
-                this.projectsUpdateForm.title = this.project.title
-                this.projectsUpdateForm.type = this.project.type
-                this.projectsUpdateForm.minimum_amount = this.project.minimum_amount
-                this.projectsUpdateForm.max_amount = this.project.max_amount
-                this.projectsUpdateForm.detail = this.project.detail
+                this.projectsUpdateForm.title = response.data.project.title
+                this.projectsUpdateForm.status = response.data.project.status
+                this.projectsUpdateForm.type = response.data.project.type
+                this.projectsUpdateForm.minimum_amount = response.data.project.minimum_amount
+                this.projectsUpdateForm.max_amount = response.data.project.max_amount
+                this.projectsUpdateForm.detail = response.data.project.detail
             },
 
             // 案件更新の処理

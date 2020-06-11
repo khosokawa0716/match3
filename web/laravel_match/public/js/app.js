@@ -2206,15 +2206,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 this.activeStatus = !this.activeStatus; // メニューを閉じる
 
-                _context.next = 3;
+                if (!confirm('ログアウトします。よろしいですか？')) {
+                  _context.next = 5;
+                  break;
+                }
+
+                _context.next = 4;
                 return this.$store.dispatch('auth/logout');
 
-              case 3:
+              case 4:
                 if (this.apiStatus) {
                   this.$router.push('/login'); // 処理が成功したら、ログイン画面に遷移する
                 }
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -2386,10 +2391,6 @@ __webpack_require__.r(__webpack_exports__);
     // その案件を登録したユーザーかどうか
     isOwner: function isOwner() {
       return this.$store.getters['auth/userid'] === this.item.owner.id;
-    },
-    // その案件が募集中かどうか
-    isRecruiting: function isRecruiting() {
-      return this.item.status === 1;
     },
     // 画面上での表示
     status: function status() {
@@ -3900,6 +3901,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: '案件詳細',
@@ -3907,6 +3909,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       id: this.$route.params.id,
       // プロジェクトのid
+      isUserApplied: false,
       project: [],
       owner: {
         id: '',
@@ -3953,9 +3956,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.owner.icon_path = response.data.project.owner.icon_path;
                 this.owner.profile_fields = response.data.project.owner.profile_fields; // コメント
 
-                this.public_messages = response.data.public_messages;
+                this.public_messages = response.data.public_messages; // ログインユーザーがすでに応募した案件かどうか
 
-              case 12:
+                this.isUserApplied = response.data.is_user_applied;
+
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -4040,21 +4045,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                if (!confirm('この案件に応募します。よろしいですか？')) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                _context3.next = 3;
                 return axios.put("/api/project/detail/".concat(this.id), this.id);
 
-              case 2:
+              case 3:
                 response = _context3.sent;
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_5__["OK"])) {
-                  _context3.next = 6;
+                  _context3.next = 7;
                   break;
                 }
 
                 this.$store.commit('error/setCode', response.status);
                 return _context3.abrupt("return", false);
 
-              case 6:
+              case 7:
                 // updateアクションが成功だった場合
                 this.$store.commit('message/setContent', {
                   content: '案件に応募しました！',
@@ -4064,7 +4074,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 this.$router.push('/mypage');
 
-              case 8:
+              case 9:
               case "end":
                 return _context3.stop();
             }
@@ -4481,14 +4491,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: '案件の編集',
   data: function data() {
     return {
+      isApplied: false,
       projectsUpdateForm: {
         id: this.$route.params.id,
         title: '',
+        status: '',
         type: '',
         minimum_amount: '',
         max_amount: '',
@@ -4511,25 +4533,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
+                console.dir(response); // エラーの処理
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_4__["OK"])) {
-                  _context.next = 6;
+                  _context.next = 7;
                   break;
                 }
 
                 this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
-              case 6:
+              case 7:
                 // 成功の場合、案件の情報をプロパティに代入
-                this.project = response.data;
-                this.projectsUpdateForm.title = this.project.title;
-                this.projectsUpdateForm.type = this.project.type;
-                this.projectsUpdateForm.minimum_amount = this.project.minimum_amount;
-                this.projectsUpdateForm.max_amount = this.project.max_amount;
-                this.projectsUpdateForm.detail = this.project.detail;
+                // this.project = response.data.project
+                this.isApplied = response.data.is_applied;
+                this.projectsUpdateForm.title = response.data.project.title;
+                this.projectsUpdateForm.status = response.data.project.status;
+                this.projectsUpdateForm.type = response.data.project.type;
+                this.projectsUpdateForm.minimum_amount = response.data.project.minimum_amount;
+                this.projectsUpdateForm.max_amount = response.data.project.max_amount;
+                this.projectsUpdateForm.detail = response.data.project.detail;
 
-              case 12:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -11941,7 +11966,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.isLogin && _vm.isOwner && _vm.isRecruiting
+          _vm.isLogin && _vm.isOwner
             ? _c(
                 "RouterLink",
                 {
@@ -13236,9 +13261,9 @@ var render = function() {
                     }
                   }),
                   _vm._v(
-                    "\n                    " +
+                    "\n                        " +
                       _vm._s(_vm.owner.name) +
-                      "\n                "
+                      "\n                    "
                   )
                 ]
               ),
@@ -13248,9 +13273,9 @@ var render = function() {
               _vm.isActiveProfile
                 ? _c("dd", [
                     _vm._v(
-                      "\n                    " +
+                      "\n                        " +
                         _vm._s(_vm.owner.profile_fields) +
-                        "\n                "
+                        "\n                    "
                     )
                   ])
                 : _vm._e()
@@ -13282,7 +13307,7 @@ var render = function() {
         _c("dd", [_vm._v(_vm._s(_vm.project.detail))])
       ]),
       _vm._v(" "),
-      _vm.isRecruiting && _vm.notOwner
+      _vm.isRecruiting && _vm.notOwner && !_vm.isUserApplied
         ? _c(
             "form",
             {
@@ -13333,33 +13358,33 @@ var render = function() {
                         }
                       }),
                       _vm._v(
-                        "\n                        " +
+                        "\n                            " +
                           _vm._s(public_message.author.name) +
-                          "\n                    "
+                          "\n                        "
                       )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "p-message__content" }, [
                       _vm._v(
-                        "\n                        " +
+                        "\n                            " +
                           _vm._s(public_message.content) +
-                          "\n                    "
+                          "\n                        "
                       )
                     ])
                   ])
                 : _c("div", { staticClass: "p-message__my-content" }, [
                     _vm._v(
-                      "\n                    " +
+                      "\n                        " +
                         _vm._s(public_message.content) +
-                        "\n                "
+                        "\n                    "
                     )
                   ]),
               _vm._v(" "),
               _c("div", { staticClass: "p-message__date" }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n                        " +
                     _vm._s(public_message.created_at) +
-                    "\n                "
+                    "\n                    "
                 )
               ])
             ]
@@ -13757,7 +13782,11 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__l",
-          attrs: { type: "text", placeholder: "タイトル（3〜20文字）" },
+          attrs: {
+            type: "text",
+            placeholder: "タイトル（3〜60文字）",
+            readonly: _vm.isApplied
+          },
           domProps: { value: _vm.projectsUpdateForm.title },
           on: {
             input: function($event) {
@@ -13768,6 +13797,65 @@ var render = function() {
             }
           }
         }),
+        _vm._v(" "),
+        _c("div", { staticClass: "c-input__radio__l" }, [
+          _c(
+            "label",
+            { staticClass: "c-input__radio", attrs: { for: "recruiting" } },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.projectsUpdateForm.status,
+                    expression: "projectsUpdateForm.status"
+                  }
+                ],
+                attrs: { type: "radio", id: "recruiting", value: "1" },
+                domProps: {
+                  checked: _vm._q(_vm.projectsUpdateForm.status, "1")
+                },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.projectsUpdateForm, "status", "1")
+                  }
+                }
+              }),
+              _vm._v("\n                募集中\n            ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "c-input__radio",
+              attrs: { for: "end_of_recruitment" }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.projectsUpdateForm.status,
+                    expression: "projectsUpdateForm.status"
+                  }
+                ],
+                attrs: { type: "radio", id: "end_of_recruitment", value: "0" },
+                domProps: {
+                  checked: _vm._q(_vm.projectsUpdateForm.status, "0")
+                },
+                on: {
+                  change: function($event) {
+                    return _vm.$set(_vm.projectsUpdateForm, "status", "0")
+                  }
+                }
+              }),
+              _vm._v("\n                募集終了\n            ")
+            ]
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "c-input__radio__l" }, [
           _c(
@@ -13783,7 +13871,12 @@ var render = function() {
                     expression: "projectsUpdateForm.type"
                   }
                 ],
-                attrs: { type: "radio", id: "one-off", value: "one-off" },
+                attrs: {
+                  type: "radio",
+                  id: "one-off",
+                  value: "one-off",
+                  disabled: _vm.isApplied
+                },
                 domProps: {
                   checked: _vm._q(_vm.projectsUpdateForm.type, "one-off")
                 },
@@ -13793,7 +13886,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v("\n            決まった金額を支払う\n        ")
+              _vm._v("\n                決まった金額を支払う\n            ")
             ]
           ),
           _vm._v(" "),
@@ -13810,7 +13903,12 @@ var render = function() {
                     expression: "projectsUpdateForm.type"
                   }
                 ],
-                attrs: { type: "radio", id: "service", value: "service" },
+                attrs: {
+                  type: "radio",
+                  id: "service",
+                  value: "service",
+                  disabled: _vm.isApplied
+                },
                 domProps: {
                   checked: _vm._q(_vm.projectsUpdateForm.type, "service")
                 },
@@ -13821,7 +13919,7 @@ var render = function() {
                 }
               }),
               _vm._v(
-                "\n            サービス開始後の売り上げを分け合う\n        "
+                "\n                サービス開始後の売り上げを分け合う\n            "
               )
             ]
           )
@@ -13841,7 +13939,8 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  placeholder: "下限金額（1,000〜10,000,000円）"
+                  placeholder: "下限金額（1,000〜10,000,000円）",
+                  readonly: _vm.isApplied
                 },
                 domProps: { value: _vm.projectsUpdateForm.minimum_amount },
                 on: {
@@ -13870,7 +13969,8 @@ var render = function() {
                 staticClass: "c-input c-input__l",
                 attrs: {
                   type: "number",
-                  placeholder: "上限金額（1,000〜10,000,000円）"
+                  placeholder: "上限金額（1,000〜10,000,000円）",
+                  readonly: _vm.isApplied
                 },
                 domProps: { value: _vm.projectsUpdateForm.max_amount },
                 on: {
@@ -13899,7 +13999,11 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__textarea",
-          attrs: { type: "text", placeholder: "詳細（3〜1000文字）" },
+          attrs: {
+            type: "text",
+            placeholder: "詳細（3〜1000文字）",
+            readonly: _vm.isApplied
+          },
           domProps: { value: _vm.projectsUpdateForm.detail },
           on: {
             input: function($event) {
@@ -14024,7 +14128,7 @@ var render = function() {
             }
           ],
           staticClass: "c-input c-input__l",
-          attrs: { type: "text", placeholder: "タイトル（3〜20文字）" },
+          attrs: { type: "text", placeholder: "タイトル（3〜60文字）" },
           domProps: { value: _vm.projectsRegisterForm.title },
           on: {
             input: function($event) {

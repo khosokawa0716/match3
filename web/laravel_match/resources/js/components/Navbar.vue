@@ -53,10 +53,12 @@
             // ログアウト
             logout: async function() {
                 this.activeStatus = !this.activeStatus // メニューを閉じる
-                await this.$store.dispatch('auth/logout')
+                if (confirm('ログアウトします。よろしいですか？')) {
+                    await this.$store.dispatch('auth/logout')
 
-                if (this.apiStatus) {
-                    this.$router.push('/login') // 処理が成功したら、ログイン画面に遷移する
+                    if (this.apiStatus) {
+                        this.$router.push('/login') // 処理が成功したら、ログイン画面に遷移する
+                    }
                 }
             }
         },

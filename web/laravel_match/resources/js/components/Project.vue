@@ -13,7 +13,7 @@
                     詳細を見る
                 </RouterLink>
                 <RouterLink
-                    v-if="isLogin && isOwner && isRecruiting"
+                    v-if="isLogin && isOwner"
                     :to="{name: 'projectsEdit', params: { id: this.item.id }}"
                 >
                     編集する
@@ -57,11 +57,6 @@
             // その案件を登録したユーザーかどうか
             isOwner: function() {
                 return this.$store.getters['auth/userid'] === this.item.owner.id
-            },
-
-            // その案件が募集中かどうか
-            isRecruiting: function() {
-                return this.item.status === 1
             },
 
             // 画面上での表示

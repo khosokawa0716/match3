@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Application;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,10 +41,10 @@ class ProjectController extends Controller
     // 案件の登録
     public function create(Request $request, Project $project) {
         $request->validate([
-            'title' => 'required|string|min:3|max:20',
+            'title' => 'required|string|min:3|max:60',
             'type' => 'required',
             'minimum_amount' => 'nullable|integer|min:1000|max:10000000',
-            'max_amount' => 'nullable|integer|min:1000|max:10000000',
+            'max_amount' => 'nullable|integer|min:1000|max:10000000|gte:minimum_amount',
             'detail' => 'required|string|min:3|max:1000'
         ]);
 
@@ -69,12 +70,18 @@ class ProjectController extends Controller
             // 検索結果がない場合には、エラーコード404を返却する
             if ($project === null) { return abort(404); }
 
-            // 以下2つのケースでエラーコード403を返却する
-            // 1.応募が終了した案件を編集しようとした
-            // 2.他人が登録した案件を編集しようとした
-            if ($project->status === 0 || $project->user_id !== $user_id) { return abort(403); }
+            // 他人が登録した案件を更新しようとした場合、エラーコード403を返却する
+            if ($project->user_id !== $user_id) { return abort(403); }
 
-            return $project;
+            // すでに応募がある案件かどうか
+            // フロント側でreadonlyの表示・非表示の切り替えに使う
+            $is_applied = Application::where('project_id', $project_id)
+                ->exists();
+
+            return [
+                'project' => $project,
+                'is_applied' => $is_applied
+                ];
         } else {
             // URLのID部分に数値でない入力でリクエストがあった場合にも、エラーコード404を返却する
             return abort(404);
@@ -93,10 +100,8 @@ class ProjectController extends Controller
             // 検索結果がない場合には、エラーコード404を返却する
             if ($project === null) { return abort(404); }
 
-            // 以下2つのケースでエラーコード403を返却する
-            // ・応募が終了した案件を更新しようとした
-            // ・他人が登録した案件を更新しようとした
-            if ($project->status === 0 || $project->user_id !== $user_id) { return abort(403); }
+            // 他人が登録した案件を更新しようとした場合、エラーコード403を返却する
+            if ($project->user_id !== $user_id) { return abort(403); }
         } else {
             // URLのID部分に数値でない入力でリクエストがあった場合にも、エラーコード404を返却する
             return abort(404);
@@ -104,15 +109,17 @@ class ProjectController extends Controller
 
         // 2.バリデーションチェック
         $request->validate([
-            'title' => 'required|string|min:3|max:20',
+            'title' => 'required|string|min:3|max:60',
+            'status' => 'required',
             'type' => 'required',
             'minimum_amount' => 'nullable|integer|min:1000|max:10000000',
-            'max_amount' => 'nullable|integer|min:1000|max:10000000',
+            'max_amount' => 'nullable|integer|min:1000|max:10000000|gte:minimum_amount',
             'detail' => 'required|string|min:3|max:1000'
         ]);
 
         // 3.変更がある項目のみセットする
         if ( $project->title !== $request['title'] ) { $project->title = $request['title']; }
+        if ( $project->status !== $request['status'] ) { $project->status = $request['status']; }
         if ( $project->type !== $request['type']) { $project->type = $request['type']; }
         if ( $project->minimum_amount !== $request['minimum_amount'] ) { $project->minimum_amount = $request['minimum_amount']; }
         if ( $project->max_amount !== $request['max_amount'] ) { $project->max_amount = $request['max_amount']; }

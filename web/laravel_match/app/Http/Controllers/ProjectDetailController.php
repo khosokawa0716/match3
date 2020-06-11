@@ -33,7 +33,17 @@ class ProjectDetailController extends Controller
                 ->oldest()
                 ->get();
 
-            return [ 'project' => $project, 'public_messages' => $public_messages ];
+            // ログインユーザーが、すでに応募した案件かどうか
+            // フロント側でボタンの表示・非表示の切り替えに使う
+            $is_user_applied = Application::where('project_id', $id)
+                ->where('applicant_id', Auth::id())
+                ->exists();
+
+            return [
+                'project' => $project,
+                'public_messages' => $public_messages,
+                'is_user_applied' => $is_user_applied
+            ];
         } else {
             // URLのID部分に数値でない入力でリクエストがあった場合にも、エラーコード404を返却する
             return abort(404);

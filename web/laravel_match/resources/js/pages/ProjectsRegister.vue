@@ -19,7 +19,7 @@
                     <li v-for="msg in registerErrors.detail" :key="msg">{{ msg }}</li>
                 </ul>
             </div>
-            <input type="text" class="c-input c-input__l" v-model="projectsRegisterForm.title" placeholder="タイトル（3〜20文字）">
+            <input type="text" class="c-input c-input__l" v-model="projectsRegisterForm.title" placeholder="タイトル（3〜60文字）">
             <div class="c-input__radio__l">
             <label for="one-off" class="c-input__radio">
                 <input type="radio" id="one-off" value="one-off" v-model="projectsRegisterForm.type">
