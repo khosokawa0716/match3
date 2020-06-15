@@ -15,9 +15,13 @@ class ProjectController extends Controller
         $this->middleware('auth')->except(['index']);
     }
 
-    // 表示する案件をとってくる
-    // 絞り込み条件を引数$requestに含む
+    /**
+     * 表示する案件をとってくる
+     * @param \Illuminate\Http\Request $request
+     * @return Array
+     */
     public function index(Request $request){
+        // 絞り込み条件を引数$requestに含む
         $status = $request['status'];
         $type = $request['type'];
 
@@ -38,7 +42,12 @@ class ProjectController extends Controller
         return $projects;
     }
 
-    // 案件の登録
+    /**
+     * 案件の登録
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Project $project
+     * @return Array
+     */
     public function create(Request $request, Project $project) {
         $request->validate([
             'title' => 'required|string|min:3|max:60',
@@ -60,11 +69,15 @@ class ProjectController extends Controller
         return $project;
     }
 
-    // 編集する案件を取得する。引数$dataはprojectsのid
+    /**
+     * 表示する案件をとってくる
+     * @param int $data
+     * @return Array
+     */
     public function edit($data)
     {
         $user_id = Auth::id();
-        $project_id = $data;
+        $project_id = $data; // $dataはprojectsのid
         if (ctype_digit($project_id)) {
             $project = Project::find($project_id);
             // 検索結果がない場合には、エラーコード404を返却する
@@ -88,11 +101,16 @@ class ProjectController extends Controller
         }
     }
 
-    // 案件の更新。引数は、$request編集:フォームに入力された値と $id:案件のid
+    /**
+     * 案件の更新
+     * @param \Illuminate\Http\Request $request
+     * @param int $data
+     * @return Array
+     */
     public function update (Request $request, $id)
     {
         $user_id = Auth::id();
-        $project_id = $id;
+        $project_id = $id; // $dataはprojectsのid
 
         // 1.この操作をする権限があるかどうかを確認する
         if (ctype_digit($project_id)) {

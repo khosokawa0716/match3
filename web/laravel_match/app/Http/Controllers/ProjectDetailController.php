@@ -17,11 +17,14 @@ class ProjectDetailController extends Controller
         $this->middleware('auth');
     }
 
-    // 案件とパブリックメッセージを取得する
-    // 引数は$dataは、projectsのid
+    /**
+     * 案件詳細ページ。案件と投稿されたパブリックメッセージを取得する
+     * @param int $data
+     * @return Array
+     */
     public function show($data)
     {
-        $id = $data;
+        $id = $data; // $dataは、projectsのid
 
         if (ctype_digit($id)) {
             $project = Project::where('id', $id)->with(['owner'])->first();
@@ -50,11 +53,17 @@ class ProjectDetailController extends Controller
         }
     }
 
-    // パブリックメッセージを投稿する
+    /**
+     * パブリックメッセージを投稿する
+     * @param \Illuminate\Http\Request $request
+     * @param \App\PublicMessage $publicMessage
+     * @param int $data
+     * @return Array
+     */
     public function create(Request $request, PublicMessage $publicMessage, $data)
     {
         $user_id = Auth::id();
-        $project_id = $data;
+        $project_id = $data; // $dataは、projectsのid
 
         $request->validate([
             'content' => 'required|string|max:200'
@@ -70,13 +79,18 @@ class ProjectDetailController extends Controller
         return $public_messages;
     }
 
-    // 案件に応募する。同時に応募した旨を案件登録者にプライベートメッセージで伝える
+    /**
+     * 案件に応募する。同時に応募した旨を案件登録者にプライベートメッセージで伝える
+     * @param \App\PrivateMessage $privateMessage
+     * @param \App\Application $application
+     * @param int $data
+     * @return Array
+     */
     public function update(PrivateMessage $privateMessage, Application $application, $data)
     {
-        $project_id = $data; // フロントから渡される$dataは、案件のID
+        $project_id = $data; // $dataは、projectsのid
 
         // 応募した人 = ログインして応募の操作をした人
-//        $applicant = Auth::user();
         $applicant_id = Auth::id();
 
         if (ctype_digit($project_id)) {
@@ -95,13 +109,14 @@ class ProjectDetailController extends Controller
             // 3.同じ案件に2度以上応募しようとした
             if ($project->status === 0 || $project->user_id === $applicant_id || $application_check !== null) { return abort(403); }
 
-//            $project->status = 0; 応募による募集ステータスの変更はやめる
-            // projectsテーブルの更新はなしで、applicationsテーブルのデータを更新
+            // applicationsテーブルのレコードを登録
             $application->project_id = $project_id;
             $application->owner_id = $project->user_id;
             $application->applicant_id = $applicant_id;
             $application->save();
 
+            // 応募した旨を案件登録者にプライベートメッセージで伝える
+            // private_messagesテーブルのレコードを登録
             $privateMessage->application_id = $application->id;
             $privateMessage->project_id = $project_id;
             $privateMessage->user_id = $applicant_id;

@@ -1,5 +1,9 @@
 <template>
-    <section class="l-container">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="l-container">
         <h1 class="l-container__title">match</h1>
         <form class="c-form" @submit.prevent="login">
             <div v-if="loginErrors" class="c-error">
@@ -17,13 +21,28 @@
                 パスワードをお忘れの方はこちら
             </RouterLink>
         </form>
+        </div>
     </section>
 </template>
 <script>
+    import Breadcrumb from '../components/Breadcrumb'
+
     export default {
+        components: {
+            Breadcrumb
+        },
         title: 'ログイン',
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: 'ログイン'
+                    }
+                ],
                 loginForm: {
                     email: '',
                     password: ''

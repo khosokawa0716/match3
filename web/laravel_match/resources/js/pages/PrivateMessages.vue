@@ -1,5 +1,9 @@
 <template>
-    <section class="l-container">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="l-container">
         <h1 class="l-container__title">メッセージ一覧</h1>
         <div class="l-container__body" v-if="isUnreadMessage">
             <h5 class="l-container__subtitle">未読のメッセージ</h5>
@@ -55,19 +59,31 @@
                 </li>
             </ul>
         </div>
+        </div>
     </section>
 </template>
 <script>
     import { OK } from '../util'
     import Project from '../components/Project.vue'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
-        title: 'メッセージ一覧',
         components: {
+            Breadcrumb,
             Project
         },
+        title: 'メッセージ一覧',
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: 'メッセージ一覧'
+                    }
+                ],
                 unread_private_messages: [],
                 private_messages: [],
                 projects: []

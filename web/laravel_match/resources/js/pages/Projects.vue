@@ -1,5 +1,9 @@
 <template>
-    <section class="l-container">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="l-container">
         <h1 class="l-container__title">案件一覧</h1>
         <div class="l-container__body">
             <p class="p-info" v-if="! isLogin">ログイン、ユーザー登録をすると案件の詳細を確認できます。</p>
@@ -39,14 +43,21 @@
         <div class="l-container__body">
             <Pagination :select-status="selectStatus" :select-type="selectType" :current-page="currentPage" :last-page="lastPage" />
         </div>
+        </div>
     </section>
 </template>
 <script>
     import { OK } from '../util'
     import Project from '../components/Project.vue'
     import Pagination from '../components/Pagination.vue'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
+        components: {
+            Breadcrumb,
+            Project,
+            Pagination
+        },
         title: '案件一覧',
         props: {
             status: {
@@ -65,12 +76,17 @@
                 default: 1
             }
         },
-        components: {
-            Project,
-            Pagination
-        },
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: '案件一覧'
+                    }
+                ],
                 projects: [],
                 selectStatus: this.status,
                 selectType: this.type,

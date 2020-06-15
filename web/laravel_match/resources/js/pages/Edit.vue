@@ -1,5 +1,9 @@
 <template>
-    <section class="l-container">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="l-container">
         <h1 class="l-container__title">本人情報の編集</h1>
 
         <form class="c-form" @submit.prevent="update" enctype="multipart/form-data" method="POST">
@@ -19,26 +23,40 @@
             <label class="c-input__label">メールアドレス</label>
             <input type="text" class="c-input c-input__l" v-model="editForm.email" placeholder="メールアドレス">
             <label class="c-input__label">今のアイコン画像</label>
-            <img :src="editForm.icon_path" alt="今のアイコン画像" height="100" class="imgIcon_l">
+            <img :src="editForm.icon_path" alt="今のアイコン画像" height="100" class="u-imgIcon__l">
             <label class="c-input__label">新しいアイコン画像</label>
             <label class="u-fontSizeSmall">&#8251;1MB以下の画像を選択してください。</label>
             <input class="form__item" type="file" id="icon-image" @change="onFileChange">
             <output class="form__output" v-if="preview">
-                <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">
+                <img :src="preview" alt="選択した画像" height="100" class="u-imgIcon__l">
             </output>
             <label class="c-input__label">自己紹介</label>
             <textarea type="text" class="c-input c-input__textarea" v-model="editForm.profile_fields" placeholder="自己紹介（120文字以内）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">更新する</button>
         </form>
+        </div>
     </section>
 </template>
 <script>
-    import {OK} from "../util";
+    import { OK } from '../util'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
+        components: {
+            Breadcrumb
+        },
         title: '本人情報の編集',
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: '本人情報の編集'
+                    }
+                ],
                 editForm: {
                     id: this.$store.getters['auth/userid'],
                     email: '',

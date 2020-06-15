@@ -1,6 +1,7 @@
 <template>
-    <div>
+    <div class="l-wrapper">
         <Navbar />
+        <Breadcrumb />
         <main>
                 <Message />
                 <RouterView />
@@ -14,11 +15,13 @@
     import Navbar from './components/Navbar.vue'
     import Footer from './components/Footer.vue'
     import {UNAUTHORIZED, UNAUTHORIZED_CSRF, NOT_FOUND, FORBIDDEN, INTERNAL_SERVER_ERROR} from './util'
+    import Breadcrumb from './components/Breadcrumb'
 
     export default {
         components: {
-            Message,
             Navbar,
+            Breadcrumb,
+            Message,
             Footer
         },
         computed: { // ストアのステートを参照する

@@ -63,17 +63,14 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * ユーザー情報の更新
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User $user
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return Array
      */
-
-    // ユーザー情報の更新
-    public function update(Request $request, $id) // 引数Users $userを削除
+    public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = User::find($id); // $idはusersテーブルのid
 
         // バリデーションチェック
         $request->validate([

@@ -46,7 +46,6 @@ const routes = [
     },
     {
         path: '/projects/list',
-        // path: '/projects/list/:type',
         name: 'projectsList',
         component: Projects,
         props: route => {
@@ -54,9 +53,7 @@ const routes = [
             const type = route.query.type
             const page = route.query.page
             return {
-                // status: "1" | "0" | "2" ? status : "1",
                 status: status,
-                // type: 'all' | 'one-off' | 'service' ? type : 'all',
                 type: type,
                 page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
             }
@@ -122,14 +119,6 @@ const routes = [
         path: '/mypage',
         name: 'mypage',
         component: Mypage,
-        // props: route => {
-        //     const page_registered_projects = route.query.page_registered_projects
-        //     const page_applied_projects = route.query.page_applied_projects
-        //     return {
-        //         page_registered_projects: /^[1-9][0-9]*$/.test(page_registered_projects) ? page_registered_projects * 1 : 1,
-        //         page_applied_projects: /^[1-9][0-9]*$/.test(page_applied_projects) ? page_applied_projects * 1 : 1
-        //     }
-        // },
         beforeEnter (to, from, next) { // 未ログイン状態でアクセスがあったらログインページへ遷移する
             if (store.getters['auth/check']) {
                 next()

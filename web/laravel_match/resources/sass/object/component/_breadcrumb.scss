@@ -1,0 +1,49 @@
+// ==================================
+// breadcrumb
+// ==================================
+.c-breadcrumb {
+    box-sizing: border-box;
+    width: $site-width_max;
+    margin-left: auto;
+    margin-right: auto;
+    //padding: $space_xl;
+    padding-left: $space_xl;
+    padding-right: $space_xl;
+    z-index: 2;
+
+    @include mxl() {
+        width: 100%;
+        position: fixed;
+        background: rgba(255, 255, 255, 0.9);
+        margin-top: $header-height;
+    }
+
+    @include mq() {
+        height: 60px;
+        margin-top: 0;
+        padding-right: $space_l;
+        padding-left: $space_l;
+    }
+
+    &__list {
+        list-style: none;
+        text-align: left;
+        margin: 0;
+        @include mq() {
+            height: 60px;
+            font-size: $font-size_m;
+        }
+    }
+    &__item {
+        display: inline-block;
+
+        &:after {
+            content: '\00A0>\00A0';
+            display: inline-block;
+        }
+
+        &:last-child:after {
+            content: none;
+        }
+    }
+}

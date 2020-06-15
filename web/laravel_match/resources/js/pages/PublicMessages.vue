@@ -1,5 +1,9 @@
 <template>
-    <section class="l-container">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="l-container">
         <h1 class="l-container__title">コメント一覧</h1>
         <div class="l-container__body">
             <h5 class="l-container__subtitle">最新のコメント</h5>
@@ -32,19 +36,31 @@
                 />
             </div>
         </div>
+        </div>
     </section>
 </template>
 <script>
     import { OK } from '../util'
-    import Project from '../components/Project.vue'
+    import Project from '../components/Project'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
-        title: 'コメント一覧',
         components: {
-            Project
+            Project,
+            Breadcrumb
         },
+        title: 'コメント一覧',
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: 'コメント一覧'
+                    }
+                ],
                 public_message: '',
                 projects: []
             }

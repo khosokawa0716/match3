@@ -43,12 +43,11 @@ class CustomResetPassword extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
+     * パスワードリセットのためのメール本文 日本語の表示にするために定義
      *
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    // パスワードリセットのためのメール本文 日本語の表示にするために定義
     public function toMail($notifiable)
     {
         $token = $this->token; // URL生成用に定義

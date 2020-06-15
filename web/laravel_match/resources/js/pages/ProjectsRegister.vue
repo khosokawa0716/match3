@@ -1,5 +1,9 @@
 <template>
-    <section class="l-container">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="l-container">
         <h1 class="l-container__title">案件登録</h1>
         <form class="c-form" @submit.prevent="projectsRegister">
             <div v-if="registerErrors" class="c-error">
@@ -37,15 +41,29 @@
             <textarea cols="30" rows="10" type="text" class="c-input c-input__textarea" id="detail" v-model="projectsRegisterForm.detail" placeholder="詳細（3〜1000文字）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を登録する</button>
         </form>
+        </div>
     </section>
 </template>
 <script>
-    import {CREATED, UNPROCESSABLE_ENTITY} from "../util";
+    import { CREATED, UNPROCESSABLE_ENTITY } from '../util'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
+        components: {
+            Breadcrumb
+        },
         title: '案件登録',
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: '案件登録'
+                    }
+                ],
                 projectsRegisterForm: {
                     title: '',
                     type: 'one-off',

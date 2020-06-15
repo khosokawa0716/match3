@@ -5,7 +5,7 @@
 .c-pagination {
     margin-top: $space_xxl;
     margin-bottom: $space_xxl;
-    a {
+    &__link {
         border: $border_default;
         border-radius: $border_radius;
         padding: $space_l;

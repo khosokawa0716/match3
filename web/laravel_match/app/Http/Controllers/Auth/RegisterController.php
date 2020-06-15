@@ -43,13 +43,11 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * ユーザー登録時のバリデーション
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-
-    // ユーザー登録時のバリデーション
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -61,13 +59,10 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
+     * ユーザー登録
      * @param  array $data
      * @return \App\User
      */
-
-    // ユーザー登録
     protected function create(array $data)
     {
         // 入力が任意の項目は、未入力時にはnullをDBに書き込む

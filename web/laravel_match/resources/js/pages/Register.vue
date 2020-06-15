@@ -1,5 +1,9 @@
 <template>
-    <section class="l-container">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="l-container">
         <h1 class="l-container__title">ユーザー登録</h1>
         <form class="c-form" @submit.prevent="register" enctype="multipart/form-data">
             <div v-if="registerErrors" class="c-error">
@@ -29,19 +33,34 @@
             <label for="icon-image">アイコン画像</label>
             <label class="u-fontSizeSmall">&#8251;1MB以下の画像を選択してください。</label>
             <output v-if="preview">
-                <img :src="preview" alt="選択した画像" height="100" class="imgIcon_l">
+                <img :src="preview" alt="選択した画像" height="100" class="u-imgIcon__l">
             </output>
             <input class="c-input c-input__l" type="file" id="icon-image" @change="onFileChange">
             <textarea cols="30" class="c-input c-input__textarea" rows="10" v-model="registerForm.profile_fields" placeholder="自己紹介（120文字以内）"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">登録する</button>
         </form>
+        </div>
     </section>
 </template>
 <script>
+    import Breadcrumb from '../components/Breadcrumb'
+
     export default {
+        components: {
+            Breadcrumb
+        },
         title: 'ユーザー登録',
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: 'ユーザー登録'
+                    }
+                ],
                 registerForm: {
                     name: '',
                     email: '',

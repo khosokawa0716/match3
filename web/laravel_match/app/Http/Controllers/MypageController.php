@@ -10,14 +10,16 @@ use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {
-    //
     public function __construct()
     {
         // 認証が必要
         $this->middleware('auth');
     }
 
-    // マイページに表示する情報をとってくる
+    /**
+     * マイページに表示する情報をとってくる
+     * @return Array
+     */
     public function index(){
         $id = Auth::id();
 

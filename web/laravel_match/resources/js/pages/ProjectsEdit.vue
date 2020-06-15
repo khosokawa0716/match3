@@ -1,7 +1,16 @@
 <template>
-    <section class="l-container">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="l-container">
         <h1 class="l-container__title">案件の編集</h1>
         <form class="c-form" @submit.prevent="projectsUpdate">
+            <div v-if="isApplied" class="c-error">
+                <ul>
+                    <li>この案件には応募があり、募集の状態以外の項目は変更できません。</li>
+                </ul>
+            </div>
             <div v-if="updateErrors" class="c-error">
                 <ul v-if="updateErrors.title">
                     <li v-for="msg in updateErrors.title" :key="msg">{{ msg }}</li>
@@ -48,15 +57,29 @@
             <textarea type="text" class="c-input c-input__textarea" v-model="projectsUpdateForm.detail" placeholder="詳細（3〜1000文字）" v-bind:readonly="isApplied"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を更新する</button>
         </form>
+        </div>
     </section>
 </template>
 <script>
-    import {OK, UNPROCESSABLE_ENTITY} from "../util";
+    import { OK, UNPROCESSABLE_ENTITY } from '../util'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
+        components: {
+            Breadcrumb
+        },
         title: '案件の編集',
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: '案件の編集'
+                    }
+                ],
                 isApplied: false,
                 projectsUpdateForm: {
                     id: this.$route.params.id,

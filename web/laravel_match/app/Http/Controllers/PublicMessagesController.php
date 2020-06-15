@@ -14,7 +14,10 @@ class PublicMessagesController extends Controller
         $this->middleware('auth');
     }
 
-    // メッセージ一覧画面に表示する情報をとってくる
+    /**
+     * コメント（パブリックメッセージ）一覧画面に表示する情報をとってくる
+     * @return Array
+     */
     public function show()
     {
         $user_id = Auth::id();

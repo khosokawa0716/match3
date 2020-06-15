@@ -3,12 +3,12 @@
         <RouterLink
             v-if="! isFirstPage"
             :to="`/projects/list?status=${this.selectStatus}&type=${selectType}&page=${currentPage - 1}`"
-            class=""
+            class="c-pagination__link"
             >&laquo; 前のページ</RouterLink>
         <RouterLink
             v-if="! isLastPage"
             :to="`/projects/list?status=${this.selectStatus}&type=${selectType}&page=${currentPage + 1}`"
-            class=""
+            class="c-pagination__link"
         >次のページ &raquo;</RouterLink>
     </div>
 </template>

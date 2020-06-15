@@ -14,7 +14,7 @@
     padding-left: $space_xl;
     padding-right: $space_xl;
     transition: .3s;
-    z-index: 2;
+    z-index: 3;
     @include mxl() {
         width: 100%;
         position: fixed;

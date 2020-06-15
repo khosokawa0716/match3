@@ -17,7 +17,7 @@
             <li class="c-menu__item" @click="toggleActiveStatus"><RouterLink class="c-menu__link" to="/private_messages/list">メッセージ</RouterLink></li>
             <li class="c-menu__item" @click="toggleActiveStatus">
                 <RouterLink class="c-menu__link" to="/mypage">
-                    <img :src="icon_path" alt="アイコン画像"  height="20" class="imgIcon">
+                    <img :src="icon_path" alt="アイコン画像"  height="20" class="u-imgIcon">
                     マイページ
                 </RouterLink>
             </li>

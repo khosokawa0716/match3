@@ -17,7 +17,11 @@ class PrivateMessagesDetailController extends Controller
         $this->middleware('auth');
     }
 
-    // 案件と非公開メッセージをとってくる
+    /**
+     * 案件と非公開メッセージをとってくる
+     * @param int $data
+     * @return Array
+     */
     public function show($data)
     {
         $application_id = $data; // 引数は$dataは、applicationsのid
@@ -78,7 +82,13 @@ class PrivateMessagesDetailController extends Controller
         }
     }
 
-    // 非公開メッセージを投稿する
+    /**
+     * 非公開メッセージを投稿する
+     * @param \Illuminate\Http\Request $request
+     * @param \App\PrivateMessage $privateMessage
+     * @param int $data
+     * @return Array
+     */
     public function create(Request $request, PrivateMessage $privateMessage, $data)
     {
         $user_id = Auth::id(); // メッセージを投稿する人

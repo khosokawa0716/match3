@@ -11,6 +11,7 @@
 // Layout
 // ==========================================================================
 
+@import "layout/_wrapper";
 @import "layout/_container";
 @import "layout/_message";
 @import "layout/_footer";
@@ -33,6 +34,7 @@
 @import "object/component/_panel";
 @import "object/component/_description";
 @import "object/component/_pagination";
+@import "object/component/_breadcrumb";
 
  //-----------------------------------------------------------------
  //Project

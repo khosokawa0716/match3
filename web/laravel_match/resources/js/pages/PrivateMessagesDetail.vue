@@ -1,40 +1,44 @@
 <template>
-    <section class="p-projectDetail">
+    <section>
+        <div class="c-breadcrumb">
+            <breadcrumb :breadcrumbs="breadcrumbs" />
+        </div>
+        <div class="p-projectDetail">
         <h1 class="l-container__title">メッセージ詳細</h1>
         <div class="p-projectDetail__body">
         <dl class="c-dl">
             <div v-if="notOwner"> <!-- 自分が登録した案件には、名前と自己症紹介は表示しない -->
-                <dt>依頼した人</dt>
-                <dd @click="toggleProfile" class="cursorHelp">
-                    <img :src="owner.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
+                <dt class="c-dl__dt">依頼した人</dt>
+                <dd class="c-dl__dd u-cursorHelp" @click="toggleProfile">
+                    <img :src="owner.icon_path" alt="アイコン画像"  height="20" class="u-imgIcon__detail">
                     {{ owner.name }}
                 </dd>
-                <dt v-if="isActiveProfile">自己紹介</dt>
-                <dd v-if="isActiveProfile">
+                <dt class="c-dl__dt" v-if="isActiveProfile">自己紹介</dt>
+                <dd class="c-dl__dd" v-if="isActiveProfile">
                     {{ owner.profile_fields }}
                 </dd>
             </div>
             <div v-if="notApplicant"> <!-- 自分が応募した案件には、名前と自己症紹介は表示しない -->
-                <dt>応募した人</dt>
-                <dd @click="toggleProfile" class="cursorHelp">
-                    <img :src="applicant.icon_path" alt="アイコン画像"  height="20" class="imgIcon__detail">
+                <dt class="c-dl__dt">応募した人</dt>
+                <dd class="c-dl__dd u-cursorHelp" @click="toggleProfile">
+                    <img :src="applicant.icon_path" alt="アイコン画像"  height="20" class="u-imgIcon__detail">
                     {{ applicant.name }}
                 </dd>
-                <dt v-if="isActiveProfile">自己紹介</dt>
-                <dd v-if="isActiveProfile">
+                <dt class="c-dl__dt" v-if="isActiveProfile">自己紹介</dt>
+                <dd class="c-dl__dd" v-if="isActiveProfile">
                     {{ applicant.profile_fields }}
                 </dd>
             </div>
-            <dt>案件名</dt><dd>{{ project.title }}</dd>
-            <dt>タイプ</dt><dd>{{ type }}</dd>
-            <dt v-if="isOneOff">金額</dt><dd v-if="isOneOff">{{ project.minimum_amount }}円 〜 {{ project.max_amount }}円</dd>
-            <dt>詳細</dt><dd>{{ project.detail }}</dd>
+            <dt class="c-dl__dt">案件名</dt><dd class="c-dl__dd">{{ project.title }}</dd>
+            <dt class="c-dl__dt">タイプ</dt><dd class="c-dl__dd">{{ type }}</dd>
+            <dt class="c-dl__dt" v-if="isOneOff">金額</dt><dd class="c-dl__dd" v-if="isOneOff">{{ project.minimum_amount }}円 〜 {{ project.max_amount }}円</dd>
+            <dt class="c-dl__dt">詳細</dt><dd class="c-dl__dd">{{ project.detail }}</dd>
         </dl>
         <ul>
             <li v-for="private_message in private_messages" v-bind="private_message.id" class="p-message">
                 <div v-if="userid !== private_message.author.id">
                     <div class="p-message__author">
-                        <img :src="private_message.author.icon_path" alt="アイコン画像"  height="20" class="imgIcon">
+                        <img :src="private_message.author.icon_path" alt="アイコン画像"  height="20" class="u-imgIcon">
                         {{ private_message.author.name }}
                     </div>
                     <div class="p-message__content">
@@ -58,17 +62,34 @@
             <textarea cols="30" rows="10" type="text" class="c-input p-projectDetail__textarea" v-model="private_message_content" placeholder="内容（200文字以内）"></textarea>
             <button type="submit" class="c-btn c-btn__corp p-projectDetail__btn">送信する</button>
         </form>
-
+        </div>
         </div>
     </section>
 </template>
 <script>
     import { OK, UNPROCESSABLE_ENTITY } from '../util'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
+        components: {
+            Breadcrumb
+        },
         title: 'メッセージ詳細',
         data () {
             return {
+                breadcrumbs: [
+                    {
+                        name: 'ホーム',
+                        path: '/'
+                    },
+                    {
+                        name: 'メッセージ一覧',
+                        path: '/private_messages/list'
+                    },
+                    {
+                        name: 'メッセージ詳細'
+                    }
+                ],
                 id: this.$route.params.id,
                 project: [],
                 owner: {

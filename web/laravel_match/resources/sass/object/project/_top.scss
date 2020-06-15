@@ -80,7 +80,7 @@
         }
     }
 
-    ol {
+    &__list-ol {
         list-style-type: decimal;
         list-style-position: inside;
         margin: $space_m auto;
@@ -94,7 +94,7 @@
         }
     }
 
-    ul {
+    &__list-ul {
         list-style-type: disc;
         list-style-position: inside;
         margin: $space_m auto;
@@ -107,7 +107,7 @@
         }
     }
 
-    p {
+    &__remarks {
         @include mq() {
             font-size: $font-size_s;
         }

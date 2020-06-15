@@ -14,7 +14,10 @@ class PrivateMessagesController extends Controller
         $this->middleware('auth');
     }
 
-    // メッセージ一覧画面に表示する情報をとってくる
+    /**
+     * メッセージ一覧画面に表示する情報をとってくる
+     * @return Array
+     */
     public function show()
     {
         $user_id = Auth::id();
