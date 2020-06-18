@@ -116,7 +116,6 @@
                 // PrivateMessagesDetailController@showを起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/private_messages/detail/${this.id}`)
-                console.dir(response)
 
                 // エラーの場合
                 if (response.status !== OK) {
@@ -151,8 +150,6 @@
                 const response = await axios.post(`/api/private_messages/detail/${this.id}`, {
                     content: this.private_message_content
                 })
-
-                console.log(this.id)
 
                 // エラーの処理
                 if (response.status === UNPROCESSABLE_ENTITY) { // バリデーションエラー

@@ -9,6 +9,8 @@
     border: $border_default;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.9);
+    z-index: 10;
+    cursor: pointer;
     @include mq() {
         bottom: 60px;
 }

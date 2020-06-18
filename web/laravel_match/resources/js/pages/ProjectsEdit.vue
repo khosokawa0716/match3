@@ -51,8 +51,8 @@
                 </label>
             </div>
             <div v-if="isOneOff">
-                <input type="number" class="c-input c-input__l" v-model="projectsUpdateForm.minimum_amount" placeholder="下限金額（1,000〜10,000,000円）" v-bind:readonly="isApplied">
-                <input type="number" class="c-input c-input__l" v-model="projectsUpdateForm.max_amount" placeholder="上限金額（1,000〜10,000,000円）" v-bind:readonly="isApplied">
+                <input type="number" class="c-input c-input__l" v-model.number="projectsUpdateForm.minimum_amount" placeholder="下限金額（1,000〜10,000,000円）" v-bind:readonly="isApplied">
+                <input type="number" class="c-input c-input__l" v-model.number="projectsUpdateForm.max_amount" placeholder="上限金額（1,000〜10,000,000円）" v-bind:readonly="isApplied">
             </div>
             <textarea type="text" class="c-input c-input__textarea" v-model="projectsUpdateForm.detail" placeholder="詳細（3〜1000文字）" v-bind:readonly="isApplied"></textarea>
             <button type="submit" class="c-btn c-btn__corp c-btn__l">案件を更新する</button>
@@ -99,7 +99,6 @@
                 // ProjectController@editの起動
                 // 返却されたオブジェクトをresponseに代入
                 const response = await axios.get(`/api/projects/${this.projectsUpdateForm.id}/edit`, this.projectsUpdateForm.id)
-                console.dir(response)
 
                 // エラーの処理
                 if (response.status !== OK) {

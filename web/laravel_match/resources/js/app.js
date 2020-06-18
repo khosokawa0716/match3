@@ -4,8 +4,6 @@ import router from './router' // ルーティングの定義をインポート�
 import titleMixin from './title' // タイトルをインポートする
 import store from './store' // Vuexストアをインポートする
 import App from './App.vue' // ルートコンポーネントをインポートする
-// import 'core-js/stable'
-// import 'regenerator-runtime/runtime'
 
 const createApp = async function () {
     await store.dispatch('auth/currentUser')

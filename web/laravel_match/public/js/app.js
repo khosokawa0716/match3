@@ -2084,7 +2084,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     breadcrumbs: {
-      type: Array
+      type: Array // required: true
+
     }
   }
 });
@@ -3731,17 +3732,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.dir(response); // エラーの場合
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_5__["OK"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
                 this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 // 表示する情報をプロパティに代入する
                 // メッセージに紐づく案件
                 this.project = response.data.project; // 案件を登録したユーザーの情報
@@ -3758,7 +3758,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 this.private_messages = response.data.private_messages;
 
-              case 17:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -3787,10 +3787,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context2.sent;
-                console.log(this.id); // エラーの処理
 
                 if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_5__["UNPROCESSABLE_ENTITY"])) {
-                  _context2.next = 9;
+                  _context2.next = 8;
                   break;
                 }
 
@@ -3798,9 +3797,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.private_message_errors = response.data.errors;
                 return _context2.abrupt("return", false);
 
-              case 9:
+              case 8:
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_5__["OK"])) {
-                  _context2.next = 12;
+                  _context2.next = 11;
                   break;
                 }
 
@@ -3808,21 +3807,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.$store.commit('error/setCode', response.status);
                 return _context2.abrupt("return", false);
 
-              case 12:
+              case 11:
                 // POST成功の場合
                 this.private_message_content = ''; // テキスト入力部分を空にする
 
                 this.private_message_errors = null; // エラーメッセージをクリア
 
-                _context2.next = 16;
+                _context2.next = 15;
                 return axios.get("/api/private_messages/detail/".concat(this.id));
 
-              case 16:
+              case 15:
                 response2 = _context2.sent;
                 // メッセージを全件取得
                 this.private_messages = response2.data.private_messages; // レスポンスをプロパティに代入
 
-              case 18:
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -4683,17 +4682,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 response = _context.sent;
-                console.dir(response); // エラーの処理
 
                 if (!(response.status !== _util__WEBPACK_IMPORTED_MODULE_4__["OK"])) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
                 this.$store.commit('error/setCode', response.status);
                 return _context.abrupt("return", false);
 
-              case 7:
+              case 6:
                 // 成功の場合、案件の情報をプロパティに代入
                 // this.project = response.data.project
                 this.isApplied = response.data.is_applied;
@@ -4704,7 +4702,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.projectsUpdateForm.max_amount = response.data.project.max_amount;
                 this.projectsUpdateForm.detail = response.data.project.detail;
 
-              case 14:
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -11730,7 +11728,7 @@ var render = function() {
     "ul",
     { staticClass: "c-breadcrumb__list" },
     _vm._l(_vm.breadcrumbs, function(crumb, key) {
-      return _c("li", { key: _vm.name, staticClass: "c-breadcrumb__item" }, [
+      return _c("li", { key: crumb.name, staticClass: "c-breadcrumb__item" }, [
         crumb.path
           ? _c(
               "span",
@@ -14288,9 +14286,10 @@ var render = function() {
                   directives: [
                     {
                       name: "model",
-                      rawName: "v-model",
+                      rawName: "v-model.number",
                       value: _vm.projectsUpdateForm.minimum_amount,
-                      expression: "projectsUpdateForm.minimum_amount"
+                      expression: "projectsUpdateForm.minimum_amount",
+                      modifiers: { number: true }
                     }
                   ],
                   staticClass: "c-input c-input__l",
@@ -14308,8 +14307,11 @@ var render = function() {
                       _vm.$set(
                         _vm.projectsUpdateForm,
                         "minimum_amount",
-                        $event.target.value
+                        _vm._n($event.target.value)
                       )
+                    },
+                    blur: function($event) {
+                      return _vm.$forceUpdate()
                     }
                   }
                 }),
@@ -14318,9 +14320,10 @@ var render = function() {
                   directives: [
                     {
                       name: "model",
-                      rawName: "v-model",
+                      rawName: "v-model.number",
                       value: _vm.projectsUpdateForm.max_amount,
-                      expression: "projectsUpdateForm.max_amount"
+                      expression: "projectsUpdateForm.max_amount",
+                      modifiers: { number: true }
                     }
                   ],
                   staticClass: "c-input c-input__l",
@@ -14338,8 +14341,11 @@ var render = function() {
                       _vm.$set(
                         _vm.projectsUpdateForm,
                         "max_amount",
-                        $event.target.value
+                        _vm._n($event.target.value)
                       )
+                    },
+                    blur: function($event) {
+                      return _vm.$forceUpdate()
                     }
                   }
                 })
@@ -14589,9 +14595,10 @@ var render = function() {
                   directives: [
                     {
                       name: "model",
-                      rawName: "v-model",
+                      rawName: "v-model.number",
                       value: _vm.projectsRegisterForm.minimum_amount,
-                      expression: "projectsRegisterForm.minimum_amount"
+                      expression: "projectsRegisterForm.minimum_amount",
+                      modifiers: { number: true }
                     }
                   ],
                   staticClass: "c-input c-input__l",
@@ -14608,8 +14615,11 @@ var render = function() {
                       _vm.$set(
                         _vm.projectsRegisterForm,
                         "minimum_amount",
-                        $event.target.value
+                        _vm._n($event.target.value)
                       )
+                    },
+                    blur: function($event) {
+                      return _vm.$forceUpdate()
                     }
                   }
                 }),
@@ -14618,9 +14628,10 @@ var render = function() {
                   directives: [
                     {
                       name: "model",
-                      rawName: "v-model",
+                      rawName: "v-model.number",
                       value: _vm.projectsRegisterForm.max_amount,
-                      expression: "projectsRegisterForm.max_amount"
+                      expression: "projectsRegisterForm.max_amount",
+                      modifiers: { number: true }
                     }
                   ],
                   staticClass: "c-input c-input__l",
@@ -14637,8 +14648,11 @@ var render = function() {
                       _vm.$set(
                         _vm.projectsRegisterForm,
                         "max_amount",
-                        $event.target.value
+                        _vm._n($event.target.value)
                       )
+                    },
+                    blur: function($event) {
+                      return _vm.$forceUpdate()
                     }
                   }
                 })
@@ -32118,8 +32132,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // Vuexストアをインポートする
 
  // ルートコンポーネントをインポートする
-// import 'core-js/stable'
-// import 'regenerator-runtime/runtime'
 
 var createApp = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default.a.mark(function _callee() {
