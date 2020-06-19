@@ -91,13 +91,15 @@
             update: async function () {
                 // 画像データを扱うためnew FormData()を定義、入力項目を代入する
                 const data = new FormData()
-                data.append('id',this.editForm.id)
                 data.append('email',this.editForm.email)
                 data.append('file',this.editForm.icon_file)
                 data.append('profile_fields',this.editForm.profile_fields)
 
+                // data.get('id')は IE11でサポートしていないため、別の変数に格納して'auth/update'に渡す
+                const id = this.editForm.id
+
                 // authストアのupdateアクションを呼び出す
-                await this.$store.dispatch('auth/update', data)
+                await this.$store.dispatch('auth/update', { data: data, id: id })
 
                 if (this.apiStatus) {
                     // updateアクションが成功だった場合、ストアにメッセージを格納する

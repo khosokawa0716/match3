@@ -94,9 +94,9 @@ const actions = { // それぞれのアクションは、非同期処理の結�
         context.commit('error/setCode', response.status, { root: true })
     },
     // ユーザー更新
-    update: async function (context, data) {
+    update: async function (context, { data, id }) {
         context.commit('setApiStatus', null)
-        const response = await axios.post('/api/users/' + data.get('id'), data, {
+            const response = await axios.post(`/api/users/${ id }`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data', // 画像の更新のために追加
                 'X-HTTP-Method-Override': 'PUT', // data = new FormData これをバックエンド側に渡すためにいったんpostで送りputで上書き
